@@ -278,7 +278,6 @@
     .legend-dot.v { background: var(--visited-color); opacity: 0.75; }
     .legend-dot.u { background: var(--unvisited-color); border: 1px solid var(--border); }
 
-    /* Map container */
     #map-container {
       width: 100%;
       background: var(--surface);
@@ -297,37 +296,25 @@
       letter-spacing: 0.1em;
       color: var(--muted);
     }
-
-    /* geolonia SVG styles */
-    #map-container .geolonia-svg-map {
+    #map-container svg {
       width: 100%;
       height: auto;
       display: block;
     }
-    #map-container .geolonia-svg-map .prefecture {
+    #map-container svg .prefecture {
       fill: var(--unvisited-color);
       stroke: #fff;
       stroke-width: 0.5;
       cursor: pointer;
       transition: fill 0.2s, opacity 0.2s;
     }
-    #map-container .geolonia-svg-map .prefecture.visited {
+    #map-container svg .prefecture.visited {
       fill: var(--visited-color);
       opacity: 0.72;
     }
-    #map-container .geolonia-svg-map .prefecture.visited:hover {
-      opacity: 1;
-    }
-    #map-container .geolonia-svg-map .prefecture.unvisited:hover {
-      fill: #c8d8ee;
-    }
-    #map-container .geolonia-svg-map .boundary-line {
-      stroke: #fff;
-      stroke-width: 0.3;
-      fill: none;
-    }
+    #map-container svg .prefecture.visited:hover { opacity: 1; }
+    #map-container svg .prefecture.unvisited:hover { fill: #c8d8ee; }
 
-    /* Tooltip */
     .map-tooltip {
       position: fixed;
       background: var(--text);
@@ -593,7 +580,6 @@
           <div class="legend-item"><div class="legend-dot v"></div>訪問済み (44)</div>
           <div class="legend-item"><div class="legend-dot u"></div>未訪問 (3)</div>
         </div>
-        <!-- SVGがここにfetchで挿入される -->
         <div id="map-container">
           <span class="loading">地図を読み込み中...</span>
         </div>
@@ -603,11 +589,11 @@
             <div class="card-stat-label">都道府県</div>
           </div>
           <div class="card-stat">
-            <div class="card-stat-num">??</div>
+            <div class="card-stat-num" id="stat-photos">—</div>
             <div class="card-stat-label">Photos</div>
           </div>
           <div class="card-stat">
-            <div class="card-stat-num">??</div>
+            <div class="card-stat-num" id="stat-posts">—</div>
             <div class="card-stat-label">Posts</div>
           </div>
         </div>
@@ -636,15 +622,15 @@
           <div class="stat-label">都道府県</div>
         </div>
         <div class="stat-box">
-          <div class="stat-number">??</div>
+          <div class="stat-number" id="about-stat-photos">—</div>
           <div class="stat-label">Photos</div>
         </div>
         <div class="stat-box">
-          <div class="stat-number">??</div>
+          <div class="stat-number" id="about-stat-posts">—</div>
           <div class="stat-label">Blog Posts</div>
         </div>
         <div class="stat-box">
-          <div class="stat-number">??</div>
+          <div class="stat-number" id="about-stat-cities">—</div>
           <div class="stat-label">Cities</div>
         </div>
       </div>
@@ -660,13 +646,8 @@
       </div>
       <a href="blog.html" class="btn-secondary">All Posts →</a>
     </div>
-    <div class="posts-grid reveal">
-      <a href="blog.html" class="post-card">
-        <span class="post-tag">旅行</span>
-        <p class="post-date">2025.01.01</p>
-        <h3 class="post-title">記事タイトルがここに入ります</h3>
-        <p class="post-excerpt">旅先での出来事や気づき、感じたことを書き留めていきます。</p>
-      </a>
+    <div id="latest-posts" class="posts-grid reveal">
+      <!-- ブログ記事がある場合はJSで最新1件を挿入、なければメッセージ表示 -->
     </div>
   </section>
 
@@ -677,8 +658,7 @@
   </footer>
 
   <script>
-    // ── 訪問済み都道府県コード ──
-    // 未訪問: 沖縄(47), 愛媛(38), 長崎(42)
+    // ── 訪問済み都道府県コード（未訪問: 沖縄47, 愛媛38, 長崎42）──
     const VISITED = new Set([
        1, 2, 3, 4, 5, 6, 7, 8, 9,10,
       11,12,13,14,15,16,17,18,19,20,
@@ -687,53 +667,116 @@
       41,   43,44,45,46
     ]);
 
-    // ── 地図を読み込む ──
+    // ── 都道府県マップ読み込み ──
     async function loadMap() {
       const container = document.getElementById('map-container');
       const tooltip   = document.getElementById('mapTooltip');
       try {
-        // SVGはリポジトリに置いた map-full.svg を参照
         const res = await fetch('./map-full.svg');
-        if (!res.ok) throw new Error('SVG load failed');
+        if (!res.ok) throw new Error();
         const svgText = await res.text();
         container.innerHTML = svgText;
 
-        const prefs = container.querySelectorAll('.prefecture');
-        prefs.forEach(pref => {
+        container.querySelectorAll('.prefecture').forEach(pref => {
           const code = parseInt(pref.getAttribute('data-code'), 10);
-          if (VISITED.has(code)) {
-            pref.classList.add('visited');
-          } else {
-            pref.classList.add('unvisited');
-          }
+          pref.classList.add(VISITED.has(code) ? 'visited' : 'unvisited');
 
-          // ホバーでtooltip表示
           pref.addEventListener('mousemove', e => {
             const title = pref.querySelector('title');
             const name  = title ? title.textContent.split('/')[0].trim() : '';
-            const status = VISITED.has(code) ? '✓ 訪問済み' : '未訪問';
-            tooltip.textContent = `${name} — ${status}`;
+            tooltip.textContent = `${name} — ${VISITED.has(code) ? '✓ 訪問済み' : '未訪問'}`;
             tooltip.classList.add('show');
             tooltip.style.left = (e.clientX + 14) + 'px';
             tooltip.style.top  = (e.clientY - 28) + 'px';
           });
-          pref.addEventListener('mouseleave', () => {
-            tooltip.classList.remove('show');
-          });
+          pref.addEventListener('mouseleave', () => tooltip.classList.remove('show'));
         });
-
-      } catch (e) {
-        // SVGが見つからない場合はメッセージを表示
+      } catch {
         container.innerHTML = `
-          <div style="text-align:center; padding: 40px 20px;">
-            <p style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.1em; color:var(--muted); line-height:2;">
+          <div style="text-align:center;padding:40px 20px;">
+            <p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;color:var(--muted);line-height:2;">
               map-full.svg をリポジトリに<br>アップロードしてください
             </p>
           </div>`;
       }
     }
 
-    loadMap();
+    // ── ページからコンテンツ数を取得 ──
+    // portfolio.html の .photo-item の数 → Photos
+    // blog.html の .blog-item の数 → Posts
+    // portfolio.html の [data-city] のユニーク数 → Cities
+    async function fetchCount(url, selector) {
+      try {
+        const res = await fetch(url);
+        if (!res.ok) return null;
+        const html = await res.text();
+        const doc  = new DOMParser().parseFromString(html, 'text/html');
+        return doc.querySelectorAll(selector).length || null;
+      } catch {
+        return null;
+      }
+    }
+
+    async function fetchUniqueCities(url) {
+      try {
+        const res = await fetch(url);
+        if (!res.ok) return null;
+        const html = await res.text();
+        const doc  = new DOMParser().parseFromString(html, 'text/html');
+        const cities = new Set(
+          [...doc.querySelectorAll('[data-city]')].map(el => el.getAttribute('data-city'))
+        );
+        return cities.size || null;
+      } catch {
+        return null;
+      }
+    }
+
+    // ── 最新ブログ記事をindex.htmlに表示 ──
+    async function fetchLatestPost() {
+      const container = document.getElementById('latest-posts');
+      try {
+        const res = await fetch('./blog.html');
+        if (!res.ok) throw new Error();
+        const html = await res.text();
+        const doc  = new DOMParser().parseFromString(html, 'text/html');
+        const items = doc.querySelectorAll('.blog-item');
+        if (items.length === 0) throw new Error();
+
+        // 最新1件だけ取得して表示
+        const latest = items[0].cloneNode(true);
+        // blog.htmlへのリンクに変換
+        const link = document.createElement('a');
+        link.href = './blog.html';
+        link.className = 'post-card';
+        link.innerHTML = latest.innerHTML;
+        container.appendChild(link);
+      } catch {
+        container.innerHTML = `
+          <p style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.1em;color:var(--muted);">
+            まだ記事がありません
+          </p>`;
+      }
+    }
+
+    async function loadStats() {
+      const [photos, posts, cities] = await Promise.all([
+        fetchCount('./portfolio.html', '.photo-item'),
+        fetchCount('./blog.html',      '.blog-item'),
+        fetchUniqueCities('./portfolio.html'),
+      ]);
+
+      const fmt = v => v !== null ? String(v) : '—';
+
+      // hero card stats
+      document.getElementById('stat-photos').textContent = fmt(photos);
+      document.getElementById('stat-posts').textContent  = fmt(posts);
+
+      // about section stats
+      document.getElementById('about-stat-photos').textContent = fmt(photos);
+      document.getElementById('about-stat-posts').textContent  = fmt(posts);
+      document.getElementById('about-stat-cities').textContent = fmt(cities);
+    }
 
     // ── Scroll reveal ──
     const observer = new IntersectionObserver(entries => {
@@ -749,6 +792,11 @@
       a.classList.remove('active');
       if (a.getAttribute('href') === page) a.classList.add('active');
     });
+
+    // ── 実行 ──
+    loadMap();
+    loadStats();
+    fetchLatestPost();
   </script>
 </body>
 </html>
