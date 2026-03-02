@@ -7,86 +7,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Noto+Sans+JP:wght@300;400;500&family=DM+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #f7f9fc;
-      --white: #ffffff;
-      --surface: #eef3f9;
-      --border: #d8e4f0;
-      --text: #1a2332;
-      --muted: #7a90a8;
-      --accent: #2b7de9;
-      --accent-light: #6fb8f5;
-      --accent-pale: #ddeefb;
-      --cyan: #00c2d4;
-      --visited-color: #2b7de9;
-      --unvisited-color: #dde8f5;
-    }
-
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Noto Sans JP', sans-serif;
-      font-weight: 300;
-      min-height: 100vh;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 56px;
-      height: 68px;
-      background: rgba(247,249,252,0.92);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-logo {
-      font-family: 'Caveat', cursive;
-      font-size: 30px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      color: var(--text);
-      text-decoration: none;
-    }
-    .nav-logo em { font-style: normal; color: var(--accent); }
-
-    .nav-links {
-      display: flex;
-      gap: 40px;
-      list-style: none;
-    }
-    .nav-links a {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      position: relative;
-      transition: color 0.25s;
-    }
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px; left: 0;
-      width: 0; height: 1.5px;
-      background: var(--accent);
-      border-radius: 2px;
-      transition: width 0.3s ease;
-    }
-    .nav-links a:hover { color: var(--accent); }
-    .nav-links a:hover::after,
-    .nav-links a.active::after { width: 100%; }
-    .nav-links a.active { color: var(--accent); }
+    /* index.html 固有スタイル */
 
     /* ── HERO ── */
     .hero {
@@ -176,41 +99,6 @@
       animation: fadeUp 0.7s ease 0.8s forwards;
     }
 
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 36px;
-      background: var(--accent);
-      color: #fff;
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 2px;
-      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
-      box-shadow: 0 4px 20px rgba(43,125,233,0.25);
-    }
-    .btn-primary:hover {
-      background: #1a6dd4;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(43,125,233,0.35);
-    }
-
-    .btn-secondary {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 3px;
-      transition: color 0.25s, border-color 0.25s;
-    }
-    .btn-secondary:hover { color: var(--accent); border-color: var(--accent); }
-
     /* ── MAP CARD ── */
     .hero-visual {
       position: relative;
@@ -288,7 +176,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
     }
     #map-container .loading {
       font-family: 'DM Mono', monospace;
@@ -296,11 +183,7 @@
       letter-spacing: 0.1em;
       color: var(--muted);
     }
-    #map-container svg {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
+    #map-container svg { width: 100%; height: auto; display: block; }
     #map-container svg .prefecture {
       fill: var(--unvisited-color);
       stroke: #fff;
@@ -308,10 +191,7 @@
       cursor: pointer;
       transition: fill 0.2s, opacity 0.2s;
     }
-    #map-container svg .prefecture.visited {
-      fill: var(--visited-color);
-      opacity: 0.72;
-    }
+    #map-container svg .prefecture.visited { fill: var(--visited-color); opacity: 0.72; }
     #map-container svg .prefecture.visited:hover { opacity: 1; }
     #map-container svg .prefecture.unvisited:hover { fill: #c8d8ee; }
 
@@ -337,11 +217,7 @@
       border-top: 1px solid var(--border);
       padding-top: 18px;
     }
-    .card-stat {
-      flex: 1;
-      text-align: center;
-      padding: 0 8px;
-    }
+    .card-stat { flex: 1; text-align: center; padding: 0 8px; }
     .card-stat + .card-stat { border-left: 1px solid var(--border); }
     .card-stat-num {
       font-family: 'Caveat', cursive;
@@ -359,34 +235,7 @@
       margin-top: 4px;
     }
 
-    /* ── CONTENT SECTIONS ── */
-    section.content { padding: 100px 56px; }
-    section.content + section.content { border-top: 1px solid var(--border); }
-
-    .section-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin-bottom: 52px;
-    }
-    .section-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 10px;
-    }
-    .section-title {
-      font-family: 'Caveat', cursive;
-      font-size: clamp(36px, 4vw, 52px);
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      line-height: 1.1;
-      color: var(--text);
-    }
-
-    /* ── ABOUT ── */
+    /* ── ABOUT GRID ── */
     .about-grid {
       display: grid;
       grid-template-columns: 1.3fr 1fr;
@@ -405,135 +254,11 @@
       grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
-    .stat-box {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 28px 20px;
-      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
-    }
-    .stat-box:hover {
-      border-color: var(--accent-light);
-      box-shadow: 0 6px 28px rgba(43,125,233,0.12);
-      transform: translateY(-3px);
-    }
-    .stat-number {
-      font-family: 'Caveat', cursive;
-      font-size: 48px;
-      font-weight: 600;
-      color: var(--accent);
-      line-height: 1;
-    }
-    .stat-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 6px;
-    }
 
-    /* ── BLOG ── */
-    .posts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-
-    .post-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 32px;
-      text-decoration: none;
-      color: var(--text);
-      display: block;
-      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-    .post-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2.5px;
-      background: linear-gradient(90deg, var(--accent), var(--cyan));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.35s ease;
-    }
-    .post-card:hover {
-      border-color: var(--accent-light);
-      box-shadow: 0 8px 36px rgba(43,125,233,0.12);
-      transform: translateY(-4px);
-    }
-    .post-card:hover::before { transform: scaleX(1); }
-
-    .post-tag {
-      display: inline-block;
-      background: var(--accent-pale);
-      color: var(--accent);
-      font-family: 'DM Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 4px 12px;
-      border-radius: 100px;
-      margin-bottom: 16px;
-    }
-    .post-date {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      margin-bottom: 12px;
-    }
-    .post-title { font-size: 15px; font-weight: 500; line-height: 1.65; margin-bottom: 12px; }
-    .post-excerpt { font-size: 13px; color: var(--muted); line-height: 1.8; }
-
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 40px 56px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: var(--white);
-    }
-    .footer-logo {
-      font-family: 'Caveat', cursive;
-      font-size: 22px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      color: var(--muted);
-    }
-    .footer-logo em { font-style: normal; color: var(--accent); }
-    .footer-copy {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-    }
-
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .reveal {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    /* ── MOBILE ── */
     @media (max-width: 900px) {
-      nav { padding: 0 20px; }
-      .nav-links { gap: 20px; }
       .hero { grid-template-columns: 1fr; padding: 100px 20px 64px; gap: 40px; }
       .hero-visual { display: none; }
-      section.content { padding: 72px 20px; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
-      .posts-grid { grid-template-columns: 1fr; }
-      .section-header { flex-direction: column; align-items: flex-start; gap: 16px; }
-      footer { padding: 32px 20px; flex-direction: column; gap: 12px; text-align: center; }
     }
   </style>
 </head>
@@ -541,7 +266,6 @@
 
   <div class="map-tooltip" id="mapTooltip"></div>
 
-  <!-- Navigation -->
   <nav>
     <a href="index.html" class="nav-logo">Shi<em>yu</em></a>
     <ul class="nav-links">
@@ -553,7 +277,6 @@
     </ul>
   </nav>
 
-  <!-- Hero -->
   <section class="hero" id="home">
     <div class="hero-content">
       <p class="hero-tag">Personal Site</p>
@@ -601,7 +324,6 @@
     </div>
   </section>
 
-  <!-- About Preview -->
   <section class="content" id="about-preview">
     <div class="section-header reveal">
       <div>
@@ -637,7 +359,6 @@
     </div>
   </section>
 
-  <!-- Blog Preview -->
   <section class="content" id="blog-preview">
     <div class="section-header reveal">
       <div>
@@ -646,19 +367,15 @@
       </div>
       <a href="blog.html" class="btn-secondary">All Posts →</a>
     </div>
-    <div id="latest-posts" class="posts-grid reveal">
-      <!-- ブログ記事がある場合はJSで最新1件を挿入、なければメッセージ表示 -->
-    </div>
+    <div id="latest-posts" class="posts-grid reveal"></div>
   </section>
 
-  <!-- Footer -->
   <footer>
     <div class="footer-logo">Shi<em>yu</em></div>
     <p class="footer-copy">© 2025 Shiyu — All rights reserved.</p>
   </footer>
 
   <script>
-    // ── 訪問済み都道府県コード（未訪問: 沖縄47, 愛媛38, 長崎42）──
     const VISITED = new Set([
        1, 2, 3, 4, 5, 6, 7, 8, 9,10,
       11,12,13,14,15,16,17,18,19,20,
@@ -667,20 +384,16 @@
       41,   43,44,45,46
     ]);
 
-    // ── 都道府県マップ読み込み ──
     async function loadMap() {
       const container = document.getElementById('map-container');
       const tooltip   = document.getElementById('mapTooltip');
       try {
         const res = await fetch('./map-full.svg');
         if (!res.ok) throw new Error();
-        const svgText = await res.text();
-        container.innerHTML = svgText;
-
+        container.innerHTML = await res.text();
         container.querySelectorAll('.prefecture').forEach(pref => {
           const code = parseInt(pref.getAttribute('data-code'), 10);
           pref.classList.add(VISITED.has(code) ? 'visited' : 'unvisited');
-
           pref.addEventListener('mousemove', e => {
             const title = pref.querySelector('title');
             const name  = title ? title.textContent.split('/')[0].trim() : '';
@@ -701,61 +414,40 @@
       }
     }
 
-    // ── ページからコンテンツ数を取得 ──
-    // portfolio.html の .photo-item の数 → Photos
-    // blog.html の .blog-item の数 → Posts
-    // portfolio.html の [data-city] のユニーク数 → Cities
     async function fetchCount(url, selector) {
       try {
         const res = await fetch(url);
         if (!res.ok) return null;
-        const html = await res.text();
-        const doc  = new DOMParser().parseFromString(html, 'text/html');
+        const doc = new DOMParser().parseFromString(await res.text(), 'text/html');
         return doc.querySelectorAll(selector).length || null;
-      } catch {
-        return null;
-      }
+      } catch { return null; }
     }
 
     async function fetchUniqueCities(url) {
       try {
         const res = await fetch(url);
         if (!res.ok) return null;
-        const html = await res.text();
-        const doc  = new DOMParser().parseFromString(html, 'text/html');
-        const cities = new Set(
-          [...doc.querySelectorAll('[data-city]')].map(el => el.getAttribute('data-city'))
-        );
+        const doc = new DOMParser().parseFromString(await res.text(), 'text/html');
+        const cities = new Set([...doc.querySelectorAll('[data-city]')].map(el => el.getAttribute('data-city')));
         return cities.size || null;
-      } catch {
-        return null;
-      }
+      } catch { return null; }
     }
 
-    // ── 最新ブログ記事をindex.htmlに表示 ──
     async function fetchLatestPost() {
       const container = document.getElementById('latest-posts');
       try {
         const res = await fetch('./blog.html');
         if (!res.ok) throw new Error();
-        const html = await res.text();
-        const doc  = new DOMParser().parseFromString(html, 'text/html');
+        const doc   = new DOMParser().parseFromString(await res.text(), 'text/html');
         const items = doc.querySelectorAll('.blog-item');
-        if (items.length === 0) throw new Error();
-
-        // 最新1件だけ取得して表示
-        const latest = items[0].cloneNode(true);
-        // blog.htmlへのリンクに変換
+        if (!items.length) throw new Error();
         const link = document.createElement('a');
         link.href = './blog.html';
         link.className = 'post-card';
-        link.innerHTML = latest.innerHTML;
+        link.innerHTML = items[0].innerHTML;
         container.appendChild(link);
       } catch {
-        container.innerHTML = `
-          <p style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.1em;color:var(--muted);">
-            まだ記事がありません
-          </p>`;
+        container.innerHTML = `<p style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.1em;color:var(--muted);">まだ記事がありません</p>`;
       }
     }
 
@@ -765,20 +457,15 @@
         fetchCount('./blog.html',      '.blog-item'),
         fetchUniqueCities('./portfolio.html'),
       ]);
-
       const fmt = v => v !== null ? String(v) : '—';
-
-      // hero card stats
-      document.getElementById('stat-photos').textContent = fmt(photos);
-      document.getElementById('stat-posts').textContent  = fmt(posts);
-
-      // about section stats
+      document.getElementById('stat-photos').textContent       = fmt(photos);
+      document.getElementById('stat-posts').textContent        = fmt(posts);
       document.getElementById('about-stat-photos').textContent = fmt(photos);
       document.getElementById('about-stat-posts').textContent  = fmt(posts);
       document.getElementById('about-stat-cities').textContent = fmt(cities);
     }
 
-    // ── Scroll reveal ──
+    // Scroll reveal
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
@@ -786,14 +473,13 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // ── Active nav ──
+    // Active nav
     const page = location.pathname.split('/').pop() || 'index.html';
     document.querySelectorAll('.nav-links a').forEach(a => {
       a.classList.remove('active');
       if (a.getAttribute('href') === page) a.classList.add('active');
     });
 
-    // ── 実行 ──
     loadMap();
     loadStats();
     fetchLatestPost();
