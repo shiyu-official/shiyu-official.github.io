@@ -88,7 +88,7 @@ nav {
   border-bottom: 1px solid var(--border);
 }
 .page-header .section-label {
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 .page-header h1 {
   font-family: 'Caveat', cursive;
@@ -100,7 +100,7 @@ nav {
 }
 .page-header p {
   margin-top: 20px;
-  font-size: 14px;
+  font-size: 24px;
   line-height: 2.1;
   color: var(--muted);
   max-width: 520px;
@@ -115,7 +115,7 @@ nav {
   background: var(--accent);
   color: #fff;
   font-family: 'DM Mono', monospace;
-  font-size: 16px;
+  font-size: 26px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   text-decoration: none;
@@ -131,7 +131,7 @@ nav {
 
 .btn-secondary {
   font-family: 'DM Mono', monospace;
-  font-size: 16px;
+  font-size: 26px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
