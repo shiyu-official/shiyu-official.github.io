@@ -60,7 +60,7 @@ nav {
 }
 .nav-links a {
   font-family: 'DM Mono', monospace;
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
@@ -110,12 +110,12 @@ nav {
 .btn-primary {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   padding: 14px 36px;
   background: var(--accent);
   color: #fff;
   font-family: 'DM Mono', monospace;
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   text-decoration: none;
@@ -131,7 +131,7 @@ nav {
 
 .btn-secondary {
   font-family: 'DM Mono', monospace;
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
@@ -154,11 +154,11 @@ section.content + section.content { border-top: 1px solid var(--border); }
 }
 .section-label {
   font-family: 'DM Mono', monospace;
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--cyan);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 .section-title {
   font-family: 'Caveat', cursive;
@@ -173,7 +173,7 @@ section.content + section.content { border-top: 1px solid var(--border); }
 .stat-box {
   background: var(--white);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 28px 20px;
   transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
 }
@@ -204,7 +204,7 @@ section.content + section.content { border-top: 1px solid var(--border); }
 .post-card {
   background: var(--white);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 32px;
   text-decoration: none;
   color: var(--text);
@@ -244,7 +244,7 @@ section.content + section.content { border-top: 1px solid var(--border); }
 }
 .post-date {
   font-family: 'DM Mono', monospace;
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.12em;
   color: var(--muted);
   margin-bottom: 12px;
@@ -271,7 +271,7 @@ footer {
 .footer-logo em { font-style: normal; color: var(--accent); }
 .footer-copy {
   font-family: 'DM Mono', monospace;
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.1em;
   color: var(--muted);
 }
