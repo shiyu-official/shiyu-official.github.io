@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shiyu — Personal Site</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Noto+Sans+JP:wght@300;400;500&family=DM+Mono&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f7f9fc;
+      --white: #ffffff;
+      --surface: #eef3f9;
+      --border: #d8e4f0;
+      --text: #1a2332;
+      --muted: #7a90a8;
+      --accent: #2b7de9;
+      --accent-light: #6fb8f5;
+      --accent-pale: #ddeefb;
+      --cyan: #00c2d4;
+      --visited-color: #2b7de9;
+      --unvisited-color: #dde8f5;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 56px;
+      height: 68px;
+      background: rgba(247,249,252,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Caveat', cursive;
+      font-size: 30px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-logo em { font-style: normal; color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      position: relative;
+      transition: color 0.25s;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1.5px;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover::after,
+    .nav-links a.active::after { width: 100%; }
+    .nav-links a.active { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 0 56px;
+      padding-top: 68px;
+      gap: 72px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(107,184,245,0.18) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: 30%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(0,194,212,0.10) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.2s forwards;
+    }
+    .hero-tag::before {
+      content: '';
+      display: block;
+      width: 24px; height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-title {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: clamp(40px, 5vw, 68px);
+      font-weight: 300;
+      line-height: 1.3;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.4s forwards;
+    }
+    .hero-title em {
+      font-style: normal;
+      font-family: 'Caveat', cursive;
+      font-weight: 600;
+      font-size: 1.15em;
+      color: var(--accent);
+    }
+
+    .hero-desc {
+      font-size: 14px;
+      line-height: 2.1;
+      color: var(--muted);
+      margin-bottom: 44px;
+      max-width: 400px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.6s forwards;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.8s forwards;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 36px;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+      box-shadow: 0 4px 20px rgba(43,125,233,0.25);
+    }
+    .btn-primary:hover {
+      background: #1a6dd4;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(43,125,233,0.35);
+    }
+
+    .btn-secondary {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 3px;
+      transition: color 0.25s, border-color 0.25s;
+    }
+    .btn-secondary:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* ── MAP CARD ── */
+    .hero-visual {
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.5s forwards;
+    }
+
+    .hero-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 28px 24px;
+      box-shadow: 0 16px 56px rgba(43,125,233,0.10);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--cyan));
+    }
+
+    .card-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+    .card-label {
+      font-family: 'Caveat', cursive;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .card-sublabel {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .map-legend {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+    .legend-dot {
+      width: 10px; height: 10px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .legend-dot.v { background: var(--visited-color); opacity: 0.75; }
+    .legend-dot.u { background: var(--unvisited-color); border: 1px solid var(--border); }
+
+    /* Map container */
+    #map-container {
+      width: 100%;
+      background: var(--surface);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    #map-container .loading {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+
+    /* geolonia SVG styles */
+    #map-container .geolonia-svg-map {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    #map-container .geolonia-svg-map .prefecture {
+      fill: var(--unvisited-color);
+      stroke: #fff;
+      stroke-width: 0.5;
+      cursor: pointer;
+      transition: fill 0.2s, opacity 0.2s;
+    }
+    #map-container .geolonia-svg-map .prefecture.visited {
+      fill: var(--visited-color);
+      opacity: 0.72;
+    }
+    #map-container .geolonia-svg-map .prefecture.visited:hover {
+      opacity: 1;
+    }
+    #map-container .geolonia-svg-map .prefecture.unvisited:hover {
+      fill: #c8d8ee;
+    }
+    #map-container .geolonia-svg-map .boundary-line {
+      stroke: #fff;
+      stroke-width: 0.3;
+      fill: none;
+    }
+
+    /* Tooltip */
+    .map-tooltip {
+      position: fixed;
+      background: var(--text);
+      color: #fff;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      padding: 6px 12px;
+      border-radius: 4px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s;
+      z-index: 1000;
+      white-space: nowrap;
+    }
+    .map-tooltip.show { opacity: 1; }
+
+    .card-stats {
+      display: flex;
+      border-top: 1px solid var(--border);
+      padding-top: 18px;
+    }
+    .card-stat {
+      flex: 1;
+      text-align: center;
+      padding: 0 8px;
+    }
+    .card-stat + .card-stat { border-left: 1px solid var(--border); }
+    .card-stat-num {
+      font-family: 'Caveat', cursive;
+      font-size: 34px;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .card-stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* ── CONTENT SECTIONS ── */
+    section.content { padding: 100px 56px; }
+    section.content + section.content { border-top: 1px solid var(--border); }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 52px;
+    }
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(36px, 4vw, 52px);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+      color: var(--text);
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .about-text p {
+      font-size: 14px;
+      line-height: 2.1;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .about-text p strong { color: var(--text); font-weight: 500; }
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .stat-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px 20px;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    }
+    .stat-box:hover {
+      border-color: var(--accent-light);
+      box-shadow: 0 6px 28px rgba(43,125,233,0.12);
+      transform: translateY(-3px);
+    }
+    .stat-number {
+      font-family: 'Caveat', cursive;
+      font-size: 48px;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* ── BLOG ── */
+    .posts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+    .post-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 32px;
+      text-decoration: none;
+      color: var(--text);
+      display: block;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .post-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2.5px;
+      background: linear-gradient(90deg, var(--accent), var(--cyan));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s ease;
+    }
+    .post-card:hover {
+      border-color: var(--accent-light);
+      box-shadow: 0 8px 36px rgba(43,125,233,0.12);
+      transform: translateY(-4px);
+    }
+    .post-card:hover::before { transform: scaleX(1); }
+
+    .post-tag {
+      display: inline-block;
+      background: var(--accent-pale);
+      color: var(--accent);
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+    .post-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .post-title { font-size: 15px; font-weight: 500; line-height: 1.65; margin-bottom: 12px; }
+    .post-excerpt { font-size: 13px; color: var(--muted); line-height: 1.8; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--white);
+    }
+    .footer-logo {
+      font-family: 'Caveat', cursive;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+    }
+    .footer-logo em { font-style: normal; color: var(--accent); }
+    .footer-copy {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; }
+      .nav-links { gap: 20px; }
+      .hero { grid-template-columns: 1fr; padding: 100px 20px 64px; gap: 40px; }
+      .hero-visual { display: none; }
+      section.content { padding: 72px 20px; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .posts-grid { grid-template-columns: 1fr; }
+      .section-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+      footer { padding: 32px 20px; flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="map-tooltip" id="mapTooltip"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html" class="nav-logo">Shi<em>yu</em></a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="links.html">Links</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <p class="hero-tag">Personal Site</p>
+      <h1 class="hero-title">
+        旅と写真と、<br>
+        日々の<em>記録。</em>
+      </h1>
+      <p class="hero-desc">
+        日本各地を旅しながら、出会った景色や感じたことをここに残しています。ぜひご覧になっていってください。
+      </p>
+      <div class="hero-cta">
+        <a href="about.html" class="btn-primary">About Me →</a>
+        <a href="portfolio.html" class="btn-secondary">写真を見る</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="card-header">
+          <div class="card-label">Travel Map</div>
+          <div class="card-sublabel">訪問済み都道府県</div>
+        </div>
+        <div class="map-legend">
+          <div class="legend-item"><div class="legend-dot v"></div>訪問済み (44)</div>
+          <div class="legend-item"><div class="legend-dot u"></div>未訪問 (3)</div>
+        </div>
+        <!-- SVGがここにfetchで挿入される -->
+        <div id="map-container">
+          <span class="loading">地図を読み込み中...</span>
+        </div>
+        <div class="card-stats">
+          <div class="card-stat">
+            <div class="card-stat-num">44</div>
+            <div class="card-stat-label">都道府県</div>
+          </div>
+          <div class="card-stat">
+            <div class="card-stat-num">??</div>
+            <div class="card-stat-label">Photos</div>
+          </div>
+          <div class="card-stat">
+            <div class="card-stat-num">??</div>
+            <div class="card-stat-label">Posts</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Preview -->
+  <section class="content" id="about-preview">
+    <div class="section-header reveal">
+      <div>
+        <p class="section-label">// 01 — About</p>
+        <h2 class="section-title">Who I am</h2>
+      </div>
+      <a href="about.html" class="btn-secondary">More →</a>
+    </div>
+    <div class="about-grid reveal">
+      <div class="about-text">
+        <p>はじめまして、<strong>しゆ (shiyu)</strong> です。休日は日本各地を鉄道でめぐったり、いろんな町を訪問したりしています。</p>
+        <p>このサイトでは旅先の写真やブログ、関連のリンクをまとめています。</p>
+        <a href="about.html" class="btn-secondary">詳しく見る →</a>
+      </div>
+      <div class="about-stats">
+        <div class="stat-box">
+          <div class="stat-number">44</div>
+          <div class="stat-label">都道府県</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">??</div>
+          <div class="stat-label">Photos</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">??</div>
+          <div class="stat-label">Blog Posts</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">??</div>
+          <div class="stat-label">Cities</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Preview -->
+  <section class="content" id="blog-preview">
+    <div class="section-header reveal">
+      <div>
+        <p class="section-label">// 02 — Latest</p>
+        <h2 class="section-title">Recent Posts</h2>
+      </div>
+      <a href="blog.html" class="btn-secondary">All Posts →</a>
+    </div>
+    <div class="posts-grid reveal">
+      <a href="blog.html" class="post-card">
+        <span class="post-tag">旅行</span>
+        <p class="post-date">2025.01.01</p>
+        <h3 class="post-title">記事タイトルがここに入ります</h3>
+        <p class="post-excerpt">旅先での出来事や気づき、感じたことを書き留めていきます。</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-logo">Shi<em>yu</em></div>
+    <p class="footer-copy">© 2025 Shiyu — All rights reserved.</p>
+  </footer>
+
+  <script>
+    // ── 訪問済み都道府県コード ──
+    // 未訪問: 沖縄(47), 愛媛(38), 長崎(42)
+    const VISITED = new Set([
+       1, 2, 3, 4, 5, 6, 7, 8, 9,10,
+      11,12,13,14,15,16,17,18,19,20,
+      21,22,23,24,25,26,27,28,29,30,
+      31,32,33,34,35,36,37,   39,40,
+      41,   43,44,45,46
+    ]);
+
+    // ── 地図を読み込む ──
+    async function loadMap() {
+      const container = document.getElementById('map-container');
+      const tooltip   = document.getElementById('mapTooltip');
+      try {
+        // SVGはリポジトリに置いた map-full.svg を参照
+        const res = await fetch('./map-full.svg');
+        if (!res.ok) throw new Error('SVG load failed');
+        const svgText = await res.text();
+        container.innerHTML = svgText;
+
+        const prefs = container.querySelectorAll('.prefecture');
+        prefs.forEach(pref => {
+          const code = parseInt(pref.getAttribute('data-code'), 10);
+          if (VISITED.has(code)) {
+            pref.classList.add('visited');
+          } else {
+            pref.classList.add('unvisited');
+          }
+
+          // ホバーでtooltip表示
+          pref.addEventListener('mousemove', e => {
+            const title = pref.querySelector('title');
+            const name  = title ? title.textContent.split('/')[0].trim() : '';
+            const status = VISITED.has(code) ? '✓ 訪問済み' : '未訪問';
+            tooltip.textContent = `${name} — ${status}`;
+            tooltip.classList.add('show');
+            tooltip.style.left = (e.clientX + 14) + 'px';
+            tooltip.style.top  = (e.clientY - 28) + 'px';
+          });
+          pref.addEventListener('mouseleave', () => {
+            tooltip.classList.remove('show');
+          });
+        });
+
+      } catch (e) {
+        // SVGが見つからない場合はメッセージを表示
+        container.innerHTML = `
+          <div style="text-align:center; padding: 40px 20px;">
+            <p style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.1em; color:var(--muted); line-height:2;">
+              map-full.svg をリポジトリに<br>アップロードしてください
+            </p>
+          </div>`;
+      }
+    }
+
+    loadMap();
+
+    // ── Scroll reveal ──
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ── Active nav ──
+    const page = location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.classList.remove('active');
+      if (a.getAttribute('href') === page) a.classList.add('active');
+    });
+  </script>
+</body>
+</html>
