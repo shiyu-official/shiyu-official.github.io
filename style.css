@@ -154,7 +154,7 @@ section.content + section.content { border-top: 1px solid var(--border); }
 }
 .section-label {
   font-family: 'DM Mono', monospace;
-  font-size: 15px;
+  font-size: 25px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--cyan);
