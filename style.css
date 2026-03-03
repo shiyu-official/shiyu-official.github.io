@@ -88,7 +88,7 @@ nav {
   border-bottom: 1px solid var(--border);
 }
 .page-header .section-label {
-  margin-bottom: 25px;
+  margin-bottom: 12px;
 }
 .page-header h1 {
   font-family: 'Caveat', cursive;
@@ -100,7 +100,7 @@ nav {
 }
 .page-header p {
   margin-top: 20px;
-  font-size: 24px;
+  font-size: 14px;
   line-height: 2.1;
   color: var(--muted);
   max-width: 520px;
@@ -115,7 +115,7 @@ nav {
   background: var(--accent);
   color: #fff;
   font-family: 'DM Mono', monospace;
-  font-size: 26px;
+  font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   text-decoration: none;
@@ -131,7 +131,7 @@ nav {
 
 .btn-secondary {
   font-family: 'DM Mono', monospace;
-  font-size: 26px;
+  font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
@@ -154,7 +154,7 @@ section.content + section.content { border-top: 1px solid var(--border); }
 }
 .section-label {
   font-family: 'DM Mono', monospace;
-  font-size: 25px;
+  font-size: 10px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--cyan);
@@ -238,7 +238,7 @@ section.content + section.content { border-top: 1px solid var(--border); }
   font-size: 9px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 4px 15px;
+  padding: 4px 12px;
   border-radius: 100px;
   margin-bottom: 16px;
 }
@@ -247,9 +247,9 @@ section.content + section.content { border-top: 1px solid var(--border); }
   font-size: 10px;
   letter-spacing: 0.12em;
   color: var(--muted);
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
-.post-title { font-size: 15px; font-weight: 500; line-height: 1.65; margin-bottom: 15px; }
+.post-title { font-size: 15px; font-weight: 500; line-height: 1.65; margin-bottom: 12px; }
 .post-excerpt { font-size: 13px; color: var(--muted); line-height: 1.8; }
 
 /* ── フッター ── */
@@ -295,6 +295,6 @@ footer {
   section.content { padding: 72px 20px; }
   .posts-grid { grid-template-columns: 1fr; }
   .section-header { flex-direction: column; align-items: flex-start; gap: 16px; }
-  footer { padding: 32px 20px; flex-direction: column; gap: 15px; text-align: center; }
+  footer { padding: 32px 20px; flex-direction: column; gap: 12px; text-align: center; }
   .page-header { padding: 120px 20px 56px; }
 }
