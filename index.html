@@ -7,126 +7,24 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@300;400&family=DM+Mono&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <link rel="stylesheet" href="./style.css">
   <style>
-    /* ── 和モダン variant ── */
-
-    :root {
-      --bg: #f8f6f1;
-      --white: #fdfcf8;
-      --surface: #f0ede6;
-      --border: #d6cfc4;
-      --text: #1c1a17;
-      --muted: #8a8070;
-      --accent: #1e5fa8;
-      --accent-light: #5b8ecf;
-      --accent-pale: #dce8f5;
-      --cyan: #1a9aa0;
-      --visited-color: #1e5fa8;
-      --unvisited-color: #e2ddd6;
-    }
-
-    body {
-      background: var(--bg);
-      font-family: 'Noto Sans JP', sans-serif;
-    }
-
-    /* 縦線の装飾 */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0; left: 50%;
-      width: 1px;
-      height: 100vh;
-      background: linear-gradient(to bottom, transparent, var(--border) 20%, var(--border) 80%, transparent);
-      opacity: 0.3;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 56px;
-      height: 68px;
-      background: rgba(248,246,241,0.94);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-logo {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 22px;
-      font-weight: 500;
-      letter-spacing: 0.25em;
-      color: var(--text);
-      text-decoration: none;
-      position: relative;
-    }
-    .nav-logo em {
-      font-style: normal;
-      color: var(--accent);
-    }
-    /* ロゴ左の縦線アクセント */
-    .nav-logo::before {
-      content: '';
-      position: absolute;
-      left: -14px; top: 50%;
-      transform: translateY(-50%);
-      width: 2px;
-      height: 18px;
-      background: var(--accent);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 40px;
-      list-style: none;
-    }
-    .nav-links a {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 13px;
-      letter-spacing: 0.2em;
-      color: var(--muted);
-      text-decoration: none;
-      position: relative;
-      transition: color 0.25s;
-    }
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px; left: 0;
-      width: 0; height: 1px;
-      background: var(--accent);
-      transition: width 0.3s ease;
-    }
-    .nav-links a:hover { color: var(--accent); }
-    .nav-links a:hover::after,
-    .nav-links a.active::after { width: 100%; }
-    .nav-links a.active { color: var(--accent); }
+    /* index.html 固有スタイル */
 
     /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      padding: 0 56px;
-      padding-top: 68px;
-      gap: 72px;
+    .section-hero {
+      padding: 80px 64px 72px;
+      border-bottom: 1px solid var(--border);
       position: relative;
       overflow: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
-
-    /* 和柄っぽい斜め線の背景テクスチャ */
-    .hero::after {
+    .section-hero::after {
       content: '';
       position: absolute;
       inset: 0;
@@ -134,20 +32,14 @@
         -45deg,
         transparent,
         transparent 40px,
-        rgba(30, 95, 168, 0.025) 40px,
-        rgba(30, 95, 168, 0.025) 41px
+        rgba(30,95,168,0.025) 40px,
+        rgba(30,95,168,0.025) 41px
       );
       pointer-events: none;
     }
 
-    .hero-content {
-      position: relative;
-      z-index: 1;
-    }
-
-    /* 章番号風ラベル */
-    .hero-tag {
-      display: flex;
+    .hero-eyebrow {
+      display: inline-flex;
       align-items: center;
       gap: 12px;
       font-family: 'DM Mono', monospace;
@@ -155,60 +47,55 @@
       letter-spacing: 0.2em;
       color: var(--accent);
       text-transform: uppercase;
-      margin-bottom: 32px;
+      margin-bottom: 28px;
       opacity: 0;
-      animation: fadeUp 0.7s ease 0.2s forwards;
+      animation: fadeUp 0.7s ease 0.1s forwards;
     }
-    .hero-tag::before {
-      content: '一';
-      font-family: 'Shippori Mincho', serif;
-      font-size: 16px;
-      color: var(--accent);
-      opacity: 0.5;
-    }
-    .hero-tag::after {
+    .hero-eyebrow::after {
       content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-      max-width: 60px;
+      display: block;
+      width: 48px; height: 1px;
+      background: var(--accent);
+      opacity: 0.4;
     }
 
     .hero-title {
       font-family: 'Shippori Mincho', serif;
-      font-size: clamp(38px, 5vw, 64px);
+      font-size: clamp(48px, 6vw, 88px);
       font-weight: 500;
-      line-height: 1.5;
-      letter-spacing: 0.08em;
+      line-height: 1.3;
+      letter-spacing: 0.06em;
       margin-bottom: 32px;
       opacity: 0;
-      animation: fadeUp 0.7s ease 0.4s forwards;
+      animation: fadeUp 0.7s ease 0.3s forwards;
+      position: relative;
+      z-index: 1;
     }
     .hero-title em {
       font-style: normal;
       color: var(--accent);
       position: relative;
     }
-    /* 傍点風アンダーライン */
     .hero-title em::after {
       content: '';
       position: absolute;
-      bottom: -4px; left: 0; right: 0;
+      bottom: 0; left: 0; right: 0;
       height: 2px;
       background: linear-gradient(90deg, var(--accent), var(--cyan));
-      border-radius: 1px;
     }
 
     .hero-desc {
       font-size: 15px;
-      line-height: 2.2;
+      line-height: 2.3;
       color: var(--muted);
-      margin-bottom: 48px;
-      max-width: 380px;
-      padding-left: 16px;
+      max-width: 520px;
+      padding-left: 20px;
       border-left: 2px solid var(--border);
+      margin-bottom: 48px;
       opacity: 0;
-      animation: fadeUp 0.7s ease 0.6s forwards;
+      animation: fadeUp 0.7s ease 0.5s forwards;
+      position: relative;
+      z-index: 1;
     }
 
     .hero-cta {
@@ -216,108 +103,18 @@
       gap: 20px;
       align-items: center;
       opacity: 0;
-      animation: fadeUp 0.7s ease 0.8s forwards;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 13px 32px;
-      background: var(--accent);
-      color: #fff;
-      font-family: 'Shippori Mincho', serif;
-      font-size: 13px;
-      letter-spacing: 0.2em;
-      text-decoration: none;
-      border-radius: 1px;
-      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
-      box-shadow: 0 4px 20px rgba(30,95,168,0.22);
-    }
-    .btn-primary:hover {
-      background: #174e8f;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(30,95,168,0.32);
-    }
-
-    .btn-secondary {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 13px;
-      letter-spacing: 0.18em;
-      color: var(--muted);
-      text-decoration: none;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 3px;
-      transition: color 0.25s, border-color 0.25s;
-    }
-    .btn-secondary:hover { color: var(--accent); border-color: var(--accent); }
-
-    /* ── MAP CARD ── */
-    .hero-visual {
+      animation: fadeUp 0.7s ease 0.7s forwards;
       position: relative;
       z-index: 1;
-      opacity: 0;
-      animation: fadeUp 0.9s ease 0.5s forwards;
     }
 
-    .hero-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      padding: 28px 28px 24px;
-      box-shadow: 4px 4px 0 var(--border), 0 12px 40px rgba(30,95,168,0.08);
-      position: relative;
-    }
-    /* 左上の角飾り */
-    .hero-card::before {
-      content: '';
-      position: absolute;
-      top: -1px; left: -1px;
-      width: 32px; height: 32px;
-      border-top: 3px solid var(--accent);
-      border-left: 3px solid var(--accent);
-    }
-    /* 右下の角飾り */
-    .hero-card::after {
-      content: '';
-      position: absolute;
-      bottom: -1px; right: -1px;
-      width: 32px; height: 32px;
-      border-bottom: 3px solid var(--cyan);
-      border-right: 3px solid var(--cyan);
-    }
-
-    .card-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      margin-bottom: 16px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border);
-    }
-    .card-label {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 16px;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      color: var(--text);
-    }
-    .card-sublabel {
-      font-family: 'DM Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
+    /* ── TRAVEL MAP ── */
     #travel-map {
       width: 100%;
-      height: 340px;
+      height: 440px;
       border-radius: 1px;
-      margin-bottom: 20px;
-      z-index: 1;
+      margin-bottom: 24px;
     }
-
     .leaflet-container {
       font-family: 'Shippori Mincho', serif;
       background: var(--surface);
@@ -325,7 +122,6 @@
     .leaflet-control-zoom a {
       color: var(--text) !important;
       border-color: var(--border) !important;
-      font-family: serif;
     }
     .leaflet-popup-content-wrapper {
       border-radius: 2px !important;
@@ -341,245 +137,115 @@
       line-height: 1.8;
     }
 
-    .card-stats {
+    .map-stats {
       display: flex;
-      border-top: 1px solid var(--border);
-      padding-top: 18px;
+      border: 1px solid var(--border);
     }
-    .card-stat { flex: 1; text-align: center; padding: 0 8px; }
-    .card-stat + .card-stat { border-left: 1px solid var(--border); }
-    .card-stat-num {
+    .map-stat {
+      flex: 1;
+      text-align: center;
+      padding: 16px;
+      background: var(--white);
+    }
+    .map-stat + .map-stat { border-left: 1px solid var(--border); }
+    .map-stat-num {
       font-family: 'Shippori Mincho', serif;
-      font-size: 32px;
+      font-size: 28px;
       font-weight: 600;
       color: var(--accent);
       line-height: 1;
-      letter-spacing: 0.05em;
     }
-    .card-stat-label {
+    .map-stat-label {
       font-family: 'DM Mono', monospace;
       font-size: 9px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--muted);
-      margin-top: 6px;
-    }
-
-    /* ── CONTENT SECTIONS ── */
-    section.content { padding: 100px 56px; }
-    section.content + section.content { border-top: 1px solid var(--border); }
-
-    .section-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin-bottom: 52px;
-    }
-    .section-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 10px;
-    }
-    .section-title {
-      font-family: 'Shippori Mincho', serif;
-      font-size: clamp(32px, 4vw, 48px);
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      line-height: 1.2;
-      color: var(--text);
+      margin-top: 5px;
     }
 
     /* ── ABOUT ── */
-    .about-grid {
+    .about-body {
       display: grid;
-      grid-template-columns: 1.3fr 1fr;
-      gap: 64px;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
       align-items: start;
     }
     .about-text p {
-      font-size: 15px;
+      font-size: 14px;
       line-height: 2.3;
       color: var(--muted);
       margin-bottom: 20px;
-      font-family: 'Noto Sans JP', sans-serif;
     }
     .about-text p strong { color: var(--text); font-weight: 400; }
-    .about-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
 
-    .stat-box {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 1px;
-      padding: 24px 20px;
-      position: relative;
-      transition: box-shadow 0.3s, transform 0.3s;
-    }
-    .stat-box::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 2px;
-      background: linear-gradient(90deg, var(--accent), transparent);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .stat-box:hover {
-      box-shadow: 3px 3px 0 var(--border);
-      transform: translate(-1px, -1px);
-    }
-    .stat-box:hover::before { opacity: 1; }
-
-    .stat-number {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 44px;
-      font-weight: 600;
-      color: var(--accent);
-      line-height: 1;
-      letter-spacing: 0.04em;
-    }
-    .stat-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 8px;
-    }
-
-    /* ── BLOG ── */
-    .posts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-
-    .post-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 1px;
-      padding: 28px;
-      text-decoration: none;
-      color: var(--text);
-      display: block;
-      position: relative;
-      transition: box-shadow 0.3s, transform 0.3s;
-    }
-    .post-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 3px; height: 0;
-      background: linear-gradient(to bottom, var(--accent), var(--cyan));
-      transition: height 0.35s ease;
-    }
-    .post-card:hover {
-      box-shadow: 4px 4px 0 var(--border);
-      transform: translate(-2px, -2px);
-    }
-    .post-card:hover::before { height: 100%; }
-
-    .post-tag {
-      display: inline-block;
-      background: transparent;
-      color: var(--accent);
-      font-family: 'Shippori Mincho', serif;
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      padding: 3px 10px;
-      border: 1px solid var(--accent-light);
-      border-radius: 1px;
-      margin-bottom: 16px;
-    }
-    .post-date {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      margin-bottom: 12px;
-    }
-    .post-title {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 15px;
-      font-weight: 500;
-      line-height: 1.8;
-      letter-spacing: 0.06em;
-      margin-bottom: 12px;
-    }
-    .post-excerpt {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 2;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 40px 56px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: var(--white);
-    }
-    .footer-logo {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 18px;
-      font-weight: 500;
-      letter-spacing: 0.25em;
-      color: var(--muted);
-    }
-    .footer-logo em { font-style: normal; color: var(--accent); }
-    .footer-copy {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-    }
-
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .reveal {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    /* ── MOBILE ── */
     @media (max-width: 900px) {
-      nav { padding: 0 20px; }
-      .nav-links { gap: 20px; }
-      .hero { grid-template-columns: 1fr; padding: 100px 20px 64px; gap: 40px; }
-      .hero-visual { display: none; }
-      section.content { padding: 72px 20px; }
-      .about-grid { grid-template-columns: 1fr; gap: 40px; }
-      .posts-grid { grid-template-columns: 1fr; }
-      .section-header { flex-direction: column; align-items: flex-start; gap: 16px; }
-      footer { padding: 32px 20px; flex-direction: column; gap: 12px; text-align: center; }
+      .section-hero { padding: 56px 24px 48px; }
+      .about-body { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="index.html" class="nav-logo">志<em>游</em></a>
-    <ul class="nav-links">
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="portfolio.html">Portfolio</a></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="links.html">Links</a></li>
-    </ul>
-  </nav>
+  <!-- ══ SIDEBAR ══ -->
+  <aside class="sidebar">
+    <a href="index.html" class="sidebar-logo">志<em>游</em></a>
+    <p class="sidebar-tagline">// Personal Site</p>
 
-  <section class="hero" id="home">
-    <div class="hero-content">
-      <p class="hero-tag">Personal Site</p>
+    <div class="sidebar-profile">
+      <p class="profile-name">しゆ（shiyu）</p>
+      <p class="profile-desc">鉄道でめぐる日本の旅。<br>出会った景色と記憶をここに。</p>
+    </div>
+
+    <div class="sidebar-stats">
+      <div class="sidebar-stat-group">
+        <div class="sidebar-stat-group-label">Visited</div>
+        <div class="sidebar-stat-group-inner">
+          <div class="sidebar-stat">
+            <div class="sidebar-stat-num" id="side-stat-prefs">—</div>
+            <div class="sidebar-stat-label">都道府県</div>
+          </div>
+          <div class="sidebar-stat">
+            <div class="sidebar-stat-num" id="side-stat-cities">—</div>
+            <div class="sidebar-stat-label">市区町村</div>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar-stat-group">
+        <div class="sidebar-stat-group-label">Status</div>
+        <div class="sidebar-stat-group-inner">
+          <div class="sidebar-stat">
+            <div class="sidebar-stat-num" id="side-stat-photos">—</div>
+            <div class="sidebar-stat-label">Photos</div>
+          </div>
+          <div class="sidebar-stat">
+            <div class="sidebar-stat-num" id="side-stat-posts">—</div>
+            <div class="sidebar-stat-label">Posts</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="#hero" class="active"><span class="nav-num">00</span>Home</a></li>
+      <li><a href="#map"><span class="nav-num">01</span>Travel Map</a></li>
+      <li><a href="#about"><span class="nav-num">02</span>About</a></li>
+      <li><a href="#blog"><span class="nav-num">03</span>Blog</a></li>
+      <li><a href="portfolio.html"><span class="nav-num">04</span>Portfolio</a></li>
+      <li><a href="links.html"><span class="nav-num">05</span>Links</a></li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <p>© 2025 Shiyu<br>All rights reserved.</p>
+    </div>
+  </aside>
+
+  <!-- ══ MAIN ══ -->
+  <main class="main">
+
+    <!-- Hero -->
+    <section class="section-hero" id="hero">
+      <p class="hero-eyebrow">Personal Site</p>
       <h1 class="hero-title">
         旅と写真と、<br>
         日々の<em>記録。</em>
@@ -588,76 +254,69 @@
         日本各地を旅しながら、出会った景色や感じたことをここに残しています。ぜひご覧になっていってください。
       </p>
       <div class="hero-cta">
-        <a href="about.html" class="btn-primary">About Me →</a>
+        <a href="#about" class="btn-primary">About Me →</a>
         <a href="portfolio.html" class="btn-secondary">写真を見る</a>
       </div>
-    </div>
+    </section>
 
-    <div class="hero-visual">
-      <div class="hero-card">
-        <div class="card-header">
-          <div class="card-label">旅の記録</div>
-          <div class="card-sublabel">Travel Map</div>
-        </div>
+    <!-- Travel Map -->
+    <section class="section" id="map">
+      <p class="section-label reveal">// 01 — Travel Map</p>
+      <h2 class="section-title reveal">旅の記録</h2>
+      <div class="reveal">
         <div id="travel-map"></div>
-        <div class="card-stats">
-          <div class="card-stat">
-            <div class="card-stat-num" id="stat-prefs">—</div>
-            <div class="card-stat-label">都道府県</div>
+        <div class="map-stats">
+          <div class="map-stat">
+            <div class="map-stat-num" id="map-stat-prefs">—</div>
+            <div class="map-stat-label">都道府県</div>
           </div>
-          <div class="card-stat">
-            <div class="card-stat-num" id="stat-cities">—</div>
-            <div class="card-stat-label">市区町村</div>
+          <div class="map-stat">
+            <div class="map-stat-num" id="map-stat-cities">—</div>
+            <div class="map-stat-label">市区町村</div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="content" id="about-preview">
-    <div class="section-header reveal">
-      <div>
-        <p class="section-label">// 01 — About</p>
-        <h2 class="section-title">はじめまして</h2>
-      </div>
-      <a href="about.html" class="btn-secondary">詳しく →</a>
-    </div>
-    <div class="about-grid reveal">
-      <div class="about-text">
-        <p>はじめまして、<strong>しゆ (shiyu)</strong> です。休日は日本各地を鉄道でめぐったり、いろんな町を訪問したりしています。</p>
-        <p>このサイトでは旅先の写真やブログ、関連のリンクをまとめています。</p>
-        <a href="about.html" class="btn-secondary">詳しく見る →</a>
-      </div>
-      <div class="about-stats">
-        <div class="stat-box">
-          <div class="stat-number" id="about-stat-photos">—</div>
-          <div class="stat-label">Photos</div>
+    <!-- About -->
+    <section class="section" id="about">
+      <p class="section-label reveal">// 02 — About</p>
+      <h2 class="section-title reveal">はじめまして</h2>
+      <div class="about-body reveal">
+        <div class="about-text">
+          <p>はじめまして、<strong>しゆ (shiyu)</strong> です。休日は日本各地を鉄道でめぐったり、いろんな町を訪問したりしています。</p>
+          <p>このサイトでは旅先の写真やブログ、関連のリンクをまとめています。</p>
+          <a href="about.html" class="btn-secondary">詳しく見る →</a>
         </div>
-        <div class="stat-box">
-          <div class="stat-number" id="about-stat-posts">—</div>
-          <div class="stat-label">Blog Posts</div>
+        <div class="about-stat-list">
+          <div class="about-stat-row">
+            <span class="about-stat-row-label">Photos</span>
+            <span class="about-stat-row-num" id="about-stat-photos">—</span>
+          </div>
+          <div class="about-stat-row">
+            <span class="about-stat-row-label">Blog Posts</span>
+            <span class="about-stat-row-num" id="about-stat-posts">—</span>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="content" id="blog-preview">
-    <div class="section-header reveal">
-      <div>
-        <p class="section-label">// 02 — Latest</p>
-        <h2 class="section-title">最新の記事</h2>
+    <!-- Blog -->
+    <section class="section" id="blog">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;" class="reveal">
+        <div>
+          <p class="section-label">// 03 — Blog</p>
+          <h2 class="section-title" style="margin-bottom:0;">最新の記事</h2>
+        </div>
+        <a href="blog.html" class="btn-secondary">すべて見る →</a>
       </div>
-      <a href="blog.html" class="btn-secondary">すべて見る →</a>
-    </div>
-    <div id="latest-posts" class="posts-grid reveal"></div>
-  </section>
+      <div id="latest-posts" class="blog-list reveal"></div>
+    </section>
 
-  <footer>
-    <div class="footer-logo">志<em>游</em></div>
-    <p class="footer-copy">© 2025 Shiyu — All rights reserved.</p>
-  </footer>
+  </main>
 
   <script>
+    // ── Travel Map ──
     async function loadTravelMap() {
       const map = L.map('travel-map', {
         center: [36.5, 137.5],
@@ -667,10 +326,7 @@
         attributionControl: false
       });
 
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        attribution: '© OpenStreetMap, © CARTO'
-      }).addTo(map);
-
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png').addTo(map);
       L.control.attribution({ position: 'bottomright', prefix: false })
         .addAttribution('© <a href="https://openstreetmap.org">OSM</a> © <a href="https://carto.com">CARTO</a>')
         .addTo(map);
@@ -681,13 +337,7 @@
         const geojson = await res.json();
 
         const layer = L.geoJSON(geojson, {
-          style: {
-            color: '#1e5fa8',
-            weight: 0.8,
-            opacity: 0.6,
-            fillColor: '#1e5fa8',
-            fillOpacity: 0.32
-          },
+          style: { color: '#1e5fa8', weight: 0.8, opacity: 0.6, fillColor: '#1e5fa8', fillOpacity: 0.32 },
           onEachFeature: (feature, layer) => {
             const props  = feature.properties;
             const pref   = props.KEN || '';
@@ -695,10 +345,7 @@
             const city   = props.SIKUCHOSON
               ? (seirei ? `${seirei} ${props.SIKUCHOSON}` : props.SIKUCHOSON)
               : (seirei || '');
-            layer.bindTooltip(
-              `<strong>${city}</strong>${pref ? `<br>${pref}` : ''}`,
-              { sticky: true }
-            );
+            layer.bindTooltip(`<strong>${city}</strong>${pref ? `<br>${pref}` : ''}`, { sticky: true });
             layer.on('mouseover', function() { this.setStyle({ fillOpacity: 0.6, weight: 1.5 }); });
             layer.on('mouseout',  function() { this.setStyle({ fillOpacity: 0.32, weight: 0.8 }); });
           }
@@ -708,14 +355,17 @@
 
         const cityCount = geojson.features ? geojson.features.length : 0;
         const prefCount = geojson.features
-          ? new Set(geojson.features.map(f => f.properties.KEN).filter(Boolean)).size
-          : 0;
-        document.getElementById('stat-cities').textContent = cityCount || '—';
-        document.getElementById('stat-prefs').textContent  = prefCount || '—';
+          ? new Set(geojson.features.map(f => f.properties.KEN).filter(Boolean)).size : 0;
 
+        ['map-stat-prefs','side-stat-prefs'].forEach(id => {
+          document.getElementById(id).textContent = prefCount || '—';
+        });
+        ['map-stat-cities','side-stat-cities'].forEach(id => {
+          document.getElementById(id).textContent = cityCount || '—';
+        });
       } catch {
-        document.getElementById('travel-map').innerHTML = `
-          <div style="display:flex;align-items:center;justify-content:center;height:100%;background:var(--surface);">
+        document.getElementById('travel-map').innerHTML =
+          `<div style="display:flex;align-items:center;justify-content:center;height:100%;background:var(--surface);">
             <p style="font-family:'Shippori Mincho',serif;font-size:12px;letter-spacing:0.15em;color:var(--muted);text-align:center;line-height:2.2;">
               travel.geojson を<br>リポジトリに追加してください
             </p>
@@ -723,6 +373,7 @@
       }
     }
 
+    // ── コンテンツ数取得 ──
     async function fetchCount(url, selector) {
       try {
         const res = await fetch(url);
@@ -738,10 +389,15 @@
         fetchCount('./blog.html',      '.blog-item'),
       ]);
       const fmt = v => v !== null ? String(v) : '—';
-      document.getElementById('about-stat-photos').textContent = fmt(photos);
-      document.getElementById('about-stat-posts').textContent  = fmt(posts);
+      ['about-stat-photos','side-stat-photos'].forEach(id => {
+        document.getElementById(id).textContent = fmt(photos);
+      });
+      ['about-stat-posts','side-stat-posts'].forEach(id => {
+        document.getElementById(id).textContent = fmt(posts);
+      });
     }
 
+    // ── 最新記事 ──
     async function fetchLatestPost() {
       const container = document.getElementById('latest-posts');
       try {
@@ -750,28 +406,61 @@
         const doc   = new DOMParser().parseFromString(await res.text(), 'text/html');
         const items = doc.querySelectorAll('.blog-item');
         if (!items.length) throw new Error();
-        const link = document.createElement('a');
-        link.href = './blog.html';
-        link.className = 'post-card';
-        link.innerHTML = items[0].innerHTML;
-        container.appendChild(link);
+
+        // blog-itemの中身をリスト形式のpost-cardに変換
+        const item = items[0];
+        const card = document.createElement('a');
+        card.href = './blog.html';
+        card.className = 'post-card';
+
+        // 日付を取得
+        const dateEl = item.querySelector('.post-date');
+        const dateStr = dateEl ? dateEl.textContent : '';
+        const parts = dateStr.split('.');
+        const dateCol = document.createElement('div');
+        dateCol.className = 'post-date-col';
+        dateCol.innerHTML = parts.length >= 3
+          ? `<span class="year">${parts[0]}</span><span class="day">${parts[2]}</span><span class="month">${['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][parseInt(parts[1])-1]||parts[1]}</span>`
+          : `<span class="day">—</span>`;
+
+        const body = document.createElement('div');
+        body.className = 'post-body';
+        body.innerHTML = item.innerHTML;
+
+        const arrow = document.createElement('div');
+        arrow.className = 'post-arrow';
+        arrow.textContent = '→';
+
+        card.appendChild(dateCol);
+        card.appendChild(body);
+        card.appendChild(arrow);
+        container.appendChild(card);
       } catch {
         container.innerHTML = `<p style="font-family:'Shippori Mincho',serif;font-size:14px;letter-spacing:0.15em;color:var(--muted);">まだ記事がありません</p>`;
       }
     }
 
+    // ── Scroll reveal ──
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    const page = location.pathname.split('/').pop() || 'index.html';
-    document.querySelectorAll('.nav-links a').forEach(a => {
-      a.classList.remove('active');
-      if (a.getAttribute('href') === page) a.classList.add('active');
-    });
+    // ── サイドナビのアクティブ切り替え ──
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.sidebar-nav a[href^="#"]');
+    const secObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navLinks.forEach(a => {
+            a.classList.toggle('active', a.getAttribute('href') === `#${e.target.id}`);
+          });
+        }
+      });
+    }, { threshold: 0.4 });
+    sections.forEach(s => secObserver.observe(s));
 
     loadTravelMap();
     loadStats();
