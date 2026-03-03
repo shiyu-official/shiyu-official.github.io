@@ -138,22 +138,8 @@
     }
 
     .map-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
       border: 1px solid var(--border);
-    }
-
-    .map-stats-head {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 8px 0;
-      font-family: 'DM Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--accent);
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
     }
     .map-stat {
       flex: 1;
@@ -193,9 +179,114 @@
     }
     .about-text p strong { color: var(--text); font-weight: 400; }
 
+    /* ── SCORE ── */
+    .score-card {
+      display: flex;
+      background: var(--white);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      position: relative;
+      max-width: 560px;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+    .score-card:hover {
+      border-color: var(--accent-light);
+      box-shadow: -3px 0 0 var(--accent);
+    }
+    .score-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--cyan));
+    }
+    .score-don {
+      width: 160px;
+      min-width: 160px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .score-don img {
+      width: 110px;
+      height: 110px;
+      object-fit: contain;
+    }
+    .score-info {
+      flex: 1;
+      padding: 28px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 18px;
+    }
+    .score-game-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent-light);
+      padding: 3px 10px;
+      border-radius: 1px;
+      width: fit-content;
+    }
+    .score-crown-block { display: flex; flex-direction: column; gap: 5px; }
+    .score-crown-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .score-crown-row { display: flex; align-items: center; gap: 10px; }
+    .score-crown-row .crown-icon { width: 28px; height: 28px; object-fit: contain; }
+    .score-crown-row .crown-count {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 36px;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .score-crown-row .crown-unit {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      align-self: flex-end;
+      margin-bottom: 4px;
+    }
+    .score-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+    .score-taiko-ban {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+    .score-updated {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      color: var(--border);
+    }
+
     @media (max-width: 900px) {
       .section-hero { padding: 56px 24px 48px; }
       .about-body { grid-template-columns: 1fr; }
+      .score-don { width: 120px; min-width: 120px; }
+      .score-don img { width: 80px; height: 80px; }
+      .score-info { padding: 20px; }
     }
   </style>
 </head>
@@ -208,7 +299,7 @@
 
     <div class="sidebar-profile">
       <p class="profile-name">しゆ（shiyu）</p>
-      <p class="profile-desc">記録と記憶のすべてをここに。</p>
+      <p class="profile-desc">鉄道でめぐる日本の旅。<br>出会った景色と記憶をここに。</p>
     </div>
 
     <div class="sidebar-stats">
@@ -243,10 +334,11 @@
     <ul class="sidebar-nav">
       <li><a href="#hero" class="active"><span class="nav-num">00</span>Home</a></li>
       <li><a href="#map"><span class="nav-num">01</span>Travel Map</a></li>
-      <li><a href="#about"><span class="nav-num">02</span>About</a></li>
-      <li><a href="#blog"><span class="nav-num">03</span>Blog</a></li>
-      <li><a href="#portfolio"><span class="nav-num">04</span>Portfolio</a></li>
-      <li><a href="#links"><span class="nav-num">05</span>Links</a></li>
+      <li><a href="#score"><span class="nav-num">02</span>Score</a></li>
+      <li><a href="#about"><span class="nav-num">03</span>About</a></li>
+      <li><a href="#blog"><span class="nav-num">04</span>Blog</a></li>
+      <li><a href="#portfolio"><span class="nav-num">05</span>Portfolio</a></li>
+      <li><a href="#links"><span class="nav-num">06</span>Links</a></li>
     </ul>
 
     <div class="sidebar-footer">
@@ -262,11 +354,10 @@
       <p class="hero-eyebrow">Personal Site</p>
       <h1 class="hero-title">
         旅と写真と、<br>
-        記録の<em>すべて。</em>
+        日々の<em>記録。</em>
       </h1>
       <p class="hero-desc">
-        日本各地を旅した軌跡、太鼓の達人で積み重ねた記録を残しています。<br>
-        ぜひご覧になっていってください。
+        日本各地を旅しながら、出会った景色や感じたことをここに残しています。ぜひご覧になっていってください。
       </p>
       <div class="hero-cta">
         <a href="#about" class="btn-primary">About Me →</a>
@@ -277,17 +368,14 @@
     <!-- Travel Map -->
     <section class="section" id="map">
       <p class="section-label reveal">// 01 — Travel Map</p>
-      <h2 class="section-title reveal">旅の足跡</h2>
+      <h2 class="section-title reveal">旅の記録</h2>
       <div class="reveal">
         <div id="travel-map"></div>
         <div class="map-stats">
-          <div class="map-stats-head">Visited</div>
-
           <div class="map-stat">
             <div class="map-stat-num" id="map-stat-prefs">—</div>
             <div class="map-stat-label">都道府県</div>
           </div>
-
           <div class="map-stat">
             <div class="map-stat-num" id="map-stat-cities">—</div>
             <div class="map-stat-label">市区町村</div>
@@ -296,31 +384,53 @@
       </div>
     </section>
 
+    <!-- Score -->
+    <section class="section" id="score">
+      <p class="section-label reveal">// 02 — Score</p>
+      <h2 class="section-title reveal">太鼓の達人</h2>
+      <div class="reveal">
+        <div class="score-card">
+          <div class="score-don">
+            <img src="./mydon.png" alt="どんちゃん">
+          </div>
+          <div class="score-info">
+            <span class="score-game-badge">Taiko no Tatsujin</span>
+            <div class="score-crown-block">
+              <span class="score-crown-label">DFC</span>
+              <div class="score-crown-row">
+                <img src="./crown_DFC.png" alt="虹色王冠" class="crown-icon">
+                <span class="crown-count">354</span>
+                <span class="crown-unit">crowns</span>
+              </div>
+            </div>
+            <div class="score-footer">
+              <span class="score-taiko-ban">太鼓番：440817561434</span>
+              <span class="score-updated">updated 2026.03.03</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- About -->
     <section class="section" id="about">
-      <p class="section-label reveal">// 02 — About</p>
+      <p class="section-label reveal">// 03 — About</p>
       <h2 class="section-title reveal">はじめまして</h2>
       <div class="about-body reveal">
         <div class="about-text">
-          <p>はじめまして、<strong>しゆ (shiyu)</strong> です。休日は日本各地の町や観光地を訪ずれたり、鉄道の旅をしています。</p>
-          <p>太鼓の達人も嗜み、Youtubeにてそれぞれ動画の投稿を行っています。</p>
-          <p>このサイトでは旅先の写真やブログ、関連のリンクをまとめていますのでぜひご覧ください。</p>
+          <p>はじめまして、<strong>しゆ (shiyu)</strong> です。休日は日本各地を鉄道でめぐったり、いろんな町を訪問したりしています。</p>
+          <p>このサイトでは旅先の写真やブログ、関連のリンクをまとめています。</p>
           <a href="about.html" class="btn-secondary">詳しく見る →</a>
         </div>
         <div class="about-stat-list">
+          <a href="portfolio.html" class="about-stat-row stat-row">
+            <span class="about-stat-row-label stat-row-label">Photos</span>
+            <span class="about-stat-row-num stat-row-num" id="about-stat-photos">—</span>
+          </a>
           <a href="blog.html" class="about-stat-row stat-row">
             <span class="about-stat-row-label stat-row-label">Blog Posts</span>
             <span class="about-stat-row-num stat-row-num" id="about-stat-posts">—</span>
           </a>
-          <a href="portfolio.html" class="about-stat-row stat-row">
-            <span class="about-stat-row-label stat-row-label">Portfolio</span>
-            <span class="about-stat-row-num stat-row-num" id="about-stat-photos">—</span>
-          </a>
-          <a href="links.html" class="about-stat-row stat-row">
-            <span class="about-stat-row-label stat-row-label">Links</span>
-            <span style="font-family:'Shippori Mincho',serif;font-size:20px;color:var(--accent);">→</span>
-          </a>
-
         </div>
       </div>
     </section>
@@ -329,7 +439,7 @@
     <section class="section" id="blog">
       <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;" class="reveal">
         <div>
-          <p class="section-label">// 03 — Blog</p>
+          <p class="section-label">// 04 — Blog</p>
           <h2 class="section-title" style="margin-bottom:0;">最新の記事</h2>
         </div>
         <a href="blog.html" class="btn-secondary">すべて見る →</a>
@@ -341,14 +451,14 @@
     <section class="section" id="portfolio">
       <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;" class="reveal">
         <div>
-          <p class="section-label">// 04 — Portfolio</p>
-          <h2 class="section-title" style="margin-bottom:0;">記録</h2>
+          <p class="section-label">// 05 — Portfolio</p>
+          <h2 class="section-title" style="margin-bottom:0;">写真</h2>
         </div>
         <a href="portfolio.html" class="btn-secondary">すべて見る →</a>
       </div>
       <div class="reveal">
         <a href="portfolio.html" class="stat-row" style="display:flex;">
-          <span class="stat-row-label">旅先の写真などをまとめています</span>
+          <span class="stat-row-label">旅先の写真をまとめています</span>
           <span class="stat-row-num" id="portfolio-stat-photos">—</span>
         </a>
       </div>
@@ -357,12 +467,12 @@
     <!-- Links -->
     <section class="section" id="links">
       <div class="reveal">
-        <p class="section-label">// 05 — Links</p>
+        <p class="section-label">// 06 — Links</p>
         <h2 class="section-title">リンク</h2>
       </div>
       <div class="reveal">
         <a href="links.html" class="stat-row" style="display:flex;">
-          <span class="stat-row-label">活動に関連するリンクをまとめています</span>
+          <span class="stat-row-label">関連リンクをまとめています</span>
           <span style="font-family:'Shippori Mincho',serif;font-size:20px;color:var(--accent);">→</span>
         </a>
       </div>
