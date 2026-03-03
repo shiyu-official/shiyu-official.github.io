@@ -137,9 +137,22 @@
       line-height: 1.8;
     }
 
+    .map-stats-wrap {
+      border: 1px solid var(--border);
+    }
+    .map-stats-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 16px;
+      text-align: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
     .map-stats {
       display: flex;
-      border: 1px solid var(--border);
     }
     .map-stat {
       flex: 1;
@@ -371,14 +384,17 @@
       <h2 class="section-title reveal">旅の記録</h2>
       <div class="reveal">
         <div id="travel-map"></div>
-        <div class="map-stats">
-          <div class="map-stat">
-            <div class="map-stat-num" id="map-stat-prefs">—</div>
-            <div class="map-stat-label">都道府県</div>
-          </div>
-          <div class="map-stat">
-            <div class="map-stat-num" id="map-stat-cities">—</div>
-            <div class="map-stat-label">市区町村</div>
+        <div class="map-stats-wrap">
+          <div class="map-stats-header">Visited</div>
+          <div class="map-stats">
+            <div class="map-stat">
+              <div class="map-stat-num" id="map-stat-prefs">—</div>
+              <div class="map-stat-label">都道府県</div>
+            </div>
+            <div class="map-stat">
+              <div class="map-stat-num" id="map-stat-cities">—</div>
+              <div class="map-stat-label">市区町村</div>
+            </div>
           </div>
         </div>
       </div>
