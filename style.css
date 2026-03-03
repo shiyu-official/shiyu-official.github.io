@@ -339,7 +339,7 @@ body {
 }
 .stat-row-label {
   font-family: 'DM Mono', monospace;
-  font-size: 12px;
+  font-size: 15px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
