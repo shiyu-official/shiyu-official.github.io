@@ -150,7 +150,7 @@
     /* Leaflet map */
     #travel-map {
       width: 100%;
-      height: 260px;
+      height: 340px;
       border-radius: 10px;
       margin-bottom: 20px;
       z-index: 1;
@@ -273,16 +273,12 @@
         <div id="travel-map"></div>
         <div class="card-stats">
           <div class="card-stat">
+            <div class="card-stat-num">44</div>
+            <div class="card-stat-label">都道府県</div>
+          </div>
+          <div class="card-stat">
             <div class="card-stat-num" id="stat-cities">—</div>
             <div class="card-stat-label">市区町村</div>
-          </div>
-          <div class="card-stat">
-            <div class="card-stat-num" id="stat-photos">—</div>
-            <div class="card-stat-label">Photos</div>
-          </div>
-          <div class="card-stat">
-            <div class="card-stat-num" id="stat-posts">—</div>
-            <div class="card-stat-label">Posts</div>
           </div>
         </div>
       </div>
@@ -305,10 +301,6 @@
       </div>
       <div class="about-stats">
         <div class="stat-box">
-          <div class="stat-number" id="about-stat-cities">—</div>
-          <div class="stat-label">市区町村</div>
-        </div>
-        <div class="stat-box">
           <div class="stat-number" id="about-stat-photos">—</div>
           <div class="stat-label">Photos</div>
         </div>
@@ -317,7 +309,11 @@
           <div class="stat-label">Blog Posts</div>
         </div>
         <div class="stat-box">
-          <div class="stat-number" id="about-stat-prefs">44</div>
+          <div class="stat-number" id="about-stat-cities">—</div>
+          <div class="stat-label">市区町村</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">44</div>
           <div class="stat-label">都道府県</div>
         </div>
       </div>
@@ -347,7 +343,7 @@
         center: [36.5, 137.5],
         zoom: 4,
         zoomControl: true,
-        scrollWheelZoom: false,  // カード内での意図しないズームを防ぐ
+        scrollWheelZoom: true,
         attributionControl: false
       });
 
@@ -432,8 +428,6 @@
         fetchCount('./blog.html',      '.blog-item'),
       ]);
       const fmt = v => v !== null ? String(v) : '—';
-      document.getElementById('stat-photos').textContent        = fmt(photos);
-      document.getElementById('stat-posts').textContent         = fmt(posts);
       document.getElementById('about-stat-photos').textContent  = fmt(photos);
       document.getElementById('about-stat-posts').textContent   = fmt(posts);
     }
