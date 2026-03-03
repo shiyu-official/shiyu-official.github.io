@@ -154,7 +154,7 @@ section.content + section.content { border-top: 1px solid var(--border); }
 }
 .section-label {
   font-family: 'DM Mono', monospace;
-  font-size: 12px;
+  font-size: 10px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--cyan);
@@ -191,7 +191,7 @@ section.content + section.content { border-top: 1px solid var(--border); }
 }
 .stat-label {
   font-family: 'DM Mono', monospace;
-  font-size: 11px;
+  font-size: 9px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--muted);
@@ -235,7 +235,7 @@ section.content + section.content { border-top: 1px solid var(--border); }
   background: var(--accent-pale);
   color: var(--accent);
   font-family: 'DM Mono', monospace;
-  font-size: 11px;
+  font-size: 9px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   padding: 4px 12px;
@@ -244,7 +244,7 @@ section.content + section.content { border-top: 1px solid var(--border); }
 }
 .post-date {
   font-family: 'DM Mono', monospace;
-  font-size: 12px;
+  font-size: 10px;
   letter-spacing: 0.12em;
   color: var(--muted);
   margin-bottom: 12px;
@@ -271,7 +271,7 @@ footer {
 .footer-logo em { font-style: normal; color: var(--accent); }
 .footer-copy {
   font-family: 'DM Mono', monospace;
-  font-size: 12px;
+  font-size: 10px;
   letter-spacing: 0.1em;
   color: var(--muted);
 }
