@@ -273,7 +273,7 @@
         <div id="travel-map"></div>
         <div class="card-stats">
           <div class="card-stat">
-            <div class="card-stat-num">44</div>
+            <div class="card-stat-num" id="stat-prefs">—</div>
             <div class="card-stat-label">都道府県</div>
           </div>
           <div class="card-stat">
@@ -307,14 +307,6 @@
         <div class="stat-box">
           <div class="stat-number" id="about-stat-posts">—</div>
           <div class="stat-label">Blog Posts</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-number" id="about-stat-cities">—</div>
-          <div class="stat-label">市区町村</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-number">44</div>
-          <div class="stat-label">都道府県</div>
         </div>
       </div>
     </div>
@@ -396,10 +388,13 @@
         // GeoJSONの範囲に自動フィット
         map.fitBounds(layer.getBounds(), { padding: [8, 8] });
 
-        // 市区町村数をカウント
-        const count = geojson.features ? geojson.features.length : 0;
-        document.getElementById('stat-cities').textContent        = count;
-        document.getElementById('about-stat-cities').textContent  = count;
+        // 市区町村数・都道府県数をカウント
+        const cityCount = geojson.features ? geojson.features.length : 0;
+        const prefCount = geojson.features
+          ? new Set(geojson.features.map(f => f.properties.KEN).filter(Boolean)).size
+          : 0;
+        document.getElementById('stat-cities').textContent = cityCount || '—';
+        document.getElementById('stat-prefs').textContent  = prefCount || '—';
 
       } catch (e) {
         // travel.geojsonがない場合
