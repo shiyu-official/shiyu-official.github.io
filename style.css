@@ -71,7 +71,7 @@ body {
 
 .sidebar-tagline {
   font-family: 'DM Mono', monospace;
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--muted);
