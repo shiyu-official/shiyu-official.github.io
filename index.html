@@ -231,8 +231,8 @@
       <li><a href="#map"><span class="nav-num">01</span>Travel Map</a></li>
       <li><a href="#about"><span class="nav-num">02</span>About</a></li>
       <li><a href="#blog"><span class="nav-num">03</span>Blog</a></li>
-      <li><a href="portfolio.html"><span class="nav-num">04</span>Portfolio</a></li>
-      <li><a href="links.html"><span class="nav-num">05</span>Links</a></li>
+      <li><a href="#portfolio"><span class="nav-num">04</span>Portfolio</a></li>
+      <li><a href="#links"><span class="nav-num">05</span>Links</a></li>
     </ul>
 
     <div class="sidebar-footer">
@@ -289,14 +289,14 @@
           <a href="about.html" class="btn-secondary">詳しく見る →</a>
         </div>
         <div class="about-stat-list">
-          <div class="about-stat-row">
-            <span class="about-stat-row-label">Photos</span>
-            <span class="about-stat-row-num" id="about-stat-photos">—</span>
-          </div>
-          <div class="about-stat-row">
-            <span class="about-stat-row-label">Blog Posts</span>
-            <span class="about-stat-row-num" id="about-stat-posts">—</span>
-          </div>
+          <a href="portfolio.html" class="about-stat-row stat-row">
+            <span class="about-stat-row-label stat-row-label">Photos</span>
+            <span class="about-stat-row-num stat-row-num" id="about-stat-photos">—</span>
+          </a>
+          <a href="blog.html" class="about-stat-row stat-row">
+            <span class="about-stat-row-label stat-row-label">Blog Posts</span>
+            <span class="about-stat-row-num stat-row-num" id="about-stat-posts">—</span>
+          </a>
         </div>
       </div>
     </section>
@@ -311,6 +311,37 @@
         <a href="blog.html" class="btn-secondary">すべて見る →</a>
       </div>
       <div id="latest-posts" class="blog-list reveal"></div>
+    </section>
+
+    <!-- Portfolio -->
+    <section class="section" id="portfolio">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;" class="reveal">
+        <div>
+          <p class="section-label">// 04 — Portfolio</p>
+          <h2 class="section-title" style="margin-bottom:0;">写真</h2>
+        </div>
+        <a href="portfolio.html" class="btn-secondary">すべて見る →</a>
+      </div>
+      <div class="reveal">
+        <a href="portfolio.html" class="stat-row" style="display:flex;">
+          <span class="stat-row-label">旅先の写真をまとめています</span>
+          <span class="stat-row-num" id="portfolio-stat-photos">—</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Links -->
+    <section class="section" id="links">
+      <div class="reveal">
+        <p class="section-label">// 05 — Links</p>
+        <h2 class="section-title">リンク</h2>
+      </div>
+      <div class="reveal">
+        <a href="links.html" class="stat-row" style="display:flex;">
+          <span class="stat-row-label">関連リンクをまとめています</span>
+          <span style="font-family:'Shippori Mincho',serif;font-size:20px;color:var(--accent);">→</span>
+        </a>
+      </div>
     </section>
 
   </main>
@@ -389,7 +420,7 @@
         fetchCount('./blog.html',      '.blog-item'),
       ]);
       const fmt = v => v !== null ? String(v) : '—';
-      ['about-stat-photos','side-stat-photos'].forEach(id => {
+      ['about-stat-photos','side-stat-photos','portfolio-stat-photos'].forEach(id => {
         document.getElementById(id).textContent = fmt(photos);
       });
       ['about-stat-posts','side-stat-posts'].forEach(id => {

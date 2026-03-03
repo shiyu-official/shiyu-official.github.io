@@ -325,9 +325,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 20px;
+  padding: 22px 24px;
   background: var(--white);
   border: 1px solid var(--border);
+  text-decoration: none;
+  color: var(--text);
   transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
 }
 .stat-row:hover {
@@ -337,14 +339,14 @@ body {
 }
 .stat-row-label {
   font-family: 'DM Mono', monospace;
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
 }
 .stat-row-num {
   font-family: 'Shippori Mincho', serif;
-  font-size: 28px;
+  font-size: 34px;
   font-weight: 600;
   color: var(--accent);
   line-height: 1;
