@@ -604,7 +604,7 @@
         const dateCol = document.createElement('div');
         dateCol.className = 'post-date-col';
         dateCol.innerHTML = parts.length >= 3
-          ? `<span class="year">${parts[0]}</span><span class="day">${parts[2]}</span>`<span class="year">${parts[0]}</span><span class="day">${parts[2]}</span><span class="month">${['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][parseInt(parts[1])-1]||parts[1]}</span>`
+          ? `<span class="year">${parts[0]}</span><span class="day">${parts[2]}</span><span class="month">${parts[1]}</span>`
           : `<span class="day">—</span>`;
 
         const body = document.createElement('div');
