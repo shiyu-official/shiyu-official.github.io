@@ -598,14 +598,7 @@
         card.className = 'post-card';
 
         // 日付を取得
-        const dateEl = item.querySelector('.post-date');
-        const dateStr = dateEl ? dateEl.textContent : '';
-        const parts = dateStr.split('.');
-        const dateCol = document.createElement('div');
-        dateCol.className = 'post-date-col';
-        dateCol.innerHTML = parts.length >= 3
-          ? `<span class="year">${parts[0]}</span><span class="day">${parts[2]}</span><span class="month">${parts[1]}</span>`
-          : `<span class="day">—</span>`;
+　　　　 const dateCol = item.querySelector('.post-date-col').cloneNode(true);
 
         const body = document.createElement('div');
         body.className = 'post-body';
