@@ -594,7 +594,7 @@
         // blog-itemの中身をリスト形式のpost-cardに変換
         const item = items[0];
         const card = document.createElement('a');
-        card.href = item.getAttribute('href');
+        card.href = './blog.html';
         card.className = 'post-card';
 
         // 日付を取得
@@ -613,6 +613,7 @@
 
         const arrow = document.createElement('div');
         arrow.className = 'post-arrow';
+        arrow.textContent = '→';
 
         card.appendChild(dateCol);
         card.appendChild(body);
