@@ -570,7 +570,7 @@
     async function loadStats() {
       const [photos, posts] = await Promise.all([
         fetchCount('./portfolio.html', '.photo-item'),
-        fetchCount('./blog.html',      '.blog-item'),
+        fetchCount('./blog.html',      '.post-card'),
       ]);
       const fmt = v => v !== null ? String(v) : '—';
       ['about-stat-photos','side-stat-photos','portfolio-stat-photos'].forEach(id => {
@@ -588,7 +588,7 @@
         const res = await fetch('./blog.html');
         if (!res.ok) throw new Error();
         const doc   = new DOMParser().parseFromString(await res.text(), 'text/html');
-        const items = doc.querySelectorAll('.blog-item');
+        const items = doc.querySelectorAll('.post-card');
         if (!items.length) throw new Error();
 
         // blog-itemの中身をリスト形式のpost-cardに変換
