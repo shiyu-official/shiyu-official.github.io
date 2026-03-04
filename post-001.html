@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HPを作成した話 — Shiyu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@300;400&family=DM+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    /* ── 記事ページ固有スタイル ── */
+
+    .post-header {
+      padding: 80px 64px 56px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .post-header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      opacity: 0.4;
+    }
+    .post-header-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .post-header-tag {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      border: 1px solid var(--accent-light);
+      padding: 3px 12px;
+      border-radius: 1px;
+    }
+    .cat-activity  { color: #1a9aa0; border-color: #1a9aa0; }
+    .cat-hobby     { color: #7a6fa8; border-color: #7a6fa8; }
+    .cat-soliloquy { color: #c47a2a; border-color: #c47a2a; }
+
+    .post-header-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+    }
+    .post-header h1 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: clamp(26px, 4vw, 48px);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+    .post-header-excerpt {
+      font-size: 14px;
+      line-height: 2.4;
+      color: var(--muted);
+      max-width: 560px;
+      padding-left: 16px;
+      border-left: 2px solid var(--border);
+    }
+
+    .post-content {
+      padding: 64px 64px 80px;
+      max-width: 860px;
+    }
+    .post-content p {
+      font-size: 15px;
+      line-height: 2.6;
+      color: var(--text);
+      margin-bottom: 32px;
+    }
+    .post-content h2 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: clamp(20px, 2.5vw, 28px);
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--text);
+      margin: 56px 0 24px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .post-content h2::before {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0;
+      width: 48px; height: 2px;
+      background: var(--accent);
+    }
+    .post-content h3 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 17px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--text);
+      margin: 40px 0 16px;
+      padding-left: 12px;
+      border-left: 3px solid var(--accent);
+    }
+    .post-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 48px 0;
+    }
+    .post-nav {
+      padding: 40px 64px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .post-nav-link {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      text-decoration: none;
+      color: var(--text);
+      max-width: 45%;
+      transition: color 0.2s;
+    }
+    .post-nav-link:hover { color: var(--accent); }
+    .post-nav-link.next { text-align: right; margin-left: auto; }
+    .post-nav-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .post-nav-title {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      line-height: 1.7;
+    }
+    .post-back {
+      padding: 32px 64px;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 900px) {
+      .post-header  { padding: 56px 24px 40px; }
+      .post-content { padding: 40px 24px 56px; }
+      .post-nav     { padding: 32px 24px; flex-direction: column; }
+      .post-nav-link.next { text-align: left; margin-left: 0; }
+      .post-back    { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ SIDEBAR ══ -->
+  <aside class="sidebar">
+    <a href="index.html" class="sidebar-logo">志<em>游</em></a>
+    <p class="sidebar-tagline">～記録と記憶をここに～</p>
+
+    <div class="sidebar-profile">
+      <p class="profile-name">しゆ（shiyu）</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="index.html"><span class="nav-num">00</span>Home</a></li>
+      <li><a href="blog.html" class="active"><span class="nav-num">01</span>Blog</a></li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <p>© 2026 Shiyu<br>All rights reserved.</p>
+    </div>
+  </aside>
+
+  <!-- ══ MAIN ══ -->
+  <main class="main">
+
+    <!-- 記事ヘッダー -->
+    <header class="post-header">
+      <div class="post-header-meta">
+        <span class="post-header-tag cat-soliloquy">独言</span>
+        <span class="post-header-date">2026.03.04</span>
+      </div>
+      <h1>HPを作成した話</h1>
+    </header>
+
+    <!-- 記事本文 -->
+    <article class="post-content">
+
+      <p>
+        皆様、お世話になっております。
+      </p>
+      <p>
+        <strong>しゆ(shiyu)</strong>という名義で活動している者です。
+      </p>
+      <p>
+        今回新たにHPを開設いたしましたので、そのご挨拶と開設に至った経緯をお話しするとともに、
+        簡単な自己紹介などもしておこうと思い、本記事を執筆している次第です。
+      </p>
+      <p>
+        よろしければご覧になっていってください。
+      </p>
+
+      <h2>HP作成の経緯</h2>
+
+      <p>
+        今回HPを作成するに至った経緯ですが、それに深く関わるのが<strong>LLM</strong>の存在です。
+        LLMとは大規模言語モデル、いわゆるAIですね。
+      </p>
+      <p>
+        当方も時代の流れを汲んでAIを活用しているのですが、
+        いくつかあるサービスのうちの<strong>Claude</strong>というLLMを先日勧められまして、
+        使ってみるとなんと便利なこと。
+      </p>
+      <p>
+        Claudeは簡単に言えばコードを扱うような開発系の生成に強いらしく、
+        その性能を試そうというところで前から関心のあったWebページ作成を試してみることに。
+      </p>
+      <p>
+        いざ作り始めたら初期構想の段階からかなり本格的なページを提案され、
+        あれよあれよと改良や拡充が進んでいき、結果的にこのHPが出来ました。
+        Webページの作成に関しては何一つ勉強さえしてこなかった私でさえ、
+        AIを活用することでここまでのサイトを作れるのですから<strong>恐ろしい時代になった</strong>と思わざるを得ません。
+      </p>
+      <p>
+        気持ちの面ではなんだかズルをしているような気分が抜けず、
+        作成を進める中でも輪郭のはっきりしない後ろめたさに付き纏われて止みません。
+        これをこのまま公開してよいものかと思うことも一度の話ではなかったですが、
+        これも時代の流れとして受け止めて、HPを正式に活用しようと思い至ったわけです。
+      </p>
+      <p>
+        その意味では本HPは試作品的立ち位置に来るものにはなってしまいますが、
+        改良を進めて私個人としても活動の一つの拠点となるよう整備していく所存ですので
+        温かい目で見ていただけると嬉しいです。
+      </p>
+
+      <h2>自己紹介</h2>
+
+      <p>
+        前項と順序が逆な気もしますが、簡単に自己紹介をば。
+      </p>
+      <p>
+        別のページでも簡単に触れていますが、活動の基本は<strong>YouTube</strong>になります。
+        旅行系を扱うチャンネル、太鼓の達人の動画を投稿するチャンネルの2つを運営している状況です。
+        これら二つのコンテンツは個人的な趣味の中でも特に極めたいと思った趣味のうちの二つでした。
+        子供のころから触れて、飽きることなくここまで好きでい続けられたのならそれを突き詰めていきたいと思うので人間の性。
+        もちろん活動規模も実力も上には上がいるこの現代で上にのし上がれるのか、
+        またそれが私にとって本当に望んでいることなのか私自身にもまだわかっておりません。
+        ですが、それでもやりたいことはやりたいと思えるその先までやろうと今は思っています。
+        どちらもまだ趣味の領域を出ない規模の活動ですが、これらが<strong>しゆ(shiyu)としてのメインの活動内容</strong>としてご支援いただけますと幸いです。
+      </p>
+      <p>
+        本当はまだいくつか活動を構想しているものもありますが、それはまたちゃんとした形になった時にご報告は改めて。
+      </p>
+
+      <hr class="post-divider">
+
+      <p>
+        上記の二つを活動の一環として分けるとして、他にも趣味はそこそこにあります。
+        例えば旅行の行かない週末にすることといえば<strong>カラオケ</strong>です。
+        今ではカラオケが本来グループで楽しむ娯楽ということさえ忘れつつあるほどには気軽にヒトカラに赴いています。
+        もちろん歌が上手くなりたいという願望は含みますが、個人的な楽しみが採点ゲーム。
+        点数が上がるたびに上手くなった実感が目でみてわかるのが個人的にツボなのです（歌そのものが上手くなっているわけではないと思います）。
+      </p>
+      <p>
+        ほか日常的にしていることとすれば、<strong>ラーメン屋開拓</strong>でしょうか。
+        近所のラーメン屋から遠いところまで、正統派な淡麗系からパンチ力抜群な家系・二郎系までなんでも食べる人種です。
+        この話をすると好きなお店、お気に入りのお店の話を求められそうですが、それはまた別で記事を書こうかと。
+        Portfolioに写真をまとめたりもしようと思いますので、更新をお待ちください。
+      </p>
+      <p>
+        一応まだ趣味はあるのですが、上記二つからは少し格が下がるのでこの場ではいったんこの二つまでで。
+        どこかでまたお話しようかと。
+      </p>
+
+      <h2>おわりに</h2>
+
+      <p>
+        長かったか短かったか、初回の記事としてはこんなところで締めにしたいと思います。
+      </p>
+      <p>
+        もし、最後まで読んでくれたのならひとまず名前と活動内容くらいを覚えていただけたのなら十分すぎるところです。
+        どこまで続くかわからないこれらのネット活動ですが、もし応援していただける方がいらっしゃたなら、
+        今日までの命が明日までになるかもしれませんし、明日までの命が明後日までになるかもしれません。
+      </p>
+      <p>
+        ぜひ応援のほど、よろしくお願いいたします。
+      </p>
+      <p>
+        それでは。
+      </p>
+
+    </article>
+
+    <!-- ブログ一覧へ戻る -->
+    <div class="post-back">
+      <a href="blog.html" class="btn-secondary">← Blog一覧へ戻る</a>
+    </div>
+
+  </main>
+
+</body>
+</html>
