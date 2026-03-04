@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Shiyu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@300;400&family=DM+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    /* ── blog.html 固有スタイル ── */
+
+    /* カテゴリフィルター */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 40px;
+    }
+    .filter-btn {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 7px 16px;
+      cursor: pointer;
+      border-radius: 1px;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      color: var(--accent);
+      border-color: var(--accent-light);
+      background: var(--accent-pale);
+    }
+
+    /* 記事カード（post-card は共通CSSにあるので上書き分のみ） */
+    .post-count {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .post-count span {
+      color: var(--accent);
+      font-size: 13px;
+    }
+
+    /* カテゴリバッジ（post-tag を上書きして色を変えられるよう追加クラス） */
+    .cat-travel   { color: #1a9aa0; border-color: #1a9aa0; }
+    .cat-diary    { color: #7a6fa8; border-color: #7a6fa8; }
+    .cat-railroad { color: #c47a2a; border-color: #c47a2a; }
+
+    /* 記事が非表示になるときのアニメーション */
+    .post-card {
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s, opacity 0.3s;
+    }
+    .post-card.hidden {
+      display: none;
+    }
+
+    /* 空状態 */
+    .empty-state {
+      padding: 64px 0;
+      text-align: center;
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      display: none;
+    }
+    .empty-state.visible { display: block; }
+
+    @media (max-width: 900px) {
+      .filter-bar { gap: 6px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ SIDEBAR ══ -->
+  <aside class="sidebar">
+    <a href="index.html" class="sidebar-logo">志<em>游</em></a>
+    <p class="sidebar-tagline">～記録と記憶をここに～</p>
+
+    <div class="sidebar-profile">
+      <p class="profile-name">しゆ（shiyu）</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="index.html"><span class="nav-num">00</span>Home</a></li>
+      <li><a href="#" class="active"><span class="nav-num">01</span>すべて</a></li>
+      <li><a href="#" data-filter="travel"><span class="nav-num">02</span>旅行記</a></li>
+      <li><a href="#" data-filter="railroad"><span class="nav-num">03</span>鉄道</a></li>
+      <li><a href="#" data-filter="diary"><span class="nav-num">04</span>日記</a></li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <p>© 2026 Shiyu<br>All rights reserved.</p>
+    </div>
+  </aside>
+
+  <!-- ══ MAIN ══ -->
+  <main class="main">
+
+    <!-- Page Header -->
+    <header class="page-header">
+      <p class="section-label">// Blog</p>
+      <h1>旅と記憶の記録</h1>
+      <p>旅行記、鉄道の記録、日々の出来事など。ここに残していきます。</p>
+    </header>
+
+    <!-- Blog List -->
+    <section class="section" id="blog">
+
+      <!-- フィルターバー -->
+      <div class="filter-bar reveal">
+        <button class="filter-btn active" data-filter="all">すべて</button>
+        <button class="filter-btn" data-filter="travel">旅行記</button>
+        <button class="filter-btn" data-filter="railroad">鉄道</button>
+        <button class="filter-btn" data-filter="diary">日記</button>
+      </div>
+
+      <p class="post-count reveal">全 <span id="post-count-num">1</span> 件</p>
+
+      <!-- 記事リスト -->
+      <div class="blog-list" id="blog-list">
+
+        <!-- 記事 1：旅行記 -->
+        <a href="#" class="post-card reveal" data-category="travel">
+          <div class="post-date-col">
+            <span class="month">Mar</span>
+            <span class="day">01</span>
+            <span class="year">2026</span>
+          </div>
+          <div class="post-body">
+            <span class="post-tag cat-travel">旅行記</span>
+            <p class="post-title">金沢・能登をめぐる旅　前編</p>
+            <p class="post-excerpt">金沢駅に降り立った瞬間から、どこか懐かしい空気に包まれた。兼六園、ひがし茶屋街、近江町市場……歩くほどに発見がある町だった。</p>
+          </div>
+          <span class="post-arrow">→</span>
+        </a>
+
+      </div>
+
+      <!-- 記事ゼロの場合 -->
+      <div class="empty-state" id="empty-state">
+        // no posts found
+      </div>
+
+    </section>
+
+  </main>
+
+  <script>
+    // ── Scroll reveal ──
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ── カテゴリフィルター（フィルターバー） ──
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const posts      = document.querySelectorAll('.post-card');
+    const countEl   = document.getElementById('post-count-num');
+    const emptyEl   = document.getElementById('empty-state');
+
+    function applyFilter(filter) {
+      let count = 0;
+      posts.forEach(card => {
+        const match = filter === 'all' || card.dataset.category === filter;
+        card.classList.toggle('hidden', !match);
+        if (match) count++;
+      });
+      countEl.textContent = count;
+      emptyEl.classList.toggle('visible', count === 0);
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        applyFilter(btn.dataset.filter || 'all');
+      });
+    });
+
+    // ── サイドバーナビからのフィルター ──
+    const navLinks = document.querySelectorAll('.sidebar-nav a[data-filter]');
+    navLinks.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const filter = link.dataset.filter;
+        // サイドナビのactive
+        document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+        link.classList.add('active');
+        // フィルターボタンのactive
+        filterBtns.forEach(b => {
+          b.classList.toggle('active', b.dataset.filter === filter);
+        });
+        applyFilter(filter);
+      });
+    });
+
+    // 「すべて」ナビリンク
+    const allNavLink = document.querySelector('.sidebar-nav a:not([data-filter])');
+    if (allNavLink) {
+      allNavLink.addEventListener('click', e => {
+        if (allNavLink.getAttribute('href') === '#') {
+          e.preventDefault();
+          document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+          allNavLink.classList.add('active');
+          filterBtns.forEach(b => b.classList.toggle('active', b.dataset.filter === 'all' || !b.dataset.filter));
+          applyFilter('all');
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
