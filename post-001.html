@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【ダミー】 — Shiyu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@300;400&family=DM+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    /* ── 記事ページ固有スタイル ── */
+
+    .post-header {
+      padding: 80px 64px 56px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .post-header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      opacity: 0.4;
+    }
+    .post-header-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .post-header-tag {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      border: 1px solid var(--accent-light);
+      padding: 3px 12px;
+      border-radius: 1px;
+    }
+    .cat-activity  { color: #1a9aa0; border-color: #1a9aa0; }
+    .cat-hobby     { color: #7a6fa8; border-color: #7a6fa8; }
+    .cat-soliloquy { color: #c47a2a; border-color: #c47a2a; }
+
+    .post-header-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+    }
+    .post-header h1 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: clamp(26px, 4vw, 48px);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+    .post-header-excerpt {
+      font-size: 14px;
+      line-height: 2.4;
+      color: var(--muted);
+      max-width: 560px;
+      padding-left: 16px;
+      border-left: 2px solid var(--border);
+    }
+
+    .post-content {
+      padding: 64px 64px 80px;
+      max-width: 860px;
+    }
+    .post-content p {
+      font-size: 15px;
+      line-height: 2.6;
+      color: var(--text);
+      margin-bottom: 32px;
+    }
+    .post-content h2 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: clamp(20px, 2.5vw, 28px);
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--text);
+      margin: 56px 0 24px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .post-content h2::before {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0;
+      width: 48px; height: 2px;
+      background: var(--accent);
+    }
+    .post-content h3 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 17px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--text);
+      margin: 40px 0 16px;
+      padding-left: 12px;
+      border-left: 3px solid var(--accent);
+    }
+    .post-img {
+      width: 100%;
+      margin: 40px 0;
+      border: 1px solid var(--border);
+      display: block;
+      object-fit: cover;
+    }
+    .post-img-caption {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      text-align: center;
+      margin-top: -28px;
+      margin-bottom: 40px;
+    }
+    .post-img-grid {
+      display: grid;
+      gap: 8px;
+      margin: 40px 0;
+    }
+    .post-img-grid.col2 { grid-template-columns: 1fr 1fr; }
+    .post-img-grid.col3 { grid-template-columns: 1fr 1fr 1fr; }
+    .post-img-grid img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border: 1px solid var(--border);
+      display: block;
+    }
+    .post-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 48px 0;
+    }
+    .post-nav {
+      padding: 40px 64px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .post-nav-link {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      text-decoration: none;
+      color: var(--text);
+      max-width: 45%;
+      transition: color 0.2s;
+    }
+    .post-nav-link:hover { color: var(--accent); }
+    .post-nav-link.next { text-align: right; margin-left: auto; }
+    .post-nav-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .post-nav-title {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      line-height: 1.7;
+    }
+    .post-back {
+      padding: 32px 64px;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 900px) {
+      .post-header  { padding: 56px 24px 40px; }
+      .post-content { padding: 40px 24px 56px; }
+      .post-img-grid.col3 { grid-template-columns: 1fr 1fr; }
+      .post-nav     { padding: 32px 24px; flex-direction: column; }
+      .post-nav-link.next { text-align: left; margin-left: 0; }
+      .post-back    { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ SIDEBAR ══ -->
+  <aside class="sidebar">
+    <a href="index.html" class="sidebar-logo">志<em>游</em></a>
+    <p class="sidebar-tagline">～記録と記憶をここに～</p>
+
+    <div class="sidebar-profile">
+      <p class="profile-name">しゆ（shiyu）</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="index.html"><span class="nav-num">00</span>Home</a></li>
+      <li><a href="blog.html" class="active"><span class="nav-num">01</span>Blog</a></li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <p>© 2026 Shiyu<br>All rights reserved.</p>
+    </div>
+  </aside>
+
+  <!-- ══ MAIN ══ -->
+  <main class="main">
+
+    <!-- 記事ヘッダー -->
+    <header class="post-header">
+      <div class="post-header-meta">
+        <span class="post-header-tag cat-activity">活動（旅行・太鼓の達人）</span>
+        <span class="post-header-date">2026.03.04</span>
+      </div>
+      <h1>【ダミー】</h1>
+      <p class="post-header-excerpt">
+        これはダミー記事です。レイアウトや表示の確認用として作成しました。
+      </p>
+    </header>
+
+    <!-- 記事本文 -->
+    <article class="post-content">
+
+      <p>
+        これはダミーの本文段落です。実際の記事ではここに本文が入ります。文章の長さや行間、フォントのサイズなどを確認するためのテキストです。
+      </p>
+
+      <h2>中見出しのサンプル</h2>
+
+      <p>
+        h2見出しの下の段落です。見出しのデザインや余白の具合を確認できます。
+      </p>
+
+      <h3>小見出しのサンプル</h3>
+
+      <p>
+        h3見出しの下の段落です。左にアクセントカラーのボーダーが入るデザインです。
+      </p>
+
+      <hr class="post-divider">
+
+      <p>
+        区切り線の後の段落です。記事の区切りに使います。
+      </p>
+
+    </article>
+
+    <!-- 前後の記事ナビ（現時点では記事がこれ1本なので非表示） -->
+
+    <!-- ブログ一覧へ戻る -->
+    <div class="post-back">
+      <a href="blog.html" class="btn-secondary">← Blog一覧へ戻る</a>
+    </div>
+
+  </main>
+
+</body>
+</html>
