@@ -126,31 +126,17 @@
         <button class="filter-btn" data-filter="diary">日記</button>
       </div>
 
-      <p class="post-count reveal">全 <span id="post-count-num">1</span> 件</p>
+      <p class="post-count reveal">全 <span id="post-count-num">0</span> 件</p>
 
       <!-- 記事リスト -->
       <div class="blog-list" id="blog-list">
-
-        <!-- 記事 1：旅行記 -->
-        <a href="#" class="post-card reveal" data-category="travel">
-          <div class="post-date-col">
-            <span class="month">Mar</span>
-            <span class="day">01</span>
-            <span class="year">2026</span>
-          </div>
-          <div class="post-body">
-            <span class="post-tag cat-travel">旅行記</span>
-            <p class="post-title">金沢・能登をめぐる旅　前編</p>
-            <p class="post-excerpt">金沢駅に降り立った瞬間から、どこか懐かしい空気に包まれた。兼六園、ひがし茶屋街、近江町市場……歩くほどに発見がある町だった。</p>
-          </div>
-          <span class="post-arrow">→</span>
-        </a>
+        <!-- 記事を追加するときはここに .post-card を追加 -->
 
       </div>
 
       <!-- 記事ゼロの場合 -->
       <div class="empty-state" id="empty-state">
-        // no posts found
+        まだ記事はありません
       </div>
 
     </section>
@@ -182,6 +168,9 @@
       countEl.textContent = count;
       emptyEl.classList.toggle('visible', count === 0);
     }
+
+    // 初期表示：記事がなければ空状態を表示
+    applyFilter('all');
 
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
