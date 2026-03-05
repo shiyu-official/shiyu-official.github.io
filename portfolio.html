@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio — Shiyu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@300;400&family=DM+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    /* ══════════════════════════
+       PORTFOLIO 固有スタイル
+    ══════════════════════════ */
+
+    /* ── 空状態プレースホルダー共通 ── */
+    .empty-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 72px 40px;
+      border: 1px dashed var(--border);
+      background: var(--surface);
+      gap: 16px;
+    }
+    .empty-placeholder-icon {
+      font-size: 32px;
+      opacity: 0.3;
+    }
+    .empty-placeholder p {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      line-height: 2;
+    }
+
+    /* ══════════════════════════
+       01 — 旅の記録
+    ══════════════════════════ */
+
+    /* 旅カードグリッド */
+    .trip-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    /* 個別の旅カード (.photo-item はindex.htmlの統計カウント用) */
+    .photo-item {
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: var(--text);
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .photo-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(30,95,168,0.12);
+      z-index: 1;
+    }
+
+    /* 写真エリア */
+    .trip-photo {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+      background: var(--surface);
+    }
+    /* 写真がない場合のプレースホルダー */
+    .trip-photo-placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--border);
+    }
+
+    /* カード情報 */
+    .trip-info {
+      padding: 20px 24px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-top: 1px solid var(--border);
+    }
+    .trip-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .trip-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+    }
+    .trip-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent-light);
+      padding: 2px 8px;
+      border-radius: 1px;
+    }
+    .trip-title {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      line-height: 1.6;
+    }
+    .trip-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 2;
+      flex: 1;
+    }
+    .trip-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 4px;
+    }
+    .trip-route {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+    .trip-arrow {
+      font-size: 14px;
+      color: var(--border);
+      transition: color 0.2s;
+    }
+    .photo-item:hover .trip-arrow { color: var(--accent); }
+
+    /* ══════════════════════════
+       02 — 太鼓の達人
+    ══════════════════════════ */
+
+    .taiko-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    /* 動画カード */
+    .taiko-card {
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: var(--text);
+      position: relative;
+      overflow: hidden;
+    }
+    .taiko-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--cyan));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .taiko-card:hover::after { transform: scaleX(1); }
+
+    /* YouTube埋め込みラッパー */
+    .taiko-embed-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #000;
+      overflow: hidden;
+    }
+    .taiko-embed-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .taiko-info {
+      padding: 16px 22px 20px;
+      border-top: 1px solid var(--border);
+    }
+    .taiko-title {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════
+       SIDEBAR
+  ══════════════════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar::before"></div>
+
+    <a href="./index.html" class="sidebar-logo">Shi<em>yu</em></a>
+    <p class="sidebar-tagline">Personal Site</p>
+
+    <div class="sidebar-profile">
+      <p class="profile-name">しゆ / Shiyu</p>
+      <p class="profile-desc">旅・鉄道・太鼓の達人</p>
+    </div>
+
+    <div class="sidebar-stats">
+      <div class="sidebar-stat-group">
+        <span class="sidebar-stat-group-label">Portfolio</span>
+        <div class="sidebar-stat-group-inner">
+          <div class="sidebar-stat">
+            <div class="sidebar-stat-num" id="side-stat-trips">—</div>
+            <div class="sidebar-stat-label">Trips</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="./index.html"><span class="nav-num">00</span>Top</a></li>
+        <li><a href="#travel" class="active"><span class="nav-num">01</span>旅の記録</a></li>
+        <li><a href="#taiko"><span class="nav-num">02</span>太鼓の達人</a></li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+      <p>© 2026 Shiyu<br>All Rights Reserved.</p>
+    </div>
+  </aside>
+
+  <!-- ══════════════════════════
+       MAIN
+  ══════════════════════════ -->
+  <main class="main">
+
+    <!-- Page Header -->
+    <header class="page-header">
+      <p class="section-label">Portfolio</p>
+      <h1>記録</h1>
+      <p>旅の写真や記録、鉄道旅のルート、太鼓の達人の動画をまとめています。</p>
+    </header>
+
+    <!-- ══════════════════════════
+         01 — 旅の記録
+    ══════════════════════════ -->
+    <section class="section" id="travel">
+      <p class="section-label reveal">// 01 — Travel</p>
+      <h2 class="section-title reveal">旅の記録</h2>
+
+      <!--
+        ▼ 旅を追加するときは <div class="photo-item"> を1つ増やす。
+          photo-item の数がindex.htmlの「Portfolio」カウントに自動反映される。
+
+        使い方:
+          - trip-photo の src に写真パスを入れる（なければ trip-photo-placeholder に差し替え）
+          - trip-title に旅のタイトル
+          - trip-date に年月（例: 2026.01）
+          - trip-tag に地域や種別（例: 東北 / 九州 / 日帰り）
+          - trip-route に経路メモ（例: 東京 → 仙台 → 松島）
+          - trip-desc に短いメモ（省略可）
+          - href に詳細ページがあればリンク先を設定
+      -->
+
+      <div class="trip-grid reveal" id="trip-grid">
+
+        <!-- ── 旅カードのサンプル（内容は書き換えてください） ── -->
+        <a href="#" class="photo-item">
+          <div class="trip-photo-placeholder">Photo</div>
+          <div class="trip-info">
+            <div class="trip-meta">
+              <span class="trip-date">2026.01</span>
+              <span class="trip-tag">東北</span>
+            </div>
+            <p class="trip-title">タイトルをここに書く</p>
+            <p class="trip-desc">旅のメモや感想をここに書く。省略してもOK。</p>
+            <div class="trip-footer">
+              <span class="trip-route">東京 → 仙台 → 松島</span>
+              <span class="trip-arrow">→</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- ── ここにさらに旅カードを追加 ── -->
+
+      </div>
+
+      <!-- コンテンツがないときはこのプレースホルダーが表示される（カードが追加されたら削除） -->
+      <div class="empty-placeholder reveal" id="travel-empty" style="display:none;">
+        <div class="empty-placeholder-icon">🗾</div>
+        <p>旅の記録はまだありません<br>カードを追加してください</p>
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════
+         02 — 太鼓の達人
+    ══════════════════════════ -->
+    <section class="section" id="taiko">
+      <p class="section-label reveal">// 02 — Taiko no Tatsujin</p>
+      <h2 class="section-title reveal">太鼓の達人</h2>
+
+      <!--
+        ▼ 動画を追加するときは <div class="taiko-card"> を1つコピーして増やす。
+          - iframe の src に YouTubeの埋め込みURL（https://www.youtube.com/embed/動画ID）
+          - taiko-title に曲名
+      -->
+
+      <div class="taiko-grid reveal">
+
+        <!-- ── 動画カードのサンプル（コピーして使ってください） ── -->
+        <div class="taiko-card">
+          <div class="taiko-embed-wrap">
+            <iframe
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              title="太鼓の達人"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="taiko-info">
+            <p class="taiko-title">曲名をここに書く</p>
+          </div>
+        </div>
+
+        <!-- ここにカードを追加 -->
+
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // ── Scroll reveal ──
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ── サイドナビのアクティブ切り替え ──
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.sidebar-nav a[href^="#"]');
+    const secObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navLinks.forEach(a => {
+            a.classList.toggle('active', a.getAttribute('href') === `#${e.target.id}`);
+          });
+        }
+      });
+    }, { threshold: 0.4 });
+    sections.forEach(s => secObserver.observe(s));
+
+    // ── サイドバーのTrips/Railwayカウント ──
+    function updateSideStats() {
+      const trips = document.querySelectorAll('.photo-item').length;
+      document.getElementById('side-stat-trips').textContent = trips || '—';
+    }
+    updateSideStats();
+  </script>
+</body>
+</html>
