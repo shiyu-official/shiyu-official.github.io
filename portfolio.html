@@ -360,12 +360,8 @@
     <!-- ══════════════════════════
          02 — 太鼓の達人
 
-         ▼ 動画を追加するときは下のサンプルを1つコピーして増やす
-           ・data-genre に以下のいずれかを指定：
-               pops / kids / anime / vocaloid / game / variety / classic / namco / dan
-           ・iframe の src に https://www.youtube.com/embed/【動画ID】 を設定
-             （動画IDはYouTube URLの ?v= 以降の文字列）
-           ・taiko-title に曲名を書く
+         ▼ 動画の追加・編集は taiko.csv だけ触ればOK
+           HTMLはいじらなくてよい
     ══════════════════════════ -->
     <section class="section" id="taiko">
       <p class="section-label reveal">// 02 — Taiko no Tatsujin</p>
@@ -387,54 +383,7 @@
       <p class="item-count reveal">全 <span id="taiko-count-num">0</span> 件</p>
 
       <div class="taiko-grid reveal" id="taiko-grid">
-
-        <div class="taiko-card" data-genre="namco">
-          <div class="taiko-embed-wrap">
-            <iframe src="https://www.youtube.com/embed/pVheIUHZfj8" title="太鼓の達人" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div>
-          <div class="taiko-info">
-            <p class="taiko-title">曲名をここに書く</p>
-          </div>
-        </div>
-
-        <div class="taiko-card" data-genre="namco">
-          <div class="taiko-embed-wrap">
-            <iframe src="https://www.youtube.com/embed/6Btoa_Q0Rg4" title="太鼓の達人" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div>
-          <div class="taiko-info">
-            <p class="taiko-title">曲名をここに書く</p>
-          </div>
-        </div>
-
-        <div class="taiko-card" data-genre="namco">
-          <div class="taiko-embed-wrap">
-            <iframe src="https://www.youtube.com/embed/LHMJUKBPR9k" title="太鼓の達人" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div>
-          <div class="taiko-info">
-            <p class="taiko-title">曲名をここに書く</p>
-          </div>
-        </div>
-
-        <div class="taiko-card" data-genre="namco">
-          <div class="taiko-embed-wrap">
-            <iframe src="https://www.youtube.com/embed/5nxWdYy6UHw" title="太鼓の達人" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div>
-          <div class="taiko-info">
-            <p class="taiko-title">曲名をここに書く</p>
-          </div>
-        </div>
-
-        <div class="taiko-card" data-genre="game">
-          <div class="taiko-embed-wrap">
-            <iframe src="https://www.youtube.com/embed/BkuqxN_lmOQ" title="太鼓の達人" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div>
-          <div class="taiko-info">
-            <p class="taiko-title">曲名をここに書く</p>
-          </div>
-        </div>
-
-        <!-- ここに動画カードを追加 -->
-
+        <!-- taiko.csv から動的に生成されます -->
       </div>
 
       <div class="empty-state" id="taiko-empty">まだ動画はありません</div>
@@ -448,9 +397,6 @@
   <script>
     const SHOW_LIMIT = { trip: 3, taiko: 4 };
 
-    // ══════════════════════════
-    // 汎用フィルター＋折りたたみ
-    // ══════════════════════════
     const state = {
       trip:  { filter: 'all', showing: SHOW_LIMIT.trip },
       taiko: { filter: 'all', showing: SHOW_LIMIT.taiko },
@@ -464,25 +410,32 @@
 
     function applyState(section) {
       const { filter, showing } = state[section];
-      const items    = getItems(section);
-      const countEl  = document.getElementById(`${section}-count-num`);
-      const emptyEl  = document.getElementById(`${section}-empty`);
-      const moreBtn  = document.getElementById(`${section}-more-btn`);
+      const items   = getItems(section);
+      const countEl = document.getElementById(`${section}-count-num`);
+      const emptyEl = document.getElementById(`${section}-empty`);
+      const moreBtn = document.getElementById(`${section}-more-btn`);
 
-      // フィルター一致するもの
       const matched = items.filter(el => {
         const cat = section === 'trip' ? el.dataset.category : el.dataset.genre;
         return filter === 'all' || cat === filter;
       });
 
-      // 表示・非表示
       let shown = 0;
       items.forEach(el => {
         const cat = section === 'trip' ? el.dataset.category : el.dataset.genre;
         const inFilter = filter === 'all' || cat === filter;
-        if (inFilter && shown < showing) {
+        el.classList.toggle('hidden', !(inFilter && shown++ < showing));
+        if (!inFilter) shown--;  // hidden にしたのでカウントを戻す
+      });
+
+      // shown の計算を正確に
+      let shownCount = 0;
+      items.forEach(el => {
+        const cat = section === 'trip' ? el.dataset.category : el.dataset.genre;
+        const inFilter = filter === 'all' || cat === filter;
+        if (inFilter && shownCount < showing) {
           el.classList.remove('hidden');
-          shown++;
+          shownCount++;
         } else {
           el.classList.add('hidden');
         }
@@ -491,7 +444,6 @@
       countEl.textContent = matched.length;
       emptyEl.classList.toggle('visible', matched.length === 0);
 
-      // もっと見るボタン
       if (matched.length > showing) {
         moreBtn.classList.remove('hidden');
         moreBtn.textContent = `もっと見る（残り ${matched.length - showing} 件）`;
@@ -500,7 +452,6 @@
       }
     }
 
-    // 「もっと見る」クリック
     document.getElementById('trip-more-btn').addEventListener('click', () => {
       state.trip.showing += SHOW_LIMIT.trip;
       applyState('trip');
@@ -510,7 +461,6 @@
       applyState('taiko');
     });
 
-    // フィルターボタン
     function setupFilter(section, selector) {
       document.querySelectorAll(selector).forEach(btn => {
         btn.addEventListener('click', () => {
@@ -526,17 +476,97 @@
     setupFilter('trip',  '#travel .filter-btn');
     setupFilter('taiko', '#taiko  .filter-btn');
 
-    // 初期化
-    applyState('trip');
-    applyState('taiko');
+    // ══════════════════════════
+    // taiko.csv 読み込み → カード生成
+    // CSV形式: url,title,genre  （1行目はヘッダー）
+    // url は https://youtu.be/XXXXX または https://www.youtube.com/watch?v=XXXXX どちらでもOK
+    // ══════════════════════════
+    function extractVideoId(url) {
+      // youtu.be/XXXXX 形式
+      const short = url.match(/youtu\.be\/([A-Za-z0-9_-]{11})/);
+      if (short) return short[1];
+      // youtube.com/watch?v=XXXXX 形式
+      const long = url.match(/[?&]v=([A-Za-z0-9_-]{11})/);
+      if (long) return long[1];
+      return null;
+    }
+
+    function buildTaikoCard(videoId, title, genre) {
+      const card = document.createElement('div');
+      card.className = 'taiko-card';
+      card.dataset.genre = genre.trim();
+      card.innerHTML = `
+        <div class="taiko-embed-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/${videoId}"
+            title="${title}"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div class="taiko-info">
+          <p class="taiko-title">${title}</p>
+        </div>
+      `;
+      return card;
+    }
+
+    async function loadTaikoCsv() {
+      const grid   = document.getElementById('taiko-grid');
+      const statEl = document.getElementById('side-stat-taiko');
+
+      try {
+        const res = await fetch('./taiko.csv');
+        if (!res.ok) throw new Error('CSV not found');
+        const text = await res.text();
+
+        const lines = text.trim().split('\n').slice(1); // 1行目ヘッダーをスキップ
+        let count = 0;
+
+        for (const line of lines) {
+          if (!line.trim()) continue;
+
+          // カンマ区切り（タイトルにカンマが含まれる場合に備えてダブルクォート対応）
+          const cols = line.match(/(".*?"|[^,]+)(?=,|$)/g);
+          if (!cols || cols.length < 3) continue;
+
+          const url   = cols[0].replace(/^"|"$/g, '').trim();
+          const title = cols[1].replace(/^"|"$/g, '').trim();
+          const genre = cols[2].replace(/^"|"$/g, '').trim();
+
+          const videoId = extractVideoId(url);
+          if (!videoId) continue;
+
+          grid.appendChild(buildTaikoCard(videoId, title, genre));
+          count++;
+        }
+
+        statEl.textContent = count || '—';
+
+      } catch {
+        // CSV が見つからない場合は空状態を表示
+        document.getElementById('taiko-empty').classList.add('visible');
+        statEl.textContent = '—';
+      }
+
+      // CSV 読み込み完了後にフィルター・折りたたみを初期化
+      applyState('taiko');
+    }
 
     // ══════════════════════════
-    // サイドバー統計
+    // 旅の記録：サイドバー統計
     // ══════════════════════════
-    document.getElementById('side-stat-trips').textContent =
-      document.querySelectorAll('#trip-list .photo-item').length || '—';
-    document.getElementById('side-stat-taiko').textContent =
-      document.querySelectorAll('#taiko-grid .taiko-card').length || '—';
+    function updateTripStat() {
+      const trips = document.querySelectorAll('#trip-list .photo-item').length;
+      document.getElementById('side-stat-trips').textContent = trips || '—';
+    }
+
+    // ══════════════════════════
+    // 初期化
+    // ══════════════════════════
+    loadTaikoCsv();
+    applyState('trip');
+    updateTripStat();
 
     // ══════════════════════════
     // Scroll reveal
