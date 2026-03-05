@@ -279,7 +279,90 @@
       margin-left: 4px;
     }
 
-    .taiko-info {
+    /* ══════════════════════════
+       動画モーダル
+    ══════════════════════════ */
+    .taiko-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .taiko-modal.open { display: flex; }
+
+    .taiko-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 9, 8, 0.82);
+      backdrop-filter: blur(4px);
+      animation: fadeIn 0.2s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .taiko-modal-inner {
+      position: relative;
+      z-index: 1;
+      width: min(860px, 92vw);
+      animation: scaleUp 0.22s ease;
+    }
+    @keyframes scaleUp {
+      from { opacity: 0; transform: scale(0.94); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .taiko-modal-video {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #000;
+    }
+    .taiko-modal-video iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .taiko-modal-footer {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: none;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .taiko-modal-title {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--text);
+    }
+    .taiko-modal-close {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: none;
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      cursor: pointer;
+      border-radius: 1px;
+      white-space: nowrap;
+      transition: color 0.2s, border-color 0.2s;
+      flex-shrink: 0;
+    }
+    .taiko-modal-close:hover { color: var(--accent); border-color: var(--accent-light); }
+
       padding: 16px 22px 20px;
       border-top: 1px solid var(--border);
     }
@@ -334,6 +417,20 @@
       <p>© 2026 Shiyu<br>All Rights Reserved.</p>
     </div>
   </aside>
+
+  <!-- ══════════════════════════
+       動画モーダル
+  ══════════════════════════ -->
+  <div class="taiko-modal" id="taiko-modal" role="dialog" aria-modal="true">
+    <div class="taiko-modal-backdrop" id="taiko-modal-backdrop"></div>
+    <div class="taiko-modal-inner">
+      <div class="taiko-modal-video" id="taiko-modal-video"></div>
+      <div class="taiko-modal-footer">
+        <span class="taiko-modal-title" id="taiko-modal-title"></span>
+        <button class="taiko-modal-close" id="taiko-modal-close">✕ 閉じる</button>
+      </div>
+    </div>
+  </div>
 
   <!-- ══════════════════════════
        MAIN
@@ -577,22 +674,48 @@
         </div>
       `;
 
-      // クリックでサムネイル→iframeに差し替え
+      // クリックでモーダル展開
       card.querySelector('.taiko-embed-wrap').addEventListener('click', function () {
-        const vid = this.dataset.videoid;
-        const ttl = this.dataset.title;
-        this.innerHTML = `
-          <iframe
-            src="https://www.youtube.com/embed/${vid}?autoplay=1"
-            title="${ttl}"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
-        `;
-      }, { once: true }); // 一度だけ発火すれば十分
+        openTaikoModal(this.dataset.videoid, this.dataset.title);
+      });
 
       return card;
     }
+
+    // ══════════════════════════
+    // モーダル制御
+    // ══════════════════════════
+    const modal        = document.getElementById('taiko-modal');
+    const modalVideo   = document.getElementById('taiko-modal-video');
+    const modalTitle   = document.getElementById('taiko-modal-title');
+    const modalClose   = document.getElementById('taiko-modal-close');
+    const modalBackdrop = document.getElementById('taiko-modal-backdrop');
+
+    function openTaikoModal(videoId, title) {
+      modalTitle.textContent = title;
+      modalVideo.innerHTML = `
+        <iframe
+          src="https://www.youtube.com/embed/${videoId}?autoplay=1"
+          title="${title}"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      `;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeTaikoModal() {
+      modal.classList.remove('open');
+      modalVideo.innerHTML = ''; // iframe を破棄して再生停止
+      document.body.style.overflow = '';
+    }
+
+    modalClose.addEventListener('click', closeTaikoModal);
+    modalBackdrop.addEventListener('click', closeTaikoModal);
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeTaikoModal();
+    });
 
     async function loadTaikoCsv() {
       const grid   = document.getElementById('taiko-grid');
