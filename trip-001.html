@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>旅のタイトル — Shiyu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@300;400&family=DM+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    /* ══════════════════════════
+       旅詳細ページ 固有スタイル
+    ══════════════════════════ */
+
+    /* ── 記事メタ情報（タイトル下） ── */
+    .trip-meta-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .trip-meta-tag {
+      display: inline-block;
+      font-family: 'Shippori Mincho', serif;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      padding: 3px 12px;
+      border-radius: 1px;
+    }
+    .trip-meta-tag.travel   { color: var(--accent); border: 1px solid var(--accent-light); background: var(--accent-pale); }
+    .trip-meta-tag.railroad { color: #c47a2a;        border: 1px solid #c47a2a; background: #fdf3e7; }
+
+    .trip-meta-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+    }
+    .trip-meta-route {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+
+    /* ── 本文エリア ── */
+    .trip-content {
+      max-width: 720px;
+      padding: 64px 64px 80px;
+    }
+
+    /* 写真1枚ワイド */
+    .trip-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
+      border: 1px solid var(--border);
+      margin-bottom: 8px;
+    }
+    /* 写真プレースホルダー */
+    .trip-img-placeholder {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--border);
+      margin-bottom: 8px;
+    }
+    .trip-img-caption {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+
+    /* 2カラム写真グリッド */
+    .trip-img-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .trip-img-grid .trip-img,
+    .trip-img-grid .trip-img-placeholder {
+      margin-bottom: 0;
+    }
+
+    /* 本文テキスト */
+    .trip-content h2 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      line-height: 1.6;
+      margin: 48px 0 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .trip-content p {
+      font-size: 15px;
+      line-height: 2.5;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .trip-content p strong { color: var(--text); font-weight: 400; }
+
+    /* 区切り線 */
+    .trip-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 48px 0;
+    }
+
+    /* ── 前後ナビ ── */
+    .trip-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 0 64px 80px;
+      border-top: 1px solid var(--border);
+      padding-top: 40px;
+    }
+    .trip-nav-link {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      text-decoration: none;
+      color: var(--text);
+      max-width: 300px;
+      transition: color 0.2s;
+    }
+    .trip-nav-link:hover { color: var(--accent); }
+    .trip-nav-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .trip-nav-title {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 15px;
+      letter-spacing: 0.08em;
+      line-height: 1.6;
+    }
+    .trip-nav-link.next { text-align: right; margin-left: auto; }
+
+    /* 一覧に戻るリンク */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0 64px 40px;
+      display: block;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════
+       SIDEBAR
+  ══════════════════════════ -->
+  <aside class="sidebar">
+    <a href="./index.html" class="sidebar-logo">Shi<em>yu</em></a>
+    <p class="sidebar-tagline">Personal Site</p>
+
+    <div class="sidebar-profile">
+      <p class="profile-name">しゆ / Shiyu</p>
+      <p class="profile-desc">旅・鉄道・太鼓の達人</p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="./index.html"><span class="nav-num">00</span>Top</a></li>
+        <li><a href="./portfolio.html" class="active"><span class="nav-num">01</span>Portfolio</a></li>
+        <li><a href="./blog.html"><span class="nav-num">02</span>Blog</a></li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+      <p>© 2026 Shiyu<br>All Rights Reserved.</p>
+    </div>
+  </aside>
+
+  <!-- ══════════════════════════
+       MAIN
+  ══════════════════════════ -->
+  <main class="main">
+
+    <!-- ページヘッダー（旅のタイトルと基本情報） -->
+    <header class="page-header">
+      <!--
+        ▼ ここを書き換えてください
+          - <title> タグのテキストも合わせて変更
+          - trip-meta-tag の class を travel か railroad に
+          - trip-meta-date に年月日
+          - trip-meta-route に出発〜到着のルート（省略可）
+      -->
+      <p class="section-label">Travel</p>
+      <h1>旅のタイトルをここに書く</h1>
+      <div class="trip-meta-bar">
+        <span class="trip-meta-tag travel">旅行</span>
+        <span class="trip-meta-date">2026.01.01</span>
+        <span class="trip-meta-route">東京 → ○○ → ○○</span>
+      </div>
+    </header>
+
+    <!-- ══════════════════════════
+         本文エリア
+         ▼ 写真・テキスト・見出しを自由に並べてください
+    ══════════════════════════ -->
+    <article class="trip-content">
+
+      <!-- ── メイン写真（1枚ワイド） ── -->
+      <!--
+        写真がある場合: trip-img-placeholder を下記に差し替え
+        <img src="./images/写真ファイル名.jpg" class="trip-img" alt="説明文">
+      -->
+      <div class="trip-img-placeholder">Photo</div>
+      <p class="trip-img-caption">写真のキャプションをここに書く（省略可）</p>
+
+      <!-- ── 本文テキスト ── -->
+      <p>旅の導入文や全体の感想をここに書く。<strong>強調したい言葉</strong>は strong タグで。</p>
+
+      <hr class="trip-divider">
+
+      <!-- ── 見出し＋段落 ── -->
+      <h2>1日目</h2>
+      <p>1日目の内容をここに書く。</p>
+
+      <!-- ── 2カラム写真 ── -->
+      <div class="trip-img-grid">
+        <div class="trip-img-placeholder">Photo</div>
+        <div class="trip-img-placeholder">Photo</div>
+      </div>
+      <p class="trip-img-caption">左：説明 ／ 右：説明</p>
+
+      <h2>2日目</h2>
+      <p>2日目の内容をここに書く。</p>
+
+      <div class="trip-img-placeholder">Photo</div>
+      <p class="trip-img-caption">写真のキャプション</p>
+
+      <p>まとめや感想をここに書く。</p>
+
+    </article>
+
+    <!-- ── 一覧に戻る ── -->
+    <a href="./portfolio.html#travel" class="back-link">← Portfolio に戻る</a>
+
+    <!-- ── 前後ナビ（前後の旅ページへのリンク） ── -->
+    <!--
+      ▼ 前後の旅ページができたらここのリンクを設定してください
+        前がない場合は .prev ブロックを削除、後がない場合は .next を削除
+    -->
+    <nav class="trip-nav">
+      <!-- 前の旅（古いもの） -->
+      <!-- <a href="trip-000.html" class="trip-nav-link prev">
+        <span class="trip-nav-label">← Prev</span>
+        <span class="trip-nav-title">前の旅のタイトル</span>
+      </a> -->
+
+      <!-- 次の旅（新しいもの） -->
+      <!-- <a href="trip-002.html" class="trip-nav-link next">
+        <span class="trip-nav-label">Next →</span>
+        <span class="trip-nav-title">次の旅のタイトル</span>
+      </a> -->
+    </nav>
+
+  </main>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

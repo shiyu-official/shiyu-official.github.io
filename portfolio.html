@@ -13,143 +13,181 @@
        PORTFOLIO 固有スタイル
     ══════════════════════════ */
 
-    /* ── 空状態プレースホルダー共通 ── */
-    .empty-placeholder {
+    /* ── フィルターバー（blog.htmlと共通デザイン） ── */
+    .filter-bar {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 72px 40px;
-      border: 1px dashed var(--border);
-      background: var(--surface);
-      gap: 16px;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 28px;
     }
-    .empty-placeholder-icon {
-      font-size: 32px;
-      opacity: 0.3;
-    }
-    .empty-placeholder p {
+    .filter-btn {
       font-family: 'DM Mono', monospace;
-      font-size: 11px;
+      font-size: 10px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--muted);
-      text-align: center;
-      line-height: 2;
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 7px 16px;
+      cursor: pointer;
+      border-radius: 1px;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
     }
+    .filter-btn:hover,
+    .filter-btn.active {
+      color: var(--accent);
+      border-color: var(--accent-light);
+      background: var(--accent-pale);
+    }
+
+    /* ── 件数表示 ── */
+    .item-count {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .item-count span { color: var(--accent); font-size: 13px; }
+
+    /* ── 空状態 ── */
+    .empty-state {
+      padding: 64px 0;
+      text-align: center;
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      display: none;
+    }
+    .empty-state.visible { display: block; }
+
+    /* ── もっと見るボタン ── */
+    .show-more-wrap {
+      margin-top: 24px;
+      display: flex;
+      justify-content: center;
+    }
+    .show-more-btn {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      background: var(--white);
+      border: 1px solid var(--accent-light);
+      padding: 12px 40px;
+      cursor: pointer;
+      border-radius: 1px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .show-more-btn:hover { background: var(--accent-pale); }
+    .show-more-btn.hidden { display: none; }
 
     /* ══════════════════════════
        01 — 旅の記録
+       blog.html の post-card と同じ構造
     ══════════════════════════ */
 
-    /* 旅カードグリッド */
-    .trip-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-    }
-
-    /* 個別の旅カード (.photo-item はindex.htmlの統計カウント用) */
+    /*
+      .photo-item は index.html が Portfolio の件数カウントに使うセレクタ。
+      必ずこのクラスを付けること。
+    */
     .photo-item {
-      background: var(--white);
       display: flex;
-      flex-direction: column;
+      align-items: stretch;
+      background: var(--white);
+      border: 1px solid var(--border);
       text-decoration: none;
       color: var(--text);
-      transition: transform 0.25s, box-shadow 0.25s;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
       position: relative;
-      overflow: hidden;
+    }
+    .photo-item::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--accent), var(--cyan));
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.3s ease;
     }
     .photo-item:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(30,95,168,0.12);
-      z-index: 1;
+      border-color: var(--accent-light);
+      transform: translateX(4px);
+      box-shadow: -3px 0 0 var(--accent);
     }
+    .photo-item:hover::before { transform: scaleY(1); }
+    .photo-item.hidden { display: none; }
 
-    /* 写真エリア */
-    .trip-photo {
-      width: 100%;
-      aspect-ratio: 4/3;
-      object-fit: cover;
-      display: block;
-      background: var(--surface);
-    }
-    /* 写真がない場合のプレースホルダー */
-    .trip-photo-placeholder {
-      width: 100%;
-      aspect-ratio: 4/3;
-      background: var(--surface);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--border);
-    }
-
-    /* カード情報 */
-    .trip-info {
-      padding: 20px 24px 24px;
-      flex: 1;
+    /* 日付カラム（blog.htmlのpost-date-colと同じ） */
+    .trip-date-col {
+      padding: 24px 20px;
+      border-right: 1px solid var(--border);
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      border-top: 1px solid var(--border);
-    }
-    .trip-meta {
-      display: flex;
       align-items: center;
-      gap: 12px;
+      justify-content: center;
+      min-width: 80px;
+      background: var(--surface);
     }
-    .trip-date {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.15em;
-      color: var(--muted);
-    }
-    .trip-tag {
+    .trip-date-col .t-month {
       font-family: 'DM Mono', monospace;
       font-size: 9px;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid var(--accent-light);
-      padding: 2px 8px;
-      border-radius: 1px;
-    }
-    .trip-title {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 18px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      line-height: 1.6;
-    }
-    .trip-desc {
-      font-size: 13px;
       color: var(--muted);
-      line-height: 2;
-      flex: 1;
     }
-    .trip-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 4px;
+    .trip-date-col .t-day {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1.1;
     }
-    .trip-route {
+    .trip-date-col .t-year {
       font-family: 'DM Mono', monospace;
-      font-size: 10px;
+      font-size: 9px;
       letter-spacing: 0.1em;
       color: var(--muted);
     }
-    .trip-arrow {
+
+    /* 本文エリア */
+    .trip-body { padding: 20px 28px; flex: 1; }
+    .trip-tag-wrap { margin-bottom: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
+
+    /* タグ：種別ごとに色分け */
+    .trip-tag {
+      display: inline-block;
+      font-family: 'Shippori Mincho', serif;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      padding: 2px 10px;
+      border-radius: 1px;
+    }
+    .trip-tag.travel   { color: var(--accent); border: 1px solid var(--accent-light); }
+    .trip-tag.railroad { color: #c47a2a;        border: 1px solid #c47a2a; }
+
+    .trip-title {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 1.7;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+    }
+    .trip-excerpt {
       font-size: 14px;
+      color: var(--muted);
+      line-height: 2;
+    }
+    .trip-arrow {
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
       color: var(--border);
-      transition: color 0.2s;
+      font-size: 20px;
+      transition: color 0.25s;
     }
     .photo-item:hover .trip-arrow { color: var(--accent); }
 
@@ -159,19 +197,16 @@
 
     .taiko-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
       gap: 1px;
       background: var(--border);
       border: 1px solid var(--border);
     }
 
-    /* 動画カード */
     .taiko-card {
       background: var(--white);
       display: flex;
       flex-direction: column;
-      text-decoration: none;
-      color: var(--text);
       position: relative;
       overflow: hidden;
     }
@@ -186,8 +221,8 @@
       transition: transform 0.3s ease;
     }
     .taiko-card:hover::after { transform: scaleX(1); }
+    .taiko-card.hidden { display: none; }
 
-    /* YouTube埋め込みラッパー */
     .taiko-embed-wrap {
       position: relative;
       width: 100%;
@@ -209,7 +244,7 @@
     }
     .taiko-title {
       font-family: 'Shippori Mincho', serif;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 500;
       letter-spacing: 0.08em;
       line-height: 1.7;
@@ -222,8 +257,6 @@
        SIDEBAR
   ══════════════════════════ -->
   <aside class="sidebar">
-    <div class="sidebar::before"></div>
-
     <a href="./index.html" class="sidebar-logo">Shi<em>yu</em></a>
     <p class="sidebar-tagline">Personal Site</p>
 
@@ -239,6 +272,10 @@
           <div class="sidebar-stat">
             <div class="sidebar-stat-num" id="side-stat-trips">—</div>
             <div class="sidebar-stat-label">Trips</div>
+          </div>
+          <div class="sidebar-stat">
+            <div class="sidebar-stat-num" id="side-stat-taiko">—</div>
+            <div class="sidebar-stat-label">Videos</div>
           </div>
         </div>
       </div>
@@ -262,115 +299,260 @@
   ══════════════════════════ -->
   <main class="main">
 
-    <!-- Page Header -->
     <header class="page-header">
       <p class="section-label">Portfolio</p>
       <h1>記録</h1>
-      <p>旅の写真や記録、鉄道旅のルート、太鼓の達人の動画をまとめています。</p>
+      <p>旅の記録と太鼓の達人の動画をまとめています。</p>
     </header>
 
     <!-- ══════════════════════════
          01 — 旅の記録
+
+         ▼ 旅を追加するときは下のサンプルを1つコピーして増やす
+           ・data-category="travel" → 旅行
+           ・data-category="railroad" → 鉄道旅
+           ・trip-date-col の t-month / t-day / t-year を記入
+           ・trip-tag の class に travel か railroad を追加
+           ・trip-title に旅のタイトル、trip-excerpt に短いメモ（省略可）
+           ・href に詳細ページ（例: trip-001.html）を設定
     ══════════════════════════ -->
     <section class="section" id="travel">
       <p class="section-label reveal">// 01 — Travel</p>
       <h2 class="section-title reveal">旅の記録</h2>
 
-      <!--
-        ▼ 旅を追加するときは <div class="photo-item"> を1つ増やす。
-          photo-item の数がindex.htmlの「Portfolio」カウントに自動反映される。
+      <div class="filter-bar reveal">
+        <button class="filter-btn active" data-filter="all">すべて</button>
+        <button class="filter-btn" data-filter="travel">旅行</button>
+        <button class="filter-btn" data-filter="railroad">鉄道旅</button>
+      </div>
 
-        使い方:
-          - trip-photo の src に写真パスを入れる（なければ trip-photo-placeholder に差し替え）
-          - trip-title に旅のタイトル
-          - trip-date に年月（例: 2026.01）
-          - trip-tag に地域や種別（例: 東北 / 九州 / 日帰り）
-          - trip-route に経路メモ（例: 東京 → 仙台 → 松島）
-          - trip-desc に短いメモ（省略可）
-          - href に詳細ページがあればリンク先を設定
-      -->
+      <p class="item-count reveal">全 <span id="trip-count-num">0</span> 件</p>
 
-      <div class="trip-grid reveal" id="trip-grid">
+      <div class="blog-list" id="trip-list">
 
-        <!-- ── 旅カードのサンプル（内容は書き換えてください） ── -->
-        <a href="#" class="photo-item">
-          <div class="trip-photo-placeholder">Photo</div>
-          <div class="trip-info">
-            <div class="trip-meta">
-              <span class="trip-date">2026.01</span>
-              <span class="trip-tag">東北</span>
+        <!-- ▼ サンプル：コピーして使ってください ▼ -->
+        <a href="trip-001.html" class="photo-item reveal" data-category="travel">
+          <div class="trip-date-col">
+            <span class="t-month">Jan</span>
+            <span class="t-day">01</span>
+            <span class="t-year">2026</span>
+          </div>
+          <div class="trip-body">
+            <div class="trip-tag-wrap">
+              <span class="trip-tag travel">旅行</span>
             </div>
             <p class="trip-title">タイトルをここに書く</p>
-            <p class="trip-desc">旅のメモや感想をここに書く。省略してもOK。</p>
-            <div class="trip-footer">
-              <span class="trip-route">東京 → 仙台 → 松島</span>
-              <span class="trip-arrow">→</span>
-            </div>
+            <p class="trip-excerpt">旅の短い説明やメモ。省略してもOK。</p>
           </div>
+          <span class="trip-arrow">→</span>
         </a>
 
-        <!-- ── ここにさらに旅カードを追加 ── -->
+        <!-- ここに旅を追加 -->
 
       </div>
 
-      <!-- コンテンツがないときはこのプレースホルダーが表示される（カードが追加されたら削除） -->
-      <div class="empty-placeholder reveal" id="travel-empty" style="display:none;">
-        <div class="empty-placeholder-icon">🗾</div>
-        <p>旅の記録はまだありません<br>カードを追加してください</p>
+      <div class="empty-state" id="trip-empty">まだ旅の記録はありません</div>
+      <div class="show-more-wrap">
+        <button class="show-more-btn hidden" id="trip-more-btn">もっと見る</button>
       </div>
-
     </section>
 
     <!-- ══════════════════════════
          02 — 太鼓の達人
+
+         ▼ 動画を追加するときは下のサンプルを1つコピーして増やす
+           ・data-genre に以下のいずれかを指定：
+               pops / kids / anime / vocaloid / game / variety / classic / namco / dan
+           ・iframe の src に https://www.youtube.com/embed/【動画ID】 を設定
+             （動画IDはYouTube URLの ?v= 以降の文字列）
+           ・taiko-title に曲名を書く
     ══════════════════════════ -->
     <section class="section" id="taiko">
       <p class="section-label reveal">// 02 — Taiko no Tatsujin</p>
       <h2 class="section-title reveal">太鼓の達人</h2>
 
-      <!--
-        ▼ 動画を追加するときは <div class="taiko-card"> を1つコピーして増やす。
-          - iframe の src に YouTubeの埋め込みURL（https://www.youtube.com/embed/動画ID）
-          - taiko-title に曲名
-      -->
+      <div class="filter-bar reveal">
+        <button class="filter-btn active" data-filter="all">すべて</button>
+        <button class="filter-btn" data-filter="pops">ポップス</button>
+        <button class="filter-btn" data-filter="kids">キッズ</button>
+        <button class="filter-btn" data-filter="anime">アニメ</button>
+        <button class="filter-btn" data-filter="vocaloid">ボーカロイド</button>
+        <button class="filter-btn" data-filter="game">ゲームミュージック</button>
+        <button class="filter-btn" data-filter="variety">バラエティ</button>
+        <button class="filter-btn" data-filter="classic">クラシック</button>
+        <button class="filter-btn" data-filter="namco">ナムコオリジナル</button>
+        <button class="filter-btn" data-filter="dan">段位道場</button>
+      </div>
 
-      <div class="taiko-grid reveal">
+      <p class="item-count reveal">全 <span id="taiko-count-num">0</span> 件</p>
 
-        <!-- ── 動画カードのサンプル（コピーして使ってください） ── -->
-        <div class="taiko-card">
+      <div class="taiko-grid reveal" id="taiko-grid">
+
+        <div class="taiko-card" data-genre="namco">
           <div class="taiko-embed-wrap">
-            <iframe
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-              title="太鼓の達人"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
+            <iframe src="https://www.youtube.com/embed/pVheIUHZfj8" title="太鼓の達人" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
           <div class="taiko-info">
             <p class="taiko-title">曲名をここに書く</p>
           </div>
         </div>
 
-        <!-- ここにカードを追加 -->
+        <div class="taiko-card" data-genre="namco">
+          <div class="taiko-embed-wrap">
+            <iframe src="https://www.youtube.com/embed/6Btoa_Q0Rg4" title="太鼓の達人" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="taiko-info">
+            <p class="taiko-title">曲名をここに書く</p>
+          </div>
+        </div>
 
+        <div class="taiko-card" data-genre="namco">
+          <div class="taiko-embed-wrap">
+            <iframe src="https://www.youtube.com/embed/LHMJUKBPR9k" title="太鼓の達人" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="taiko-info">
+            <p class="taiko-title">曲名をここに書く</p>
+          </div>
+        </div>
+
+        <div class="taiko-card" data-genre="namco">
+          <div class="taiko-embed-wrap">
+            <iframe src="https://www.youtube.com/embed/5nxWdYy6UHw" title="太鼓の達人" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="taiko-info">
+            <p class="taiko-title">曲名をここに書く</p>
+          </div>
+        </div>
+
+        <div class="taiko-card" data-genre="game">
+          <div class="taiko-embed-wrap">
+            <iframe src="https://www.youtube.com/embed/BkuqxN_lmOQ" title="太鼓の達人" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="taiko-info">
+            <p class="taiko-title">曲名をここに書く</p>
+          </div>
+        </div>
+
+        <!-- ここに動画カードを追加 -->
+
+      </div>
+
+      <div class="empty-state" id="taiko-empty">まだ動画はありません</div>
+      <div class="show-more-wrap">
+        <button class="show-more-btn hidden" id="taiko-more-btn">もっと見る</button>
       </div>
     </section>
 
   </main>
 
   <script>
-    // ── Scroll reveal ──
-    const observer = new IntersectionObserver(entries => {
+    const SHOW_LIMIT = 5;
+
+    // ══════════════════════════
+    // 汎用フィルター＋折りたたみ
+    // ══════════════════════════
+    const state = {
+      trip:  { filter: 'all', showing: SHOW_LIMIT },
+      taiko: { filter: 'all', showing: SHOW_LIMIT },
+    };
+
+    function getItems(section) {
+      return section === 'trip'
+        ? Array.from(document.querySelectorAll('#trip-list .photo-item'))
+        : Array.from(document.querySelectorAll('#taiko-grid .taiko-card'));
+    }
+
+    function applyState(section) {
+      const { filter, showing } = state[section];
+      const items    = getItems(section);
+      const countEl  = document.getElementById(`${section}-count-num`);
+      const emptyEl  = document.getElementById(`${section}-empty`);
+      const moreBtn  = document.getElementById(`${section}-more-btn`);
+
+      // フィルター一致するもの
+      const matched = items.filter(el => {
+        const cat = section === 'trip' ? el.dataset.category : el.dataset.genre;
+        return filter === 'all' || cat === filter;
+      });
+
+      // 表示・非表示
+      let shown = 0;
+      items.forEach(el => {
+        const cat = section === 'trip' ? el.dataset.category : el.dataset.genre;
+        const inFilter = filter === 'all' || cat === filter;
+        if (inFilter && shown < showing) {
+          el.classList.remove('hidden');
+          shown++;
+        } else {
+          el.classList.add('hidden');
+        }
+      });
+
+      countEl.textContent = matched.length;
+      emptyEl.classList.toggle('visible', matched.length === 0);
+
+      // もっと見るボタン
+      if (matched.length > showing) {
+        moreBtn.classList.remove('hidden');
+        moreBtn.textContent = `もっと見る（残り ${matched.length - showing} 件）`;
+      } else {
+        moreBtn.classList.add('hidden');
+      }
+    }
+
+    // 「もっと見る」クリック
+    document.getElementById('trip-more-btn').addEventListener('click', () => {
+      state.trip.showing += SHOW_LIMIT;
+      applyState('trip');
+    });
+    document.getElementById('taiko-more-btn').addEventListener('click', () => {
+      state.taiko.showing += SHOW_LIMIT;
+      applyState('taiko');
+    });
+
+    // フィルターボタン
+    function setupFilter(section, selector) {
+      document.querySelectorAll(selector).forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll(selector).forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          state[section].filter  = btn.dataset.filter || 'all';
+          state[section].showing = SHOW_LIMIT;
+          applyState(section);
+        });
+      });
+    }
+
+    setupFilter('trip',  '#travel .filter-btn');
+    setupFilter('taiko', '#taiko  .filter-btn');
+
+    // 初期化
+    applyState('trip');
+    applyState('taiko');
+
+    // ══════════════════════════
+    // サイドバー統計
+    // ══════════════════════════
+    document.getElementById('side-stat-trips').textContent =
+      document.querySelectorAll('#trip-list .photo-item').length || '—';
+    document.getElementById('side-stat-taiko').textContent =
+      document.querySelectorAll('#taiko-grid .taiko-card').length || '—';
+
+    // ══════════════════════════
+    // Scroll reveal
+    // ══════════════════════════
+    const revealObs = new IntersectionObserver(entries => {
       entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+        if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
       });
     }, { threshold: 0.08 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-    // ── サイドナビのアクティブ切り替え ──
-    const sections = document.querySelectorAll('section[id]');
+    // ══════════════════════════
+    // サイドナビ アクティブ切り替え
+    // ══════════════════════════
     const navLinks = document.querySelectorAll('.sidebar-nav a[href^="#"]');
-    const secObserver = new IntersectionObserver(entries => {
+    const secObs   = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
           navLinks.forEach(a => {
@@ -379,14 +561,7 @@
         }
       });
     }, { threshold: 0.4 });
-    sections.forEach(s => secObserver.observe(s));
-
-    // ── サイドバーのTrips/Railwayカウント ──
-    function updateSideStats() {
-      const trips = document.querySelectorAll('.photo-item').length;
-      document.getElementById('side-stat-trips').textContent = trips || '—';
-    }
-    updateSideStats();
+    document.querySelectorAll('section[id]').forEach(s => secObs.observe(s));
   </script>
 </body>
 </html>
