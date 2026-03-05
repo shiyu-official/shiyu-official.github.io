@@ -395,7 +395,17 @@
   </main>
 
   <script>
-    const SHOW_LIMIT = { trip: 3, taiko: 4 };
+    const SHOW_LIMIT = { trip: 3, taiko: 4 }; // taiko は動的に上書きされる
+
+    // ── グリッドの列数を計算してSHOW_LIMIT.taikoを1行分に設定 ──
+    function updateTaikoLimit() {
+      const grid = document.getElementById('taiko-grid');
+      if (!grid) return;
+      const gridWidth    = grid.clientWidth;
+      const minCardWidth = 340; // CSS の minmax(340px, 1fr) に合わせる
+      const cols = Math.max(1, Math.floor((gridWidth + 1) / (minCardWidth + 1)));
+      SHOW_LIMIT.taiko = cols;
+    }
 
     const state = {
       trip:  { filter: 'all', showing: SHOW_LIMIT.trip },
@@ -457,7 +467,7 @@
       applyState('trip');
     });
     document.getElementById('taiko-more-btn').addEventListener('click', () => {
-      state.taiko.showing += SHOW_LIMIT.taiko;
+      state.taiko.showing += SHOW_LIMIT.taiko; // 押すたびに1行分追加
       applyState('taiko');
     });
 
@@ -475,6 +485,22 @@
 
     setupFilter('trip',  '#travel .filter-btn');
     setupFilter('taiko', '#taiko  .filter-btn');
+
+    // ── リサイズ時：列数が変わったら表示件数をリセットして再描画 ──
+    let prevTaikoCols = 0;
+    function onResize() {
+      const grid = document.getElementById('taiko-grid');
+      if (!grid) return;
+      const gridWidth = grid.clientWidth;
+      const cols = Math.max(1, Math.floor((gridWidth + 1) / (340 + 1)));
+      if (cols !== prevTaikoCols) {
+        prevTaikoCols = cols;
+        updateTaikoLimit();
+        state.taiko.showing = SHOW_LIMIT.taiko; // 1行分にリセット
+        applyState('taiko');
+      }
+    }
+    window.addEventListener('resize', onResize);
 
     // ══════════════════════════
     // taiko.csv 読み込み → カード生成
@@ -549,7 +575,10 @@
         statEl.textContent = '—';
       }
 
-      // CSV 読み込み完了後にフィルター・折りたたみを初期化
+      // CSV 読み込み完了後に列数を計算してからフィルター・折りたたみを初期化
+      updateTaikoLimit();
+      state.taiko.showing = SHOW_LIMIT.taiko;
+      prevTaikoCols = Math.max(1, Math.floor((document.getElementById('taiko-grid').clientWidth + 1) / (340 + 1)));
       applyState('taiko');
     }
 
