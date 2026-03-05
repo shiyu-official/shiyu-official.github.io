@@ -446,14 +446,14 @@
   </main>
 
   <script>
-    const SHOW_LIMIT = 5;
+    const SHOW_LIMIT = { trip: 3, taiko: 4 };
 
     // ══════════════════════════
     // 汎用フィルター＋折りたたみ
     // ══════════════════════════
     const state = {
-      trip:  { filter: 'all', showing: SHOW_LIMIT },
-      taiko: { filter: 'all', showing: SHOW_LIMIT },
+      trip:  { filter: 'all', showing: SHOW_LIMIT.trip },
+      taiko: { filter: 'all', showing: SHOW_LIMIT.taiko },
     };
 
     function getItems(section) {
@@ -502,11 +502,11 @@
 
     // 「もっと見る」クリック
     document.getElementById('trip-more-btn').addEventListener('click', () => {
-      state.trip.showing += SHOW_LIMIT;
+      state.trip.showing += SHOW_LIMIT.trip;
       applyState('trip');
     });
     document.getElementById('taiko-more-btn').addEventListener('click', () => {
-      state.taiko.showing += SHOW_LIMIT;
+      state.taiko.showing += SHOW_LIMIT.taiko;
       applyState('taiko');
     });
 
@@ -517,7 +517,7 @@
           document.querySelectorAll(selector).forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
           state[section].filter  = btn.dataset.filter || 'all';
-          state[section].showing = SHOW_LIMIT;
+          state[section].showing = SHOW_LIMIT[section];
           applyState(section);
         });
       });
