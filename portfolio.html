@@ -307,11 +307,11 @@
     .taiko-modal-inner {
       position: relative;
       z-index: 1;
-      width: min(860px, 92vw);
+      width: min(1100px, 94vw);
       animation: scaleUp 0.22s ease;
     }
     @keyframes scaleUp {
-      from { opacity: 0; transform: scale(0.94); }
+      from { opacity: 0; transform: scale(0.96); }
       to   { opacity: 1; transform: scale(1); }
     }
 
@@ -332,46 +332,106 @@
     .taiko-modal-footer {
       background: var(--white);
       border: 1px solid var(--border);
-      border-top: none;
-      padding: 16px 24px;
+      border-top: 2px solid var(--accent);
+      display: flex;
+      align-items: stretch;
+    }
+
+    /* 左：連番ラベル風の装飾カラム */
+    .taiko-modal-footer-label {
+      padding: 16px 20px;
+      border-right: 1px solid var(--border);
+      background: var(--surface);
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 16px;
+      justify-content: center;
     }
+    .taiko-modal-footer-label span {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* 中央：曲名 */
     .taiko-modal-title {
       font-family: 'Shippori Mincho', serif;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 500;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       color: var(--text);
+      flex: 1;
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
     }
+
+    /* 右：閉じるボタン */
     .taiko-modal-close {
       font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.18em;
+      font-size: 9px;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--muted);
       background: none;
-      border: 1px solid var(--border);
-      padding: 6px 14px;
+      border: none;
+      border-left: 1px solid var(--border);
+      padding: 0 28px;
       cursor: pointer;
-      border-radius: 1px;
+      transition: color 0.2s, background 0.2s;
       white-space: nowrap;
-      transition: color 0.2s, border-color 0.2s;
-      flex-shrink: 0;
+    }
+    .taiko-modal-close:hover {
+      color: var(--accent);
+      background: var(--accent-pale);
     }
     .taiko-modal-close:hover { color: var(--accent); border-color: var(--accent-light); }
 
-      padding: 16px 22px 20px;
+    /* ══════════════════════════
+       カード曲名エリア
+    ══════════════════════════ */
+    .taiko-info {
+      padding: 0;
       border-top: 1px solid var(--border);
+      display: flex;
+      align-items: stretch;
+    }
+
+    /* 左：アクセントライン＋ラベル */
+    .taiko-info-label {
+      width: 36px;
+      min-width: 36px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .taiko-info-label span {
+      font-family: 'DM Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+    }
+
+    /* 右：曲名 */
+    .taiko-info-body {
+      padding: 14px 18px;
+      flex: 1;
+      display: flex;
+      align-items: center;
     }
     .taiko-title {
       font-family: 'Shippori Mincho', serif;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 500;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       line-height: 1.7;
+      color: var(--text);
     }
   </style>
 </head>
@@ -426,8 +486,9 @@
     <div class="taiko-modal-inner">
       <div class="taiko-modal-video" id="taiko-modal-video"></div>
       <div class="taiko-modal-footer">
+        <div class="taiko-modal-footer-label"><span>Now Playing</span></div>
         <span class="taiko-modal-title" id="taiko-modal-title"></span>
-        <button class="taiko-modal-close" id="taiko-modal-close">✕ 閉じる</button>
+        <button class="taiko-modal-close" id="taiko-modal-close">✕ Close</button>
       </div>
     </div>
   </div>
@@ -670,7 +731,10 @@
           <div class="taiko-play-btn"></div>
         </div>
         <div class="taiko-info">
-          <p class="taiko-title">${title}</p>
+          <div class="taiko-info-label"><span>Taiko</span></div>
+          <div class="taiko-info-body">
+            <p class="taiko-title">${title}</p>
+          </div>
         </div>
       `;
 
