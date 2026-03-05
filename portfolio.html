@@ -229,6 +229,7 @@
       aspect-ratio: 16/9;
       background: #000;
       overflow: hidden;
+      cursor: pointer;
     }
     .taiko-embed-wrap iframe {
       position: absolute;
@@ -236,6 +237,46 @@
       width: 100%;
       height: 100%;
       border: none;
+    }
+
+    /* サムネイル（クリック前） */
+    .taiko-thumb {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.2s;
+    }
+    .taiko-embed-wrap:hover .taiko-thumb { opacity: 0.85; }
+
+    /* 再生ボタン */
+    .taiko-play-btn {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 56px; height: 56px;
+      background: rgba(255,255,255,0.92);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .taiko-embed-wrap:hover .taiko-play-btn {
+      background: #fff;
+      transform: translate(-50%, -50%) scale(1.08);
+    }
+    .taiko-play-btn::after {
+      content: '';
+      display: block;
+      width: 0; height: 0;
+      border-style: solid;
+      border-width: 10px 0 10px 18px;
+      border-color: transparent transparent transparent #1e5fa8;
+      margin-left: 4px;
     }
 
     .taiko-info {
@@ -522,18 +563,34 @@
       card.className = 'taiko-card';
       card.dataset.genre = genre.trim();
       card.innerHTML = `
-        <div class="taiko-embed-wrap">
-          <iframe
-            src="https://www.youtube.com/embed/${videoId}"
-            title="${title}"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
+        <div class="taiko-embed-wrap" data-videoid="${videoId}" data-title="${title}">
+          <img
+            class="taiko-thumb"
+            src="https://i.ytimg.com/vi/${videoId}/hqdefault.jpg"
+            alt="${title}"
+            loading="lazy"
+          >
+          <div class="taiko-play-btn"></div>
         </div>
         <div class="taiko-info">
           <p class="taiko-title">${title}</p>
         </div>
       `;
+
+      // クリックでサムネイル→iframeに差し替え
+      card.querySelector('.taiko-embed-wrap').addEventListener('click', function () {
+        const vid = this.dataset.videoid;
+        const ttl = this.dataset.title;
+        this.innerHTML = `
+          <iframe
+            src="https://www.youtube.com/embed/${vid}?autoplay=1"
+            title="${ttl}"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        `;
+      }, { once: true }); // 一度だけ発火すれば十分
+
       return card;
     }
 
