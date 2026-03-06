@@ -195,99 +195,148 @@
        03 — 拉麺
     ══════════════════════════ */
 
-    .ramen-list {
+    .ramen-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 0;
+      background: var(--bg);
+      overflow: hidden;
+    }
+
+    .ramen-card {
+      background: var(--white);
       display: flex;
       flex-direction: column;
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-    }
-    .ramen-item {
-      display: flex;
-      align-items: stretch;
-      background: var(--white);
-      text-decoration: none;
-      color: var(--text);
-      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
       position: relative;
+      overflow: hidden;
+      border-top:    1px solid var(--border);
+      border-left:   1px solid var(--border);
+      border-right:  none;
+      border-bottom: none;
+      cursor: default;
     }
-    .ramen-item::before {
+    .ramen-card::after {
       content: '';
       position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 3px;
-      background: linear-gradient(to bottom, #c0392b, #e67e22);
-      transform: scaleY(0);
-      transform-origin: top;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #c0392b, #e67e22);
+      transform: scaleX(0);
+      transform-origin: left;
       transition: transform 0.3s ease;
     }
-    .ramen-item:hover { transform: translateX(4px); box-shadow: -3px 0 0 #c0392b; }
-    .ramen-item:hover::before { transform: scaleY(1); }
-    .ramen-item.hidden { display: none; }
+    .ramen-card:hover::after { transform: scaleX(1); }
+    .ramen-card.hidden { display: none; }
+    .ramen-card.border-right  { border-right:  1px solid var(--border); }
+    .ramen-card.border-bottom { border-bottom: 1px solid var(--border); }
 
-    .ramen-date-col {
-      padding: 20px 16px;
-      border-right: 1px solid var(--border);
+    /* 写真エリア */
+    .ramen-img-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: var(--surface);
+      overflow: hidden;
+    }
+    .ramen-img-wrap img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .ramen-card:hover .ramen-img-wrap img { transform: scale(1.04); }
+
+    /* 写真なし時のプレースホルダー */
+    .ramen-img-placeholder {
+      position: absolute;
+      inset: 0;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-width: 72px;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--border);
+      text-transform: uppercase;
+    }
+
+    /* 日付バッジ（写真左上に重ねる） */
+    .ramen-date-badge {
+      position: absolute;
+      top: 10px; left: 10px;
+      background: rgba(252,251,248,0.92);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      display: flex;
+      gap: 5px;
+      align-items: baseline;
+    }
+    .ramen-date-badge .rb-year,
+    .ramen-date-badge .rb-month,
+    .ramen-date-badge .rb-day {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+
+    /* 情報エリア（太鼓の taiko-info と同構造） */
+    .ramen-info {
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: stretch;
+    }
+    .ramen-info-label {
+      width: 36px;
+      min-width: 36px;
       background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .ramen-date-col .r-month {
+    .ramen-info-label span {
       font-family: 'DM Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.1em;
+      font-size: 8px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
       color: var(--muted);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
     }
-    .ramen-date-col .r-day {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 26px;
-      font-weight: 600;
-      color: #c0392b;
-      line-height: 1.1;
+    .ramen-info-body {
+      padding: 12px 16px;
+      flex: 1;
     }
-    .ramen-date-col .r-year {
-      font-family: 'DM Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-    }
-
-    .ramen-body { padding: 18px 24px; flex: 1; }
-    .ramen-tag-wrap { margin-bottom: 8px; display: flex; gap: 8px; flex-wrap: wrap; }
-
     .ramen-tag {
       display: inline-block;
       font-family: 'Shippori Mincho', serif;
-      font-size: 11px;
+      font-size: 10px;
       letter-spacing: 0.15em;
-      padding: 2px 10px;
+      padding: 1px 8px;
       border-radius: 1px;
+      margin-bottom: 6px;
     }
     .ramen-tag.general { color: #c0392b; border: 1px solid #e8a89e; }
     .ramen-tag.iekei   { color: #8e44ad; border: 1px solid #c3a0d6; }
     .ramen-tag.jiro    { color: #c47a2a; border: 1px solid #ddb47a; }
-
     .ramen-shop {
       font-family: 'Shippori Mincho', serif;
-      font-size: 20px;
+      font-size: 15px;
       font-weight: 500;
+      letter-spacing: 0.1em;
       line-height: 1.6;
-      letter-spacing: 0.06em;
-      margin-bottom: 4px;
+      color: var(--text);
+      margin-bottom: 2px;
     }
-    .ramen-memo { font-size: 13px; color: var(--muted); line-height: 1.9; }
-    .ramen-arrow {
-      padding: 0 20px;
-      display: flex;
-      align-items: center;
-      color: var(--border);
-      font-size: 18px;
-      transition: color 0.25s;
+    .ramen-memo {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.8;
     }
-    .ramen-item:hover .ramen-arrow { color: #c0392b; }
 
     /* ══════════════════════════
        02 — 太鼓の達人
@@ -700,9 +749,14 @@
 
     <!-- ══════════════════════════
          03 — 拉麺
-         ・data-category="general" → 一般
-         ・data-category="iekei"   → 家系
-         ・data-category="jiro"    → 二郎系
+
+         ▼ 追加・編集は ramen.csv だけ触ればOK
+           CSV形式: image,shop,genre,date,memo  （1行目はヘッダー）
+           image  : ./images/ 以下のファイル名（例: ramen001.jpg）
+           shop   : 店名
+           genre  : general / iekei / jiro
+           date   : YYYY-MM-DD
+           memo   : 一言メモ（省略可）
     ══════════════════════════ -->
     <section class="section" id="ramen">
       <p class="section-label reveal">// 03 — Ramen</p>
@@ -717,27 +771,8 @@
 
       <p class="item-count reveal">全 <span id="ramen-count-num">0</span> 件</p>
 
-      <div class="ramen-list reveal" id="ramen-list">
-
-        <!-- ▼ サンプル：コピーして使ってください ▼ -->
-        <div class="ramen-item reveal" data-category="general">
-          <div class="ramen-date-col">
-            <span class="r-month">01</span>
-            <span class="r-day">01</span>
-            <span class="r-year">2026</span>
-          </div>
-          <div class="ramen-body">
-            <div class="ramen-tag-wrap">
-              <span class="ramen-tag general">一般</span>
-            </div>
-            <p class="ramen-shop">店名をここに書く</p>
-            <p class="ramen-memo">一言メモ。省略してもOK。</p>
-          </div>
-          <span class="ramen-arrow">→</span>
-        </div>
-
-        <!-- ここに拉麺を追加 -->
-
+      <div class="ramen-grid reveal" id="ramen-grid">
+        <!-- ramen.csv から動的に生成されます -->
       </div>
 
       <div class="empty-state" id="ramen-empty">まだ拉麺の記録はありません</div>
@@ -749,16 +784,23 @@
   </main>
 
   <script>
-    const SHOW_LIMIT = { trip: 3, taiko: 4, ramen: 5 }; // taiko は動的に上書きされる
+    const SHOW_LIMIT = { trip: 3, taiko: 4, ramen: 4 }; // taiko/ramen は動的に上書きされる
 
     // ── グリッドの列数を計算してSHOW_LIMIT.taikoを1行分に設定 ──
     function updateTaikoLimit() {
       const grid = document.getElementById('taiko-grid');
       if (!grid) return;
       const gridWidth    = grid.clientWidth;
-      const minCardWidth = 340; // CSS の minmax(340px, 1fr) に合わせる
+      const minCardWidth = 340;
       const cols = Math.max(1, Math.floor((gridWidth + 1) / (minCardWidth + 1)));
       SHOW_LIMIT.taiko = cols;
+    }
+
+    function updateRamenLimit() {
+      const grid = document.getElementById('ramen-grid');
+      if (!grid) return;
+      const cols = Math.max(1, Math.floor((grid.clientWidth + 1) / (280 + 1)));
+      SHOW_LIMIT.ramen = cols;
     }
 
     const state = {
@@ -770,7 +812,7 @@
     function getItems(section) {
       if (section === 'trip')  return Array.from(document.querySelectorAll('#trip-list .photo-item'));
       if (section === 'taiko') return Array.from(document.querySelectorAll('#taiko-grid .taiko-card'));
-      if (section === 'ramen') return Array.from(document.querySelectorAll('#ramen-list .ramen-item'));
+      if (section === 'ramen') return Array.from(document.querySelectorAll('#ramen-grid .ramen-card'));
       return [];
     }
 
@@ -808,8 +850,9 @@
         moreBtn.classList.add('hidden');
       }
 
-      // taiko グリッドの外枠を表示中カード数に合わせて調整
+      // taiko/ramen グリッドの枠線を表示中カード数に合わせて調整
       if (section === 'taiko') updateTaikoGridBorder();
+      if (section === 'ramen') updateRamenGridBorder();
     }
 
     // ── 表示中カードに枠線クラスを付与 ──
@@ -818,21 +861,24 @@
       if (!grid) return;
       const cols = Math.max(1, Math.floor((grid.clientWidth + 1) / (340 + 1)));
       const visible = Array.from(grid.querySelectorAll('.taiko-card:not(.hidden)'));
-
       visible.forEach((card, i) => {
-        const col       = i % cols;                        // 0始まりの列番号
-        const isLastCol = col === cols - 1;                // 右端の列か
-        const isLastRow = i >= visible.length - cols;      // 最終行か（残り cols 枚以内）
-        // 最終行かつ右端を超えた余り部分は存在しないので、
-        // 実際の最終行判定：最後のカードのrow以降
         const lastRowStart = visible.length - (visible.length % cols || cols);
-        const inLastRow    = i >= lastRowStart;
-
-        card.classList.toggle('border-right',  !isLastCol);
-        card.classList.toggle('border-bottom', !inLastRow);
+        card.classList.toggle('border-right',  (i % cols) !== cols - 1);
+        card.classList.toggle('border-bottom', i < lastRowStart);
       });
+      grid.style.border = 'none';
+    }
 
-      // グリッド自体の枠線は不要
+    function updateRamenGridBorder() {
+      const grid = document.getElementById('ramen-grid');
+      if (!grid) return;
+      const cols = Math.max(1, Math.floor((grid.clientWidth + 1) / (280 + 1)));
+      const visible = Array.from(grid.querySelectorAll('.ramen-card:not(.hidden)'));
+      visible.forEach((card, i) => {
+        const lastRowStart = visible.length - (visible.length % cols || cols);
+        card.classList.toggle('border-right',  (i % cols) !== cols - 1);
+        card.classList.toggle('border-bottom', i < lastRowStart);
+      });
       grid.style.border = 'none';
     }
 
@@ -867,16 +913,27 @@
 
     // ── リサイズ時：列数が変わったら表示件数をリセットして再描画 ──
     let prevTaikoCols = 0;
+    let prevRamenCols = 0;
     function onResize() {
-      const grid = document.getElementById('taiko-grid');
-      if (!grid) return;
-      const gridWidth = grid.clientWidth;
-      const cols = Math.max(1, Math.floor((gridWidth + 1) / (340 + 1)));
-      if (cols !== prevTaikoCols) {
-        prevTaikoCols = cols;
-        updateTaikoLimit();
-        state.taiko.showing = SHOW_LIMIT.taiko; // 1行分にリセット
-        applyState('taiko');
+      const taikoGrid = document.getElementById('taiko-grid');
+      if (taikoGrid) {
+        const cols = Math.max(1, Math.floor((taikoGrid.clientWidth + 1) / (340 + 1)));
+        if (cols !== prevTaikoCols) {
+          prevTaikoCols = cols;
+          updateTaikoLimit();
+          state.taiko.showing = SHOW_LIMIT.taiko;
+          applyState('taiko');
+        }
+      }
+      const ramenGrid = document.getElementById('ramen-grid');
+      if (ramenGrid) {
+        const cols = Math.max(1, Math.floor((ramenGrid.clientWidth + 1) / (280 + 1)));
+        if (cols !== prevRamenCols) {
+          prevRamenCols = cols;
+          updateRamenLimit();
+          state.ramen.showing = SHOW_LIMIT.ramen;
+          applyState('ramen');
+        }
       }
     }
     window.addEventListener('resize', onResize);
@@ -1007,6 +1064,111 @@
     }
 
     // ══════════════════════════
+    // ramen.csv 読み込み → カード生成
+    // CSV形式: image,shop,genre,date,memo  （1行目はヘッダー）
+    // image: ./images/ 以下のファイル名（例: ramen001.jpg）
+    // genre: general / iekei / jiro
+    // date : YYYY-MM-DD
+    // memo : 一言メモ（省略可）
+    // ══════════════════════════
+    const GENRE_LABEL = { general: '一般', iekei: '家系', jiro: '二郎系' };
+
+    function buildRamenCard(image, shop, genre, date, memo) {
+      const card = document.createElement('div');
+      card.className = 'ramen-card';
+      card.dataset.category = genre.trim();
+
+      // 日付パース
+      // 対応形式: YYYY-MM-DD / YYYY-MM / YYYY / 不明 / 空欄
+      let monthStr = '', dayStr = '', yearStr = '';
+      let showBadge = false;
+      if (date) {
+        const d = date.trim();
+        if (d === '不明') {
+          yearStr = '?'; monthStr = '?'; dayStr = '?';
+          showBadge = true;
+        } else {
+          const parts = d.split('-');
+          yearStr  = parts[0] || '';
+          monthStr = parts[1] ? parts[1].padStart(2, '0') : '—';
+          dayStr   = parts[2] ? parts[2].padStart(2, '0') : '—';
+          showBadge = !!yearStr;
+        }
+      }
+
+      const imgHtml = image
+        ? `<img src="./images/${image.trim()}" alt="${shop}" loading="lazy">`
+        : `<div class="ramen-img-placeholder"><span>No Photo</span></div>`;
+
+      const dateBadge = showBadge ? `
+        <div class="ramen-date-badge">
+          <span class="rb-year">${yearStr}</span>
+          <span class="rb-month">${monthStr}</span>
+          <span class="rb-day">${dayStr}</span>
+        </div>` : '';
+
+      const genreLabel = GENRE_LABEL[genre.trim()] || genre.trim();
+      const memoHtml   = memo ? `<p class="ramen-memo">${memo}</p>` : '';
+
+      card.innerHTML = `
+        <div class="ramen-img-wrap">
+          ${imgHtml}
+          ${dateBadge}
+        </div>
+        <div class="ramen-info">
+          <div class="ramen-info-label"><span>Ramen</span></div>
+          <div class="ramen-info-body">
+            <span class="ramen-tag ${genre.trim()}">${genreLabel}</span>
+            <p class="ramen-shop">${shop}</p>
+            ${memoHtml}
+          </div>
+        </div>
+      `;
+      return card;
+    }
+
+    async function loadRamenCsv() {
+      const grid   = document.getElementById('ramen-grid');
+      const statEl = document.getElementById('side-stat-ramen');
+
+      try {
+        const res = await fetch('./ramen.csv');
+        if (!res.ok) throw new Error('CSV not found');
+        const text = await res.text();
+
+        const lines = text.trim().split('\n').slice(1);
+        let count = 0;
+
+        for (const line of lines) {
+          if (!line.trim()) continue;
+          const cols = line.match(/(".*?"|[^,]+)(?=,|$)/g);
+          if (!cols || cols.length < 3) continue;
+
+          const image = (cols[0] || '').replace(/^"|"$/g, '').trim();
+          const shop  = (cols[1] || '').replace(/^"|"$/g, '').trim();
+          const genre = (cols[2] || '').replace(/^"|"$/g, '').trim();
+          const date  = (cols[3] || '').replace(/^"|"$/g, '').trim();
+          const memo  = (cols[4] || '').replace(/^"|"$/g, '').trim();
+
+          if (!shop) continue;
+          grid.appendChild(buildRamenCard(image, shop, genre, date, memo));
+          count++;
+        }
+
+        statEl.textContent = count || '—';
+
+      } catch {
+        document.getElementById('ramen-empty').classList.add('visible');
+        statEl.textContent = '—';
+      }
+
+      updateRamenLimit();
+      state.ramen.showing = SHOW_LIMIT.ramen;
+      prevRamenCols = Math.max(1, Math.floor((document.getElementById('ramen-grid').clientWidth + 1) / (280 + 1)));
+      applyState('ramen');
+    }
+
+    // ══════════════════════════
     // 旅の記録：サイドバー統計
     // ══════════════════════════
     function updateTripStat() {
@@ -1014,19 +1176,13 @@
       document.getElementById('side-stat-trips').textContent = trips || '—';
     }
 
-    function updateRamenStat() {
-      const ramen = document.querySelectorAll('#ramen-list .ramen-item').length;
-      document.getElementById('side-stat-ramen').textContent = ramen || '—';
-    }
-
     // ══════════════════════════
     // 初期化
     // ══════════════════════════
     loadTaikoCsv();
+    loadRamenCsv();
     applyState('trip');
-    applyState('ramen');
     updateTripStat();
-    updateRamenStat();
 
     // ══════════════════════════
     // Scroll reveal
