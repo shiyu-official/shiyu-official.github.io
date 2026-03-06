@@ -90,93 +90,9 @@
 
     /*
       .photo-item は index.html が Portfolio の件数カウントに使うセレクタ。
-      必ずこのクラスを付けること。
+      post-card に追加して必ず付けること。
     */
-    .photo-item {
-      display: flex;
-      align-items: stretch;
-      background: var(--white);
-      border: 1px solid var(--border);
-      text-decoration: none;
-      color: var(--text);
-      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
-      position: relative;
-    }
-    .photo-item::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 3px;
-      background: linear-gradient(to bottom, var(--accent), var(--cyan));
-      transform: scaleY(0);
-      transform-origin: top;
-      transition: transform 0.3s ease;
-    }
-    .photo-item:hover {
-      border-color: var(--accent-light);
-      transform: translateX(4px);
-      box-shadow: -3px 0 0 var(--accent);
-    }
-    .photo-item:hover::before { transform: scaleY(1); }
     .photo-item.hidden { display: none; }
-
-    /* 日付カラム（blog.htmlのpost-date-colと同じ） */
-    .trip-date-col {
-      padding: 24px 20px;
-      border-right: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-width: 80px;
-      background: var(--surface);
-    }
-    .trip-date-col .t-month {
-      font-family: 'DM Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .trip-date-col .t-day {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 28px;
-      font-weight: 600;
-      color: var(--accent);
-      line-height: 1.1;
-    }
-    .trip-date-col .t-year {
-      font-family: 'DM Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-    }
-
-    /* 本文エリア */
-    .trip-body { padding: 20px 28px; flex: 1; }
-
-    .trip-title {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 22px;
-      font-weight: 500;
-      line-height: 1.7;
-      letter-spacing: 0.06em;
-      margin-bottom: 6px;
-    }
-    .trip-excerpt {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 2;
-    }
-    .trip-arrow {
-      padding: 0 24px;
-      display: flex;
-      align-items: center;
-      color: var(--border);
-      font-size: 20px;
-      transition: color 0.25s;
-    }
-    .photo-item:hover .trip-arrow { color: var(--accent); }
 
     /* ══════════════════════════
        03 — 拉麺
@@ -651,32 +567,30 @@
          01 — 旅の記録
 
          ▼ 旅を追加するときは下のサンプルを1つコピーして増やす
-           ・trip-date-col の t-month / t-day / t-year を記入
-           ・trip-title に旅のタイトル、trip-excerpt に短いメモ（省略可）
+           ・post-date-col の month / day / year を記入
+           ・post-title に旅のタイトル、post-excerpt に短いメモ（省略可）
            ・href に詳細ページ（例: trip-001.html）を設定
     ══════════════════════════ -->
     <section class="section" id="travel">
       <p class="section-label reveal">// 01 — Travel</p>
       <h2 class="section-title reveal">旅の記録</h2>
 
-
-
       <p class="item-count reveal">全 <span id="trip-count-num">0</span> 件</p>
 
       <div class="blog-list" id="trip-list">
 
         <!-- ▼ サンプル：コピーして使ってください ▼ -->
-        <a href="trip-001.html" class="photo-item reveal" 
-          <div class="trip-date-col">
-            <span class="t-month">Jan</span>
-            <span class="t-day">01</span>
-            <span class="t-year">2026</span>
+        <a href="trip-001.html" class="post-card photo-item reveal">
+          <div class="post-date-col">
+            <span class="month">Jan</span>
+            <span class="day">01</span>
+            <span class="year">2026</span>
           </div>
-          <div class="trip-body">
-            <p class="trip-title">タイトルをここに書く</p>
-            <p class="trip-excerpt">旅の短い説明やメモ。省略してもOK。</p>
+          <div class="post-body">
+            <p class="post-title">タイトルをここに書く</p>
+            <p class="post-excerpt">旅の短い説明やメモ。省略してもOK。</p>
           </div>
-          <span class="trip-arrow">→</span>
+          <span class="post-arrow">→</span>
         </a>
 
         <!-- ここに旅を追加 -->
