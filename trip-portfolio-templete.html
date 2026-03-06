@@ -21,16 +21,6 @@
       flex-wrap: wrap;
       margin-top: 20px;
     }
-    .trip-meta-tag {
-      display: inline-block;
-      font-family: 'Shippori Mincho', serif;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      padding: 3px 12px;
-      border-radius: 1px;
-    }
-    .trip-meta-tag.travel   { color: var(--accent); border: 1px solid var(--accent-light); background: var(--accent-pale); }
-    .trip-meta-tag.railroad { color: #c47a2a;        border: 1px solid #c47a2a; background: #fdf3e7; }
 
     .trip-meta-date {
       font-family: 'DM Mono', monospace;
@@ -211,14 +201,12 @@
       <!--
         ▼ ここを書き換えてください
           - <title> タグのテキストも合わせて変更
-          - trip-meta-tag の class を travel か railroad に
           - trip-meta-date に年月日
           - trip-meta-route に出発〜到着のルート（省略可）
       -->
       <p class="section-label">Travel</p>
       <h1>旅のタイトルをここに書く</h1>
       <div class="trip-meta-bar">
-        <span class="trip-meta-tag travel">旅行</span>
         <span class="trip-meta-date">2026.01.01</span>
         <span class="trip-meta-route">東京 → ○○ → ○○</span>
       </div>

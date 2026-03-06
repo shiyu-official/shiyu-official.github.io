@@ -154,19 +154,6 @@
 
     /* 本文エリア */
     .trip-body { padding: 20px 28px; flex: 1; }
-    .trip-tag-wrap { margin-bottom: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
-
-    /* タグ：種別ごとに色分け */
-    .trip-tag {
-      display: inline-block;
-      font-family: 'Shippori Mincho', serif;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      padding: 2px 10px;
-      border-radius: 1px;
-    }
-    .trip-tag.travel   { color: var(--accent); border: 1px solid var(--accent-light); }
-    .trip-tag.railroad { color: #c47a2a;        border: 1px solid #c47a2a; }
 
     .trip-title {
       font-family: 'Shippori Mincho', serif;
@@ -665,7 +652,6 @@
 
          ▼ 旅を追加するときは下のサンプルを1つコピーして増やす
            ・trip-date-col の t-month / t-day / t-year を記入
-           ・trip-tag の class に travel か railroad を追加
            ・trip-title に旅のタイトル、trip-excerpt に短いメモ（省略可）
            ・href に詳細ページ（例: trip-001.html）を設定
     ══════════════════════════ -->
@@ -673,11 +659,7 @@
       <p class="section-label reveal">// 01 — Travel</p>
       <h2 class="section-title reveal">旅の記録</h2>
 
-      <div class="filter-bar reveal">
-        <button class="filter-btn active" data-filter="all">すべて</button>
-        <button class="filter-btn" data-filter="travel">旅行</button>
-        <button class="filter-btn" data-filter="railroad">鉄道旅</button>
-      </div>
+
 
       <p class="item-count reveal">全 <span id="trip-count-num">0</span> 件</p>
 
@@ -691,9 +673,6 @@
             <span class="t-year">2026</span>
           </div>
           <div class="trip-body">
-            <div class="trip-tag-wrap">
-              <span class="trip-tag travel">旅行</span>
-            </div>
             <p class="trip-title">タイトルをここに書く</p>
             <p class="trip-excerpt">旅の短い説明やメモ。省略してもOK。</p>
           </div>
