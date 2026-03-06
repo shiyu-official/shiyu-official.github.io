@@ -315,6 +315,7 @@ body {
   margin-bottom: 40px;
   color: var(--text);
 }
+.section-header {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
