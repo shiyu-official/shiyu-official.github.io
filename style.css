@@ -43,7 +43,6 @@ body {
   height: 100vh;
   background: var(--white);
   border-right: 1px solid var(--border);
-  box-shadow: 4px 0 20px rgba(28,26,23,0.07);
   display: flex;
   flex-direction: column;
   padding: 52px 40px;
@@ -69,6 +68,30 @@ body {
   display: block;
 }
 .sidebar-logo em { font-style: normal; color: var(--accent); }
+/* ロゴ下の装飾ライン */
+.sidebar-logo-deco {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.sidebar-logo-deco-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--accent), transparent);
+  opacity: 0.35;
+}
+.sidebar-logo-deco-dots {
+  display: flex;
+  gap: 4px;
+}
+.sidebar-logo-deco-dot {
+  width: 3px; height: 3px;
+  border-radius: 50%;
+}
+.sidebar-logo-deco-dot:nth-child(1) { background: var(--accent); }
+.sidebar-logo-deco-dot:nth-child(2) { background: var(--accent-light); opacity: 0.6; }
+.sidebar-logo-deco-dot:nth-child(3) { background: var(--cyan); opacity: 0.4; }
 
 .sidebar-tagline {
   font-family: 'DM Mono', monospace;
@@ -128,16 +151,14 @@ body {
 .sidebar-stat {
   text-align: center;
   padding: 14px 8px;
-  background: var(--white);
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 1px;
-  box-shadow: 0 2px 6px rgba(28,26,23,0.06), inset 0 1px 0 rgba(255,255,255,0.8);
-  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  transition: border-color 0.25s, transform 0.25s;
 }
 .sidebar-stat:hover {
   border-color: var(--accent-light);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(28,26,23,0.10), inset 0 1px 0 rgba(255,255,255,0.8);
 }
 .sidebar-stat-num {
   font-family: 'Shippori Mincho', serif;
@@ -249,7 +270,6 @@ body {
   letter-spacing: 0.1em;
   line-height: 1.3;
   margin-top: 10px;
-  text-shadow: 1px 2px 0 rgba(180,168,150,0.25);
 }
 .page-header p {
   margin-top: 20px;
@@ -268,6 +288,22 @@ body {
   text-transform: uppercase;
   color: var(--cyan);
   margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.section-label::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--cyan);
+  flex-shrink: 0;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--border), transparent);
 }
 .section-title {
   font-family: 'Shippori Mincho', serif;
@@ -275,9 +311,32 @@ body {
   font-weight: 500;
   letter-spacing: 0.1em;
   line-height: 1.3;
-  margin-bottom: 40px;
+  margin-bottom: 32px;
   color: var(--text);
-  text-shadow: 1px 2px 0 rgba(180,168,150,0.25);
+}
+/* セクションタイトル下のドット区切り線 */
+.section-title + * {
+  /* 直後の要素との間にスペース確保 */
+}
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+  margin-top: -16px;
+}
+.section-divider::before,
+.section-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.section-divider-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 10px 0 0 var(--border), -10px 0 0 var(--border);
 }
 .section-header {
   display: flex;
@@ -300,13 +359,13 @@ body {
   letter-spacing: 0.2em;
   text-decoration: none;
   border-radius: 1px;
-  box-shadow: 3px 3px 0 rgba(30,95,168,0.35), 0 4px 12px rgba(30,95,168,0.2);
+  box-shadow: 3px 3px 0 rgba(30,95,168,0.25);
   transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 .btn-primary:hover {
   background: #174e8f;
-  transform: translate(-1px,-2px);
-  box-shadow: 4px 5px 0 rgba(30,95,168,0.35), 0 8px 20px rgba(30,95,168,0.25);
+  transform: translate(-1px,-1px);
+  box-shadow: 4px 4px 0 rgba(30,95,168,0.3);
 }
 .btn-secondary {
   font-family: 'Shippori Mincho', serif;
@@ -333,7 +392,6 @@ body {
   padding: 22px 24px;
   background: var(--white);
   border: 1px solid var(--border);
-  box-shadow: 0 2px 8px rgba(28,26,23,0.05), 0 1px 2px rgba(28,26,23,0.04);
   text-decoration: none;
   color: var(--text);
   transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
@@ -341,7 +399,7 @@ body {
 .stat-row:hover {
   border-color: var(--accent-light);
   transform: translateX(4px);
-  box-shadow: -3px 0 0 var(--accent), 0 8px 24px rgba(28,26,23,0.10);
+  box-shadow: -3px 0 0 var(--accent);
 }
 .stat-row-label {
   font-family: 'DM Mono', monospace;
@@ -369,7 +427,6 @@ body {
   align-items: stretch;
   background: var(--white);
   border: 1px solid var(--border);
-  box-shadow: 0 2px 8px rgba(28,26,23,0.05), 0 1px 2px rgba(28,26,23,0.04);
   text-decoration: none;
   color: var(--text);
   transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
@@ -381,16 +438,15 @@ body {
   left: 0; top: 0; bottom: 0;
   width: 3px;
   background: linear-gradient(to bottom, var(--accent), var(--cyan));
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform 0.3s ease;
+  opacity: 0.22;
+  transition: opacity 0.3s ease;
 }
 .post-card:hover {
   border-color: var(--accent-light);
   transform: translateX(4px);
-  box-shadow: -3px 0 0 var(--accent), 0 8px 24px rgba(28,26,23,0.10);
+  box-shadow: -3px 0 0 var(--accent);
 }
-.post-card:hover::before { transform: scaleY(1); }
+.post-card:hover::before { opacity: 1; }
 
 .post-date-col {
   padding: 24px 20px;
