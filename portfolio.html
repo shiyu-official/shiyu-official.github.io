@@ -192,6 +192,104 @@
     .photo-item:hover .trip-arrow { color: var(--accent); }
 
     /* ══════════════════════════
+       03 — 拉麺
+    ══════════════════════════ */
+
+    .ramen-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .ramen-item {
+      display: flex;
+      align-items: stretch;
+      background: var(--white);
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+      position: relative;
+    }
+    .ramen-item::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, #c0392b, #e67e22);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.3s ease;
+    }
+    .ramen-item:hover { transform: translateX(4px); box-shadow: -3px 0 0 #c0392b; }
+    .ramen-item:hover::before { transform: scaleY(1); }
+    .ramen-item.hidden { display: none; }
+
+    .ramen-date-col {
+      padding: 20px 16px;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 72px;
+      background: var(--surface);
+    }
+    .ramen-date-col .r-month {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+    .ramen-date-col .r-day {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: #c0392b;
+      line-height: 1.1;
+    }
+    .ramen-date-col .r-year {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+
+    .ramen-body { padding: 18px 24px; flex: 1; }
+    .ramen-tag-wrap { margin-bottom: 8px; display: flex; gap: 8px; flex-wrap: wrap; }
+
+    .ramen-tag {
+      display: inline-block;
+      font-family: 'Shippori Mincho', serif;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      padding: 2px 10px;
+      border-radius: 1px;
+    }
+    .ramen-tag.general { color: #c0392b; border: 1px solid #e8a89e; }
+    .ramen-tag.iekei   { color: #8e44ad; border: 1px solid #c3a0d6; }
+    .ramen-tag.jiro    { color: #c47a2a; border: 1px solid #ddb47a; }
+
+    .ramen-shop {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.6;
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+    }
+    .ramen-memo { font-size: 13px; color: var(--muted); line-height: 1.9; }
+    .ramen-arrow {
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      color: var(--border);
+      font-size: 18px;
+      transition: color 0.25s;
+    }
+    .ramen-item:hover .ramen-arrow { color: #c0392b; }
+
+    /* ══════════════════════════
        02 — 太鼓の達人
     ══════════════════════════ */
 
@@ -593,10 +691,58 @@
       </div>
     </section>
 
+    <!-- ══════════════════════════
+         03 — 拉麺
+         ・data-category="general" → 一般
+         ・data-category="iekei"   → 家系
+         ・data-category="jiro"    → 二郎系
+    ══════════════════════════ -->
+    <section class="section" id="ramen">
+      <p class="section-label reveal">// 03 — Ramen</p>
+      <h2 class="section-title reveal">拉麺</h2>
+
+      <div class="filter-bar reveal">
+        <button class="filter-btn active" data-filter="all">すべて</button>
+        <button class="filter-btn" data-filter="general">一般</button>
+        <button class="filter-btn" data-filter="iekei">家系</button>
+        <button class="filter-btn" data-filter="jiro">二郎系</button>
+      </div>
+
+      <p class="item-count reveal">全 <span id="ramen-count-num">0</span> 件</p>
+
+      <div class="ramen-list reveal" id="ramen-list">
+
+        <!-- ▼ サンプル：コピーして使ってください ▼ -->
+        <div class="ramen-item reveal" data-category="general">
+          <div class="ramen-date-col">
+            <span class="r-month">01</span>
+            <span class="r-day">01</span>
+            <span class="r-year">2026</span>
+          </div>
+          <div class="ramen-body">
+            <div class="ramen-tag-wrap">
+              <span class="ramen-tag general">一般</span>
+            </div>
+            <p class="ramen-shop">店名をここに書く</p>
+            <p class="ramen-memo">一言メモ。省略してもOK。</p>
+          </div>
+          <span class="ramen-arrow">→</span>
+        </div>
+
+        <!-- ここに拉麺を追加 -->
+
+      </div>
+
+      <div class="empty-state" id="ramen-empty">まだ拉麺の記録はありません</div>
+      <div class="show-more-wrap">
+        <button class="show-more-btn hidden" id="ramen-more-btn">もっと見る</button>
+      </div>
+    </section>
+
   </main>
 
   <script>
-    const SHOW_LIMIT = { trip: 3, taiko: 4 }; // taiko は動的に上書きされる
+    const SHOW_LIMIT = { trip: 3, taiko: 4, ramen: 5 }; // taiko は動的に上書きされる
 
     // ── グリッドの列数を計算してSHOW_LIMIT.taikoを1行分に設定 ──
     function updateTaikoLimit() {
@@ -611,12 +757,14 @@
     const state = {
       trip:  { filter: 'all', showing: SHOW_LIMIT.trip },
       taiko: { filter: 'all', showing: SHOW_LIMIT.taiko },
+      ramen: { filter: 'all', showing: SHOW_LIMIT.ramen },
     };
 
     function getItems(section) {
-      return section === 'trip'
-        ? Array.from(document.querySelectorAll('#trip-list .photo-item'))
-        : Array.from(document.querySelectorAll('#taiko-grid .taiko-card'));
+      if (section === 'trip')  return Array.from(document.querySelectorAll('#trip-list .photo-item'));
+      if (section === 'taiko') return Array.from(document.querySelectorAll('#taiko-grid .taiko-card'));
+      if (section === 'ramen') return Array.from(document.querySelectorAll('#ramen-list .ramen-item'));
+      return [];
     }
 
     function applyState(section) {
@@ -627,22 +775,13 @@
       const moreBtn = document.getElementById(`${section}-more-btn`);
 
       const matched = items.filter(el => {
-        const cat = section === 'trip' ? el.dataset.category : el.dataset.genre;
+        const cat = section === 'taiko' ? el.dataset.genre : el.dataset.category;
         return filter === 'all' || cat === filter;
       });
 
-      let shown = 0;
-      items.forEach(el => {
-        const cat = section === 'trip' ? el.dataset.category : el.dataset.genre;
-        const inFilter = filter === 'all' || cat === filter;
-        el.classList.toggle('hidden', !(inFilter && shown++ < showing));
-        if (!inFilter) shown--;  // hidden にしたのでカウントを戻す
-      });
-
-      // shown の計算を正確に
       let shownCount = 0;
       items.forEach(el => {
-        const cat = section === 'trip' ? el.dataset.category : el.dataset.genre;
+        const cat = section === 'taiko' ? el.dataset.genre : el.dataset.category;
         const inFilter = filter === 'all' || cat === filter;
         if (inFilter && shownCount < showing) {
           el.classList.remove('hidden');
@@ -668,8 +807,12 @@
       applyState('trip');
     });
     document.getElementById('taiko-more-btn').addEventListener('click', () => {
-      state.taiko.showing += SHOW_LIMIT.taiko; // 押すたびに1行分追加
+      state.taiko.showing += SHOW_LIMIT.taiko;
       applyState('taiko');
+    });
+    document.getElementById('ramen-more-btn').addEventListener('click', () => {
+      state.ramen.showing += SHOW_LIMIT.ramen;
+      applyState('ramen');
     });
 
     function setupFilter(section, selector) {
@@ -686,6 +829,7 @@
 
     setupFilter('trip',  '#travel .filter-btn');
     setupFilter('taiko', '#taiko  .filter-btn');
+    setupFilter('ramen', '#ramen  .filter-btn');
 
     // ── リサイズ時：列数が変わったら表示件数をリセットして再描画 ──
     let prevTaikoCols = 0;
@@ -836,12 +980,19 @@
       document.getElementById('side-stat-trips').textContent = trips || '—';
     }
 
+    function updateRamenStat() {
+      const ramen = document.querySelectorAll('#ramen-list .ramen-item').length;
+      document.getElementById('side-stat-ramen').textContent = ramen || '—';
+    }
+
     // ══════════════════════════
     // 初期化
     // ══════════════════════════
     loadTaikoCsv();
     applyState('trip');
+    applyState('ramen');
     updateTripStat();
+    updateRamenStat();
 
     // ══════════════════════════
     // Scroll reveal
