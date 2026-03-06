@@ -298,8 +298,8 @@
       grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
       gap: 1px;
       background: var(--bg);
-      border: 1px solid var(--border);
       overflow: hidden;
+      /* 外枠はJSで動的に設定 */
     }
 
     .taiko-card {
@@ -802,6 +802,29 @@
       } else {
         moreBtn.classList.add('hidden');
       }
+
+      // taiko グリッドの外枠を表示中カード数に合わせて調整
+      if (section === 'taiko') updateTaikoGridBorder();
+    }
+
+    // ── 表示中カード数と列数からグリッド外枠を動的に設定 ──
+    function updateTaikoGridBorder() {
+      const grid = document.getElementById('taiko-grid');
+      if (!grid) return;
+      const visibleCards = grid.querySelectorAll('.taiko-card:not(.hidden)').length;
+      if (visibleCards === 0) {
+        grid.style.border = 'none';
+        return;
+      }
+      const cols = Math.max(1, Math.floor((grid.clientWidth + 1) / (340 + 1)));
+      const lastRowCount = visibleCards % cols || cols; // 最終行のカード数
+      // 最終行が全列埋まっている、または1列のときはそのまま外枠を出す
+      // 右端が余る場合は右枠を非表示にして余白をなくす
+      const borderColor = 'var(--border)';
+      grid.style.borderTop    = `1px solid ${borderColor}`;
+      grid.style.borderLeft   = `1px solid ${borderColor}`;
+      grid.style.borderBottom = `1px solid ${borderColor}`;
+      grid.style.borderRight  = lastRowCount === cols ? `1px solid ${borderColor}` : 'none';
     }
 
     document.getElementById('trip-more-btn').addEventListener('click', () => {
