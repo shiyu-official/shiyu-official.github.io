@@ -329,15 +329,20 @@
         </div>
       </div>
       <div class="sidebar-stat-group">
-        <div class="sidebar-stat-group-label">Status</div>
+        <div class="sidebar-stat-group-label">Score</div>
         <div class="sidebar-stat-group-inner">
           <div class="sidebar-stat">
-            <div class="sidebar-stat-num" id="side-stat-photos">—</div>
-            <div class="sidebar-stat-label">Photos</div>
+            <div class="sidebar-stat-num">354</div>
+            <div class="sidebar-stat-label">Crown</div>
           </div>
+        </div>
+      </div>
+      <div class="sidebar-stat-group">
+        <div class="sidebar-stat-group-label">Posts</div>
+        <div class="sidebar-stat-group-inner">
           <div class="sidebar-stat">
             <div class="sidebar-stat-num" id="side-stat-posts">—</div>
-            <div class="sidebar-stat-label">Posts</div>
+            <div class="sidebar-stat-label">entries</div>
           </div>
         </div>
       </div>
@@ -478,7 +483,7 @@
       <div class="reveal">
         <a href="portfolio.html" class="stat-row" style="display:flex;">
           <span class="stat-row-label">旅先の写真や記録をまとめています</span>
-          <span class="stat-row-num" id="portfolio-stat-photos">—</span>
+          <span style="font-family:'Shippori Mincho',serif;font-size:20px;color:var(--accent);">→</span>
         </a>
       </div>
     </section>
@@ -568,16 +573,11 @@
     }
 
     async function loadStats() {
-      const [photos, posts] = await Promise.all([
-        fetchCount('./portfolio.html', '.photo-item'),
-        fetchCount('./blog.html',      '.post-card'),
-      ]);
+      const posts = await fetchCount('./blog.html', '.post-card');
       const fmt = v => v !== null ? String(v) : '—';
-      ['about-stat-photos','side-stat-photos','portfolio-stat-photos'].forEach(id => {
-        document.getElementById(id).textContent = fmt(photos);
-      });
       ['about-stat-posts','side-stat-posts'].forEach(id => {
-        document.getElementById(id).textContent = fmt(posts);
+        const el = document.getElementById(id);
+        if (el) el.textContent = fmt(posts);
       });
     }
 
@@ -630,16 +630,28 @@
     // ── サイドナビのアクティブ切り替え ──
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.sidebar-nav a[href^="#"]');
-    const secObserver = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          navLinks.forEach(a => {
-            a.classList.toggle('active', a.getAttribute('href') === `#${e.target.id}`);
-          });
+
+    function updateActiveNav() {
+      const scrollY = window.scrollY;
+      const windowH = window.innerHeight;
+      let currentId = null;
+
+      sections.forEach(section => {
+        const top = section.offsetTop;
+        const bottom = top + section.offsetHeight;
+        // セクションの上端がビューポートの60%以内に入ったらアクティブ
+        if (scrollY + windowH * 0.4 >= top && scrollY < bottom) {
+          currentId = section.id;
         }
       });
-    }, { threshold: 0.4 });
-    sections.forEach(s => secObserver.observe(s));
+
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === `#${currentId}`);
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
+    updateActiveNav();
 
     loadTravelMap();
     loadStats();
