@@ -296,10 +296,9 @@
     .taiko-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 1px;
+      gap: 0;
       background: var(--bg);
       overflow: hidden;
-      /* 外枠はJSで動的に設定 */
     }
 
     .taiko-card {
@@ -308,8 +307,14 @@
       flex-direction: column;
       position: relative;
       overflow: hidden;
-      outline: 1px solid var(--border);
+      /* 枠線はJSで付与するクラスで制御 */
+      border-top:    1px solid var(--border);
+      border-left:   1px solid var(--border);
+      border-right:  none;
+      border-bottom: none;
     }
+    .taiko-card.border-right  { border-right:  1px solid var(--border); }
+    .taiko-card.border-bottom { border-bottom: 1px solid var(--border); }
     .taiko-card::after {
       content: '';
       position: absolute;
@@ -807,24 +812,28 @@
       if (section === 'taiko') updateTaikoGridBorder();
     }
 
-    // ── 表示中カード数と列数からグリッド外枠を動的に設定 ──
+    // ── 表示中カードに枠線クラスを付与 ──
     function updateTaikoGridBorder() {
       const grid = document.getElementById('taiko-grid');
       if (!grid) return;
-      const visibleCards = grid.querySelectorAll('.taiko-card:not(.hidden)').length;
-      if (visibleCards === 0) {
-        grid.style.border = 'none';
-        return;
-      }
       const cols = Math.max(1, Math.floor((grid.clientWidth + 1) / (340 + 1)));
-      const lastRowCount = visibleCards % cols || cols; // 最終行のカード数
-      // 最終行が全列埋まっている、または1列のときはそのまま外枠を出す
-      // 右端が余る場合は右枠を非表示にして余白をなくす
-      const borderColor = 'var(--border)';
-      grid.style.borderTop    = `1px solid ${borderColor}`;
-      grid.style.borderLeft   = `1px solid ${borderColor}`;
-      grid.style.borderBottom = `1px solid ${borderColor}`;
-      grid.style.borderRight  = lastRowCount === cols ? `1px solid ${borderColor}` : 'none';
+      const visible = Array.from(grid.querySelectorAll('.taiko-card:not(.hidden)'));
+
+      visible.forEach((card, i) => {
+        const col       = i % cols;                        // 0始まりの列番号
+        const isLastCol = col === cols - 1;                // 右端の列か
+        const isLastRow = i >= visible.length - cols;      // 最終行か（残り cols 枚以内）
+        // 最終行かつ右端を超えた余り部分は存在しないので、
+        // 実際の最終行判定：最後のカードのrow以降
+        const lastRowStart = visible.length - (visible.length % cols || cols);
+        const inLastRow    = i >= lastRowStart;
+
+        card.classList.toggle('border-right',  !isLastCol);
+        card.classList.toggle('border-bottom', !inLastRow);
+      });
+
+      // グリッド自体の枠線は不要
+      grid.style.border = 'none';
     }
 
     document.getElementById('trip-more-btn').addEventListener('click', () => {
