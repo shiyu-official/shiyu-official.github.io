@@ -321,7 +321,7 @@ body {
   position: absolute;
   left: 0;
   bottom: -10px;
-  width: calc(50vw - var(--sidebar-w) / 2);
+  width: 50%;
   height: 1px;
   background: linear-gradient(to right, var(--border), transparent);
 }
