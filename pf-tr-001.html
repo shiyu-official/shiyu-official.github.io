@@ -36,16 +36,16 @@
 
     /* セクション見出し（カテゴリ区切り） */
     .trip-section-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
+      font-family: 'Shippori Mincho', serif;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
       color: var(--accent);
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       margin-top: 56px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
     }
     .trip-section-label::after {
       content: '';
@@ -61,14 +61,16 @@
       object-fit: cover;
       display: block;
       border: 1px solid var(--border);
-      margin-bottom: 8px;
+      margin-bottom: 0;
     }
     .trip-img-caption {
       font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.12em;
+      font-size: 12px;
+      letter-spacing: 0.1em;
       color: var(--muted);
       margin-bottom: 32px;
+      margin-top: 8px;
+      text-align: center;
     }
 
     /* 2カラム写真グリッド */
@@ -76,10 +78,24 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 8px;
-      margin-bottom: 8px;
+      margin-bottom: 0;
     }
     .trip-img-grid .trip-img {
       margin-bottom: 0;
+    }
+    /* 2カラム用：各画像の下に個別キャプション */
+    .trip-img-grid-wrap {
+      margin-bottom: 32px;
+    }
+    .trip-img-grid-captions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .trip-img-grid-captions .trip-img-caption {
+      margin-bottom: 0;
+      margin-top: 0;
     }
 
     /* 3カラム写真グリッド */
@@ -187,15 +203,20 @@
       <!-- 観光 -->
       <p class="trip-section-label">Sightseeing</p>
 
-      <div class="trip-img-grid">
-        <div>
-          <img src="./images/pf-tr-001/IMG_5219.webp" class="trip-img" alt="美祢線 於福駅" loading="lazy">
+      <div class="trip-img-grid-wrap">
+        <div class="trip-img-grid">
+          <div>
+            <img src="./images/pf-tr-001/IMG_5219.webp" class="trip-img" alt="美祢線 於福駅" loading="lazy">
+          </div>
+          <div>
+            <img src="./images/pf-tr-001/IMG_5223.webp" class="trip-img" alt="於福駅 プラットフォーム" loading="lazy">
+          </div>
         </div>
-        <div>
-          <img src="./images/pf-tr-001/IMG_5223.webp" class="trip-img" alt="於福駅 プラットフォーム" loading="lazy">
+        <div class="trip-img-grid-captions">
+          <p class="trip-img-caption">美祢線 於福駅</p>
+          <p class="trip-img-caption">於福駅 プラットフォーム</p>
         </div>
       </div>
-      <p class="trip-img-caption">左：美祢線 於福駅 ／ 右：於福駅 プラットフォーム</p>
 
       <img src="./images/pf-tr-001/IMG_5237.webp" class="trip-img" alt="秋芳洞" loading="lazy">
       <p class="trip-img-caption">秋芳洞</p>
@@ -206,54 +227,74 @@
       <img src="./images/pf-tr-001/IMG_5267.webp" class="trip-img" alt="秋吉台(カルスト地形)" loading="lazy">
       <p class="trip-img-caption">秋吉台（カルスト地形）</p>
 
-      <div class="trip-img-grid">
-        <div>
-          <img src="./images/pf-tr-001/IMG_5297.webp" class="trip-img" alt="松下村塾" loading="lazy">
+      <div class="trip-img-grid-wrap">
+        <div class="trip-img-grid">
+          <div>
+            <img src="./images/pf-tr-001/IMG_5297.webp" class="trip-img" alt="松下村塾" loading="lazy">
+          </div>
+          <div>
+            <img src="./images/pf-tr-001/IMG_5300.webp" class="trip-img" alt="松陰神社" loading="lazy">
+          </div>
         </div>
-        <div>
-          <img src="./images/pf-tr-001/IMG_5300.webp" class="trip-img" alt="松陰神社" loading="lazy">
+        <div class="trip-img-grid-captions">
+          <p class="trip-img-caption">松下村塾</p>
+          <p class="trip-img-caption">松陰神社</p>
         </div>
       </div>
-      <p class="trip-img-caption">左：松下村塾 ／ 右：松陰神社</p>
 
       <img src="./images/pf-tr-001/IMG_5342.webp" class="trip-img" alt="山県有朋像" loading="lazy">
       <p class="trip-img-caption">山県有朋像</p>
 
-      <div class="trip-img-grid">
-        <div>
-          <img src="./images/pf-tr-001/IMG_5360.webp" class="trip-img" alt="龍宮の潮吹(元乃隅神社)" loading="lazy">
+      <div class="trip-img-grid-wrap">
+        <div class="trip-img-grid">
+          <div>
+            <img src="./images/pf-tr-001/IMG_5360.webp" class="trip-img" alt="龍宮の潮吹(元乃隅神社)" loading="lazy">
+          </div>
+          <div>
+            <img src="./images/pf-tr-001/IMG_5368.webp" class="trip-img" alt="崖から望む日本海" loading="lazy">
+          </div>
         </div>
-        <div>
-          <img src="./images/pf-tr-001/IMG_5368.webp" class="trip-img" alt="崖から望む日本海" loading="lazy">
+        <div class="trip-img-grid-captions">
+          <p class="trip-img-caption">龍宮の潮吹（元乃隅神社）</p>
+          <p class="trip-img-caption">崖から望む日本海</p>
         </div>
       </div>
-      <p class="trip-img-caption">左：龍宮の潮吹（元乃隅神社） ／ 右：崖から望む日本海</p>
 
       <!-- ホテル -->
       <p class="trip-section-label">Hotel</p>
 
-      <div class="trip-img-grid">
-        <div>
-          <img src="./images/pf-tr-001/IMG_5288.webp" class="trip-img" alt="源泉の宿 萩本陣" loading="lazy">
+      <div class="trip-img-grid-wrap">
+        <div class="trip-img-grid">
+          <div>
+            <img src="./images/pf-tr-001/IMG_5288.webp" class="trip-img" alt="源泉の宿 萩本陣" loading="lazy">
+          </div>
+          <div>
+            <img src="./images/pf-tr-001/IMG_5313.webp" class="trip-img" alt="会席料理(一部)" loading="lazy">
+          </div>
         </div>
-        <div>
-          <img src="./images/pf-tr-001/IMG_5313.webp" class="trip-img" alt="会席料理(一部)" loading="lazy">
+        <div class="trip-img-grid-captions">
+          <p class="trip-img-caption">源泉の宿 萩本陣</p>
+          <p class="trip-img-caption">会席料理（一部）</p>
         </div>
       </div>
-      <p class="trip-img-caption">左：源泉の宿 萩本陣 ／ 右：会席料理（一部）</p>
 
       <!-- グルメ -->
       <p class="trip-section-label">Local Food</p>
 
-      <div class="trip-img-grid">
-        <div>
-          <img src="./images/pf-tr-001/IMG_5231.webp" class="trip-img" alt="瓦そば" loading="lazy">
+      <div class="trip-img-grid-wrap">
+        <div class="trip-img-grid">
+          <div>
+            <img src="./images/pf-tr-001/IMG_5231.webp" class="trip-img" alt="瓦そば" loading="lazy">
+          </div>
+          <div>
+            <img src="./images/pf-tr-001/IMG_5385.webp" class="trip-img" alt="宇部ラーメン" loading="lazy">
+          </div>
         </div>
-        <div>
-          <img src="./images/pf-tr-001/IMG_5385.webp" class="trip-img" alt="宇部ラーメン" loading="lazy">
+        <div class="trip-img-grid-captions">
+          <p class="trip-img-caption">瓦そば</p>
+          <p class="trip-img-caption">宇部ラーメン</p>
         </div>
       </div>
-      <p class="trip-img-caption">左：瓦そば ／ 右：宇部ラーメン</p>
 
     </article>
 
