@@ -11,7 +11,6 @@
   <style>
     /* ── about.html 固有スタイル ── */
 
-    /* プロフィールヒーロー */
     .profile-hero {
       display: grid;
       grid-template-columns: 200px 1fr;
@@ -32,42 +31,6 @@
       object-fit: cover;
       border: 1px solid var(--border);
       background: var(--surface);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .profile-avatar-placeholder {
-      width: 180px;
-      height: 180px;
-      border-radius: 2px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .profile-avatar-placeholder::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(
-        -45deg,
-        transparent,
-        transparent 8px,
-        rgba(30,95,168,0.04) 8px,
-        rgba(30,95,168,0.04) 9px
-      );
-    }
-    .profile-avatar-placeholder span {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.15em;
-      color: var(--border);
-      text-transform: uppercase;
-      position: relative;
-      z-index: 1;
     }
     .profile-handle {
       font-family: 'DM Mono', monospace;
@@ -102,7 +65,6 @@
     }
     .profile-intro p strong { color: var(--text); font-weight: 400; }
 
-    /* タグリスト */
     .tag-list {
       display: flex;
       flex-wrap: wrap;
@@ -120,7 +82,6 @@
       border-radius: 1px;
     }
 
-    /* アクティビティカード */
     .activity-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -160,23 +121,7 @@
       line-height: 2.2;
       color: var(--muted);
     }
-    .activity-card-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: 20px;
-      font-family: 'Shippori Mincho', serif;
-      font-size: 12px;
-      letter-spacing: 0.16em;
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px solid var(--accent-light);
-      padding-bottom: 2px;
-      transition: opacity 0.2s;
-    }
-    .activity-card-link:hover { opacity: 0.7; }
 
-    /* このサイトについて */
     .site-about-block {
       background: var(--white);
       border: 1px solid var(--border);
@@ -200,12 +145,6 @@
     .site-about-block p:last-child { margin-bottom: 0; }
     .site-about-block p strong { color: var(--text); font-weight: 400; }
 
-    /* SNSリンク */
-    .sns-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-    }
     .sns-row {
       display: flex;
       align-items: center;
@@ -222,37 +161,9 @@
       transform: translateX(4px);
       box-shadow: -3px 0 0 var(--accent);
     }
-    .sns-row-left {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .sns-row-platform {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      min-width: 96px;
-    }
-    .sns-row-handle {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 14px;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-    }
-    .sns-row-arrow {
-      font-size: 16px;
-      color: var(--border);
-      transition: color 0.25s;
-    }
-    .sns-row:hover .sns-row-arrow { color: var(--accent); }
 
     @media (max-width: 900px) {
-      .profile-hero {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
+      .profile-hero { grid-template-columns: 1fr; gap: 32px; }
       .profile-avatar-wrap { flex-direction: row; align-items: center; }
       .activity-grid { grid-template-columns: 1fr; }
       .site-about-block { padding: 32px 24px; }
@@ -266,54 +177,42 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-CRY661TJ9H');
 </script>
-  
 </head>
 <body>
 
-  <!-- ══ SIDEBAR ══ -->
   <aside class="sidebar">
     <a href="index.html" class="sidebar-logo">志<em>游</em></a>
     <p class="sidebar-tagline">～記録と記憶をここに～</p>
-
     <div class="sidebar-profile">
       <p class="profile-name">しゆ（shiyu）</p>
     </div>
-
     <ul class="sidebar-nav">
       <li><a href="index.html"><span class="nav-num">00</span>Home</a></li>
       <li><a href="#profile" class="active"><span class="nav-num">01</span>Profile</a></li>
       <li><a href="#activities"><span class="nav-num">02</span>Activities</a></li>
     </ul>
-
     <div class="sidebar-footer">
       <p>© 2026 Shiyu<br>All rights reserved.</p>
     </div>
   </aside>
 
-  <!-- ══ MAIN ══ -->
   <main class="main">
 
-    <!-- Page Header -->
     <header class="page-header">
       <p class="section-label">// About</p>
       <h1>はじめまして</h1>
       <p>このページではプロフィールや趣味・活動についてまとめています。</p>
     </header>
 
-    <!-- Profile -->
     <section class="section" id="profile">
       <p class="section-label reveal">// 01 — Profile</p>
       <h2 class="section-title reveal">プロフィール</h2>
 
       <div class="profile-hero reveal">
         <div class="profile-avatar-wrap">
-          <!-- アイコン画像を差し替える場合は下のimgタグのコメントアウトを外してsrcを変更してください -->
           <img src="./images/travel_icon.webp" alt="しゆ" class="profile-avatar">
-            <span>icon</span>
-          </div>
           <p class="profile-handle">@shiyu</p>
         </div>
 
@@ -322,62 +221,42 @@
           <p class="profile-intro-kana">Shiyu</p>
           <p>はじめまして、<strong>しゆ</strong>です。休日は日本各地の町や観光地をめぐったり、鉄道の旅をしています。</p>
           <p>太鼓の達人も嗜んでおり、YouTubeにて動画を投稿中です。旅の記録や写真、日々のことをこのサイトにまとめています。</p>
-          <!-- ↑ 自己紹介文は自由に書き換えてください -->
           <div class="tag-list">
             <span class="tag">旅行</span>
             <span class="tag">太鼓の達人</span>
             <span class="tag">YouTube</span>
             <span class="tag">鉄道</span>
-            <!-- タグは自由に追加・削除してください -->
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Activities -->
     <section class="section" id="activities">
       <p class="section-label reveal">// 02 — Activities</p>
       <h2 class="section-title reveal">趣味・活動</h2>
 
       <div class="activity-grid reveal">
-
-        <!-- 旅行 -->
         <div class="activity-card">
           <p class="activity-card-num">01</p>
           <div class="activity-card-icon">🗾</div>
           <h3>旅行・鉄道</h3>
-          <p>
-            休日を使って日本各地の町や観光地をめぐり、各地の鉄道路線の乗りつぶしも行っています。Youtubeにて動画を投稿をしていますが、ここでは動画外での旅の記録をPortfolioの写真やBlogにまとめています。
-            <!-- ↑ 旅行についての詳細を自由に書き換えてください -->
-          </p>
+          <p>休日を使って日本各地の町や観光地をめぐり、各地の鉄道路線の乗りつぶしも行っています。Youtubeにて動画を投稿をしていますが、ここでは動画外での旅の記録をPortfolioの写真やBlogにまとめています。</p>
         </div>
-
-        <!-- 太鼓の達人 -->
         <div class="activity-card">
           <p class="activity-card-num">02</p>
           <div class="activity-card-icon"><img src="./images/crown_DFC.webp" alt="虹色王冠" style="width:32px;height:32px;object-fit:contain;"></div>
           <h3>太鼓の達人</h3>
-          <p>
-            太鼓の達人を嗜んでいます。現在の虹冠数は<strong style="color:var(--text);">354</strong>です。
-            <!-- ↑ 太鼓の達人についての詳細を自由に書き換えてください -->
-          </p>
+          <p>太鼓の達人を嗜んでいます。現在の虹冠数は<strong style="color:var(--text);">354</strong>です。</p>
         </div>
-
-        <!-- YouTube -->
         <div class="activity-card">
           <p class="activity-card-num">03</p>
           <div class="activity-card-icon"><img src="./images/youtube_icon.webp" alt="YouTube" style="width:36px;height:26px;object-fit:contain;"></div>
           <h3>YouTube</h3>
-          <p>
-            旅行や鉄道の動画、太鼓の達人の動画をYouTubeにて投稿しています。チャンネルはLinksページからご覧いただけます。
-            <!-- ↑ YouTube活動についての詳細を自由に書き換えてください -->
-          </p>
+          <p>旅行や鉄道の動画、太鼓の達人の動画をYouTubeにて投稿しています。チャンネルはLinksページからご覧いただけます。</p>
         </div>
-
       </div>
     </section>
 
-    <!-- Links誘導 -->
     <section class="section">
       <div class="reveal">
         <a href="links.html" class="stat-row" style="display:flex;">
@@ -390,7 +269,6 @@
   </main>
 
   <script>
-    // ── Scroll reveal ──
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
@@ -398,8 +276,6 @@
     }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // ── サイドナビのアクティブ切り替え ──
-    const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.sidebar-nav a[href^="#"]');
     const secObserver = new IntersectionObserver(entries => {
       entries.forEach(e => {
@@ -410,7 +286,7 @@
         }
       });
     }, { threshold: 0.4 });
-    sections.forEach(s => secObserver.observe(s));
+    document.querySelectorAll('section[id]').forEach(s => secObserver.observe(s));
   </script>
 
 </body>
