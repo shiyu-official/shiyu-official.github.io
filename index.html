@@ -175,13 +175,16 @@
 
     /* 凡例（鉄道タブのみ） */
     .map-legend {
-      display: flex;
+      display: none;
       flex-wrap: wrap;
       gap: 16px;
       align-items: center;
       padding: 9px 16px;
       background: var(--surface);
       border-top: 1px solid var(--border);
+    }
+    .map-panel.active .map-legend {
+      display: flex;
     }
     .map-legend-item {
       display: flex;
@@ -956,7 +959,9 @@
     window.addEventListener('scroll', updateActiveNav, { passive: true });
     updateActiveNav();
 
+    // 両方のマップと統計を即座に初期化
     loadTravelMap();
+    initRailwayMap();
     loadStats();
     fetchLatestPost();
   </script>
