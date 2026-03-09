@@ -173,19 +173,6 @@
       box-shadow: 3px 3px 0 var(--border);
     }
 
-    /* 凡例（鉄道タブのみ） */
-    .map-legend {
-      display: none;
-      flex-wrap: wrap;
-      gap: 16px;
-      align-items: center;
-      padding: 9px 16px;
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-    }
-    .map-panel.active .map-legend {
-      display: flex;
-    }
     .map-legend-item {
       display: flex;
       align-items: center;
@@ -537,14 +524,6 @@
         <!-- 鉄道パネル（MapLibre GL） -->
         <div class="map-panel" id="panel-railway">
           <div id="railway-map"></div>
-          <div class="map-legend">
-            <div class="map-legend-item">
-              <div class="legend-line" style="background:var(--accent);"></div>乗車済み
-            </div>
-            <div class="map-legend-item">
-              <div class="legend-line" style="background:#c4bdb5;"></div>未乗
-            </div>
-          </div>
         </div>
 
         <!-- 統計バー（タブ連動） -->
@@ -698,7 +677,7 @@
       document.getElementById('panel-visited').classList.toggle('active', tab === 'visited');
       document.getElementById('panel-railway').classList.toggle('active', tab === 'railway');
       // 統計バー
-      document.getElementById('stats-header').textContent = tab === 'visited' ? 'Visited' : 'Railway (JR)';
+      document.getElementById('stats-header').textContent = tab === 'visited' ? 'Visited' : 'Railway';
       document.getElementById('stats-visited').classList.toggle('active', tab === 'visited');
       document.getElementById('stats-railway').classList.toggle('active', tab === 'railway');
       // 鉄道地図は初回タブ切り替え時に初期化
