@@ -153,6 +153,23 @@
       .post-nav-link.next { text-align: left; margin-left: 0; }
       .post-back    { padding: 24px; }
     }
+
+    /* ── スマートフォン（480px以下） ── */
+    @media (max-width: 480px) {
+      .post-header { padding: 36px 16px 32px; }
+      .post-header h1 { font-size: clamp(22px, 6vw, 32px); }
+      .post-header-excerpt { font-size: 13px; line-height: 2.1; padding-left: 12px; }
+      .post-header-meta { gap: 10px; margin-bottom: 14px; }
+
+      .post-content { padding: 32px 16px 48px; max-width: 100%; }
+      .post-content p { font-size: 14px; line-height: 2.4; margin-bottom: 24px; }
+      .post-content h2 { font-size: clamp(18px, 5vw, 24px); margin: 40px 0 18px; }
+      .post-content h3 { font-size: 15px; margin: 28px 0 12px; }
+      .post-divider { margin: 36px 0; }
+
+      .post-nav { padding: 24px 16px; gap: 16px; }
+      .post-back { padding: 16px; }
+    }
   </style>
 
 <!-- Google tag (gtag.js) -->
