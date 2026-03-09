@@ -519,29 +519,95 @@ body {
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
-/* ── モバイル ── */
+/* ── モバイル（タブレット含む） ── */
 @media (max-width: 900px) {
   body { flex-direction: column; }
   .sidebar {
-    position: relative;
+    position: sticky;
+    top: 0;
     width: 100%;
     height: auto;
-    padding: 32px 24px;
+    padding: 14px 20px;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
-    gap: 20px;
+    justify-content: space-between;
+    gap: 12px;
+    overflow: hidden;
+    z-index: 200;
   }
+  /* グラデーションラインはそのまま（::before） */
+  .sidebar-logo {
+    font-size: 22px;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+  .sidebar-logo-deco,
+  .sidebar-tagline,
   .sidebar-profile,
   .sidebar-stats,
   .sidebar-footer { display: none; }
   .sidebar-nav {
     display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
+    gap: 0;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex: 1;
   }
-  .sidebar-nav li { margin: 0; }
+  .sidebar-nav::-webkit-scrollbar { display: none; }
+  .sidebar-nav li { margin: 0; flex-shrink: 0; }
+  .sidebar-nav a {
+    padding: 7px 11px;
+    font-size: 12px;
+    border-radius: 2px;
+  }
+  .sidebar-nav a.active::before { display: none; }
+  .nav-num { display: none; }
   .main { margin-left: 0; }
   .section { padding: 56px 24px; }
   .page-header { padding: 56px 24px 48px; }
+
+  /* ブログカード */
+  .post-title { font-size: 18px; }
+  .post-body { padding: 16px 18px; }
+  .stat-row-label { font-size: 13px; }
+}
+
+/* ── スマートフォン（480px以下） ── */
+@media (max-width: 480px) {
+  .sidebar { padding: 12px 16px; }
+  .sidebar-logo { font-size: 20px; }
+  .sidebar-nav a { padding: 6px 9px; font-size: 11px; }
+
+  .section { padding: 44px 16px; }
+  .page-header { padding: 44px 16px 36px; }
+
+  /* section-label の長い装飾ラインを短縮 */
+  .section-label::after { width: 60px; }
+
+  /* ブログカード縦積み */
+  .post-card { flex-wrap: wrap; }
+  .post-date-col {
+    flex-direction: row;
+    gap: 8px;
+    min-width: 100%;
+    padding: 10px 16px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    justify-content: flex-start;
+    align-items: baseline;
+  }
+  .post-date-col .day { font-size: 20px; }
+  .post-date-col .month,
+  .post-date-col .year { font-size: 10px; }
+  .post-body { padding: 14px 16px; }
+  .post-title { font-size: 16px; }
+  .post-arrow { padding: 0 16px 14px; }
+
+  /* stat-row */
+  .stat-row { padding: 16px; }
+  .stat-row-label { font-size: 12px; letter-spacing: 0.08em; }
+  .stat-row-num { font-size: 26px; }
 }

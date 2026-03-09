@@ -301,6 +301,52 @@
       .score-don img { width: 80px; height: 80px; }
       .score-info { padding: 20px; }
     }
+
+    /* ── スマートフォン（index.html固有） ── */
+    @media (max-width: 480px) {
+      /* Hero */
+      .section-hero {
+        padding: 36px 16px 40px;
+        min-height: calc(100vh - 52px);
+      }
+      .hero-eyebrow { font-size: 11px; margin-bottom: 20px; }
+      .hero-desc {
+        font-size: 13px;
+        line-height: 2.1;
+        padding-left: 14px;
+        margin-bottom: 36px;
+      }
+      .hero-cta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .btn-primary { width: 100%; justify-content: center; }
+
+      /* Travel Map */
+      #travel-map { height: 280px; }
+      .map-stat-num { font-size: 22px; }
+      .map-stat { padding: 12px 8px; }
+
+      /* Score Card — 縦積みに */
+      .score-card { flex-direction: column; }
+      .score-don {
+        width: 100%;
+        min-width: unset;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 20px;
+      }
+      .score-don img { width: 80px; height: 80px; }
+      .score-info { padding: 20px; gap: 14px; }
+      .crown-count { font-size: 36px; }
+      .score-footer { flex-direction: column; align-items: flex-start; }
+
+      /* About */
+      .about-body { gap: 32px; }
+      .about-text p { font-size: 13px; }
+      .about-stat-row { padding: 16px; }
+    }
   </style>
 
   <!-- Google tag (gtag.js) -->
