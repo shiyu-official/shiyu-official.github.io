@@ -826,15 +826,15 @@
 
       const addLayers = () => {
         if (map.getSource('railway')) return;
-        map.addSource('railway', { type: 'geojson', data: geojson });
+        map.addSource('jr_railway', { type: 'geojson', data: geojson });
 
         map.addLayer({
-          id: 'rr-unridden', type: 'line', source: 'railway',
+          id: 'rr-unridden', type: 'line', source: 'jr_railway',
           filter: ['==', ['get', 'status'], 'unridden'],
           paint: { 'line-color': '#c4bdb5', 'line-width': 1.0, 'line-opacity': 0.6 }
         });
         map.addLayer({
-          id: 'rr-ridden', type: 'line', source: 'railway',
+          id: 'rr-ridden', type: 'line', source: 'jr_railway',
           filter: ['==', ['get', 'status'], 'ridden'],
           paint: { 'line-color': '#1e5fa8', 'line-width': 2.0, 'line-opacity': 0.88 }
         });
