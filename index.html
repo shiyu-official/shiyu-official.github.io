@@ -447,15 +447,18 @@
 
     <div class="sidebar-stats">
       <div class="sidebar-stat-group">
-        <div class="sidebar-stat-group-label">Visited</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+          <div class="sidebar-stat-group-label">Visited</div>
+          <div class="sidebar-stat-group-label">Railway</div>
+        </div>
         <div class="sidebar-stat-group-inner">
-          <div class="sidebar-stat">
-            <div class="sidebar-stat-num" id="side-stat-prefs">—</div>
-            <div class="sidebar-stat-label">都道府県</div>
-          </div>
           <div class="sidebar-stat">
             <div class="sidebar-stat-num" id="side-stat-cities">—</div>
             <div class="sidebar-stat-label">市区町村</div>
+          </div>
+          <div class="sidebar-stat">
+            <div class="sidebar-stat-num" id="side-stat-lines">—</div>
+            <div class="sidebar-stat-label">路線 (JR)</div>
           </div>
         </div>
       </div>
@@ -519,8 +522,8 @@
 
         <!-- タブ -->
         <div class="map-tabs">
-          <button class="map-tab active" id="tab-visited" onclick="switchMapTab('visited')">訪問地図</button>
-          <button class="map-tab" id="tab-railway" onclick="switchMapTab('railway')">乗りつぶし</button>
+          <button class="map-tab active" id="tab-visited" onclick="switchMapTab('visited')">市区町村</button>
+          <button class="map-tab" id="tab-railway" onclick="switchMapTab('railway')">乗りつぶし（JR）</button>
         </div>
 
         <!-- 訪問地図パネル（既存Leafletそのまま） -->
@@ -692,15 +695,9 @@
       document.getElementById('panel-visited').classList.toggle('active', tab === 'visited');
       document.getElementById('panel-railway').classList.toggle('active', tab === 'railway');
       // 統計バー
-      document.getElementById('stats-header').textContent = tab === 'visited' ? 'Visited' : 'Railway';
+      document.getElementById('stats-header').textContent = tab === 'visited' ? 'Visited' : 'Railway (JR)';
       document.getElementById('stats-visited').classList.toggle('active', tab === 'visited');
       document.getElementById('stats-railway').classList.toggle('active', tab === 'railway');
-      // サイドバー統計（訪問タブのときだけ都道府県・市区町村を表示）
-      const showVisit = tab === 'visited';
-      ['side-stat-prefs','side-stat-cities'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.closest('.sidebar-stat').style.display = showVisit ? '' : 'none';
-      });
       // 鉄道地図は初回タブ切り替え時に初期化
       if (tab === 'railway' && !railwayMapInited) {
         railwayMapInited = true;
@@ -802,78 +799,70 @@
       map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
       map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-right');
 
-      // 鉄道統計を読み込んで表示
-      try {
-        const statsRes = await fetch('./railway_stats.json');
-        if (statsRes.ok) {
-          const stats = await statsRes.json();
-          const lineEl = document.getElementById('map-stat-lines');
-          const kmEl   = document.getElementById('map-stat-km');
-          if (lineEl) lineEl.textContent = stats.ridden_lines ?? '—';
-          if (kmEl)   kmEl.textContent   = stats.total_ridden_km != null
-            ? Math.round(stats.total_ridden_km).toLocaleString()
-            : '—';
-        }
-      } catch {}
+      // 統計JSONとGeoJSONを並行取得（mapのloadと独立）
+      const [statsData, rrGj] = await Promise.allSettled([
+        fetch('./railway_stats.json').then(r => r.ok ? r.json() : null).catch(() => null),
+        fetch('./railway_status.geojson').then(r => r.ok ? r.json() : null).catch(() => null)
+      ]);
 
-      map.on('load', async () => {
-        try {
-          const rrRes = await fetch('./railway_status.geojson');
-          if (!rrRes.ok) throw new Error();
-          const rrGj = await rrRes.json();
+      // 統計表示
+      const stats = statsData.value;
+      if (stats) {
+        const lineEl = document.getElementById('map-stat-lines');
+        const kmEl   = document.getElementById('map-stat-km');
+        const sideEl = document.getElementById('side-stat-lines');
+        if (lineEl) lineEl.textContent = stats.ridden_lines ?? '—';
+        if (kmEl)   kmEl.textContent   = stats.total_ridden_km != null ? Math.round(stats.total_ridden_km).toLocaleString() : '—';
+        if (sideEl) sideEl.textContent = stats.ridden_lines ?? '—';
+      }
 
-          map.addSource('railway', { type: 'geojson', data: rrGj });
+      // 路線GeoJSON — mapのloadイベントを待って追加
+      const geojson = rrGj.value;
+      if (!geojson) {
+        document.getElementById('railway-map').insertAdjacentHTML('afterend',
+          `<p style="font-family:'Shippori Mincho',serif;font-size:12px;letter-spacing:.15em;color:var(--muted);padding:16px;">railway_status.geojson を配置してください</p>`);
+        return;
+      }
 
-          // 未乗（グレー・細）
-          map.addLayer({
-            id: 'rr-unridden',
-            type: 'line',
-            source: 'railway',
-            filter: ['==', ['get', 'status'], 'unridden'],
-            paint: { 'line-color': '#c4bdb5', 'line-width': 1.0, 'line-opacity': 0.6 }
+      const addLayers = () => {
+        if (map.getSource('railway')) return;
+        map.addSource('railway', { type: 'geojson', data: geojson });
+
+        map.addLayer({
+          id: 'rr-unridden', type: 'line', source: 'railway',
+          filter: ['==', ['get', 'status'], 'unridden'],
+          paint: { 'line-color': '#c4bdb5', 'line-width': 1.0, 'line-opacity': 0.6 }
+        });
+        map.addLayer({
+          id: 'rr-ridden', type: 'line', source: 'railway',
+          filter: ['==', ['get', 'status'], 'ridden'],
+          paint: { 'line-color': '#1e5fa8', 'line-width': 2.0, 'line-opacity': 0.88 }
+        });
+
+        const popup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 6 });
+        ['rr-ridden', 'rr-unridden'].forEach(layerId => {
+          map.on('mousemove', layerId, e => {
+            map.getCanvas().style.cursor = 'pointer';
+            const p = e.features[0].properties;
+            const badge = p.status === 'ridden'
+              ? `<span style="color:#1e5fa8;font-size:10px;font-family:'DM Mono',monospace;">● 乗車済</span>`
+              : `<span style="color:#8a8070;font-size:10px;font-family:'DM Mono',monospace;">○ 未乗</span>`;
+            popup.setLngLat(e.lngLat)
+              .setHTML(`<strong style="font-family:'Shippori Mincho',serif;letter-spacing:.08em;">${p.line}</strong><br>${badge}`)
+              .addTo(map);
           });
-
-          // 乗車済み（アクセント・太）
-          map.addLayer({
-            id: 'rr-ridden',
-            type: 'line',
-            source: 'railway',
-            filter: ['==', ['get', 'status'], 'ridden'],
-            paint: { 'line-color': '#1e5fa8', 'line-width': 2.0, 'line-opacity': 0.88 }
+          map.on('mouseleave', layerId, () => {
+            map.getCanvas().style.cursor = '';
+            popup.remove();
           });
+        });
+      };
 
-          // ホバーポップアップ
-          const popup = new maplibregl.Popup({
-            closeButton: false, closeOnClick: false, offset: 6,
-            className: 'rr-popup'
-          });
-
-          ['rr-ridden', 'rr-unridden'].forEach(layerId => {
-            map.on('mousemove', layerId, e => {
-              map.getCanvas().style.cursor = 'pointer';
-              const p = e.features[0].properties;
-              const badge = p.status === 'ridden'
-                ? `<span style="color:var(--accent,#1e5fa8);font-size:10px;">● 乗車済</span>`
-                : `<span style="color:#8a8070;font-size:10px;">○ 未乗</span>`;
-              popup.setLngLat(e.lngLat)
-                .setHTML(`<strong style="font-family:'Shippori Mincho',serif;letter-spacing:.08em;">${p.line}</strong><br>${badge}`)
-                .addTo(map);
-            });
-            map.on('mouseleave', layerId, () => {
-              map.getCanvas().style.cursor = '';
-              popup.remove();
-            });
-          });
-
-        } catch (e) {
-          document.getElementById('railway-map').innerHTML =
-            `<div style="display:flex;align-items:center;justify-content:center;height:100%;background:var(--surface,#f0ede6);">
-              <p style="font-family:'Shippori Mincho',serif;font-size:12px;letter-spacing:.15em;color:#8a8070;text-align:center;line-height:2.2;">
-                railway_status.geojson を<br>リポジトリに追加してください
-              </p>
-            </div>`;
-        }
-      });
+      if (map.loaded()) {
+        addLayers();
+      } else {
+        map.on('load', addLayers);
+      }
     }
 
     // ══════════════════════════════════════
