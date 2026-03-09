@@ -79,6 +79,50 @@
     @media (max-width: 900px) {
       .filter-bar { gap: 6px; }
     }
+
+    /* ── スマートフォン（480px以下） ── */
+    @media (max-width: 480px) {
+      /* フィルターバーを横スクロールに */
+      .filter-bar {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 6px;
+        padding-bottom: 4px;
+        margin-bottom: 28px;
+      }
+      .filter-bar::-webkit-scrollbar { display: none; }
+      .filter-btn {
+        flex-shrink: 0;
+        font-size: 9px;
+        padding: 6px 12px;
+        white-space: nowrap;
+      }
+
+      /* 件数テキスト */
+      .post-count { font-size: 9px; margin-bottom: 16px; }
+
+      /* ブログカード縦積み */
+      .post-card { flex-wrap: wrap; }
+      .post-date-col {
+        flex-direction: row;
+        gap: 8px;
+        min-width: 100%;
+        padding: 10px 16px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        justify-content: flex-start;
+        align-items: baseline;
+      }
+      .post-date-col .day { font-size: 20px; }
+      .post-date-col .month,
+      .post-date-col .year { font-size: 10px; }
+      .post-body { padding: 14px 16px; }
+      .post-title { font-size: 17px; }
+      .post-excerpt { font-size: 13px; line-height: 1.9; }
+      .post-arrow { padding: 0 16px 14px; }
+    }
   </style>
 
 <!-- Google tag (gtag.js) -->
