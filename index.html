@@ -7,8 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@300;400&family=DM+Mono&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css"/>
-  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
   <link rel="stylesheet" href="./style.css">
   <style>
     /* index.html 固有スタイル */
@@ -109,133 +109,36 @@
     }
 
     /* ── TRAVEL MAP ── */
-
-    /* タブ */
-    .map-tabs {
-      display: flex;
-      gap: 0;
-      border: 1px solid var(--border);
-      border-bottom: none;
-      width: fit-content;
-      margin-bottom: 0;
-    }
-    .map-tab {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding: 10px 24px;
-      cursor: pointer;
-      background: var(--surface);
-      border: none;
-      border-right: 1px solid var(--border);
-      transition: color 0.2s, background 0.2s;
-      position: relative;
-    }
-    .map-tab:last-child { border-right: none; }
-    .map-tab.active {
-      color: var(--accent);
-      background: var(--white);
-    }
-    .map-tab.active::after {
-      content: '';
-      position: absolute;
-      bottom: -1px; left: 0; right: 0;
-      height: 1px;
-      background: var(--white);
-    }
-
-    /* タブパネル */
-    .map-panel {
-      display: none;
-      border: 1px solid var(--border);
-    }
-    .map-panel.active { display: block; }
-
-    /* 地図 */
     #travel-map {
       width: 100%;
-      height: 480px;
-    }
-    .maplibregl-map { font-family: 'Noto Sans JP', sans-serif; }
-    .maplibregl-ctrl-group {
-      border: 1px solid var(--border) !important;
-      border-radius: 1px !important;
-      box-shadow: none !important;
-    }
-    .maplibregl-ctrl-group button {
-      border-bottom: 1px solid var(--border) !important;
-    }
-
-    /* 凡例 */
-    .map-legend {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-      padding: 10px 16px;
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-    }
-    .map-legend-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .map-legend-line {
-      width: 24px;
-      height: 3px;
-      border-radius: 2px;
-    }
-    .map-legend-fill {
-      width: 14px;
-      height: 14px;
+      height: 440px;
       border-radius: 1px;
-      opacity: 0.5;
+      margin-bottom: 24px;
     }
-
-    /* VISITED リスト */
-    .visited-panel {
-      padding: 24px 28px;
-      max-height: 480px;
-      overflow-y: auto;
-    }
-    .visited-pref-group { margin-bottom: 28px; }
-    .visited-pref-name {
+    .leaflet-container {
       font-family: 'Shippori Mincho', serif;
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      color: var(--accent);
-      margin-bottom: 10px;
-      padding-bottom: 6px;
-      border-bottom: 1px solid var(--accent-pale);
+      background: var(--surface);
     }
-    .visited-city-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
+    .leaflet-control-zoom a {
+      color: var(--text) !important;
+      border-color: var(--border) !important;
     }
-    .visited-city-tag {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
+    .leaflet-popup-content-wrapper {
+      border-radius: 2px !important;
+      box-shadow: 3px 3px 0 var(--border) !important;
+      border: 1px solid var(--border);
+    }
+    .leaflet-popup-content {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 12px;
       letter-spacing: 0.1em;
       color: var(--text);
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 4px 10px;
-      border-radius: 1px;
+      margin: 10px 14px !important;
+      line-height: 1.8;
     }
 
-    /* 統計バー */
     .map-stats-wrap {
       border: 1px solid var(--border);
-      border-top: none;
     }
     .map-stats-header {
       background: var(--surface);
@@ -421,10 +324,9 @@
       .btn-primary { width: 100%; justify-content: center; }
 
       /* Travel Map */
-      #travel-map { height: 320px; }
+      #travel-map { height: 280px; }
       .map-stat-num { font-size: 22px; }
       .map-stat { padding: 12px 8px; }
-      .visited-panel { padding: 16px; max-height: 320px; }
 
       /* Score Card — 縦積みに */
       .score-card { flex-direction: column; }
@@ -548,39 +450,7 @@
       <p class="section-label reveal">// 01 — Travel Map</p>
       <h2 class="section-title reveal">旅の足跡</h2>
       <div class="reveal">
-        <!-- タブ -->
-        <div class="map-tabs">
-          <button class="map-tab active" onclick="switchTab('map')">地図</button>
-          <button class="map-tab" onclick="switchTab('visited')">Visited</button>
-        </div>
-
-        <!-- 地図パネル -->
-        <div class="map-panel active" id="panel-map">
-          <div id="travel-map"></div>
-          <div class="map-legend">
-            <div class="map-legend-item">
-              <div class="map-legend-fill" style="background:var(--accent);"></div>
-              訪問済み市区町村
-            </div>
-            <div class="map-legend-item">
-              <div class="map-legend-line" style="background:var(--accent);"></div>
-              乗車済み路線
-            </div>
-            <div class="map-legend-item">
-              <div class="map-legend-line" style="background:var(--border);"></div>
-              未乗路線
-            </div>
-          </div>
-        </div>
-
-        <!-- VISITEDパネル -->
-        <div class="map-panel" id="panel-visited">
-          <div class="visited-panel" id="visited-list">
-            <p style="font-family:'Shippori Mincho',serif;font-size:13px;letter-spacing:0.15em;color:var(--muted);">読み込み中...</p>
-          </div>
-        </div>
-
-        <!-- 統計 -->
+        <div id="travel-map"></div>
         <div class="map-stats-wrap">
           <div class="map-stats-header">Visited</div>
           <div class="map-stats">
@@ -703,214 +573,61 @@
   </main>
 
   <script>
-    // ── タブ切り替え ──
-    function switchTab(tab) {
-      document.querySelectorAll('.map-tab').forEach((btn, i) => {
-        btn.classList.toggle('active', (i === 0 && tab === 'map') || (i === 1 && tab === 'visited'));
-      });
-      document.getElementById('panel-map').classList.toggle('active', tab === 'map');
-      document.getElementById('panel-visited').classList.toggle('active', tab === 'visited');
-      if (tab === 'map' && window._map) {
-        setTimeout(() => window._map.resize(), 50);
-      }
-    }
-
-    // ── Travel Map (MapLibre GL) ──
+    // ── Travel Map ──
     async function loadTravelMap() {
-      const map = new maplibregl.Map({
-        container: 'travel-map',
-        style: {
-          version: 8,
-          sources: {
-            'carto': {
-              type: 'raster',
-              tiles: ['https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
-                      'https://b.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png'],
-              tileSize: 256,
-              attribution: '© <a href="https://openstreetmap.org">OSM</a> © <a href="https://carto.com">CARTO</a>'
-            }
-          },
-          layers: [{ id: 'carto-tiles', type: 'raster', source: 'carto' }]
-        },
-        center: [137.5, 36.5],
+      const map = L.map('travel-map', {
+        center: [36.5, 137.5],
         zoom: 4,
+        zoomControl: true,
+        scrollWheelZoom: true,
         attributionControl: false
       });
-      window._map = map;
 
-      map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
-      map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-right');
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.webp').addTo(map);
+      L.control.attribution({ position: 'bottomright', prefix: false })
+        .addAttribution('© <a href="https://openstreetmap.org">OSM</a> © <a href="https://carto.com">CARTO</a>')
+        .addTo(map);
 
-      map.on('load', async () => {
-        // 路線GeoJSON
-        try {
-          const rrRes = await fetch('./railway_status.geojson');
-          if (rrRes.ok) {
-            const rrGj = await rrRes.json();
-            map.addSource('railway', { type: 'geojson', data: rrGj });
+      try {
+        const res = await fetch('./travel.geojson');
+        if (!res.ok) throw new Error();
+        const geojson = await res.json();
 
-            // 未乗路線（薄いグレー）
-            map.addLayer({
-              id: 'railway-unridden',
-              type: 'line',
-              source: 'railway',
-              filter: ['==', ['get', 'status'], 'unridden'],
-              paint: {
-                'line-color': '#c8c0b4',
-                'line-width': 1.2,
-                'line-opacity': 0.55
-              }
-            });
-
-            // 乗車済み路線（アクセントカラー）
-            map.addLayer({
-              id: 'railway-ridden',
-              type: 'line',
-              source: 'railway',
-              filter: ['==', ['get', 'status'], 'ridden'],
-              paint: {
-                'line-color': '#1e5fa8',
-                'line-width': 2.2,
-                'line-opacity': 0.9
-              }
-            });
-
-            // ホバーでツールチップ
-            const popup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 6 });
-            map.on('mousemove', 'railway-ridden', (e) => {
-              map.getCanvas().style.cursor = 'pointer';
-              const props = e.features[0].properties;
-              popup.setLngLat(e.lngLat)
-                .setHTML(`<strong style="font-family:'Shippori Mincho',serif;font-size:12px;letter-spacing:0.1em;">${props.line}</strong><br><span style="font-size:10px;color:#8a8070;">${props.operator}</span>`)
-                .addTo(map);
-            });
-            map.on('mouseleave', 'railway-ridden', () => {
-              map.getCanvas().style.cursor = '';
-              popup.remove();
-            });
-            map.on('mousemove', 'railway-unridden', (e) => {
-              map.getCanvas().style.cursor = 'default';
-              const props = e.features[0].properties;
-              popup.setLngLat(e.lngLat)
-                .setHTML(`<strong style="font-family:'Shippori Mincho',serif;font-size:12px;letter-spacing:0.1em;">${props.line}</strong><br><span style="font-size:10px;color:#8a8070;">${props.operator} — 未乗</span>`)
-                .addTo(map);
-            });
-            map.on('mouseleave', 'railway-unridden', () => {
-              map.getCanvas().style.cursor = '';
-              popup.remove();
-            });
-          }
-        } catch (e) { console.warn('railway_status.geojson の読み込み失敗', e); }
-
-        // 市区町村GeoJSON
-        try {
-          const tvRes = await fetch('./travel.geojson');
-          if (!tvRes.ok) throw new Error();
-          const tvGj = await tvRes.json();
-
-          map.addSource('travel', { type: 'geojson', data: tvGj });
-          map.addLayer({
-            id: 'travel-fill',
-            type: 'fill',
-            source: 'travel',
-            paint: { 'fill-color': '#1e5fa8', 'fill-opacity': 0.28 }
-          });
-          map.addLayer({
-            id: 'travel-outline',
-            type: 'line',
-            source: 'travel',
-            paint: { 'line-color': '#1e5fa8', 'line-width': 0.7, 'line-opacity': 0.55 }
-          });
-
-          // ホバー
-          map.on('mousemove', 'travel-fill', (e) => {
-            map.getCanvas().style.cursor = 'pointer';
-            const props = e.features[0].properties;
-            const pref = props.KEN || '';
+        const layer = L.geoJSON(geojson, {
+          style: { color: '#1e5fa8', weight: 0.8, opacity: 0.6, fillColor: '#1e5fa8', fillOpacity: 0.32 },
+          onEachFeature: (feature, layer) => {
+            const props  = feature.properties;
+            const pref   = props.KEN || '';
             const seirei = props.SEIREI || '';
-            const city = props.SIKUCHOSON ? (seirei ? `${seirei} ${props.SIKUCHOSON}` : props.SIKUCHOSON) : (seirei || '');
-            const popup2 = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 6 });
-            popup2.setLngLat(e.lngLat)
-              .setHTML(`<strong style="font-family:'Shippori Mincho',serif;font-size:12px;letter-spacing:0.1em;">${city}</strong>${pref ? `<br><span style="font-size:10px;color:#8a8070;">${pref}</span>` : ''}`)
-              .addTo(map);
-            map._visitedPopup = popup2;
-          });
-          map.on('mouseleave', 'travel-fill', () => {
-            map.getCanvas().style.cursor = '';
-            if (map._visitedPopup) { map._visitedPopup.remove(); map._visitedPopup = null; }
-          });
-
-          // 統計・VISITEDリスト生成
-          const cityCount = tvGj.features ? tvGj.features.length : 0;
-          const prefCount = tvGj.features
-            ? new Set(tvGj.features.map(f => f.properties.KEN).filter(Boolean)).size : 0;
-
-          ['map-stat-prefs','side-stat-prefs'].forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.textContent = prefCount || '—';
-          });
-          ['map-stat-cities','side-stat-cities'].forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.textContent = cityCount || '—';
-          });
-
-          // VISITEDリスト（都道府県グループ）
-          buildVisitedList(tvGj.features);
-
-          // bounds fit
-          const lngs = tvGj.features.flatMap(f => {
-            const geom = f.geometry;
-            const pts = geom.type === 'Polygon' ? geom.coordinates[0]
-              : geom.type === 'MultiPolygon' ? geom.coordinates.flatMap(p => p[0]) : [];
-            return pts.map(p => p[0]);
-          });
-          const lats = tvGj.features.flatMap(f => {
-            const geom = f.geometry;
-            const pts = geom.type === 'Polygon' ? geom.coordinates[0]
-              : geom.type === 'MultiPolygon' ? geom.coordinates.flatMap(p => p[0]) : [];
-            return pts.map(p => p[1]);
-          });
-          if (lngs.length) {
-            map.fitBounds([[Math.min(...lngs), Math.min(...lats)], [Math.max(...lngs), Math.max(...lats)]], { padding: 24, maxZoom: 10 });
+            const city   = props.SIKUCHOSON
+              ? (seirei ? `${seirei} ${props.SIKUCHOSON}` : props.SIKUCHOSON)
+              : (seirei || '');
+            layer.bindTooltip(`<strong>${city}</strong>${pref ? `<br>${pref}` : ''}`, { sticky: true });
+            layer.on('mouseover', function() { this.setStyle({ fillOpacity: 0.6, weight: 1.5 }); });
+            layer.on('mouseout',  function() { this.setStyle({ fillOpacity: 0.32, weight: 0.8 }); });
           }
+        }).addTo(map);
 
-        } catch {
-          document.getElementById('travel-map').insertAdjacentHTML('afterend',
-            `<p style="font-family:'Shippori Mincho',serif;font-size:12px;letter-spacing:0.15em;color:var(--muted);padding:16px;">travel.geojson をリポジトリに追加してください</p>`);
-        }
-      });
-    }
+        map.fitBounds(layer.getBounds(), { padding: [8, 8] });
 
-    // ── VISITEDリスト構築 ──
-    function buildVisitedList(features) {
-      const container = document.getElementById('visited-list');
-      if (!features || !features.length) {
-        container.innerHTML = '<p style="font-family:\'Shippori Mincho\',serif;font-size:13px;color:var(--muted);">データなし</p>';
-        return;
+        const cityCount = geojson.features ? geojson.features.length : 0;
+        const prefCount = geojson.features
+          ? new Set(geojson.features.map(f => f.properties.KEN).filter(Boolean)).size : 0;
+
+        ['map-stat-prefs','side-stat-prefs'].forEach(id => {
+          document.getElementById(id).textContent = prefCount || '—';
+        });
+        ['map-stat-cities','side-stat-cities'].forEach(id => {
+          document.getElementById(id).textContent = cityCount || '—';
+        });
+      } catch {
+        document.getElementById('travel-map').innerHTML =
+          `<div style="display:flex;align-items:center;justify-content:center;height:100%;background:var(--surface);">
+            <p style="font-family:'Shippori Mincho',serif;font-size:12px;letter-spacing:0.15em;color:var(--muted);text-align:center;line-height:2.2;">
+              travel.geojson を<br>リポジトリに追加してください
+            </p>
+          </div>`;
       }
-      // 都道府県ごとにグループ化
-      const byPref = {};
-      features.forEach(f => {
-        const pref = f.properties.KEN || '（不明）';
-        const seirei = f.properties.SEIREI || '';
-        const city = f.properties.SIKUCHOSON
-          ? (seirei ? `${seirei} ${f.properties.SIKUCHOSON}` : f.properties.SIKUCHOSON)
-          : (seirei || '');
-        if (!byPref[pref]) byPref[pref] = [];
-        if (city) byPref[pref].push(city);
-      });
-
-      const html = Object.entries(byPref)
-        .sort(([a], [b]) => a.localeCompare(b, 'ja'))
-        .map(([pref, cities]) => `
-          <div class="visited-pref-group">
-            <div class="visited-pref-name">${pref}</div>
-            <div class="visited-city-list">
-              ${[...new Set(cities)].sort((a, b) => a.localeCompare(b, 'ja'))
-                .map(c => `<span class="visited-city-tag">${c}</span>`).join('')}
-            </div>
-          </div>`).join('');
-      container.innerHTML = html || '<p style="font-family:\'Shippori Mincho\',serif;font-size:13px;color:var(--muted);">データなし</p>';
     }
 
     // ── コンテンツ数取得 ──
@@ -942,12 +659,15 @@
         const items = doc.querySelectorAll('.post-card');
         if (!items.length) throw new Error();
 
+        // blog-itemの中身をリスト形式のpost-cardに変換
         const item = items[0];
         const card = document.createElement('a');
         card.href = item.getAttribute('href');
         card.className = 'post-card';
 
-        const dateCol = item.querySelector('.post-date-col').cloneNode(true);
+        // 日付を取得
+　　　　 const dateCol = item.querySelector('.post-date-col').cloneNode(true);
+
         const body = document.createElement('div');
         body.className = 'post-body';
         item.querySelectorAll('.post-arrow').forEach(el => el.remove());
@@ -983,13 +703,16 @@
       const scrollY = window.scrollY;
       const windowH = window.innerHeight;
       let currentId = null;
+
       sections.forEach(section => {
         const top = section.offsetTop;
         const bottom = top + section.offsetHeight;
+        // セクションの上端がビューポートの60%以内に入ったらアクティブ
         if (scrollY + windowH * 0.4 >= top && scrollY < bottom) {
           currentId = section.id;
         }
       });
+
       navLinks.forEach(a => {
         a.classList.toggle('active', a.getAttribute('href') === `#${currentId}`);
       });
