@@ -155,6 +155,57 @@
       transition: color 0.2s;
     }
     .back-link:hover { color: var(--accent); }
+
+    /* ── スマートフォン（480px以下） ── */
+    @media (max-width: 480px) {
+      /* コンテンツエリア */
+      .trip-content {
+        padding: 32px 16px 48px;
+        max-width: 100%;
+      }
+
+      /* セクション見出し */
+      .trip-section-label {
+        font-size: 13px;
+        margin-top: 40px;
+        margin-bottom: 18px;
+      }
+
+      /* 2カラム → 1カラムに */
+      .trip-img-grid {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+      .trip-img-grid-captions {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      /* 3カラム → 1カラムに */
+      .trip-img-grid-3 {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+      .trip-img-grid-3 .trip-img { aspect-ratio: 16/9; }
+
+      /* キャプション */
+      .trip-img-caption { font-size: 11px; margin-bottom: 24px; }
+
+      /* 前後ナビ */
+      .trip-nav {
+        flex-direction: column;
+        gap: 20px;
+        padding: 28px 16px 48px;
+      }
+      .trip-nav-link.next { text-align: left; margin-left: 0; }
+
+      /* 戻るリンク */
+      .back-link { padding: 0 16px 28px; }
+
+      /* メタバー */
+      .trip-meta-bar { gap: 8px; flex-direction: column; align-items: flex-start; }
+      .trip-meta-route { font-size: 10px; line-height: 1.8; }
+    }
   </style>
 
   <!-- Google tag (gtag.js) -->
