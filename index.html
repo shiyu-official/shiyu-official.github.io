@@ -755,6 +755,10 @@
     //  鉄道地図（MapLibre GL）
     // ══════════════════════════════════════
     async function initRailwayMap() {
+      // GeoJSONが大きい（約8MB・13,000 feature）ため
+      // WebWorkerを増やしてタイル処理の取りこぼしを防ぐ
+      maplibregl.workerCount = 4;
+
       const map = new maplibregl.Map({
         container: 'railway-map',
         style: {
@@ -808,15 +812,23 @@
 
       const addLayers = () => {
         if (map.getSource('railway')) return;
-        map.addSource('jr_railway', { type: 'geojson', data: geojson });
+        map.addSource('railway', {
+          type: 'geojson',
+          data: geojson,
+          generateId: true,   // 各featureに内部IDを付与（描画漏れ防止）
+          tolerance: 0.375,   // ズーム別間引きを安定させる
+          buffer: 128,        // タイル境界での切れを防ぐ（デフォルト64→128）
+          lineMetrics: false,
+          maxzoom: 14         // 高ズームでも詳細データを保持
+        });
 
         map.addLayer({
-          id: 'rr-unridden', type: 'line', source: 'jr_railway',
+          id: 'rr-unridden', type: 'line', source: 'railway',
           filter: ['==', ['get', 'status'], 'unridden'],
           paint: { 'line-color': '#c4bdb5', 'line-width': 1.0, 'line-opacity': 0.6 }
         });
         map.addLayer({
-          id: 'rr-ridden', type: 'line', source: 'jr_railway',
+          id: 'rr-ridden', type: 'line', source: 'railway',
           filter: ['==', ['get', 'status'], 'ridden'],
           paint: { 'line-color': '#1e5fa8', 'line-width': 2.0, 'line-opacity': 0.88 }
         });
