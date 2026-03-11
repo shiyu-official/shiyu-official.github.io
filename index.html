@@ -10,8 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@300;400&family=DM+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css"/>
-  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
   <link rel="stylesheet" href="./style.css">
   <style>
     /* index.html 固有スタイル */
@@ -155,15 +153,16 @@
       width: 100%;
       height: 460px;
     }
-    .maplibregl-ctrl-group {
+    .leaflet-control-zoom {
       border: 1px solid var(--border) !important;
       border-radius: 1px !important;
       box-shadow: none !important;
     }
-    .maplibregl-ctrl-group button {
+    .leaflet-control-zoom a {
       border-bottom: 1px solid var(--border) !important;
+      color: var(--text) !important;
     }
-    .maplibregl-popup-content {
+    .leaflet-tooltip {
       font-family: 'Shippori Mincho', serif;
       font-size: 12px;
       letter-spacing: 0.1em;
@@ -172,6 +171,7 @@
       border-radius: 1px;
       border: 1px solid var(--border);
       box-shadow: 3px 3px 0 var(--border);
+      background: white;
     }
 
     .map-legend-item {
@@ -526,7 +526,7 @@
           <div id="travel-map"></div>
         </div>
 
-        <!-- 鉄道パネル（MapLibre GL） -->
+        <!-- 鉄道パネル（Leaflet / SVG直接描画） -->
         <div class="map-panel" id="panel-railway">
           <div id="railway-map"></div>
         </div>
@@ -757,40 +757,28 @@
     }
 
     // ══════════════════════════════════════
-    //  鉄道地図（MapLibre GL）
+    //  鉄道地図（Leaflet — SVG直接描画）
+    //  LeafletはGeoJSONをSVGで直接描画するため、
+    //  短いfeatureも全zoom levelで確実に表示される（QGIS同等）。
     // ══════════════════════════════════════
     async function initRailwayMap() {
-      // GeoJSONが大きい（約8MB・13,000 feature）ため
-      // WebWorkerを増やしてタイル処理の取りこぼしを防ぐ
-      maplibregl.workerCount = 4;
-
-      const map = new maplibregl.Map({
-        container: 'railway-map',
-        style: {
-          version: 8,
-          sources: {
-            carto: {
-              type: 'raster',
-              tiles: [
-                'https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
-                'https://b.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png'
-              ],
-              tileSize: 256,
-              attribution: '© <a href="https://openstreetmap.org">OSM</a> © <a href="https://carto.com">CARTO</a>'
-            }
-          },
-          layers: [{ id: 'carto', type: 'raster', source: 'carto' }]
-        },
-        center: [137.5, 36.5],
-        zoom: 4,
+      const map = L.map('railway-map', {
+        center: [36.5, 137.5],
+        zoom: 5,
+        zoomControl: false,
         attributionControl: false
       });
       window._rrMap = map;
 
-      map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
-      map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-right');
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+        subdomains: 'abcd',
+        attribution: '© <a href="https://openstreetmap.org">OSM</a> © <a href="https://carto.com">CARTO</a>'
+      }).addTo(map);
 
-      // 統計JSONとGeoJSONを並行取得（mapのloadと独立）
+      L.control.zoom({ position: 'topright' }).addTo(map);
+      L.control.attribution({ position: 'bottomright', prefix: false }).addTo(map);
+
+      // 統計JSONとGeoJSONを並行取得
       const [statsData, rrGj] = await Promise.allSettled([
         fetch('./railway_stats.json').then(r => r.ok ? r.json() : null).catch(() => null),
         fetch('./railway_status.geojson').then(r => r.ok ? r.json() : null).catch(() => null)
@@ -807,7 +795,7 @@
         if (sideEl) sideEl.textContent = stats.ridden_lines ?? '—';
       }
 
-      // 路線GeoJSON — mapのloadイベントを待って追加
+      // 路線GeoJSON — LeafletのGeoJSONレイヤーで直接描画
       const geojson = rrGj.value;
       if (!geojson) {
         document.getElementById('railway-map').insertAdjacentHTML('afterend',
@@ -815,53 +803,34 @@
         return;
       }
 
-      const addLayers = () => {
-        if (map.getSource('railway')) return;
-        map.addSource('railway', {
-          type: 'geojson',
-          data: geojson,
-          generateId: true,   // 各featureに内部IDを付与（描画漏れ防止）
-          tolerance: 0.375,   // ズーム別間引きを安定させる
-          buffer: 128,        // タイル境界での切れを防ぐ（デフォルト64→128）
-          lineMetrics: false,
-          maxzoom: 14         // 高ズームでも詳細データを保持
-        });
+      const tooltip = L.tooltip({ permanent: false, sticky: true, opacity: 0.97, offset: [8, 0] });
 
-        map.addLayer({
-          id: 'rr-unridden', type: 'line', source: 'railway',
-          filter: ['==', ['get', 'status'], 'unridden'],
-          paint: { 'line-color': '#c4bdb5', 'line-width': 1.0, 'line-opacity': 0.6 }
-        });
-        map.addLayer({
-          id: 'rr-ridden', type: 'line', source: 'railway',
-          filter: ['==', ['get', 'status'], 'ridden'],
-          paint: { 'line-color': '#1e5fa8', 'line-width': 2.0, 'line-opacity': 0.88 }
-        });
-
-        const popup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 6 });
-        ['rr-ridden', 'rr-unridden'].forEach(layerId => {
-          map.on('mousemove', layerId, e => {
-            map.getCanvas().style.cursor = 'pointer';
-            const p = e.features[0].properties;
-            const badge = p.status === 'ridden'
-              ? `<span style="color:#1e5fa8;font-size:10px;font-family:'DM Mono',monospace;">● 乗車済</span>`
-              : `<span style="color:#8a8070;font-size:10px;font-family:'DM Mono',monospace;">○ 未乗</span>`;
-            popup.setLngLat(e.lngLat)
-              .setHTML(`<strong style="font-family:'Shippori Mincho',serif;letter-spacing:.08em;">${p.line}</strong><br>${badge}`)
-              .addTo(map);
-          });
-          map.on('mouseleave', layerId, () => {
-            map.getCanvas().style.cursor = '';
-            popup.remove();
-          });
-        });
-      };
-
-      if (map.loaded()) {
-        addLayers();
-      } else {
-        map.on('load', addLayers);
-      }
+      // unridden を先（下レイヤー）、ridden を上に重ねる
+      ['unridden', 'ridden'].forEach(status => {
+        const isRidden = status === 'ridden';
+        L.geoJSON(geojson, {
+          filter: f => f.properties.status === status,
+          style: {
+            color:   isRidden ? '#1e5fa8' : '#c4bdb5',
+            weight:  isRidden ? 2.0 : 1.0,
+            opacity: isRidden ? 0.88 : 0.6
+          },
+          onEachFeature: (feature, layer) => {
+            layer.on('mouseover', e => {
+              const p = feature.properties;
+              const badge = isRidden
+                ? `<span style="color:#1e5fa8;font-size:10px;font-family:'DM Mono',monospace;">● 乗車済</span>`
+                : `<span style="color:#8a8070;font-size:10px;font-family:'DM Mono',monospace;">○ 未乗</span>`;
+              tooltip.setContent(
+                `<strong style="font-family:'Shippori Mincho',serif;letter-spacing:.08em;">${p.line}</strong><br>${badge}`
+              );
+              map.openTooltip(tooltip, e.latlng);
+            });
+            layer.on('mousemove', e => tooltip.setLatLng(e.latlng));
+            layer.on('mouseout', () => map.closeTooltip(tooltip));
+          }
+        }).addTo(map);
+      });
     }
 
     // ══════════════════════════════════════
