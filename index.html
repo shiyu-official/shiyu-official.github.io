@@ -1234,6 +1234,38 @@
 
       const allItems = Array.from(strip.querySelectorAll('.photo-strip-item'));
 
+      // クローン内の全画像を eager に強制（overflow:hidden内ではlazy非対応）
+      allItems.forEach(el => {
+        el.querySelectorAll('img').forEach(img => {
+          img.setAttribute('loading', 'eager');
+        });
+      });
+
+      // 動的に設定された画像をクローンに伝播する関数（グローバル公開）
+      // allItems配置: [0..total-1]=beforeクローン, [total..2*total-1]=オリジナル, [2*total..3*total-1]=afterクローン
+      window._sliderSyncImages = function () {
+        for (let i = 0; i < total; i++) {
+          const orig   = allItems[i + total];
+          const bClone = allItems[i];
+          const aClone = allItems[i + total * 2];
+          const origImg = orig.querySelector('img');
+          const origPh  = orig.querySelector('.slide-placeholder');
+          if (!origImg) continue;
+          [bClone, aClone].forEach(clone => {
+            if (!clone) return;
+            const cImg = clone.querySelector('img');
+            const cPh  = clone.querySelector('.slide-placeholder');
+            if (cImg) {
+              cImg.src          = origImg.src;
+              cImg.style.display = origImg.style.display;
+            }
+            if (cPh && origPh) {
+              cPh.style.display = origPh.style.display;
+            }
+          });
+        }
+      };
+
       function getVis(w) { return w >= 600 ? 4 : w >= 400 ? 3 : 2; }
 
       function layout() {
@@ -1309,6 +1341,8 @@
         const ph  = wrap.querySelector('.slide-placeholder');
         if (img) { img.src = src; img.style.display = 'block'; }
         if (ph)  ph.style.display = 'none';
+        // オリジナルへの設定をクローンにも伝播
+        if (window._sliderSyncImages) window._sliderSyncImages();
       }
 
       // 太鼓：taiko.csvから先頭2件のYouTubeサムネ
