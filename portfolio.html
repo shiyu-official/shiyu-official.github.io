@@ -102,84 +102,122 @@
     .show-more-btn.hidden { display: none; }
 
     /* ══════════════════════════
-       01 — 旅の足跡（折りたたみ地図）
+       01 — 中項目タイトル（市区町村訪問 / 写真録）
     ══════════════════════════ */
 
-    .travel-accordion {
-      border: 1px solid var(--border);
-      margin-bottom: 28px;
+    .subsection-title {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: var(--text);
+      margin-bottom: 20px;
+      padding-left: 12px;
+      border-left: 3px solid var(--accent);
+      line-height: 1.5;
+    }
+    .subsection-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .subsection-wrap {
+      margin-bottom: 48px;
     }
 
-    .travel-accordion-header {
+    /* ══════════════════════════
+       地図アコーディオン（「地図を開く」ボタン）
+    ══════════════════════════ */
+
+    /* map-stats-wrap / map-stats / map-stat / map-stat-num / map-stat-label は
+       index.html の style.css 依存なので、ここでポートフォリオ用に再定義 */
+    .pf-map-stats-wrap {
+      border: 1px solid var(--border);
+      border-top: none;
+      margin-bottom: 0;
+    }
+    .pf-map-stats-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 7px 16px;
+      text-align: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .pf-map-stats {
+      display: flex;
+    }
+    .pf-map-stat {
+      flex: 1;
+      text-align: center;
+      padding: 14px 8px;
+      background: var(--white);
+    }
+    .pf-map-stat + .pf-map-stat { border-left: 1px solid var(--border); }
+    .pf-map-stat-num {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .pf-map-stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 5px;
+    }
+
+    .travel-map-accordion {
+      border: 1px solid var(--border);
+      margin-bottom: 0;
+    }
+    .travel-map-accordion-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 14px 20px;
+      padding: 11px 20px;
       background: var(--surface);
       cursor: pointer;
       user-select: none;
-      border-bottom: 1px solid var(--border);
       transition: background 0.2s;
-      gap: 16px;
+      gap: 12px;
     }
-    .travel-accordion-header:hover { background: var(--accent-pale); }
-
-    .travel-accordion-header-left {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      flex: 1;
-    }
-    .travel-accordion-title {
+    .travel-map-accordion-header:hover { background: var(--accent-pale); }
+    .travel-map-accordion-title {
       font-family: 'DM Mono', monospace;
       font-size: 11px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--accent);
-    }
-    .travel-accordion-counts {
-      display: flex;
-      gap: 16px;
-    }
-    .travel-accordion-count {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.12em;
       color: var(--muted);
     }
-    .travel-accordion-count span {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 15px;
-      color: var(--accent);
-      font-weight: 600;
-      margin-right: 3px;
-    }
-    .travel-accordion-arrow {
+    .travel-map-accordion-arrow {
       font-family: 'DM Mono', monospace;
       font-size: 13px;
       color: var(--muted);
+      flex-shrink: 0;
       transition: transform 0.3s ease;
     }
-    .travel-accordion.open .travel-accordion-arrow { transform: rotate(180deg); }
+    .travel-map-accordion.open .travel-map-accordion-arrow { transform: rotate(180deg); }
 
-    .travel-accordion-body {
+    .travel-map-accordion-body {
       display: none;
-      background: var(--white);
     }
-    .travel-accordion.open .travel-accordion-body { display: block; }
+    .travel-map-accordion.open .travel-map-accordion-body { display: block; }
 
     /* 地図 */
     #pf-travel-map {
       width: 100%;
       height: 360px;
-    }
-    .pf-map-legend {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-      padding: 8px 16px;
       border-top: 1px solid var(--border);
-      background: var(--surface);
     }
 
     /* 内訳アコーディオン（都道府県・市区町村の一覧） */
@@ -260,57 +298,6 @@
       padding: 2px 8px;
       border-radius: 1px;
     }
-
-    /* 写真録リンクカード */
-    .photo-archive-card {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      padding: 18px 24px;
-      background: var(--white);
-      border: 1px solid var(--border);
-      text-decoration: none;
-      color: var(--text);
-      margin-bottom: 28px;
-      position: relative;
-      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
-    }
-    .photo-archive-card:hover {
-      border-color: var(--accent-light);
-      transform: translateX(4px);
-      box-shadow: -3px 0 0 var(--accent);
-    }
-    .photo-archive-card::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 3px;
-      background: linear-gradient(to bottom, var(--accent), var(--cyan));
-      transform: scaleY(0);
-      transform-origin: top;
-      transition: transform 0.3s ease;
-    }
-    .photo-archive-card:hover::before { transform: scaleY(1); }
-    .photo-archive-icon {
-      width: 44px; height: 44px;
-      flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      font-size: 20px;
-    }
-    .photo-archive-body { flex: 1; }
-    .photo-archive-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 4px;
-    }
-    .photo-archive-title {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 15px; font-weight: 500; letter-spacing: 0.1em;
-    }
-    .photo-archive-arrow { font-size: 17px; color: var(--border); flex-shrink: 0; transition: color 0.25s; }
-    .photo-archive-card:hover .photo-archive-arrow { color: var(--accent); }
 
     /* ══════════════════════════
        01 — 旅の記録
@@ -745,7 +732,8 @@
 
       /* 旅の足跡：地図の高さ */
       #pf-travel-map { height: 260px; }
-      .travel-accordion-counts { gap: 10px; }
+      .pf-map-stat-num { font-size: 22px; }
+      .pf-map-stat { padding: 12px 8px; }
 
       /* 旅の記録：ブログカード縦積み（blog.htmlと同じ対応） */
       .post-card { flex-wrap: wrap; }
@@ -895,76 +883,83 @@
       <p class="section-label reveal">// 01 — Travel</p>
       <h2 class="section-title reveal">旅の記録</h2>
 
-      <!-- ── 旅の足跡（折りたたみ地図） ── -->
-      <div class="travel-accordion reveal" id="travel-footprint-accordion">
-        <div class="travel-accordion-header" onclick="toggleTravelAccordion()">
-          <div class="travel-accordion-header-left">
-            <span class="travel-accordion-title">旅の足跡</span>
-            <div class="travel-accordion-counts">
-              <span class="travel-accordion-count"><span id="pf-stat-prefs">—</span>都道府県</span>
-              <span class="travel-accordion-count"><span id="pf-stat-cities">—</span>市区町村</span>
-            </div>
+      <!-- ══ 中項目①：市区町村訪問 ══ -->
+      <div class="subsection-wrap reveal">
+        <p class="subsection-label">01-01</p>
+        <h3 class="subsection-title">市区町村訪問</h3>
+
+        <!-- 「地図を開く」アコーディオン -->
+        <div class="travel-map-accordion" id="travel-map-accordion">
+          <div class="travel-map-accordion-header" onclick="toggleTravelMapAccordion()">
+            <span class="travel-map-accordion-title">地図を開く</span>
+            <span class="travel-map-accordion-arrow">▼</span>
           </div>
-          <span class="travel-accordion-arrow">▼</span>
-        </div>
-        <div class="travel-accordion-body">
-          <div id="pf-travel-map"></div>
-          <div class="pf-map-legend">
-            <div class="map-legend-item">
-              <div class="legend-fill" style="background:#1e5fa8;"></div>
-              <span>訪問済み市区町村</span>
+          <div class="travel-map-accordion-body">
+            <div id="pf-travel-map"></div>
+
+            <!-- index.html と同じ統計バー構造 -->
+            <div class="pf-map-stats-wrap">
+              <div class="pf-map-stats-header">Visited</div>
+              <div class="pf-map-stats">
+                <div class="pf-map-stat">
+                  <div class="pf-map-stat-num" id="pf-stat-prefs">—</div>
+                  <div class="pf-map-stat-label">都道府県</div>
+                </div>
+                <div class="pf-map-stat">
+                  <div class="pf-map-stat-num" id="pf-stat-cities">—</div>
+                  <div class="pf-map-stat-label">市区町村</div>
+                </div>
+              </div>
             </div>
-          </div>
-          <!-- 内訳アコーディオン -->
-          <div class="breakdown-accordion" id="breakdown-accordion">
-            <div class="breakdown-accordion-header" onclick="toggleBreakdown()">
-              <span class="breakdown-accordion-title">都道府県・市区町村の内訳</span>
-              <span class="breakdown-accordion-arrow">▼</span>
-            </div>
-            <div class="breakdown-accordion-body">
-              <div id="pf-breakdown-list">
-                <p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;color:var(--muted);">loading...</p>
+
+            <!-- 内訳アコーディオン -->
+            <div class="breakdown-accordion" id="breakdown-accordion">
+              <div class="breakdown-accordion-header" onclick="toggleBreakdown()">
+                <span class="breakdown-accordion-title">都道府県・市区町村の内訳</span>
+                <span class="breakdown-accordion-arrow">▼</span>
+              </div>
+              <div class="breakdown-accordion-body">
+                <div id="pf-breakdown-list">
+                  <p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;color:var(--muted);">loading...</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- ── 写真録（2番目） ── -->
-      <a href="photo.html" class="photo-archive-card reveal">
-        <div class="photo-archive-icon">📷</div>
-        <div class="photo-archive-body">
-          <p class="photo-archive-label">// Travel · Photo Archive</p>
-          <p class="photo-archive-title">写真録</p>
+      <!-- ══ 中項目②：写真録 ══ -->
+      <div class="subsection-wrap reveal">
+        <p class="subsection-label">01-02</p>
+        <h3 class="subsection-title">写真録</h3>
+
+        <p class="item-count">全 <span id="trip-count-num">0</span> 件</p>
+
+        <div class="blog-list" id="trip-list">
+
+          <a href="pf-tr-001.html" class="post-card photo-item reveal">
+            <div class="post-date-col">
+              <span class="month">01</span>
+              <span class="day">27</span>
+              <span class="year">2026</span>
+            </div>
+            <div class="post-body">
+              <p class="post-title">萩(山口)</p>
+              <p class="post-excerpt">美祢線・秋芳洞・秋吉台・松下村塾・元乃隅神社</p>
+            </div>
+            <span class="post-arrow">→</span>
+          </a>
+
+          <!-- ここに旅を追加 -->
+
         </div>
-        <span class="photo-archive-arrow">→</span>
-      </a>
 
-      <p class="item-count reveal">全 <span id="trip-count-num">0</span> 件</p>
-
-      <div class="blog-list" id="trip-list">
-
-        <a href="pf-tr-001.html" class="post-card photo-item reveal">
-          <div class="post-date-col">
-            <span class="month">01</span>
-            <span class="day">27</span>
-            <span class="year">2026</span>
-          </div>
-          <div class="post-body">
-            <p class="post-title">萩(山口)</p>
-            <p class="post-excerpt">美祢線・秋芳洞・秋吉台・松下村塾・元乃隅神社</p>
-          </div>
-          <span class="post-arrow">→</span>
-        </a>
-
-        <!-- ここに旅を追加 -->
-
+        <div class="empty-state" id="trip-empty">まだ旅の記録はありません</div>
+        <div class="show-more-wrap">
+          <button class="show-more-btn hidden" id="trip-more-btn">もっと見る</button>
+        </div>
       </div>
 
-      <div class="empty-state" id="trip-empty">まだ旅の記録はありません</div>
-      <div class="show-more-wrap">
-        <button class="show-more-btn hidden" id="trip-more-btn">もっと見る</button>
-      </div>
     </section>
 
     <!-- ══════════════════════════
@@ -1429,8 +1424,8 @@
     let pfMapInited = false;
     let pfMapInstance = null;
 
-    function toggleTravelAccordion() {
-      const accordion = document.getElementById('travel-footprint-accordion');
+    function toggleTravelMapAccordion() {
+      const accordion = document.getElementById('travel-map-accordion');
       accordion.classList.toggle('open');
       if (accordion.classList.contains('open') && !pfMapInited) {
         pfMapInited = true;
