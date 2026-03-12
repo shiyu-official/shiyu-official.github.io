@@ -239,11 +239,11 @@
 
 
     /* ══════════════════════════════════════
-       PORTFOLIO — 3枚重ね斜め配置
+       PORTFOLIO — 3枚斜め配置（重なりなし）
     ══════════════════════════════════════ */
     .pf-collage {
       position: relative;
-      height: 240px;
+      height: 300px;
       margin-bottom: 32px;
     }
     .pf-collage-item {
@@ -258,24 +258,24 @@
       background: var(--surface);
     }
     .pf-collage-item.travel {
-      width: 200px; height: 150px;
+      width: 240px; height: 180px;
       transform: rotate(-4deg);
-      left: 0; top: 20px;
+      left: 0; top: 30px;
       z-index: 2;
     }
     .pf-collage-item.taiko {
-      width: 100px; height: 100px;
+      width: 140px; height: 140px;
       transform: rotate(3deg);
-      left: 170px; top: 60px;
+      left: 260px; top: 50px;
       z-index: 1;
       background: transparent;
       box-shadow: none;
       overflow: visible;
     }
     .pf-collage-item.ramen {
-      width: 180px; height: 135px;
+      width: 220px; height: 165px;
       transform: rotate(-2deg);
-      left: 280px; top: 30px;
+      left: 420px; top: 20px;
       z-index: 2;
     }
     .pf-collage-item.travel:hover  { transform: rotate(-4deg) scale(1.05); z-index: 5; box-shadow: 0 12px 36px rgba(0,0,0,0.22); }
@@ -287,7 +287,6 @@
       object-fit: cover;
       display: block;
     }
-    /* 写真の縁ぼかし */
     .pf-collage-item.travel::after,
     .pf-collage-item.ramen::after {
       content: '';
@@ -296,7 +295,6 @@
       box-shadow: inset 0 0 22px 8px var(--bg);
       pointer-events: none;
     }
-    /* 太鼓：YouTubeアイコンのみ・背景透過 */
     .pf-collage-taiko-inner {
       width: 100%; height: 100%;
       display: flex;
@@ -310,16 +308,16 @@
     }
 
     @media (max-width: 900px) {
-      .pf-collage { height: 200px; }
-      .pf-collage-item.travel { width: 170px; height: 128px; left: 0;    top: 16px; }
-      .pf-collage-item.taiko  { width: 80px;  height: 80px;  left: 145px; top: 55px; }
-      .pf-collage-item.ramen  { width: 155px; height: 116px; left: 236px; top: 26px; }
+      .pf-collage { height: 240px; }
+      .pf-collage-item.travel { width: 190px; height: 143px; left: 0;    top: 24px; }
+      .pf-collage-item.taiko  { width: 110px; height: 110px; left: 206px; top: 42px; }
+      .pf-collage-item.ramen  { width: 174px; height: 130px; left: 332px; top: 16px; }
     }
     @media (max-width: 480px) {
-      .pf-collage { height: 170px; }
-      .pf-collage-item.travel { width: 140px; height: 105px; left: 0;    top: 14px; }
-      .pf-collage-item.taiko  { width: 64px;  height: 64px;  left: 118px; top: 46px; }
-      .pf-collage-item.ramen  { width: 126px; height: 95px;  left: 194px; top: 22px; }
+      .pf-collage { height: 190px; }
+      .pf-collage-item.travel { width: 140px; height: 105px; left: 0;    top: 18px; }
+      .pf-collage-item.taiko  { width: 84px;  height: 84px;  left: 152px; top: 32px; }
+      .pf-collage-item.ramen  { width: 128px; height: 96px;  left: 248px; top: 14px; }
     }
 
     /* ── ポートフォリオ行き カード ── */
