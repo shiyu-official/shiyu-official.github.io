@@ -239,103 +239,114 @@
 
 
     /* ══════════════════════════════════════
-       PORTFOLIO PHOTO SLIDER
+       PORTFOLIO — 3枚重ね斜め配置
     ══════════════════════════════════════ */
-    .photo-slider-outer {
+    .pf-collage {
       position: relative;
-    }
-    .photo-slider-wrap {
-      /* sectionのpadding 64px×2 + sidebar 300pxを引いた幅を明示 */
-      width: calc(100vw - 300px - 128px);
-      overflow: hidden;
-      position: relative;
-      transition: width 0.2s ease;
-    }
-    .photo-slider-wrap::before,
-    .photo-slider-wrap::after {
-      content: '';
-      position: absolute;
-      top: 0; bottom: 0;
-      width: 48px;
-      z-index: 2;
-      pointer-events: none;
-    }
-    .photo-slider-wrap::before { left: 0;  background: linear-gradient(to right, var(--bg), transparent); }
-    .photo-slider-wrap::after  { right: 0; background: linear-gradient(to left,  var(--bg), transparent); }
-
-    .photo-strip {
+      height: 260px;
+      margin-bottom: 32px;
       display: flex;
-      gap: 4px;
-      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      will-change: transform;
+      align-items: center;
+      justify-content: center;
     }
-    /* アイテム幅をwrap基準の%で指定 — 4枚表示 */
-    .photo-strip-item {
-      flex-shrink: 0;
-      width: calc(25% - 3px);
+    .pf-collage-item {
+      position: absolute;
+      width: 200px;
       height: 200px;
+      border-radius: 2px;
       overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
       background: var(--surface);
     }
-    .photo-strip-item img {
+    /* 写真：縁をぼかすためにsvg filterではなくradial-gradientマスク */
+    .pf-collage-item.travel {
+      transform: rotate(-6deg) translate(-110px, 10px);
+      z-index: 1;
+    }
+    .pf-collage-item.taiko {
+      transform: rotate(2deg) translate(0px, -12px);
+      z-index: 3;
+    }
+    .pf-collage-item.ramen {
+      transform: rotate(7deg) translate(110px, 8px);
+      z-index: 2;
+    }
+    .pf-collage-item:hover {
+      z-index: 10;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.28);
+    }
+    .pf-collage-item.travel:hover  { transform: rotate(-6deg)  translate(-110px, 10px)  scale(1.07); }
+    .pf-collage-item.taiko:hover   { transform: rotate(2deg)   translate(0px, -12px)    scale(1.07); }
+    .pf-collage-item.ramen:hover   { transform: rotate(7deg)   translate(110px, 8px)    scale(1.07); }
+
+    .pf-collage-item img {
       width: 100%; height: 100%;
-      object-fit: cover; display: block;
-      transition: transform 0.4s ease;
+      object-fit: cover;
+      display: block;
+    }
+    /* 写真の縁ぼかし（::after で内側にgradientを重ねる） */
+    .pf-collage-item.travel::after,
+    .pf-collage-item.ramen::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 2px;
+      box-shadow: inset 0 0 28px 12px var(--bg);
       pointer-events: none;
     }
-    .photo-strip-item:hover img { transform: scale(1.05); }
-
-    /* ←→ボタン */
-    .photo-slider-btn {
+    /* ラベルバッジ */
+    .pf-collage-label {
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 3;
-      width: 36px; height: 36px;
-      background: rgba(248,246,241,0.85);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer;
+      bottom: 10px;
+      left: 0; right: 0;
+      text-align: center;
       font-family: 'DM Mono', monospace;
-      font-size: 14px;
-      color: var(--muted);
-      transition: border-color 0.2s, color 0.2s;
-      user-select: none;
-      backdrop-filter: blur(2px);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+      pointer-events: none;
     }
-    #slider-prev { left: 6px; }
-    #slider-next { right: 6px; }
-    .photo-slider-btn:hover:not([disabled]) { border-color: var(--accent-light); color: var(--accent); }
-    .photo-slider-btn[disabled] { opacity: 0.2; cursor: default; }
-
-    .photo-slider-counter {
-      display: block;
-      text-align: right;
-      margin-top: 8px;
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.15em;
-      color: var(--muted);
+    /* 太鼓はアイコン表示 */
+    .pf-collage-taiko-inner {
+      width: 100%; height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: var(--surface);
+    }
+    .pf-collage-taiko-inner img {
+      width: 64px; height: auto;
+      object-fit: contain;
+      opacity: 0.75;
     }
 
     @media (max-width: 900px) {
-      .photo-slider-wrap {
-        width: calc(100vw - 48px); /* padding 24px×2 */
-      }
-      .photo-strip-item {
-        width: calc(33.333% - 3px); /* 3枚 */
-        height: 170px;
-      }
+      .pf-collage { height: 220px; }
+      .pf-collage-item { width: 160px; height: 160px; }
+      .pf-collage-item.travel  { transform: rotate(-6deg) translate(-88px, 8px); }
+      .pf-collage-item.taiko   { transform: rotate(2deg)  translate(0px, -10px); }
+      .pf-collage-item.ramen   { transform: rotate(7deg)  translate(88px, 6px); }
+      .pf-collage-item.travel:hover { transform: rotate(-6deg) translate(-88px, 8px)  scale(1.07); }
+      .pf-collage-item.taiko:hover  { transform: rotate(2deg)  translate(0px, -10px)  scale(1.07); }
+      .pf-collage-item.ramen:hover  { transform: rotate(7deg)  translate(88px, 6px)   scale(1.07); }
     }
     @media (max-width: 480px) {
-      .photo-slider-wrap {
-        width: calc(100vw - 32px); /* padding 16px×2 */
-      }
-      .photo-strip-item {
-        width: calc(50% - 2px); /* 2枚 */
-        height: 140px;
-      }
+      .pf-collage { height: 180px; }
+      .pf-collage-item { width: 130px; height: 130px; }
+      .pf-collage-item.travel  { transform: rotate(-6deg) translate(-72px, 6px); }
+      .pf-collage-item.taiko   { transform: rotate(2deg)  translate(0px, -8px); }
+      .pf-collage-item.ramen   { transform: rotate(7deg)  translate(72px, 5px); }
+      .pf-collage-item.travel:hover { transform: rotate(-6deg) translate(-72px, 6px) scale(1.07); }
+      .pf-collage-item.taiko:hover  { transform: rotate(2deg)  translate(0px, -8px)  scale(1.07); }
+      .pf-collage-item.ramen:hover  { transform: rotate(7deg)  translate(72px, 5px)  scale(1.07); }
     }
 
     /* ── ポートフォリオ行き カード ── */
@@ -910,31 +921,28 @@
         </div>
       </div>
 
-      <!-- フォトスライダー -->
-      <div class="reveal">
-        <div class="photo-slider-outer">
-          <div class="photo-slider-wrap" id="photo-slider-wrap">
-            <div class="photo-strip" id="photo-strip">
-              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5237.webp" alt="" loading="lazy"></div>
-              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5247.webp" alt="" loading="lazy"></div>
-              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5267.webp" alt="" loading="lazy"></div>
-              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5288.webp" alt="" loading="lazy"></div>
-              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5297.webp" alt="" loading="lazy"></div>
-              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5300.webp" alt="" loading="lazy"></div>
-              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5313.webp" alt="" loading="lazy"></div>
-              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5342.webp" alt="" loading="lazy"></div>
-              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5360.webp" alt="" loading="lazy"></div>
-              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5368.webp" alt="" loading="lazy"></div>
-              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5385.webp" alt="" loading="lazy"></div>
-              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5219.webp" alt="" loading="lazy"></div>
-              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5223.webp" alt="" loading="lazy"></div>
-              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5231.webp" alt="" loading="lazy"></div>
-            </div>
+      <!-- 3枚重ねコラージュ -->
+      <div class="pf-collage reveal">
+        <!-- 旅：最新記事の先頭画像 -->
+        <a href="portfolio.html#travel" class="pf-collage-item travel">
+          <img src="./images/pf-tr-001/IMG_5237.webp" alt="旅の記録" id="collage-travel-img">
+          <span class="pf-collage-label">Travel</span>
+        </a>
+        <!-- 太鼓：YouTubeアイコン -->
+        <a href="portfolio.html#taiko" class="pf-collage-item taiko">
+          <div class="pf-collage-taiko-inner">
+            <img src="./images/youtube_icon.webp" alt="太鼓の達人">
+            <span class="pf-collage-label" style="position:static;color:var(--muted);text-shadow:none;">Taiko</span>
           </div>
-          <button class="photo-slider-btn" id="slider-prev" disabled>←</button>
-          <button class="photo-slider-btn" id="slider-next">→</button>
-        </div>
-        <span class="photo-slider-counter" id="slider-counter">1 – 4 / 14</span>
+        </a>
+        <!-- 拉麺：CSVの最新1件 -->
+        <a href="portfolio.html#ramen" class="pf-collage-item ramen">
+          <img src="" alt="拉麺" id="collage-ramen-img" style="display:none;">
+          <div id="collage-ramen-placeholder" class="pf-collage-taiko-inner">
+            <span style="font-family:'Shippori Mincho',serif;font-size:28px;color:var(--muted);">拉麺</span>
+          </div>
+          <span class="pf-collage-label">Ramen</span>
+        </a>
       </div>
 
       <!-- portfolio.htmlへのカード -->
@@ -944,8 +952,8 @@
             <img src="./images/pf-tr-001/IMG_5237.webp" alt="">
           </div>
           <div class="pf-goto-body">
-            <p class="pf-goto-label">// 01 — Travel</p>
-            <p class="pf-goto-title">旅の写真・記録を見る</p>
+            <p class="pf-goto-label">// 旅 · 太鼓 · 拉麺</p>
+            <p class="pf-goto-title">すべての記録を見る</p>
           </div>
           <span class="pf-goto-arrow">→</span>
         </a>
@@ -1238,67 +1246,30 @@
       }
     }
 
+
     // ══════════════════════════════════════
-    //  フォトスライダー
+    //  コラージュ — ラーメン最新画像を動的取得
     // ══════════════════════════════════════
-    (function () {
-      const wrap    = document.getElementById('photo-slider-wrap');
-      const strip   = document.getElementById('photo-strip');
-      const btnPrev = document.getElementById('slider-prev');
-      const btnNext = document.getElementById('slider-next');
-      const counter = document.getElementById('slider-counter');
-      if (!wrap || !strip) return;
-
-      const items = Array.from(strip.querySelectorAll('.photo-strip-item'));
-      const total = items.length;
-      const GAP = 4;
-      let current = 0;
-      let itemW = 0;
-      let vis = 4;
-
-      function getVis(w) {
-        return w >= 600 ? 4 : w >= 400 ? 3 : 2;
-      }
-
-      function layout() {
-        const wrapW = wrap.offsetWidth; // CSSが設定した正しい幅
-        vis = getVis(wrapW);
-        itemW = Math.floor((wrapW - GAP * (vis - 1)) / vis);
-        items.forEach(el => { el.style.width = itemW + 'px'; });
-        current = Math.min(current, Math.max(0, total - vis));
-        render(false);
-      }
-
-      function render(animate) {
-        strip.style.transition = animate === false ? 'none' : 'transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94)';
-        strip.style.transform = `translateX(-${current * (itemW + GAP)}px)`;
-        btnPrev.disabled = current === 0;
-        btnNext.disabled = current >= total - vis;
-        counter.textContent = `${current + 1} – ${Math.min(current + vis, total)} / ${total}`;
-      }
-
-      btnPrev.addEventListener('click', () => { if (current > 0) { current--; render(true); } });
-      btnNext.addEventListener('click', () => { if (current < total - vis) { current++; render(true); } });
-
-      // スワイプ
-      let touchX = null;
-      wrap.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
-      wrap.addEventListener('touchend', e => {
-        if (touchX === null) return;
-        const dx = e.changedTouches[0].clientX - touchX;
-        touchX = null;
-        if (Math.abs(dx) < 30) return;
-        if (dx < 0 && current < total - vis) { current++; render(true); }
-        if (dx > 0 && current > 0)           { current--; render(true); }
-      }, { passive: true });
-
-      window.addEventListener('resize', () => {
-        vis = getVis(wrap.offsetWidth);
-        current = Math.min(current, Math.max(0, total - vis));
-        render(false);
-      });
-
-      layout();
+    (async function () {
+      try {
+        const res = await fetch('./ramen.csv');
+        if (!res.ok) return;
+        const text = await res.text();
+        const lines = text.trim().split('\n').slice(1); // ヘッダー除外
+        if (!lines.length) return;
+        // 最新1件（先頭行）のimage列を取得
+        const cols = lines[0].split(',');
+        const imageFile = cols[0]?.trim();
+        if (!imageFile) return;
+        const src = `./images/ramen/${imageFile.replace(/\.[^.]+$/, '')}.webp`;
+        const img = document.getElementById('collage-ramen-img');
+        const ph  = document.getElementById('collage-ramen-placeholder');
+        if (img) {
+          img.src = src;
+          img.style.display = 'block';
+          if (ph) ph.style.display = 'none';
+        }
+      } catch { /* CSVなければplaceholderのまま */ }
     })();
 
     // ══════════════════════════════════════
