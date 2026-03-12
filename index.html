@@ -1199,7 +1199,7 @@
 
 
     // ══════════════════════════════════════
-    //  フォトスライダー（ループ対応）
+    //  フォトスライダー（無限ループ）
     // ══════════════════════════════════════
     (function () {
       const wrap    = document.getElementById('photo-slider-wrap');
@@ -1209,12 +1209,30 @@
       const counter = document.getElementById('slider-counter');
       if (!wrap || !strip) return;
 
-      const items = Array.from(strip.querySelectorAll('.photo-strip-item'));
-      const total = items.length;
+      const origItems = Array.from(strip.querySelectorAll('.photo-strip-item'));
+      const total = origItems.length; // 元の枚数（6枚）
       const GAP = 4;
-      let current = 0;
       let vis = 4;
       let itemW = 0;
+      // current は「先頭クローンセット内の何番目を先頭に表示しているか」
+      // 初期位置は複製セットの2周目先頭（index = total）
+      let current = total;
+
+      // 前後にクローンを1セットずつ追加（計3セット）
+      const before = origItems.map(el => {
+        const c = el.cloneNode(true);
+        c.removeAttribute('id');
+        return c;
+      });
+      const after = origItems.map(el => {
+        const c = el.cloneNode(true);
+        c.removeAttribute('id');
+        return c;
+      });
+      before.forEach(el => strip.insertBefore(el, origItems[0]));
+      after.forEach(el => strip.appendChild(el));
+
+      const allItems = Array.from(strip.querySelectorAll('.photo-strip-item'));
 
       function getVis(w) { return w >= 600 ? 4 : w >= 400 ? 3 : 2; }
 
@@ -1222,32 +1240,40 @@
         const wrapW = wrap.offsetWidth;
         vis = getVis(wrapW);
         itemW = Math.floor((wrapW - GAP * (vis - 1)) / vis);
-        items.forEach(el => { el.style.width = itemW + 'px'; });
-        current = Math.min(current, Math.max(0, total - vis));
+        allItems.forEach(el => { el.style.width = itemW + 'px'; });
         render(false);
       }
 
       function render(animate) {
-        strip.style.transition = animate === false ? 'none' : 'transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94)';
+        strip.style.transition = animate ? 'transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94)' : 'none';
         strip.style.transform = `translateX(-${current * (itemW + GAP)}px)`;
-        // ループ：端まで来たらボタンを無効にせず折り返す
-        btnPrev.disabled = false;
-        btnNext.disabled = false;
-        const end = Math.min(current + vis, total);
-        counter.textContent = `${current + 1} – ${end} / ${total}`;
+        // カウンターは元6枚基準で表示
+        const dispIdx = ((current - total) % total + total) % total;
+        const end = Math.min(dispIdx + vis, total);
+        counter.textContent = `${dispIdx + 1} – ${end} / ${total}`;
       }
 
-      function prev() {
-        current = current <= 0 ? total - vis : current - 1;
-        render(true);
-      }
       function next() {
-        current = current >= total - vis ? 0 : current + 1;
+        current++;
         render(true);
+        // 2周目末尾を超えたら瞬時に1周目の同位置へ
+        if (current >= total * 2) {
+          setTimeout(() => { current -= total; render(false); }, 420);
+        }
+      }
+      function prev() {
+        current--;
+        render(true);
+        // 1周目先頭より前に行ったら瞬時に2周目の同位置へ
+        if (current < total) {
+          setTimeout(() => { current += total; render(false); }, 420);
+        }
       }
 
       btnPrev.addEventListener('click', prev);
       btnNext.addEventListener('click', next);
+      btnPrev.disabled = false;
+      btnNext.disabled = false;
 
       let touchX = null;
       wrap.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
