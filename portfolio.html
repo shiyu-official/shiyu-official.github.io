@@ -264,6 +264,7 @@
     .taiko-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      grid-auto-rows: 1fr;
       gap: 0;
       background: var(--bg);
       overflow: hidden;
@@ -303,6 +304,7 @@
       background: #000;
       overflow: hidden;
       cursor: pointer;
+      flex-shrink: 0;
     }
     .taiko-embed-wrap iframe {
       position: absolute;
@@ -469,6 +471,7 @@
       border-top: 1px solid var(--border);
       display: flex;
       align-items: stretch;
+      flex: 1;
     }
 
     /* 左：アクセントライン＋ラベル */
