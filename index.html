@@ -239,85 +239,70 @@
 
 
     /* ══════════════════════════════════════
-       PORTFOLIO — 3枚斜め配置（重なりなし）
+       PORTFOLIO PHOTO SLIDER
     ══════════════════════════════════════ */
-    .pf-collage {
-      position: relative;
-      height: 300px;
-      margin-bottom: 32px;
-    }
-    .pf-collage-item {
-      position: absolute;
-      border-radius: 2px;
+    .photo-slider-outer { position: relative; }
+    .photo-slider-wrap {
+      width: calc(100vw - 300px - 128px);
       overflow: hidden;
-      box-shadow: 0 6px 24px rgba(0,0,0,0.15);
-      transition: transform 0.35s ease, box-shadow 0.35s ease;
-      cursor: pointer;
-      text-decoration: none;
-      display: block;
-      background: var(--surface);
+      position: relative;
     }
-    .pf-collage-item.travel {
-      width: 240px; height: 180px;
-      transform: rotate(-4deg);
-      left: 0; top: 30px;
-      z-index: 2;
-    }
-    .pf-collage-item.taiko {
-      width: 140px; height: 140px;
-      transform: rotate(3deg);
-      left: 260px; top: 50px;
-      z-index: 1;
-      background: transparent;
-      box-shadow: none;
-      overflow: visible;
-    }
-    .pf-collage-item.ramen {
-      width: 220px; height: 165px;
-      transform: rotate(-2deg);
-      left: 420px; top: 20px;
-      z-index: 2;
-    }
-    .pf-collage-item.travel:hover  { transform: rotate(-4deg) scale(1.05); z-index: 5; box-shadow: 0 12px 36px rgba(0,0,0,0.22); }
-    .pf-collage-item.taiko:hover   { transform: rotate(3deg)  scale(1.08); z-index: 5; }
-    .pf-collage-item.ramen:hover   { transform: rotate(-2deg) scale(1.05); z-index: 5; box-shadow: 0 12px 36px rgba(0,0,0,0.22); }
-
-    .pf-collage-item img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .pf-collage-item.travel::after,
-    .pf-collage-item.ramen::after {
+    .photo-slider-wrap::before,
+    .photo-slider-wrap::after {
       content: '';
       position: absolute;
-      inset: 0;
-      box-shadow: inset 0 0 22px 8px var(--bg);
+      top: 0; bottom: 0; width: 48px;
+      z-index: 2; pointer-events: none;
+    }
+    .photo-slider-wrap::before { left: 0;  background: linear-gradient(to right, var(--bg), transparent); }
+    .photo-slider-wrap::after  { right: 0; background: linear-gradient(to left,  var(--bg), transparent); }
+    .photo-strip {
+      display: flex;
+      gap: 4px;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
+    }
+    .photo-strip-item {
+      flex-shrink: 0;
+      width: calc(25% - 3px);
+      height: 200px;
+      overflow: hidden;
+      background: var(--surface);
+    }
+    .photo-strip-item img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform 0.4s ease;
       pointer-events: none;
     }
-    .pf-collage-taiko-inner {
+    .photo-strip-item:hover img { transform: scale(1.05); }
+    .slide-placeholder {
       width: 100%; height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: var(--surface);
     }
-    .pf-collage-taiko-inner img {
-      width: 100%; height: auto;
-      object-fit: contain;
-      opacity: 0.72;
+    .photo-slider-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      z-index: 3; width: 36px; height: 36px;
+      background: rgba(248,246,241,0.85); border: 1px solid var(--border); border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-family: 'DM Mono', monospace; font-size: 14px; color: var(--muted);
+      transition: border-color 0.2s, color 0.2s; user-select: none; backdrop-filter: blur(2px);
     }
-
+    #slider-prev { left: 6px; }
+    #slider-next { right: 6px; }
+    .photo-slider-btn:hover:not([disabled]) { border-color: var(--accent-light); color: var(--accent); }
+    .photo-slider-btn[disabled] { opacity: 0.2; cursor: default; }
+    .photo-slider-counter {
+      display: block; text-align: right; margin-top: 8px;
+      font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--muted);
+    }
     @media (max-width: 900px) {
-      .pf-collage { height: 240px; }
-      .pf-collage-item.travel { width: 190px; height: 143px; left: 0;    top: 24px; }
-      .pf-collage-item.taiko  { width: 110px; height: 110px; left: 206px; top: 42px; }
-      .pf-collage-item.ramen  { width: 174px; height: 130px; left: 332px; top: 16px; }
+      .photo-slider-wrap { width: calc(100vw - 48px); }
+      .photo-strip-item  { width: calc(33.333% - 3px); height: 170px; }
     }
     @media (max-width: 480px) {
-      .pf-collage { height: 190px; }
-      .pf-collage-item.travel { width: 140px; height: 105px; left: 0;    top: 18px; }
-      .pf-collage-item.taiko  { width: 84px;  height: 84px;  left: 152px; top: 32px; }
-      .pf-collage-item.ramen  { width: 128px; height: 96px;  left: 248px; top: 14px; }
+      .photo-slider-wrap { width: calc(100vw - 32px); }
+      .photo-strip-item  { width: calc(50% - 2px); height: 140px; }
     }
 
     /* ── ポートフォリオ行き カード ── */
@@ -892,22 +877,26 @@
         </div>
       </div>
 
-      <!-- 3枚重ねコラージュ -->
-      <div class="pf-collage reveal">
-        <a href="portfolio.html#travel" class="pf-collage-item travel">
-          <img src="./images/pf-tr-001/IMG_5237.webp" alt="旅の記録" id="collage-travel-img">
-        </a>
-        <a href="portfolio.html#taiko" class="pf-collage-item taiko">
-          <div class="pf-collage-taiko-inner">
-            <img src="./images/youtube_icon.webp" alt="太鼓の達人">
+      <!-- スライダー：旅2枚・太鼓2枚・ラーメン2枚 -->
+      <div class="reveal">
+        <div class="photo-slider-outer">
+          <div class="photo-slider-wrap" id="photo-slider-wrap">
+            <div class="photo-strip" id="photo-strip">
+              <!-- 旅 2枚（固定） -->
+              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5237.webp" alt="旅の記録"></div>
+              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5267.webp" alt="旅の記録"></div>
+              <!-- 太鼓 2枚（JSで差し込み） -->
+              <div class="photo-strip-item" id="taiko-slide-0"><img src="" alt="太鼓の達人" style="display:none;"><div class="slide-placeholder"></div></div>
+              <div class="photo-strip-item" id="taiko-slide-1"><img src="" alt="太鼓の達人" style="display:none;"><div class="slide-placeholder"></div></div>
+              <!-- ラーメン 2枚（JSで差し込み） -->
+              <div class="photo-strip-item" id="ramen-slide-0"><img src="" alt="拉麺" style="display:none;"><div class="slide-placeholder"></div></div>
+              <div class="photo-strip-item" id="ramen-slide-1"><img src="" alt="拉麺" style="display:none;"><div class="slide-placeholder"></div></div>
+            </div>
           </div>
-        </a>
-        <a href="portfolio.html#ramen" class="pf-collage-item ramen">
-          <img src="" alt="拉麺" id="collage-ramen-img" style="display:none;">
-          <div id="collage-ramen-placeholder" class="pf-collage-taiko-inner" style="background:var(--surface);">
-            <span style="font-family:'Shippori Mincho',serif;font-size:24px;color:var(--muted);">拉</span>
-          </div>
-        </a>
+          <button class="photo-slider-btn" id="slider-prev" disabled>←</button>
+          <button class="photo-slider-btn" id="slider-next">→</button>
+        </div>
+        <span class="photo-slider-counter" id="slider-counter">1 – 4 / 6</span>
       </div>
 
       <!-- portfolio.htmlへのカード -->
@@ -1213,28 +1202,107 @@
 
 
     // ══════════════════════════════════════
-    //  コラージュ — ラーメン最新画像を動的取得
+    //  フォトスライダー
+    // ══════════════════════════════════════
+    (function () {
+      const wrap    = document.getElementById('photo-slider-wrap');
+      const strip   = document.getElementById('photo-strip');
+      const btnPrev = document.getElementById('slider-prev');
+      const btnNext = document.getElementById('slider-next');
+      const counter = document.getElementById('slider-counter');
+      if (!wrap || !strip) return;
+
+      const items = Array.from(strip.querySelectorAll('.photo-strip-item'));
+      const total = items.length;
+      const GAP = 4;
+      let current = 0;
+      let vis = 4;
+
+      function getVis(w) { return w >= 600 ? 4 : w >= 400 ? 3 : 2; }
+
+      function layout() {
+        const wrapW = wrap.offsetWidth;
+        vis = getVis(wrapW);
+        const itemW = Math.floor((wrapW - GAP * (vis - 1)) / vis);
+        items.forEach(el => { el.style.width = itemW + 'px'; });
+        current = Math.min(current, Math.max(0, total - vis));
+        render(false);
+      }
+
+      function render(animate) {
+        const itemW = items[0].offsetWidth;
+        strip.style.transition = animate === false ? 'none' : 'transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94)';
+        strip.style.transform = `translateX(-${current * (itemW + GAP)}px)`;
+        btnPrev.disabled = current === 0;
+        btnNext.disabled = current >= total - vis;
+        counter.textContent = `${current + 1} – ${Math.min(current + vis, total)} / ${total}`;
+      }
+
+      btnPrev.addEventListener('click', () => { if (current > 0) { current--; render(true); } });
+      btnNext.addEventListener('click', () => { if (current < total - vis) { current++; render(true); } });
+
+      let touchX = null;
+      wrap.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+      wrap.addEventListener('touchend', e => {
+        if (touchX === null) return;
+        const dx = e.changedTouches[0].clientX - touchX;
+        touchX = null;
+        if (Math.abs(dx) < 30) return;
+        if (dx < 0 && current < total - vis) { current++; render(true); }
+        if (dx > 0 && current > 0)           { current--; render(true); }
+      }, { passive: true });
+
+      window.addEventListener('resize', () => { layout(); });
+
+      layout();
+    })();
+
+    // ══════════════════════════════════════
+    //  スライダー画像動的取得（太鼓・ラーメン）
     // ══════════════════════════════════════
     (async function () {
+      function extractVideoId(url) {
+        const s = url.match(/youtu\.be\/([A-Za-z0-9_-]{11})/);
+        if (s) return s[1];
+        const l = url.match(/[?&]v=([A-Za-z0-9_-]{11})/);
+        return l ? l[1] : null;
+      }
+
+      function setSlide(id, src) {
+        const wrap = document.getElementById(id);
+        if (!wrap) return;
+        const img = wrap.querySelector('img');
+        const ph  = wrap.querySelector('.slide-placeholder');
+        if (img) { img.src = src; img.style.display = 'block'; }
+        if (ph)  ph.style.display = 'none';
+      }
+
+      // 太鼓：taiko.csvから先頭2件のYouTubeサムネ
+      try {
+        const res = await fetch('./taiko.csv');
+        if (res.ok) {
+          const lines = (await res.text()).trim().split('\n').slice(1);
+          [0, 1].forEach((i) => {
+            if (!lines[i]) return;
+            const url = lines[i].split(',')[0].replace(/^\"|\"$/g, '').trim();
+            const vid = extractVideoId(url);
+            if (vid) setSlide(`taiko-slide-${i}`, `https://img.youtube.com/vi/${vid}/mqdefault.jpg`);
+          });
+        }
+      } catch {}
+
+      // ラーメン：ramen.csvから先頭2件の画像
       try {
         const res = await fetch('./ramen.csv');
-        if (!res.ok) return;
-        const text = await res.text();
-        const lines = text.trim().split('\n').slice(1); // ヘッダー除外
-        if (!lines.length) return;
-        // 最新1件（先頭行）のimage列を取得
-        const cols = lines[0].split(',');
-        const imageFile = cols[0]?.trim();
-        if (!imageFile) return;
-        const src = `./images/ramen/${imageFile.replace(/\.[^.]+$/, '')}.webp`;
-        const img = document.getElementById('collage-ramen-img');
-        const ph  = document.getElementById('collage-ramen-placeholder');
-        if (img) {
-          img.src = src;
-          img.style.display = 'block';
-          if (ph) ph.style.display = 'none';
+        if (res.ok) {
+          const lines = (await res.text()).trim().split('\n').slice(1);
+          [0, 1].forEach((i) => {
+            if (!lines[i]) return;
+            const img = lines[i].split(',')[0].trim();
+            if (img) setSlide(`ramen-slide-${i}`, `./images/ramen/${img.replace(/\.[^.]+$/, '')}.webp`);
+          });
         }
-      } catch { /* CSVなければplaceholderのまま */ }
+      } catch {}
     })();
 
     // ══════════════════════════════════════
