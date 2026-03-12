@@ -245,16 +245,17 @@
       position: relative;
     }
     .photo-slider-wrap {
+      /* sectionのpadding 64px×2 + sidebar 300pxを引いた幅を明示 */
+      width: calc(100vw - 300px - 128px);
       overflow: hidden;
       position: relative;
     }
-    /* 左右フェード */
     .photo-slider-wrap::before,
     .photo-slider-wrap::after {
       content: '';
       position: absolute;
       top: 0; bottom: 0;
-      width: 56px;
+      width: 48px;
       z-index: 2;
       pointer-events: none;
     }
@@ -266,13 +267,11 @@
       gap: 4px;
       transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       will-change: transform;
-      visibility: hidden;
     }
-    .photo-strip.ready { visibility: visible; }
+    /* アイテム幅をwrap基準の%で指定 — 4枚表示 */
     .photo-strip-item {
       flex-shrink: 0;
-      width: 0;
-      min-width: 0;
+      width: calc(25% - 3px);
       height: 200px;
       overflow: hidden;
       background: var(--surface);
@@ -285,7 +284,7 @@
     }
     .photo-strip-item:hover img { transform: scale(1.05); }
 
-    /* ←→ボタン：フェードの上に重ねる */
+    /* ←→ボタン */
     .photo-slider-btn {
       position: absolute;
       top: 50%;
@@ -304,12 +303,11 @@
       user-select: none;
       backdrop-filter: blur(2px);
     }
-    #slider-prev { left: 8px; }
-    #slider-next { right: 8px; }
+    #slider-prev { left: 6px; }
+    #slider-next { right: 6px; }
     .photo-slider-btn:hover:not([disabled]) { border-color: var(--accent-light); color: var(--accent); }
     .photo-slider-btn[disabled] { opacity: 0.2; cursor: default; }
 
-    /* カウンター */
     .photo-slider-counter {
       display: block;
       text-align: right;
@@ -321,10 +319,22 @@
     }
 
     @media (max-width: 900px) {
-      .photo-strip-item { height: 170px; }
+      .photo-slider-wrap {
+        width: calc(100vw - 48px); /* padding 24px×2 */
+      }
+      .photo-strip-item {
+        width: calc(33.333% - 3px); /* 3枚 */
+        height: 170px;
+      }
     }
     @media (max-width: 480px) {
-      .photo-strip-item { height: 140px; }
+      .photo-slider-wrap {
+        width: calc(100vw - 32px); /* padding 16px×2 */
+      }
+      .photo-strip-item {
+        width: calc(50% - 2px); /* 2枚 */
+        height: 140px;
+      }
     }
 
     /* ── ポートフォリオ行き カード ── */
@@ -1245,25 +1255,17 @@
       let itemW = 0;
       let vis = 4;
 
-      function getWrapWidth() {
-        const vw = window.innerWidth;
-        if (vw <= 480) return vw - 32;        // padding 16px×2
-        if (vw <= 900) return vw - 48;        // padding 24px×2
-        return vw - 300 - 128;               // sidebar 300px + padding 64px×2
-      }
-
       function getVis(w) {
         return w >= 600 ? 4 : w >= 400 ? 3 : 2;
       }
 
       function layout() {
-        const wrapW = getWrapWidth();
+        const wrapW = wrap.offsetWidth; // CSSが設定した正しい幅
         vis = getVis(wrapW);
         itemW = Math.floor((wrapW - GAP * (vis - 1)) / vis);
         items.forEach(el => { el.style.width = itemW + 'px'; });
         current = Math.min(current, Math.max(0, total - vis));
         render(false);
-        strip.classList.add('ready');
       }
 
       function render(animate) {
