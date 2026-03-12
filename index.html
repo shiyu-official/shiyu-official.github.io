@@ -272,6 +272,7 @@
     }
     .photo-strip-item {
       flex-shrink: 0;
+      width: 0; /* JSで上書きされるまではみ出さない */
       height: 210px;
       overflow: hidden;
       background: var(--surface);
@@ -389,13 +390,14 @@
     .links-icon-chip {
       display: flex;
       align-items: center;
-      gap: 8px;
-      padding: 8px 14px 8px 10px;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 2px;
     }
-    .links-icon-chip img { width: 22px; height: 17px; object-fit: contain; }
+    .links-icon-chip img { width: 28px; height: 22px; object-fit: contain; }
     .links-icon-chip-x {
       font-family: 'DM Mono', monospace;
       font-size: 15px;
@@ -944,15 +946,12 @@
       <div class="links-icon-row reveal">
         <div class="links-icon-chip">
           <img src="./images/youtube_icon.webp" alt="YouTube">
-          <span>YouTube</span>
         </div>
         <div class="links-icon-chip">
           <img src="./images/youtube_icon.webp" alt="YouTube">
-          <span>YouTube</span>
         </div>
         <div class="links-icon-chip">
           <div class="links-icon-chip-x">𝕏</div>
-          <span>X / Twitter</span>
         </div>
       </div>
 
