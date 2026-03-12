@@ -23,6 +23,8 @@
   <meta name="twitter:title" content="Portfolio — Shiyu">
   <meta name="twitter:description" content="しゆの記録まとめ。旅の写真・太鼓の達人の動画・ラーメン記録など活動のポートフォリオです。">
   <meta name="twitter:image" content="https://shiyu-official.github.io/images/travel_icon.webp">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
   <link rel="stylesheet" href="./style.css">
   <style>
     /* ══════════════════════════
@@ -98,6 +100,217 @@
     }
     .show-more-btn:hover { background: var(--accent-pale); }
     .show-more-btn.hidden { display: none; }
+
+    /* ══════════════════════════
+       01 — 旅の足跡（折りたたみ地図）
+    ══════════════════════════ */
+
+    .travel-accordion {
+      border: 1px solid var(--border);
+      margin-bottom: 28px;
+    }
+
+    .travel-accordion-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      background: var(--surface);
+      cursor: pointer;
+      user-select: none;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+      gap: 16px;
+    }
+    .travel-accordion-header:hover { background: var(--accent-pale); }
+
+    .travel-accordion-header-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex: 1;
+    }
+    .travel-accordion-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .travel-accordion-counts {
+      display: flex;
+      gap: 16px;
+    }
+    .travel-accordion-count {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+    .travel-accordion-count span {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 15px;
+      color: var(--accent);
+      font-weight: 600;
+      margin-right: 3px;
+    }
+    .travel-accordion-arrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      color: var(--muted);
+      transition: transform 0.3s ease;
+    }
+    .travel-accordion.open .travel-accordion-arrow { transform: rotate(180deg); }
+
+    .travel-accordion-body {
+      display: none;
+      background: var(--white);
+    }
+    .travel-accordion.open .travel-accordion-body { display: block; }
+
+    /* 地図 */
+    #pf-travel-map {
+      width: 100%;
+      height: 360px;
+    }
+    .pf-map-legend {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      padding: 8px 16px;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    /* 内訳アコーディオン（都道府県・市区町村の一覧） */
+    .breakdown-accordion {
+      border-top: 1px solid var(--border);
+    }
+    .breakdown-accordion-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      background: var(--surface);
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
+    }
+    .breakdown-accordion-header:hover { background: var(--accent-pale); }
+    .breakdown-accordion-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .breakdown-accordion-arrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      transition: transform 0.3s ease;
+    }
+    .breakdown-accordion.open .breakdown-accordion-arrow { transform: rotate(180deg); }
+
+    .breakdown-accordion-body {
+      display: none;
+      padding: 16px 20px 20px;
+      border-top: 1px solid var(--border);
+      background: var(--white);
+    }
+    .breakdown-accordion.open .breakdown-accordion-body { display: block; }
+
+    /* 都道府県ブロック */
+    .pref-block {
+      margin-bottom: 16px;
+    }
+    .pref-block:last-child { margin-bottom: 0; }
+    .pref-name {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: var(--text);
+      padding: 4px 0 6px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .pref-city-count {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+    .city-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .city-tag {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 2px 8px;
+      border-radius: 1px;
+    }
+
+    /* 写真録リンクカード */
+    .photo-archive-card {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 18px 24px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text);
+      margin-bottom: 28px;
+      position: relative;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    }
+    .photo-archive-card:hover {
+      border-color: var(--accent-light);
+      transform: translateX(4px);
+      box-shadow: -3px 0 0 var(--accent);
+    }
+    .photo-archive-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--accent), var(--cyan));
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.3s ease;
+    }
+    .photo-archive-card:hover::before { transform: scaleY(1); }
+    .photo-archive-icon {
+      width: 44px; height: 44px;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      font-size: 20px;
+    }
+    .photo-archive-body { flex: 1; }
+    .photo-archive-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 4px;
+    }
+    .photo-archive-title {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 15px; font-weight: 500; letter-spacing: 0.1em;
+    }
+    .photo-archive-arrow { font-size: 17px; color: var(--border); flex-shrink: 0; transition: color 0.25s; }
+    .photo-archive-card:hover .photo-archive-arrow { color: var(--accent); }
 
     /* ══════════════════════════
        01 — 旅の記録
@@ -530,6 +743,10 @@
         white-space: nowrap;
       }
 
+      /* 旅の足跡：地図の高さ */
+      #pf-travel-map { height: 260px; }
+      .travel-accordion-counts { gap: 10px; }
+
       /* 旅の記録：ブログカード縦積み（blog.htmlと同じ対応） */
       .post-card { flex-wrap: wrap; }
       .post-date-col {
@@ -677,6 +894,51 @@
     <section class="section" id="travel">
       <p class="section-label reveal">// 01 — Travel</p>
       <h2 class="section-title reveal">旅の記録</h2>
+
+      <!-- ── 旅の足跡（折りたたみ地図） ── -->
+      <div class="travel-accordion reveal" id="travel-footprint-accordion">
+        <div class="travel-accordion-header" onclick="toggleTravelAccordion()">
+          <div class="travel-accordion-header-left">
+            <span class="travel-accordion-title">旅の足跡</span>
+            <div class="travel-accordion-counts">
+              <span class="travel-accordion-count"><span id="pf-stat-prefs">—</span>都道府県</span>
+              <span class="travel-accordion-count"><span id="pf-stat-cities">—</span>市区町村</span>
+            </div>
+          </div>
+          <span class="travel-accordion-arrow">▼</span>
+        </div>
+        <div class="travel-accordion-body">
+          <div id="pf-travel-map"></div>
+          <div class="pf-map-legend">
+            <div class="map-legend-item">
+              <div class="legend-fill" style="background:#1e5fa8;"></div>
+              <span>訪問済み市区町村</span>
+            </div>
+          </div>
+          <!-- 内訳アコーディオン -->
+          <div class="breakdown-accordion" id="breakdown-accordion">
+            <div class="breakdown-accordion-header" onclick="toggleBreakdown()">
+              <span class="breakdown-accordion-title">都道府県・市区町村の内訳</span>
+              <span class="breakdown-accordion-arrow">▼</span>
+            </div>
+            <div class="breakdown-accordion-body">
+              <div id="pf-breakdown-list">
+                <p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;color:var(--muted);">loading...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 写真録（2番目） ── -->
+      <a href="photo.html" class="photo-archive-card reveal">
+        <div class="photo-archive-icon">📷</div>
+        <div class="photo-archive-body">
+          <p class="photo-archive-label">// Travel · Photo Archive</p>
+          <p class="photo-archive-title">写真録</p>
+        </div>
+        <span class="photo-archive-arrow">→</span>
+      </a>
 
       <p class="item-count reveal">全 <span id="trip-count-num">0</span> 件</p>
 
@@ -1159,6 +1421,124 @@
       state.ramen.showing = SHOW_LIMIT.ramen;
       prevRamenCols = Math.max(1, Math.floor((document.getElementById('ramen-grid').clientWidth + 1) / (280 + 1)));
       applyState('ramen');
+    }
+
+    // ══════════════════════════
+    // 旅の足跡：地図・内訳アコーディオン
+    // ══════════════════════════
+    let pfMapInited = false;
+    let pfMapInstance = null;
+
+    function toggleTravelAccordion() {
+      const accordion = document.getElementById('travel-footprint-accordion');
+      accordion.classList.toggle('open');
+      if (accordion.classList.contains('open') && !pfMapInited) {
+        pfMapInited = true;
+        loadPfTravelMap();
+      } else if (accordion.classList.contains('open') && pfMapInstance) {
+        setTimeout(() => pfMapInstance.invalidateSize(), 60);
+      }
+    }
+
+    function toggleBreakdown() {
+      document.getElementById('breakdown-accordion').classList.toggle('open');
+    }
+
+    async function loadPfTravelMap() {
+      const mapEl = document.getElementById('pf-travel-map');
+      if (!mapEl) return;
+
+      const map = L.map('pf-travel-map', {
+        center: [36.5, 137.5],
+        zoom: 4,
+        zoomControl: true,
+        scrollWheelZoom: false,
+        attributionControl: false
+      });
+      pfMapInstance = map;
+
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.webp').addTo(map);
+      L.control.attribution({ position: 'bottomright', prefix: false })
+        .addAttribution('© <a href="https://openstreetmap.org">OSM</a> © <a href="https://carto.com">CARTO</a>')
+        .addTo(map);
+
+      try {
+        const res = await fetch('./travel.geojson');
+        if (!res.ok) throw new Error();
+        const geojson = await res.json();
+
+        const layer = L.geoJSON(geojson, {
+          style: { color: '#1e5fa8', weight: 0.8, opacity: 0.6, fillColor: '#1e5fa8', fillOpacity: 0.32 },
+          onEachFeature: (feature, lyr) => {
+            const props  = feature.properties;
+            const pref   = props.KEN || '';
+            const seirei = props.SEIREI || '';
+            const city   = props.SIKUCHOSON
+              ? (seirei ? `${seirei} ${props.SIKUCHOSON}` : props.SIKUCHOSON)
+              : (seirei || '');
+            lyr.bindTooltip(`<strong>${city}</strong>${pref ? `<br>${pref}` : ''}`, { sticky: true });
+            lyr.on('mouseover', function() { this.setStyle({ fillOpacity: 0.6, weight: 1.5 }); });
+            lyr.on('mouseout',  function() { this.setStyle({ fillOpacity: 0.32, weight: 0.8 }); });
+          }
+        }).addTo(map);
+
+        map.fitBounds(layer.getBounds(), { padding: [8, 8] });
+
+        const cityCount = geojson.features ? geojson.features.length : 0;
+        const prefCount = geojson.features
+          ? new Set(geojson.features.map(f => f.properties.KEN).filter(Boolean)).size : 0;
+
+        document.getElementById('pf-stat-prefs').textContent = prefCount || '—';
+        document.getElementById('pf-stat-cities').textContent = cityCount || '—';
+
+        // 内訳データを構築
+        buildBreakdown(geojson.features || []);
+
+      } catch {
+        mapEl.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;height:100%;background:var(--surface);"><p style="font-family:'Shippori Mincho',serif;font-size:12px;letter-spacing:0.15em;color:var(--muted);text-align:center;line-height:2.2;">travel.geojson を<br>リポジトリに追加してください</p></div>`;
+        document.getElementById('pf-breakdown-list').innerHTML = '';
+      }
+    }
+
+    function buildBreakdown(features) {
+      // 都道府県 → 市区町村リストのマップを構築
+      const prefMap = new Map();
+      for (const f of features) {
+        const pref   = f.properties.KEN || '不明';
+        const seirei = f.properties.SEIREI || '';
+        const shiku  = f.properties.SIKUCHOSON || '';
+        const city   = seirei ? (shiku ? `${seirei} ${shiku}` : seirei) : shiku;
+        if (!prefMap.has(pref)) prefMap.set(pref, []);
+        if (city) prefMap.get(pref).push(city);
+      }
+
+      // 都道府県コードでソート（KEN_CIDEがあれば）→ 都道府県名50音順フォールバック
+      const sorted = [...prefMap.entries()].sort((a, b) => a[0].localeCompare(b[0], 'ja'));
+
+      const container = document.getElementById('pf-breakdown-list');
+      container.innerHTML = '';
+
+      for (const [pref, cities] of sorted) {
+        const block = document.createElement('div');
+        block.className = 'pref-block';
+
+        const nameEl = document.createElement('div');
+        nameEl.className = 'pref-name';
+        nameEl.innerHTML = `${pref}<span class="pref-city-count">${cities.length}市区町村</span>`;
+
+        const tagsEl = document.createElement('div');
+        tagsEl.className = 'city-tags';
+        for (const c of cities.sort((a,b) => a.localeCompare(b,'ja'))) {
+          const tag = document.createElement('span');
+          tag.className = 'city-tag';
+          tag.textContent = c;
+          tagsEl.appendChild(tag);
+        }
+
+        block.appendChild(nameEl);
+        block.appendChild(tagsEl);
+        container.appendChild(block);
+      }
     }
 
     // ══════════════════════════
