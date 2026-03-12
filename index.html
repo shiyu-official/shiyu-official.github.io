@@ -947,8 +947,8 @@
 
       <!-- アイコンプレビュー行（枠なし・背景透過） -->
       <div class="links-icon-row reveal">
-        <img src="./images/youtube_icon.webp" alt="YouTube" style="height:28px;width:auto;opacity:0.75;">
-        <div class="links-icon-chip-x" style="font-family:'DM Mono',monospace;font-size:20px;font-weight:bold;color:var(--text);opacity:0.75;">𝕏</div>
+        <img src="./images/youtube_icon.webp" alt="YouTube" style="height:44px;width:auto;opacity:0.7;">
+        <div class="links-icon-chip-x" style="font-family:'DM Mono',monospace;font-size:32px;font-weight:bold;color:var(--text);opacity:0.7;line-height:1;">𝕏</div>
       </div>
 
       <!-- リンクカード（links.htmlへ） -->
@@ -1228,7 +1228,6 @@
     //  フォトスライダー
     // ══════════════════════════════════════
     (function () {
-      const outer   = document.getElementById('photo-slider-wrap').parentElement;
       const wrap    = document.getElementById('photo-slider-wrap');
       const strip   = document.getElementById('photo-strip');
       const btnPrev = document.getElementById('slider-prev');
@@ -1243,32 +1242,36 @@
       let itemW = 0;
       let vis = 4;
 
-      function getVis() {
-        return window.innerWidth >= 900 ? 4 : window.innerWidth >= 480 ? 3 : 2;
+      function getWrapWidth() {
+        const vw = window.innerWidth;
+        if (vw <= 480) return vw - 32;        // padding 16px×2
+        if (vw <= 900) return vw - 48;        // padding 24px×2
+        return vw - 300 - 128;               // sidebar 300px + padding 64px×2
+      }
+
+      function getVis(w) {
+        return w >= 600 ? 4 : w >= 400 ? 3 : 2;
       }
 
       function layout() {
-        vis = getVis();
-        // wrapの実際の幅（sidebarを除いたmainの幅）
-        const wrapW = wrap.getBoundingClientRect().width;
+        const wrapW = getWrapWidth();
+        vis = getVis(wrapW);
         itemW = Math.floor((wrapW - GAP * (vis - 1)) / vis);
         items.forEach(el => { el.style.width = itemW + 'px'; });
         current = Math.min(current, Math.max(0, total - vis));
-        render(false); // アニメなしで即位置確定
+        render(false);
       }
 
-      function render(animate = true) {
-        strip.style.transition = animate
-          ? 'transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94)'
-          : 'none';
+      function render(animate) {
+        strip.style.transition = animate === false ? 'none' : 'transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94)';
         strip.style.transform = `translateX(-${current * (itemW + GAP)}px)`;
         btnPrev.disabled = current === 0;
         btnNext.disabled = current >= total - vis;
         counter.textContent = `${current + 1} – ${Math.min(current + vis, total)} / ${total}`;
       }
 
-      btnPrev.addEventListener('click', () => { if (current > 0) { current--; render(); } });
-      btnNext.addEventListener('click', () => { if (current < total - vis) { current++; render(); } });
+      btnPrev.addEventListener('click', () => { if (current > 0) { current--; render(true); } });
+      btnNext.addEventListener('click', () => { if (current < total - vis) { current++; render(true); } });
 
       // スワイプ
       let touchX = null;
@@ -1278,8 +1281,8 @@
         const dx = e.changedTouches[0].clientX - touchX;
         touchX = null;
         if (Math.abs(dx) < 30) return;
-        if (dx < 0 && current < total - vis) { current++; render(); }
-        if (dx > 0 && current > 0)           { current--; render(); }
+        if (dx < 0 && current < total - vis) { current++; render(true); }
+        if (dx > 0 && current > 0)           { current--; render(true); }
       }, { passive: true });
 
       let resizeTimer;
@@ -1288,12 +1291,7 @@
         resizeTimer = setTimeout(layout, 80);
       });
 
-      // 初期化：DOMペイント後に確実に実幅を取る
-      if (document.readyState === 'complete') {
-        layout();
-      } else {
-        window.addEventListener('load', layout);
-      }
+      layout();
     })();
 
     // ══════════════════════════════════════
