@@ -249,6 +249,7 @@
       width: calc(100vw - 300px - 128px);
       overflow: hidden;
       position: relative;
+      transition: width 0.2s ease;
     }
     .photo-slider-wrap::before,
     .photo-slider-wrap::after {
@@ -341,14 +342,14 @@
     .pf-goto-card {
       display: flex;
       align-items: center;
-      gap: 20px;
-      padding: 20px 24px;
+      gap: 24px;
+      padding: 26px 32px;
       background: var(--white);
       border: 1px solid var(--border);
       text-decoration: none;
       color: var(--text);
-      margin-top: 12px;
-      max-width: 560px;
+      margin-top: 16px;
+      max-width: 100%;
       position: relative;
       transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
     }
@@ -369,7 +370,7 @@
     }
     .pf-goto-card:hover::before { transform: scaleY(1); }
     .pf-goto-thumb {
-      width: 56px; height: 56px;
+      width: 72px; height: 72px;
       flex-shrink: 0;
       overflow: hidden;
       background: var(--surface);
@@ -379,19 +380,19 @@
     .pf-goto-body { flex: 1; }
     .pf-goto-label {
       font-family: 'DM Mono', monospace;
-      font-size: 9px;
+      font-size: 10px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--muted);
-      margin-bottom: 5px;
+      margin-bottom: 7px;
     }
     .pf-goto-title {
       font-family: 'Shippori Mincho', serif;
-      font-size: 15px;
+      font-size: 18px;
       font-weight: 500;
       letter-spacing: 0.1em;
     }
-    .pf-goto-arrow { font-size: 18px; color: var(--border); flex-shrink: 0; transition: color 0.25s; }
+    .pf-goto-arrow { font-size: 22px; color: var(--border); flex-shrink: 0; transition: color 0.25s; }
     .pf-goto-card:hover .pf-goto-arrow { color: var(--accent); }
 
     /* ══════════════════════════════════════
@@ -965,10 +966,10 @@
       </div>
 
       <!-- リンクカード（links.htmlへ） -->
-      <div class="reveal" style="max-width:600px;">
+      <div class="reveal">
         <a href="links.html" class="stat-row" style="display:flex;">
-          <span class="stat-row-label">活動に関するリンクをまとめています</span>
-          <span style="font-family:'Shippori Mincho',serif;font-size:20px;color:var(--accent);">→</span>
+          <span class="stat-row-label" style="font-size:17px;">活動に関するリンクをまとめています</span>
+          <span style="font-family:'Shippori Mincho',serif;font-size:24px;color:var(--accent);">→</span>
         </a>
       </div>
 
@@ -1291,10 +1292,10 @@
         if (dx > 0 && current > 0)           { current--; render(true); }
       }, { passive: true });
 
-      let resizeTimer;
       window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(layout, 80);
+        vis = getVis(wrap.offsetWidth);
+        current = Math.min(current, Math.max(0, total - vis));
+        render(false);
       });
 
       layout();
