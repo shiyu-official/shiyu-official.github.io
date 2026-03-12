@@ -266,10 +266,13 @@
       gap: 4px;
       transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       will-change: transform;
+      visibility: hidden;
     }
+    .photo-strip.ready { visibility: visible; }
     .photo-strip-item {
       flex-shrink: 0;
-      /* 幅はJSがwrapの実幅から計算して設定する */
+      width: 0;
+      min-width: 0;
       height: 200px;
       overflow: hidden;
       background: var(--surface);
@@ -1260,6 +1263,7 @@
         items.forEach(el => { el.style.width = itemW + 'px'; });
         current = Math.min(current, Math.max(0, total - vis));
         render(false);
+        strip.classList.add('ready');
       }
 
       function render(animate) {
