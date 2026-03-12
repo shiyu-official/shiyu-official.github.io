@@ -44,17 +44,19 @@
       pointer-events: none;
       z-index: 0;
     }
-    /* 日本地図シルエット */
     .hero-japan-map {
       position: absolute;
-      right: -40px;
+      right: -20px;
       top: 50%;
-      transform: translateY(-50%);
-      width: min(620px, 65vw);
-      opacity: 0.055;
+      transform: translateY(-52%);
+      width: min(580px, 62vw);
+      color: var(--accent);
+      opacity: 0.07;
       pointer-events: none;
       z-index: 0;
-      filter: blur(0.5px);
+    }
+    @media (max-width: 900px) {
+      .hero-japan-map { display: none; }
     }
 
     .hero-eyebrow {
@@ -250,13 +252,18 @@
     .stat-group { display: none; }
     .stat-group.active { display: contents; }
 
-    /* ── PORTFOLIO PREVIEW ── */
+    /* ── PORTFOLIO PREVIEW（全幅・縁フェードなし） ── */
+    .portfolio-preview-outer {
+      /* mainの左右paddingを打ち消して全幅に */
+      margin-left: -64px;
+      margin-right: -64px;
+    }
     .portfolio-preview-grid {
       display: grid;
       grid-template-columns: 2fr 1fr;
-      gap: 4px;
+      gap: 3px;
       text-decoration: none;
-      max-width: 720px;
+      background: var(--border);
     }
     .pf-img-wrap {
       position: relative;
@@ -269,56 +276,25 @@
       object-fit: cover;
       display: block;
       transition: transform 0.55s ease;
-      /* 四辺を柔らかくフェード */
-      -webkit-mask-image: linear-gradient(
-        to bottom,
-        transparent 0%,
-        black 10%,
-        black 90%,
-        transparent 100%
-      ),
-      linear-gradient(
-        to right,
-        transparent 0%,
-        black 6%,
-        black 94%,
-        transparent 100%
-      );
-      -webkit-mask-composite: source-in;
-      mask-image: linear-gradient(
-        to bottom,
-        transparent 0%,
-        black 10%,
-        black 90%,
-        transparent 100%
-      ),
-      linear-gradient(
-        to right,
-        transparent 0%,
-        black 6%,
-        black 94%,
-        transparent 100%
-      );
-      mask-composite: intersect;
     }
-    .pf-img-large { height: 300px; }
-    .pf-img-small { height: 300px; }
+    .pf-img-large { height: 380px; }
+    .pf-img-small { height: 380px; }
     .pf-img-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(30,95,168,0.55) 0%, transparent 55%);
+      background: linear-gradient(to top, rgba(20,60,120,0.65) 0%, transparent 50%);
       opacity: 0;
       transition: opacity 0.35s ease;
       display: flex;
       align-items: flex-end;
-      padding: 20px;
+      padding: 28px 32px;
     }
     .pf-img-overlay span {
       font-family: 'Shippori Mincho', serif;
-      font-size: 13px;
-      letter-spacing: 0.15em;
+      font-size: 14px;
+      letter-spacing: 0.18em;
       color: #fff;
-      line-height: 1.8;
+      line-height: 2;
     }
     .portfolio-preview-grid:hover .pf-img-wrap img { transform: scale(1.04); }
     .portfolio-preview-grid:hover .pf-img-overlay { opacity: 1; }
@@ -332,16 +308,100 @@
       from { background-position: 200% 0; }
       to   { background-position: -200% 0; }
     }
-
     @media (max-width: 900px) {
-      .portfolio-preview-grid { max-width: 100%; }
-      .pf-img-large, .pf-img-small { height: 200px; }
+      .portfolio-preview-outer { margin-left: -24px; margin-right: -24px; }
+      .pf-img-large, .pf-img-small { height: 240px; }
     }
     @media (max-width: 480px) {
+      .portfolio-preview-outer { margin-left: -16px; margin-right: -16px; }
       .portfolio-preview-grid { grid-template-columns: 1fr; }
-      .pf-img-large { height: 220px; }
+      .pf-img-large { height: 240px; }
       .pf-img-small { height: 160px; }
     }
+
+    /* ── INDEX LINK CARDS（links.htmlと統一デザイン） ── */
+    .index-link-card {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 18px 24px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text);
+      position: relative;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    }
+    .index-link-card:hover {
+      border-color: var(--accent-light);
+      transform: translateX(4px);
+      box-shadow: -3px 0 0 var(--accent);
+    }
+    .index-link-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--accent), var(--cyan));
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.3s ease;
+    }
+    .index-link-card:hover::before { transform: scaleY(1); }
+    .index-link-icon {
+      width: 44px; height: 44px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .index-link-icon img { width: 28px; height: 22px; object-fit: contain; }
+    .index-link-icon--x {
+      font-family: 'DM Mono', monospace;
+      font-size: 17px;
+      font-weight: bold;
+      color: var(--text);
+    }
+    .index-link-body { flex: 1; }
+    .index-link-platform {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .index-link-name {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--text);
+    }
+    .index-link-arrow {
+      font-size: 17px;
+      color: var(--border);
+      flex-shrink: 0;
+      transition: color 0.25s;
+    }
+    .index-link-card:hover .index-link-arrow { color: var(--accent); }
+    .index-link-more {
+      display: inline-block;
+      margin-top: 14px;
+      font-family: 'Shippori Mincho', serif;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      transition: color 0.25s, border-color 0.25s;
+    }
+    .index-link-more:hover { color: var(--accent); border-color: var(--accent); }
 
     /* ── ABOUT ── */
     .about-body {
@@ -606,37 +666,11 @@
     <!-- Hero -->
     <section class="section-hero" id="hero">
 
-      <!-- 日本地図シルエット（背景装飾） -->
-      <svg class="hero-japan-map" viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg" fill="var(--accent)" aria-hidden="true">
-        <!-- 北海道 -->
-        <path d="M340,30 L360,22 L390,28 L410,45 L420,65 L415,85 L400,95 L385,88 L370,98 L355,90 L340,80 L330,60 L335,42 Z"/>
-        <path d="M310,55 L325,48 L338,58 L332,72 L318,70 Z"/>
-        <!-- 本州（簡略化） -->
-        <path d="M200,120 L225,108 L255,112 L280,125 L310,130 L330,145 L345,165 L350,185 L340,205 L325,215 L305,218 L285,225 L265,235 L250,248 L235,260 L218,268 L200,272 L182,268 L165,260 L152,248 L145,232 L140,215 L138,198 L142,180 L150,162 L162,148 L178,135 Z"/>
-        <!-- 東北追加ライン -->
-        <path d="M255,112 L268,98 L282,90 L296,95 L308,108 L310,130"/>
-        <!-- 紀伊半島 -->
-        <path d="M210,280 L225,272 L238,278 L245,295 L240,315 L228,325 L215,318 L207,302 Z"/>
-        <!-- 四国 -->
-        <path d="M215,305 L240,298 L268,302 L285,315 L288,332 L275,342 L252,345 L230,338 L215,325 Z"/>
-        <!-- 九州 -->
-        <path d="M155,295 L178,285 L198,290 L210,305 L208,325 L198,340 L180,350 L162,348 L148,335 L142,318 L148,302 Z"/>
-        <!-- 薩摩半島 -->
-        <path d="M162,348 L170,358 L168,372 L158,375 L150,365 L152,352 Z"/>
-        <!-- 大隅半島 -->
-        <path d="M178,350 L188,362 L185,376 L175,378 L168,368 L170,355 Z"/>
-        <!-- 沖縄（小） -->
-        <ellipse cx="140" cy="480" rx="22" ry="10" transform="rotate(-20,140,480)"/>
-        <ellipse cx="112" cy="495" rx="14" ry="7" transform="rotate(-20,112,495)"/>
-        <!-- 種子島・屋久島 -->
-        <ellipse cx="180" cy="395" rx="8" ry="14"/>
-        <ellipse cx="168" cy="392" rx="9" ry="9"/>
-        <!-- 対馬 -->
-        <ellipse cx="128" cy="255" rx="7" ry="18" transform="rotate(-10,128,255)"/>
-        <!-- 佐渡 -->
-        <ellipse cx="262" cy="152" rx="10" ry="22" transform="rotate(-30,262,152)"/>
+      <!-- GeoJSONから生成した正確な日本地図シルエット -->
+      <svg class="hero-japan-map" viewBox="0 0 500 460" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M185,253L188,242L186,243L187,242L191,243L194,243L196,242L221,224L221,221L229,219L231,218L231,217L232,218L236,218L238,221L275,214L277,221L293,216L307,181L320,177L317,182L311,183L310,187L319,193L345,180L362,165L371,148L376,136L369,126L376,121L372,113L382,99L390,108L399,107L400,99L391,102L394,94L405,96L404,106L405,111L418,137L415,139L415,144L409,146L405,153L407,162L405,159L398,159L398,160L398,159L397,159L397,160L397,160L397,160L396,161L398,161L395,164L395,188L387,203L393,215L389,216L385,218L382,227L373,232L370,231L378,218L374,216L370,216L367,220L367,224L370,225L368,227L365,224L361,223L357,225L351,238L352,229L350,227L338,238L313,239L319,237L320,235L319,235L319,234L319,234L319,234L317,234L313,235L312,231L310,236L309,232L310,229L310,228L310,228L308,229L308,230L307,229L306,230L306,230L305,230L305,230L305,230L303,236L310,245L308,244L306,245L307,244L305,244L298,247L287,263L280,260L279,257L274,253L272,253L281,239L280,239L280,238L279,236L278,236L260,234L254,235L253,239L251,238L250,238L249,238L249,241L245,240L239,240L237,243L234,242L225,244L222,247L219,243L216,243L213,246L211,252L211,254L210,253L205,251L204,251L205,250L203,249L188,250L185,253Z M405,56L415,10L437,30L467,43L486,35L481,47L487,57L496,55L457,65L443,85L437,81L409,71L410,70L403,72L396,77L385,71L381,78L400,88L388,87L377,96L371,71L386,63L382,56L399,60L402,59L405,56Z" fill="currentColor"/>
       </svg>
-      <!-- コンテンツ（地図より前面） -->
+
       <div style="position:relative;z-index:1;">
       <p class="hero-eyebrow">Personal Site</p>
       <h1 class="hero-title">
@@ -776,15 +810,16 @@
     </section>
 
     <!-- Portfolio -->
-    <section class="section" id="portfolio">
+    <section class="section" id="portfolio" style="padding-bottom:0;">
       <div class="section-header reveal">
         <div>
           <p class="section-label">// 05 — Portfolio</p>
           <h2 class="section-title">記録</h2>
         </div>
-        <a href="portfolio.html" class="btn-secondary">すべて見る →</a>
+        <a href="portfolio.html" class="btn-secondary" style="margin-bottom:10px;">すべて見る →</a>
       </div>
-      <div class="reveal">
+      <!-- 全幅写真プレビュー -->
+      <div class="reveal portfolio-preview-outer">
         <a href="portfolio.html" class="portfolio-preview-grid" id="portfolio-preview-grid">
           <div class="pf-img-wrap pf-img-large loading" id="pf-img-0">
             <div class="pf-img-overlay"><span>旅先の写真や記録をまとめています</span></div>
@@ -802,12 +837,40 @@
         <p class="section-label">// 06 — Links</p>
         <h2 class="section-title">リンク</h2>
       </div>
-      <div class="reveal">
-        <a href="links.html" class="stat-row" style="display:flex;">
-          <span class="stat-row-label">活動に関するリンクをまとめています</span>
-          <span style="font-family:'Shippori Mincho',serif;font-size:20px;color:var(--accent);">→</span>
+
+      <!-- linksページと同じlink-cardデザインで統一 -->
+      <div class="reveal" style="display:flex;flex-direction:column;gap:1px;max-width:600px;">
+        <a href="https://www.youtube.com/@Re_shiyu_travel" class="index-link-card" target="_blank" rel="noopener">
+          <div class="index-link-icon">
+            <img src="./images/youtube_icon.webp" alt="YouTube">
+          </div>
+          <div class="index-link-body">
+            <p class="index-link-platform">YouTube</p>
+            <p class="index-link-name">Re:しゆ / 旅行</p>
+          </div>
+          <span class="index-link-arrow">→</span>
         </a>
+        <a href="https://www.youtube.com/@Re_shiyu_taiko" class="index-link-card" target="_blank" rel="noopener">
+          <div class="index-link-icon">
+            <img src="./images/youtube_icon.webp" alt="YouTube">
+          </div>
+          <div class="index-link-body">
+            <p class="index-link-platform">YouTube</p>
+            <p class="index-link-name">Re:しゆ / 太鼓の達人</p>
+          </div>
+          <span class="index-link-arrow">→</span>
+        </a>
+        <a href="https://x.com/shiyu_official_" class="index-link-card" target="_blank" rel="noopener">
+          <div class="index-link-icon index-link-icon--x">𝕏</div>
+          <div class="index-link-body">
+            <p class="index-link-platform">X / Twitter</p>
+            <p class="index-link-name">@shiyu_official_</p>
+          </div>
+          <span class="index-link-arrow">→</span>
+        </a>
+        <a href="links.html" class="index-link-more">すべてのリンクを見る →</a>
       </div>
+
       <div style="position:absolute; bottom: 40px; left: 0; right: 0; display:flex; justify-content:center; opacity:0.35; pointer-events:none;">
         <div style="display:flex; align-items:center; gap: 16px;">
           <div style="width: 60px; height: 1px; background: var(--border);"></div>
@@ -1075,66 +1138,46 @@
 
     // ══════════════════════════════════════
     //  Portfolio 最新画像を動的取得
-    //  portfolio.html の最初の .photo-item の href から
-    //  各旅ページの img[src] を2枚取得して表示
     // ══════════════════════════════════════
     async function fetchPortfolioImages() {
       const slots = [
         document.getElementById('pf-img-0'),
         document.getElementById('pf-img-1'),
       ];
-
       try {
-        // 1) portfolio.html を取得して最新トリップのhrefを取得
         const pfRes = await fetch('./portfolio.html');
         if (!pfRes.ok) throw new Error();
         const pfDoc = new DOMParser().parseFromString(await pfRes.text(), 'text/html');
         const tripItem = pfDoc.querySelector('#trip-list .photo-item');
         if (!tripItem) throw new Error('no trip');
-
         const tripHref = tripItem.getAttribute('href');
 
-        // 2) 旅詳細ページを取得して画像を収集
         const tripRes = await fetch(tripHref);
         if (!tripRes.ok) throw new Error();
         const tripDoc = new DOMParser().parseFromString(await tripRes.text(), 'text/html');
-        // 旅ページの写真。<img> のうち travel_icon / don / crown 等のUIアイコンを除く
         const imgs = Array.from(tripDoc.querySelectorAll('img[src]'))
-          .filter(img => {
-            const s = img.src || img.getAttribute('src') || '';
-            return !s.match(/icon|don|crown|logo/i);
-          })
+          .filter(img => !img.getAttribute('src').match(/icon|don|crown|logo/i))
           .map(img => img.getAttribute('src'));
-
         if (imgs.length === 0) throw new Error('no images');
 
-        // 3) 均等に2枚選ぶ
         const pick = imgs.length === 1
           ? [imgs[0], imgs[0]]
           : [imgs[0], imgs[Math.floor(imgs.length / 2)]];
 
-        // 4) スロットに画像を差し込む
+        const base = new URL(tripHref, location.href);
         pick.forEach((src, i) => {
           const wrap = slots[i];
           if (!wrap) return;
           const overlay = wrap.querySelector('.pf-img-overlay');
           const img = document.createElement('img');
-          // 相対パスをトリップページ基準で解決
-          const base = new URL(tripHref, location.href);
           img.src = new URL(src, base).href;
           img.alt = '旅の記録';
           img.loading = 'lazy';
-          img.onload = () => wrap.classList.remove('loading');
-          img.onerror = () => wrap.classList.remove('loading');
+          img.onload = img.onerror = () => wrap.classList.remove('loading');
           wrap.insertBefore(img, overlay);
-          wrap.classList.remove('loading');
         });
-
       } catch {
-        // フォールバック：ローディングアニメを外してシルエット表示
-        slots.forEach(wrap => {
-          if (wrap) wrap.classList.remove('loading');
-        });
+        slots.forEach(w => w && w.classList.remove('loading'));
       }
     }
 
