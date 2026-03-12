@@ -244,8 +244,25 @@
     .photo-slider-wrap {
       position: relative;
       overflow: hidden;
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
-      mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+      /* mask-imageはoverflow:hiddenと干渉することがあるので疑似要素で代替 */
+    }
+    /* 左右フェード overlay */
+    .photo-slider-wrap::before,
+    .photo-slider-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 48px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .photo-slider-wrap::before {
+      left: 0;
+      background: linear-gradient(to right, var(--bg), transparent);
+    }
+    .photo-slider-wrap::after {
+      right: 0;
+      background: linear-gradient(to left, var(--bg), transparent);
     }
     .photo-strip {
       display: flex;
@@ -1223,50 +1240,49 @@
       const counter = document.getElementById('slider-counter');
       if (!wrap || !strip) return;
 
-      const items = strip.querySelectorAll('.photo-strip-item');
+      const items = Array.from(strip.querySelectorAll('.photo-strip-item'));
       const total = items.length;
-      let current = 0;   // 先頭に表示されているインデックス
-      let visCount = 4;  // 表示枚数（初期値・updateで上書き）
+      let current = 0;
 
-      // 枚数と各アイテム幅を画面幅から計算
-      function updateLayout() {
-        const wrapW = wrap.clientWidth;
-        visCount = wrapW >= 900 ? 4 : wrapW >= 600 ? 3 : 2;
+      function getVisCount() {
+        const w = wrap.offsetWidth;
+        if (w >= 900) return 4;
+        if (w >= 600) return 3;
+        return 2;
+      }
+
+      function layout() {
+        const vis = getVisCount();
         const gap = 4;
-        const itemW = Math.floor((wrapW - gap * (visCount - 1)) / visCount);
-        items.forEach(el => { el.style.width = itemW + 'px'; });
-        // currentが末尾を超えないよう補正
-        current = Math.min(current, Math.max(0, total - visCount));
-        applyTranslate();
+        const itemW = Math.floor((wrap.offsetWidth - gap * (vis - 1)) / vis);
+        items.forEach(el => {
+          el.style.width = itemW + 'px';
+          el.style.flexShrink = '0';
+        });
+        // currentが範囲外なら補正
+        current = Math.min(current, Math.max(0, total - vis));
+        render();
       }
 
-      function applyTranslate() {
+      function render() {
+        const vis = getVisCount();
+        const gap = 4;
         const itemW = items[0].offsetWidth;
-        const gap   = 4;
-        const offset = current * (itemW + gap);
-        strip.style.transform = `translateX(-${offset}px)`;
+        strip.style.transform = `translateX(-${current * (itemW + gap)}px)`;
         btnPrev.disabled = current === 0;
-        btnNext.disabled = current >= total - visCount;
-        counter.textContent = `${current + 1} – ${Math.min(current + visCount, total)} / ${total}`;
+        btnNext.disabled = current >= total - vis;
+        const end = Math.min(current + vis, total);
+        counter.textContent = `${current + 1} – ${end} / ${total}`;
       }
 
-      btnPrev.addEventListener('click', () => {
-        if (current > 0) { current--; applyTranslate(); }
-      });
-      btnNext.addEventListener('click', () => {
-        if (current < total - visCount) { current++; applyTranslate(); }
-      });
+      btnPrev.addEventListener('click', () => { if (current > 0) { current--; render(); } });
+      btnNext.addEventListener('click', () => { if (current < total - getVisCount()) { current++; render(); } });
 
-      // リサイズ対応
       let resizeTimer;
-      window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(updateLayout, 100);
-      });
+      window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(layout, 80); });
 
-      // 初期化（画像読み込み後にレイアウト確定）
-      window.addEventListener('load', updateLayout);
-      updateLayout();
+      // DOMが確実にレンダリングされてから初期化
+      requestAnimationFrame(() => requestAnimationFrame(layout));
     })();
 
     // ══════════════════════════════════════
