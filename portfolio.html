@@ -25,6 +25,8 @@
   <meta name="twitter:image" content="https://shiyu-official.github.io/images/travel_icon.webp">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css"/>
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
   <link rel="stylesheet" href="./style.css">
   <style>
     /* ══════════════════════════
@@ -297,6 +299,136 @@
       border: 1px solid var(--border);
       padding: 2px 8px;
       border-radius: 1px;
+    }
+
+    /* ══════════════════════════
+       01-03 — 乗りつぶし
+    ══════════════════════════ */
+
+    /* 地図 */
+    #pf-railway-map {
+      width: 100%;
+      height: 360px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* MapLibre popup（indexと同じ） */
+    .maplibregl-ctrl-group {
+      border: 1px solid var(--border) !important;
+      border-radius: 1px !important;
+      box-shadow: none !important;
+    }
+    .maplibregl-ctrl-group button {
+      border-bottom: 1px solid var(--border) !important;
+    }
+    .maplibregl-popup-content {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 1px;
+      border: 1px solid var(--border);
+      box-shadow: 3px 3px 0 var(--border);
+    }
+
+    /* 路線内訳リスト */
+    .railway-breakdown-body {
+      display: none;
+      border-top: 1px solid var(--border);
+      background: var(--white);
+    }
+    .breakdown-accordion.open .railway-breakdown-body { display: block; }
+
+    .rr-status-group {
+      border-bottom: 1px solid var(--border);
+    }
+    .rr-status-group:last-child { border-bottom: none; }
+    .rr-status-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 20px 8px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .rr-status-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 1px;
+    }
+    .rr-status-badge.kanjo  { color: #1e5fa8; border: 1px solid #a3c0e0; background: #eef3fb; }
+    .rr-status-badge.miukan { color: #c47a2a; border: 1px solid #ddb47a; background: #fdf5eb; }
+    .rr-status-badge.mijo   { color: #8a8070; border: 1px solid #c4bdb5; background: var(--surface); }
+    .rr-status-count {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+
+    .rr-line-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 0;
+      padding: 12px 20px 16px;
+    }
+    .rr-line-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding: 6px 8px;
+      border-radius: 1px;
+    }
+    .rr-line-item:hover { background: var(--surface); }
+    .rr-line-name {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--text);
+    }
+    .rr-line-operator {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+    }
+    .rr-line-bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 3px;
+    }
+    .rr-line-bar-bg {
+      flex: 1;
+      height: 3px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .rr-line-bar-fill {
+      height: 100%;
+      background: #1e5fa8;
+      border-radius: 2px;
+    }
+    .rr-line-pct {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      white-space: nowrap;
+      min-width: 32px;
+      text-align: right;
+    }
+
+    @media (max-width: 480px) {
+      #pf-railway-map { height: 260px; }
+      .rr-line-grid { grid-template-columns: 1fr 1fr; padding: 10px 14px 14px; }
     }
 
     /* ══════════════════════════
@@ -960,6 +1092,51 @@
         </div>
       </div>
 
+      <!-- ══ 中項目③：乗りつぶし ══ -->
+      <div class="subsection-wrap reveal">
+        <p class="subsection-label">01-03</p>
+        <h3 class="subsection-title">乗りつぶし</h3>
+
+        <!-- 「地図を開く」アコーディオン -->
+        <div class="travel-map-accordion" id="railway-map-accordion">
+          <div class="travel-map-accordion-header" onclick="toggleRailwayMapAccordion()">
+            <span class="travel-map-accordion-title">地図を開く</span>
+            <span class="travel-map-accordion-arrow">▼</span>
+          </div>
+          <div class="travel-map-accordion-body">
+            <div id="pf-railway-map"></div>
+
+            <!-- indexと同じ統計バー構造 -->
+            <div class="pf-map-stats-wrap">
+              <div class="pf-map-stats-header">Railway</div>
+              <div class="pf-map-stats">
+                <div class="pf-map-stat">
+                  <div class="pf-map-stat-num" id="pf-stat-lines">—</div>
+                  <div class="pf-map-stat-label">乗車路線</div>
+                </div>
+                <div class="pf-map-stat">
+                  <div class="pf-map-stat-num" id="pf-stat-km">—</div>
+                  <div class="pf-map-stat-label">乗車 km</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 路線内訳アコーディオン -->
+            <div class="breakdown-accordion" id="railway-breakdown-accordion">
+              <div class="breakdown-accordion-header" onclick="toggleRailwayBreakdown()">
+                <span class="breakdown-accordion-title">路線の内訳</span>
+                <span class="breakdown-accordion-arrow">▼</span>
+              </div>
+              <div class="railway-breakdown-body">
+                <div id="pf-railway-breakdown">
+                  <p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;color:var(--muted);padding:16px 20px;">loading...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- ══════════════════════════
@@ -1534,6 +1711,201 @@
         block.appendChild(tagsEl);
         container.appendChild(block);
       }
+    }
+
+    // ══════════════════════════
+    // 乗りつぶし：地図・内訳アコーディオン
+    // ══════════════════════════
+    let pfRailwayMapInited = false;
+    let pfRailwayGeojsonCache = null;
+
+    function toggleRailwayMapAccordion() {
+      const accordion = document.getElementById('railway-map-accordion');
+      accordion.classList.toggle('open');
+      if (accordion.classList.contains('open') && !pfRailwayMapInited) {
+        pfRailwayMapInited = true;
+        loadPfRailwayMap();
+      } else if (accordion.classList.contains('open') && window._pfRrMap) {
+        setTimeout(() => window._pfRrMap.resize(), 60);
+      }
+    }
+
+    function toggleRailwayBreakdown() {
+      const acc = document.getElementById('railway-breakdown-accordion');
+      acc.classList.toggle('open');
+    }
+
+    async function loadPfRailwayMap() {
+      maplibregl.workerCount = 4;
+
+      const map = new maplibregl.Map({
+        container: 'pf-railway-map',
+        style: {
+          version: 8,
+          sources: {
+            carto: {
+              type: 'raster',
+              tiles: [
+                'https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
+                'https://b.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png'
+              ],
+              tileSize: 256,
+              attribution: '© <a href="https://openstreetmap.org">OSM</a> © <a href="https://carto.com">CARTO</a>'
+            }
+          },
+          layers: [{ id: 'carto', type: 'raster', source: 'carto' }]
+        },
+        center: [137.5, 36.5],
+        zoom: 4,
+        scrollZoom: true,
+        attributionControl: false
+      });
+      window._pfRrMap = map;
+
+      map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
+      map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-right');
+
+      // 統計JSON・乗車済GeoJSON・未乗JSONを並行取得
+      const [statsData, rrGj, unriddenData] = await Promise.allSettled([
+        fetch('./railway_stats.json').then(r => r.ok ? r.json() : null).catch(() => null),
+        fetch('./railway_status.geojson').then(r => r.ok ? r.json() : null).catch(() => null),
+        fetch('./railway_unridden.json').then(r => r.ok ? r.json() : null).catch(() => null)
+      ]);
+
+      // 統計表示
+      const stats = statsData.value;
+      if (stats) {
+        const linesEl = document.getElementById('pf-stat-lines');
+        const kmEl    = document.getElementById('pf-stat-km');
+        if (linesEl) linesEl.textContent = stats.ridden_lines ?? '—';
+        if (kmEl)    kmEl.textContent    = stats.total_ridden_km != null
+          ? Math.round(stats.total_ridden_km).toLocaleString() : '—';
+      }
+
+      const geojson = rrGj.value;
+      if (!geojson) {
+        document.getElementById('pf-railway-map').innerHTML =
+          `<div style="display:flex;align-items:center;justify-content:center;height:100%;background:var(--surface);">
+            <p style="font-family:'Shippori Mincho',serif;font-size:12px;letter-spacing:.15em;color:var(--muted);text-align:center;line-height:2.2;">
+              railway_status.geojson を<br>リポジトリに追加してください
+            </p>
+          </div>`;
+        document.getElementById('pf-railway-breakdown').innerHTML = '';
+        return;
+      }
+
+      pfRailwayGeojsonCache = geojson;
+
+      const addLayers = () => {
+        if (map.getSource('railway')) return;
+        map.addSource('railway', {
+          type: 'geojson', data: geojson,
+          generateId: true, tolerance: 0, buffer: 128, lineMetrics: false, maxzoom: 18
+        });
+        map.addLayer({
+          id: 'rr-unridden', type: 'line', source: 'railway',
+          filter: ['==', ['get', 'status'], 'unridden'],
+          paint: { 'line-color': '#c4bdb5', 'line-width': 1.0, 'line-opacity': 0.6 }
+        });
+        map.addLayer({
+          id: 'rr-ridden', type: 'line', source: 'railway',
+          filter: ['==', ['get', 'status'], 'ridden'],
+          paint: { 'line-color': '#1e5fa8', 'line-width': 2.0, 'line-opacity': 0.88 }
+        });
+        const popup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 6 });
+        ['rr-ridden', 'rr-unridden'].forEach(layerId => {
+          map.on('mousemove', layerId, e => {
+            map.getCanvas().style.cursor = 'pointer';
+            const p = e.features[0].properties;
+            const badge = p.status === 'ridden'
+              ? `<span style="color:#1e5fa8;font-size:10px;font-family:'DM Mono',monospace;">● 乗車済</span>`
+              : `<span style="color:#8a8070;font-size:10px;font-family:'DM Mono',monospace;">○ 未乗</span>`;
+            popup.setLngLat(e.lngLat)
+              .setHTML(`<strong style="font-family:'Shippori Mincho',serif;letter-spacing:.08em;">${p.line}</strong><br>${badge}`)
+              .addTo(map);
+          });
+          map.on('mouseleave', layerId, () => {
+            map.getCanvas().style.cursor = '';
+            popup.remove();
+          });
+        });
+      };
+
+      if (map.loaded()) { addLayers(); } else { map.on('load', addLayers); }
+
+      // 内訳データ構築
+      buildRailwayBreakdown(geojson.features || [], unriddenData.value || []);
+    }
+
+    function buildRailwayBreakdown(features, unriddenList) {
+      // 路線ごとに ridden / unridden セグメント数を集計
+      const lineMap = new Map();
+      for (const f of features) {
+        const { line, operator = '', status } = f.properties;
+        if (!lineMap.has(line)) lineMap.set(line, { operator, ridden: 0, unridden: 0 });
+        const entry = lineMap.get(line);
+        entry[status] = (entry[status] || 0) + 1;
+      }
+
+      // 完乗 / 未完 に分類
+      const kanjo  = [];
+      const miukan = [];
+      for (const [line, v] of lineMap) {
+        const total = v.ridden + v.unridden;
+        const pct   = Math.round(v.ridden / total * 100);
+        if (v.unridden === 0) kanjo.push({ line, operator: v.operator, pct: 100 });
+        else                  miukan.push({ line, operator: v.operator, pct });
+      }
+
+      // 未乗：railway_unridden.json から
+      const mijo = (unriddenList || []).map(({ line, operator }) => ({ line, operator }));
+
+      // 50音順
+      const ja = (a, b) => a.line.localeCompare(b.line, 'ja');
+      kanjo.sort(ja);
+      miukan.sort(ja);
+      mijo.sort(ja);
+
+      const container = document.getElementById('pf-railway-breakdown');
+      container.innerHTML = '';
+
+      const renderGroup = (title, cls, items, showBar) => {
+        if (!items.length) return;
+        const group = document.createElement('div');
+        group.className = 'rr-status-group';
+
+        const hdr = document.createElement('div');
+        hdr.className = 'rr-status-header';
+        hdr.innerHTML = `
+          <span class="rr-status-badge ${cls}">${title}</span>
+          <span class="rr-status-count">${items.length} 路線</span>`;
+        group.appendChild(hdr);
+
+        const grid = document.createElement('div');
+        grid.className = 'rr-line-grid';
+        for (const item of items) {
+          const div = document.createElement('div');
+          div.className = 'rr-line-item';
+          const barHtml = showBar ? `
+            <div class="rr-line-bar-wrap">
+              <div class="rr-line-bar-bg">
+                <div class="rr-line-bar-fill" style="width:${item.pct}%"></div>
+              </div>
+              <span class="rr-line-pct">${item.pct === 100 ? '完乗' : item.pct + '%'}</span>
+            </div>` : '';
+          div.innerHTML = `
+            <span class="rr-line-name">${item.line}</span>
+            <span class="rr-line-operator">${item.operator}</span>
+            ${barHtml}`;
+          grid.appendChild(div);
+        }
+        group.appendChild(grid);
+        container.appendChild(group);
+      };
+
+      renderGroup('未完', 'miukan', miukan, true);
+      renderGroup('完乗', 'kanjo',  kanjo,  true);
+      renderGroup('未乗', 'mijo',   mijo,   false);
     }
 
     // ══════════════════════════
