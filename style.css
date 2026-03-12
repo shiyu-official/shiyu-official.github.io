@@ -33,6 +33,27 @@ body {
   min-height: 100vh;
 }
 
+/* ── スクロールプログレスバー ── */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: var(--sidebar-w);
+  right: 0;
+  height: 2px;
+  background: var(--accent);
+  transform-origin: left;
+  transform: scaleX(0);
+  z-index: 999;
+  transition: transform 0.05s linear;
+}
+@media (max-width: 900px) {
+  #scroll-progress {
+    left: 0;
+    top: auto;
+    bottom: 0;
+  }
+}
+
 /* ══════════════════════════
    SIDEBAR
 ══════════════════════════ */

@@ -30,6 +30,10 @@
       flex-direction: column;
       justify-content: center;
     }
+    @keyframes heroDiag {
+      from { background-position: 0 0; }
+      to   { background-position: 80px 80px; }
+    }
     .section-hero::after {
       content: '';
       position: absolute;
@@ -41,6 +45,8 @@
         rgba(30,95,168,0.025) 40px,
         rgba(30,95,168,0.025) 41px
       );
+      background-size: 80px 80px;
+      animation: heroDiag 8s linear infinite;
       pointer-events: none;
     }
 
@@ -237,6 +243,58 @@
     .stat-group { display: none; }
     .stat-group.active { display: contents; }
 
+    /* ── PORTFOLIO PREVIEW ── */
+    .portfolio-preview-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 4px;
+      text-decoration: none;
+      max-width: 720px;
+    }
+    .pf-img-wrap {
+      position: relative;
+      overflow: hidden;
+      background: var(--surface);
+    }
+    .pf-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .pf-img-large { height: 300px; }
+    .pf-img-small { height: 300px; }
+    .pf-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(30,95,168,0.55) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      display: flex;
+      align-items: flex-end;
+      padding: 20px;
+    }
+    .pf-img-overlay span {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      color: #fff;
+      line-height: 1.8;
+    }
+    .portfolio-preview-grid:hover .pf-img-wrap img { transform: scale(1.04); }
+    .portfolio-preview-grid:hover .pf-img-overlay { opacity: 1; }
+
+    @media (max-width: 900px) {
+      .portfolio-preview-grid { max-width: 100%; }
+      .pf-img-large, .pf-img-small { height: 200px; }
+    }
+    @media (max-width: 480px) {
+      .portfolio-preview-grid { grid-template-columns: 1fr; }
+      .pf-img-large { height: 220px; }
+      .pf-img-small { height: 160px; }
+    }
+
     /* ── ABOUT ── */
     .about-body {
       display: grid;
@@ -421,6 +479,7 @@
   
 </head>
 <body>
+  <div id="scroll-progress"></div>
 
   <!-- ══ SIDEBAR ══ -->
   <aside class="sidebar">
@@ -437,6 +496,7 @@
 
     <div class="sidebar-profile">
       <p class="profile-name">しゆ（shiyu）</p>
+      <p class="profile-desc">日本の隅々まで、<br>旅と鉄道と太鼓と。</p>
     </div>
 
     <div class="sidebar-stats">
@@ -636,14 +696,23 @@
 
     <!-- Portfolio -->
     <section class="section" id="portfolio">
-      <div class="reveal">
-        <p class="section-label">// 05 — Portfolio</p>
-        <h2 class="section-title">記録</h2>
+      <div class="section-header reveal">
+        <div>
+          <p class="section-label">// 05 — Portfolio</p>
+          <h2 class="section-title">記録</h2>
+        </div>
+        <a href="portfolio.html" class="btn-secondary">すべて見る →</a>
       </div>
-      <div class="reveal">
-        <a href="portfolio.html" class="stat-row" style="display:flex;">
-          <span class="stat-row-label">旅先の写真や記録をまとめています</span>
-          <span style="font-family:'Shippori Mincho',serif;font-size:20px;color:var(--accent);">→</span>
+      <div class="portfolio-preview reveal">
+        <a href="portfolio.html" class="portfolio-preview-grid">
+          <div class="pf-img-wrap pf-img-large">
+            <img src="./images/pf-tr-001/IMG_5237.webp" alt="旅の記録" loading="lazy">
+            <div class="pf-img-overlay"><span>旅先の写真や記録をまとめています</span></div>
+          </div>
+          <div class="pf-img-wrap pf-img-small">
+            <img src="./images/pf-tr-001/IMG_5360.webp" alt="旅の記録" loading="lazy">
+            <div class="pf-img-overlay"></div>
+          </div>
         </a>
       </div>
     </section>
@@ -924,6 +993,18 @@
         container.innerHTML = `<p style="font-family:'Shippori Mincho',serif;font-size:14px;letter-spacing:0.15em;color:var(--muted);">まだ記事がありません</p>`;
       }
     }
+
+    // ══════════════════════════════════════
+    //  スクロールプログレスバー
+    // ══════════════════════════════════════
+    const progressBar = document.getElementById('scroll-progress');
+    function updateProgress() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = docHeight > 0 ? scrollTop / docHeight : 0;
+      progressBar.style.transform = `scaleX(${ratio})`;
+    }
+    window.addEventListener('scroll', updateProgress, { passive: true });
 
     // ══════════════════════════════════════
     //  Scroll reveal
