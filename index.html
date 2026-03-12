@@ -30,10 +30,6 @@
       flex-direction: column;
       justify-content: center;
     }
-    @keyframes heroDiag {
-      from { background-position: 0 0; }
-      to   { background-position: 80px 80px; }
-    }
     .section-hero::after {
       content: '';
       position: absolute;
@@ -42,12 +38,23 @@
         -45deg,
         transparent,
         transparent 40px,
-        rgba(30,95,168,0.025) 40px,
-        rgba(30,95,168,0.025) 41px
+        rgba(30,95,168,0.018) 40px,
+        rgba(30,95,168,0.018) 41px
       );
-      background-size: 80px 80px;
-      animation: heroDiag 8s linear infinite;
       pointer-events: none;
+      z-index: 0;
+    }
+    /* 日本地図シルエット */
+    .hero-japan-map {
+      position: absolute;
+      right: -40px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: min(620px, 65vw);
+      opacity: 0.055;
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(0.5px);
     }
 
     .hero-eyebrow {
@@ -261,7 +268,38 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.5s ease;
+      transition: transform 0.55s ease;
+      /* 四辺を柔らかくフェード */
+      -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 10%,
+        black 90%,
+        transparent 100%
+      ),
+      linear-gradient(
+        to right,
+        transparent 0%,
+        black 6%,
+        black 94%,
+        transparent 100%
+      );
+      -webkit-mask-composite: source-in;
+      mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 10%,
+        black 90%,
+        transparent 100%
+      ),
+      linear-gradient(
+        to right,
+        transparent 0%,
+        black 6%,
+        black 94%,
+        transparent 100%
+      );
+      mask-composite: intersect;
     }
     .pf-img-large { height: 300px; }
     .pf-img-small { height: 300px; }
@@ -284,6 +322,16 @@
     }
     .portfolio-preview-grid:hover .pf-img-wrap img { transform: scale(1.04); }
     .portfolio-preview-grid:hover .pf-img-overlay { opacity: 1; }
+    /* ローディング中のシマー */
+    .pf-img-wrap.loading {
+      background: linear-gradient(90deg, var(--surface) 25%, var(--border) 50%, var(--surface) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+    }
+    @keyframes shimmer {
+      from { background-position: 200% 0; }
+      to   { background-position: -200% 0; }
+    }
 
     @media (max-width: 900px) {
       .portfolio-preview-grid { max-width: 100%; }
@@ -479,7 +527,6 @@
   
 </head>
 <body>
-  <div id="scroll-progress"></div>
 
   <!-- ══ SIDEBAR ══ -->
   <aside class="sidebar">
@@ -558,6 +605,39 @@
 
     <!-- Hero -->
     <section class="section-hero" id="hero">
+
+      <!-- 日本地図シルエット（背景装飾） -->
+      <svg class="hero-japan-map" viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg" fill="var(--accent)" aria-hidden="true">
+        <!-- 北海道 -->
+        <path d="M340,30 L360,22 L390,28 L410,45 L420,65 L415,85 L400,95 L385,88 L370,98 L355,90 L340,80 L330,60 L335,42 Z"/>
+        <path d="M310,55 L325,48 L338,58 L332,72 L318,70 Z"/>
+        <!-- 本州（簡略化） -->
+        <path d="M200,120 L225,108 L255,112 L280,125 L310,130 L330,145 L345,165 L350,185 L340,205 L325,215 L305,218 L285,225 L265,235 L250,248 L235,260 L218,268 L200,272 L182,268 L165,260 L152,248 L145,232 L140,215 L138,198 L142,180 L150,162 L162,148 L178,135 Z"/>
+        <!-- 東北追加ライン -->
+        <path d="M255,112 L268,98 L282,90 L296,95 L308,108 L310,130"/>
+        <!-- 紀伊半島 -->
+        <path d="M210,280 L225,272 L238,278 L245,295 L240,315 L228,325 L215,318 L207,302 Z"/>
+        <!-- 四国 -->
+        <path d="M215,305 L240,298 L268,302 L285,315 L288,332 L275,342 L252,345 L230,338 L215,325 Z"/>
+        <!-- 九州 -->
+        <path d="M155,295 L178,285 L198,290 L210,305 L208,325 L198,340 L180,350 L162,348 L148,335 L142,318 L148,302 Z"/>
+        <!-- 薩摩半島 -->
+        <path d="M162,348 L170,358 L168,372 L158,375 L150,365 L152,352 Z"/>
+        <!-- 大隅半島 -->
+        <path d="M178,350 L188,362 L185,376 L175,378 L168,368 L170,355 Z"/>
+        <!-- 沖縄（小） -->
+        <ellipse cx="140" cy="480" rx="22" ry="10" transform="rotate(-20,140,480)"/>
+        <ellipse cx="112" cy="495" rx="14" ry="7" transform="rotate(-20,112,495)"/>
+        <!-- 種子島・屋久島 -->
+        <ellipse cx="180" cy="395" rx="8" ry="14"/>
+        <ellipse cx="168" cy="392" rx="9" ry="9"/>
+        <!-- 対馬 -->
+        <ellipse cx="128" cy="255" rx="7" ry="18" transform="rotate(-10,128,255)"/>
+        <!-- 佐渡 -->
+        <ellipse cx="262" cy="152" rx="10" ry="22" transform="rotate(-30,262,152)"/>
+      </svg>
+      <!-- コンテンツ（地図より前面） -->
+      <div style="position:relative;z-index:1;">
       <p class="hero-eyebrow">Personal Site</p>
       <h1 class="hero-title">
         旅と太鼓の<br>
@@ -569,6 +649,7 @@
       <div class="hero-cta">
         <a href="#about" class="btn-primary">About Me →</a>
         <a href="portfolio.html" class="btn-secondary">記録を見る</a>
+      </div>
       </div>
     </section>
 
@@ -703,14 +784,12 @@
         </div>
         <a href="portfolio.html" class="btn-secondary">すべて見る →</a>
       </div>
-      <div class="portfolio-preview reveal">
-        <a href="portfolio.html" class="portfolio-preview-grid">
-          <div class="pf-img-wrap pf-img-large">
-            <img src="./images/pf-tr-001/IMG_5237.webp" alt="旅の記録" loading="lazy">
+      <div class="reveal">
+        <a href="portfolio.html" class="portfolio-preview-grid" id="portfolio-preview-grid">
+          <div class="pf-img-wrap pf-img-large loading" id="pf-img-0">
             <div class="pf-img-overlay"><span>旅先の写真や記録をまとめています</span></div>
           </div>
-          <div class="pf-img-wrap pf-img-small">
-            <img src="./images/pf-tr-001/IMG_5360.webp" alt="旅の記録" loading="lazy">
+          <div class="pf-img-wrap pf-img-small loading" id="pf-img-1">
             <div class="pf-img-overlay"></div>
           </div>
         </a>
@@ -995,16 +1074,69 @@
     }
 
     // ══════════════════════════════════════
-    //  スクロールプログレスバー
+    //  Portfolio 最新画像を動的取得
+    //  portfolio.html の最初の .photo-item の href から
+    //  各旅ページの img[src] を2枚取得して表示
     // ══════════════════════════════════════
-    const progressBar = document.getElementById('scroll-progress');
-    function updateProgress() {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const ratio = docHeight > 0 ? scrollTop / docHeight : 0;
-      progressBar.style.transform = `scaleX(${ratio})`;
+    async function fetchPortfolioImages() {
+      const slots = [
+        document.getElementById('pf-img-0'),
+        document.getElementById('pf-img-1'),
+      ];
+
+      try {
+        // 1) portfolio.html を取得して最新トリップのhrefを取得
+        const pfRes = await fetch('./portfolio.html');
+        if (!pfRes.ok) throw new Error();
+        const pfDoc = new DOMParser().parseFromString(await pfRes.text(), 'text/html');
+        const tripItem = pfDoc.querySelector('#trip-list .photo-item');
+        if (!tripItem) throw new Error('no trip');
+
+        const tripHref = tripItem.getAttribute('href');
+
+        // 2) 旅詳細ページを取得して画像を収集
+        const tripRes = await fetch(tripHref);
+        if (!tripRes.ok) throw new Error();
+        const tripDoc = new DOMParser().parseFromString(await tripRes.text(), 'text/html');
+        // 旅ページの写真。<img> のうち travel_icon / don / crown 等のUIアイコンを除く
+        const imgs = Array.from(tripDoc.querySelectorAll('img[src]'))
+          .filter(img => {
+            const s = img.src || img.getAttribute('src') || '';
+            return !s.match(/icon|don|crown|logo/i);
+          })
+          .map(img => img.getAttribute('src'));
+
+        if (imgs.length === 0) throw new Error('no images');
+
+        // 3) 均等に2枚選ぶ
+        const pick = imgs.length === 1
+          ? [imgs[0], imgs[0]]
+          : [imgs[0], imgs[Math.floor(imgs.length / 2)]];
+
+        // 4) スロットに画像を差し込む
+        pick.forEach((src, i) => {
+          const wrap = slots[i];
+          if (!wrap) return;
+          const overlay = wrap.querySelector('.pf-img-overlay');
+          const img = document.createElement('img');
+          // 相対パスをトリップページ基準で解決
+          const base = new URL(tripHref, location.href);
+          img.src = new URL(src, base).href;
+          img.alt = '旅の記録';
+          img.loading = 'lazy';
+          img.onload = () => wrap.classList.remove('loading');
+          img.onerror = () => wrap.classList.remove('loading');
+          wrap.insertBefore(img, overlay);
+          wrap.classList.remove('loading');
+        });
+
+      } catch {
+        // フォールバック：ローディングアニメを外してシルエット表示
+        slots.forEach(wrap => {
+          if (wrap) wrap.classList.remove('loading');
+        });
+      }
     }
-    window.addEventListener('scroll', updateProgress, { passive: true });
 
     // ══════════════════════════════════════
     //  Scroll reveal
@@ -1044,6 +1176,7 @@
     initRailwayMap();
     loadStats();
     fetchLatestPost();
+    fetchPortfolioImages();
   </script>
 </body>
 </html>
