@@ -882,14 +882,11 @@
         <div class="photo-slider-outer">
           <div class="photo-slider-wrap" id="photo-slider-wrap">
             <div class="photo-strip" id="photo-strip">
-              <!-- 旅 2枚（固定） -->
               <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5237.webp" alt="旅の記録"></div>
-              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5267.webp" alt="旅の記録"></div>
-              <!-- 太鼓 2枚（JSで差し込み） -->
               <div class="photo-strip-item" id="taiko-slide-0"><img src="" alt="太鼓の達人" style="display:none;"><div class="slide-placeholder"></div></div>
-              <div class="photo-strip-item" id="taiko-slide-1"><img src="" alt="太鼓の達人" style="display:none;"><div class="slide-placeholder"></div></div>
-              <!-- ラーメン 2枚（JSで差し込み） -->
               <div class="photo-strip-item" id="ramen-slide-0"><img src="" alt="拉麺" style="display:none;"><div class="slide-placeholder"></div></div>
+              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5267.webp" alt="旅の記録"></div>
+              <div class="photo-strip-item" id="taiko-slide-1"><img src="" alt="太鼓の達人" style="display:none;"><div class="slide-placeholder"></div></div>
               <div class="photo-strip-item" id="ramen-slide-1"><img src="" alt="拉麺" style="display:none;"><div class="slide-placeholder"></div></div>
             </div>
           </div>
@@ -1202,7 +1199,7 @@
 
 
     // ══════════════════════════════════════
-    //  フォトスライダー
+    //  フォトスライダー（ループ対応）
     // ══════════════════════════════════════
     (function () {
       const wrap    = document.getElementById('photo-slider-wrap');
@@ -1217,29 +1214,40 @@
       const GAP = 4;
       let current = 0;
       let vis = 4;
+      let itemW = 0;
 
       function getVis(w) { return w >= 600 ? 4 : w >= 400 ? 3 : 2; }
 
       function layout() {
         const wrapW = wrap.offsetWidth;
         vis = getVis(wrapW);
-        const itemW = Math.floor((wrapW - GAP * (vis - 1)) / vis);
+        itemW = Math.floor((wrapW - GAP * (vis - 1)) / vis);
         items.forEach(el => { el.style.width = itemW + 'px'; });
         current = Math.min(current, Math.max(0, total - vis));
         render(false);
       }
 
       function render(animate) {
-        const itemW = items[0].offsetWidth;
         strip.style.transition = animate === false ? 'none' : 'transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94)';
         strip.style.transform = `translateX(-${current * (itemW + GAP)}px)`;
-        btnPrev.disabled = current === 0;
-        btnNext.disabled = current >= total - vis;
-        counter.textContent = `${current + 1} – ${Math.min(current + vis, total)} / ${total}`;
+        // ループ：端まで来たらボタンを無効にせず折り返す
+        btnPrev.disabled = false;
+        btnNext.disabled = false;
+        const end = Math.min(current + vis, total);
+        counter.textContent = `${current + 1} – ${end} / ${total}`;
       }
 
-      btnPrev.addEventListener('click', () => { if (current > 0) { current--; render(true); } });
-      btnNext.addEventListener('click', () => { if (current < total - vis) { current++; render(true); } });
+      function prev() {
+        current = current <= 0 ? total - vis : current - 1;
+        render(true);
+      }
+      function next() {
+        current = current >= total - vis ? 0 : current + 1;
+        render(true);
+      }
+
+      btnPrev.addEventListener('click', prev);
+      btnNext.addEventListener('click', next);
 
       let touchX = null;
       wrap.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
@@ -1248,8 +1256,8 @@
         const dx = e.changedTouches[0].clientX - touchX;
         touchX = null;
         if (Math.abs(dx) < 30) return;
-        if (dx < 0 && current < total - vis) { current++; render(true); }
-        if (dx > 0 && current > 0)           { current--; render(true); }
+        if (dx < 0) next();
+        if (dx > 0) prev();
       }, { passive: true });
 
       window.addEventListener('resize', () => { layout(); });
