@@ -241,29 +241,26 @@
     /* ══════════════════════════════════════
        PORTFOLIO PHOTO SLIDER
     ══════════════════════════════════════ */
-    .photo-slider-wrap {
+    .photo-slider-outer {
       position: relative;
-      overflow: hidden;
-      /* mask-imageはoverflow:hiddenと干渉することがあるので疑似要素で代替 */
     }
-    /* 左右フェード overlay */
+    .photo-slider-wrap {
+      overflow: hidden;
+      position: relative;
+    }
+    /* 左右フェード */
     .photo-slider-wrap::before,
     .photo-slider-wrap::after {
       content: '';
       position: absolute;
       top: 0; bottom: 0;
-      width: 48px;
+      width: 56px;
       z-index: 2;
       pointer-events: none;
     }
-    .photo-slider-wrap::before {
-      left: 0;
-      background: linear-gradient(to right, var(--bg), transparent);
-    }
-    .photo-slider-wrap::after {
-      right: 0;
-      background: linear-gradient(to left, var(--bg), transparent);
-    }
+    .photo-slider-wrap::before { left: 0;  background: linear-gradient(to right, var(--bg), transparent); }
+    .photo-slider-wrap::after  { right: 0; background: linear-gradient(to left,  var(--bg), transparent); }
+
     .photo-strip {
       display: flex;
       gap: 4px;
@@ -272,53 +269,59 @@
     }
     .photo-strip-item {
       flex-shrink: 0;
-      width: 0; /* JSで上書きされるまではみ出さない */
-      height: 210px;
+      /* 幅はJSがwrapの実幅から計算して設定する */
+      height: 200px;
       overflow: hidden;
       background: var(--surface);
     }
     .photo-strip-item img {
       width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
+      object-fit: cover; display: block;
       transition: transform 0.4s ease;
       pointer-events: none;
     }
     .photo-strip-item:hover img { transform: scale(1.05); }
-    .photo-slider-nav {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 6px;
-      margin-top: 10px;
-    }
+
+    /* ←→ボタン：フェードの上に重ねる */
     .photo-slider-btn {
-      width: 34px; height: 34px;
-      background: var(--white);
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 3;
+      width: 36px; height: 36px;
+      background: rgba(248,246,241,0.85);
       border: 1px solid var(--border);
-      border-radius: 1px;
+      border-radius: 2px;
       display: flex; align-items: center; justify-content: center;
       cursor: pointer;
       font-family: 'DM Mono', monospace;
       font-size: 14px;
       color: var(--muted);
-      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      transition: border-color 0.2s, color 0.2s;
       user-select: none;
+      backdrop-filter: blur(2px);
     }
-    .photo-slider-btn:hover:not([disabled]) {
-      border-color: var(--accent-light);
-      color: var(--accent);
-      background: var(--accent-pale);
-    }
-    .photo-slider-btn[disabled] { opacity: 0.3; cursor: default; }
+    #slider-prev { left: 8px; }
+    #slider-next { right: 8px; }
+    .photo-slider-btn:hover:not([disabled]) { border-color: var(--accent-light); color: var(--accent); }
+    .photo-slider-btn[disabled] { opacity: 0.2; cursor: default; }
+
+    /* カウンター */
     .photo-slider-counter {
+      display: block;
+      text-align: right;
+      margin-top: 8px;
       font-family: 'DM Mono', monospace;
       font-size: 10px;
       letter-spacing: 0.15em;
       color: var(--muted);
-      padding: 0 6px;
-      min-width: 52px;
-      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .photo-strip-item { height: 170px; }
+    }
+    @media (max-width: 480px) {
+      .photo-strip-item { height: 140px; }
     }
 
     /* ── ポートフォリオ行き カード ── */
@@ -895,29 +898,29 @@
 
       <!-- フォトスライダー -->
       <div class="reveal">
-        <div class="photo-slider-wrap" id="photo-slider-wrap">
-          <div class="photo-strip" id="photo-strip">
-            <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5237.webp" alt="" loading="lazy"></div>
-            <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5247.webp" alt="" loading="lazy"></div>
-            <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5267.webp" alt="" loading="lazy"></div>
-            <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5288.webp" alt="" loading="lazy"></div>
-            <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5297.webp" alt="" loading="lazy"></div>
-            <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5300.webp" alt="" loading="lazy"></div>
-            <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5313.webp" alt="" loading="lazy"></div>
-            <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5342.webp" alt="" loading="lazy"></div>
-            <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5360.webp" alt="" loading="lazy"></div>
-            <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5368.webp" alt="" loading="lazy"></div>
-            <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5385.webp" alt="" loading="lazy"></div>
-            <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5219.webp" alt="" loading="lazy"></div>
-            <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5223.webp" alt="" loading="lazy"></div>
-            <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5231.webp" alt="" loading="lazy"></div>
+        <div class="photo-slider-outer">
+          <div class="photo-slider-wrap" id="photo-slider-wrap">
+            <div class="photo-strip" id="photo-strip">
+              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5237.webp" alt="" loading="lazy"></div>
+              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5247.webp" alt="" loading="lazy"></div>
+              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5267.webp" alt="" loading="lazy"></div>
+              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5288.webp" alt="" loading="lazy"></div>
+              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5297.webp" alt="" loading="lazy"></div>
+              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5300.webp" alt="" loading="lazy"></div>
+              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5313.webp" alt="" loading="lazy"></div>
+              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5342.webp" alt="" loading="lazy"></div>
+              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5360.webp" alt="" loading="lazy"></div>
+              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5368.webp" alt="" loading="lazy"></div>
+              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5385.webp" alt="" loading="lazy"></div>
+              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5219.webp" alt="" loading="lazy"></div>
+              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5223.webp" alt="" loading="lazy"></div>
+              <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5231.webp" alt="" loading="lazy"></div>
+            </div>
           </div>
-        </div>
-        <div class="photo-slider-nav">
-          <span class="photo-slider-counter" id="slider-counter">1 / 14</span>
           <button class="photo-slider-btn" id="slider-prev" disabled>←</button>
           <button class="photo-slider-btn" id="slider-next">→</button>
         </div>
+        <span class="photo-slider-counter" id="slider-counter">1 – 4 / 14</span>
       </div>
 
       <!-- portfolio.htmlへのカード -->
@@ -942,17 +945,10 @@
         <h2 class="section-title">リンク</h2>
       </div>
 
-      <!-- アイコンプレビュー行 -->
+      <!-- アイコンプレビュー行（枠なし・背景透過） -->
       <div class="links-icon-row reveal">
-        <div class="links-icon-chip">
-          <img src="./images/youtube_icon.webp" alt="YouTube">
-        </div>
-        <div class="links-icon-chip">
-          <img src="./images/youtube_icon.webp" alt="YouTube">
-        </div>
-        <div class="links-icon-chip">
-          <div class="links-icon-chip-x">𝕏</div>
-        </div>
+        <img src="./images/youtube_icon.webp" alt="YouTube" style="height:28px;width:auto;opacity:0.75;">
+        <div class="links-icon-chip-x" style="font-family:'DM Mono',monospace;font-size:20px;font-weight:bold;color:var(--text);opacity:0.75;">𝕏</div>
       </div>
 
       <!-- リンクカード（links.htmlへ） -->
@@ -1229,9 +1225,10 @@
     }
 
     // ══════════════════════════════════════
-    //  フォトスライダー（←→ボタン・画面幅で枚数自動計算）
+    //  フォトスライダー
     // ══════════════════════════════════════
     (function () {
+      const outer   = document.getElementById('photo-slider-wrap').parentElement;
       const wrap    = document.getElementById('photo-slider-wrap');
       const strip   = document.getElementById('photo-strip');
       const btnPrev = document.getElementById('slider-prev');
@@ -1241,47 +1238,62 @@
 
       const items = Array.from(strip.querySelectorAll('.photo-strip-item'));
       const total = items.length;
+      const GAP = 4;
       let current = 0;
+      let itemW = 0;
+      let vis = 4;
 
-      function getVisCount() {
-        const w = wrap.offsetWidth;
-        if (w >= 900) return 4;
-        if (w >= 600) return 3;
-        return 2;
+      function getVis() {
+        return window.innerWidth >= 900 ? 4 : window.innerWidth >= 480 ? 3 : 2;
       }
 
       function layout() {
-        const vis = getVisCount();
-        const gap = 4;
-        const itemW = Math.floor((wrap.offsetWidth - gap * (vis - 1)) / vis);
-        items.forEach(el => {
-          el.style.width = itemW + 'px';
-          el.style.flexShrink = '0';
-        });
-        // currentが範囲外なら補正
+        vis = getVis();
+        // wrapの実際の幅（sidebarを除いたmainの幅）
+        const wrapW = wrap.getBoundingClientRect().width;
+        itemW = Math.floor((wrapW - GAP * (vis - 1)) / vis);
+        items.forEach(el => { el.style.width = itemW + 'px'; });
         current = Math.min(current, Math.max(0, total - vis));
-        render();
+        render(false); // アニメなしで即位置確定
       }
 
-      function render() {
-        const vis = getVisCount();
-        const gap = 4;
-        const itemW = items[0].offsetWidth;
-        strip.style.transform = `translateX(-${current * (itemW + gap)}px)`;
+      function render(animate = true) {
+        strip.style.transition = animate
+          ? 'transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94)'
+          : 'none';
+        strip.style.transform = `translateX(-${current * (itemW + GAP)}px)`;
         btnPrev.disabled = current === 0;
         btnNext.disabled = current >= total - vis;
-        const end = Math.min(current + vis, total);
-        counter.textContent = `${current + 1} – ${end} / ${total}`;
+        counter.textContent = `${current + 1} – ${Math.min(current + vis, total)} / ${total}`;
       }
 
       btnPrev.addEventListener('click', () => { if (current > 0) { current--; render(); } });
-      btnNext.addEventListener('click', () => { if (current < total - getVisCount()) { current++; render(); } });
+      btnNext.addEventListener('click', () => { if (current < total - vis) { current++; render(); } });
+
+      // スワイプ
+      let touchX = null;
+      wrap.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+      wrap.addEventListener('touchend', e => {
+        if (touchX === null) return;
+        const dx = e.changedTouches[0].clientX - touchX;
+        touchX = null;
+        if (Math.abs(dx) < 30) return;
+        if (dx < 0 && current < total - vis) { current++; render(); }
+        if (dx > 0 && current > 0)           { current--; render(); }
+      }, { passive: true });
 
       let resizeTimer;
-      window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(layout, 80); });
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(layout, 80);
+      });
 
-      // DOMが確実にレンダリングされてから初期化
-      requestAnimationFrame(() => requestAnimationFrame(layout));
+      // 初期化：DOMペイント後に確実に実幅を取る
+      if (document.readyState === 'complete') {
+        layout();
+      } else {
+        window.addEventListener('load', layout);
+      }
     })();
 
     // ══════════════════════════════════════
