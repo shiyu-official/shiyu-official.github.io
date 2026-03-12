@@ -237,55 +237,71 @@
     .stat-group { display: none; }
     .stat-group.active { display: contents; }
 
+
     /* ══════════════════════════════════════
-       PORTFOLIO PHOTO STRIP（横スクロール全幅）
+       PORTFOLIO PHOTO SLIDER
     ══════════════════════════════════════ */
-    .photo-strip-outer {
-      margin-left: -64px;
-      margin-right: -64px;
-      overflow: hidden;
+    .photo-slider-wrap {
       position: relative;
-    }
-    /* 右端にフェードグラデ（続きがある示唆） */
-    .photo-strip-outer::after {
-      content: '';
-      position: absolute;
-      top: 0; right: 0; bottom: 0;
-      width: 80px;
-      background: linear-gradient(to right, transparent, var(--bg));
-      pointer-events: none;
-      z-index: 2;
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
     }
     .photo-strip {
       display: flex;
-      gap: 3px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      cursor: grab;
-      padding-bottom: 2px; /* スクロールバー非表示でも余白確保 */
+      gap: 4px;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
     }
-    .photo-strip::-webkit-scrollbar { display: none; }
-    .photo-strip.grabbing { cursor: grabbing; }
     .photo-strip-item {
       flex-shrink: 0;
-      width: 260px;
-      height: 200px;
-      scroll-snap-align: start;
+      height: 210px;
       overflow: hidden;
-      position: relative;
       background: var(--surface);
     }
     .photo-strip-item img {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       object-fit: cover;
       display: block;
       transition: transform 0.4s ease;
       pointer-events: none;
     }
     .photo-strip-item:hover img { transform: scale(1.05); }
+    .photo-slider-nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .photo-slider-btn {
+      width: 34px; height: 34px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 1px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      color: var(--muted);
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      user-select: none;
+    }
+    .photo-slider-btn:hover:not([disabled]) {
+      border-color: var(--accent-light);
+      color: var(--accent);
+      background: var(--accent-pale);
+    }
+    .photo-slider-btn[disabled] { opacity: 0.3; cursor: default; }
+    .photo-slider-counter {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      padding: 0 6px;
+      min-width: 52px;
+      text-align: center;
+    }
 
     /* ── ポートフォリオ行き カード ── */
     .pf-goto-card {
@@ -325,11 +341,7 @@
       background: var(--surface);
       border: 1px solid var(--border);
     }
-    .pf-goto-thumb img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+    .pf-goto-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .pf-goto-body { flex: 1; }
     .pf-goto-label {
       font-family: 'DM Mono', monospace;
@@ -345,12 +357,7 @@
       font-weight: 500;
       letter-spacing: 0.1em;
     }
-    .pf-goto-arrow {
-      font-size: 18px;
-      color: var(--border);
-      flex-shrink: 0;
-      transition: color 0.25s;
-    }
+    .pf-goto-arrow { font-size: 18px; color: var(--border); flex-shrink: 0; transition: color 0.25s; }
     .pf-goto-card:hover .pf-goto-arrow { color: var(--accent); }
 
     /* ══════════════════════════════════════
@@ -371,10 +378,7 @@
       border: 1px solid var(--border);
       border-radius: 2px;
     }
-    .links-icon-chip img {
-      width: 22px; height: 17px;
-      object-fit: contain;
-    }
+    .links-icon-chip img { width: 22px; height: 17px; object-fit: contain; }
     .links-icon-chip-x {
       font-family: 'DM Mono', monospace;
       font-size: 15px;
@@ -423,9 +427,7 @@
     .index-link-icon {
       width: 44px; height: 44px;
       flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 2px;
@@ -434,53 +436,35 @@
     .index-link-icon img { width: 28px; height: 22px; object-fit: contain; }
     .index-link-icon--x {
       font-family: 'DM Mono', monospace;
-      font-size: 17px;
-      font-weight: bold;
-      color: var(--text);
+      font-size: 17px; font-weight: bold; color: var(--text);
     }
     .index-link-body { flex: 1; }
     .index-link-platform {
       font-family: 'DM Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 4px;
+      font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 4px;
     }
     .index-link-name {
       font-family: 'Shippori Mincho', serif;
-      font-size: 15px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
+      font-size: 15px; font-weight: 500; letter-spacing: 0.1em;
     }
-    .index-link-arrow {
-      font-size: 17px;
-      color: var(--border);
-      flex-shrink: 0;
-      transition: color 0.25s;
-    }
+    .index-link-arrow { font-size: 17px; color: var(--border); flex-shrink: 0; transition: color 0.25s; }
     .index-link-card:hover .index-link-arrow { color: var(--accent); }
     .index-link-more {
-      display: inline-block;
-      margin-top: 14px;
+      display: inline-block; margin-top: 14px;
       font-family: 'Shippori Mincho', serif;
-      font-size: 13px;
-      letter-spacing: 0.18em;
-      color: var(--muted);
-      text-decoration: none;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 2px;
+      font-size: 13px; letter-spacing: 0.18em;
+      color: var(--muted); text-decoration: none;
+      border-bottom: 1px solid var(--border); padding-bottom: 2px;
       transition: color 0.25s, border-color 0.25s;
     }
     .index-link-more:hover { color: var(--accent); border-color: var(--accent); }
 
     @media (max-width: 900px) {
-      .photo-strip-outer { margin-left: -24px; margin-right: -24px; }
-      .photo-strip-item { width: 200px; height: 160px; }
+      .photo-strip-item { height: 170px; }
     }
     @media (max-width: 480px) {
-      .photo-strip-outer { margin-left: -16px; margin-right: -16px; }
-      .photo-strip-item { width: 160px; height: 130px; }
+      .photo-strip-item { height: 140px; }
     }
 
     /* ── ABOUT ── */
@@ -890,28 +874,35 @@
         </div>
       </div>
 
-      <!-- 横スクロールフォトストリップ（全幅） -->
-      <div class="photo-strip-outer reveal">
-        <div class="photo-strip" id="photo-strip">
-          <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5237.webp" alt="" loading="lazy"></div>
-          <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5247.webp" alt="" loading="lazy"></div>
-          <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5267.webp" alt="" loading="lazy"></div>
-          <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5288.webp" alt="" loading="lazy"></div>
-          <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5297.webp" alt="" loading="lazy"></div>
-          <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5300.webp" alt="" loading="lazy"></div>
-          <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5313.webp" alt="" loading="lazy"></div>
-          <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5342.webp" alt="" loading="lazy"></div>
-          <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5360.webp" alt="" loading="lazy"></div>
-          <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5368.webp" alt="" loading="lazy"></div>
-          <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5385.webp" alt="" loading="lazy"></div>
-          <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5219.webp" alt="" loading="lazy"></div>
-          <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5223.webp" alt="" loading="lazy"></div>
-          <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5231.webp" alt="" loading="lazy"></div>
+      <!-- フォトスライダー -->
+      <div class="reveal">
+        <div class="photo-slider-wrap" id="photo-slider-wrap">
+          <div class="photo-strip" id="photo-strip">
+            <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5237.webp" alt="" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5247.webp" alt="" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5267.webp" alt="" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5288.webp" alt="" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5297.webp" alt="" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5300.webp" alt="" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5313.webp" alt="" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5342.webp" alt="" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5360.webp" alt="" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5368.webp" alt="" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5385.webp" alt="" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5219.webp" alt="" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5223.webp" alt="" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="./images/pf-tr-001/IMG_5231.webp" alt="" loading="lazy"></div>
+          </div>
+        </div>
+        <div class="photo-slider-nav">
+          <span class="photo-slider-counter" id="slider-counter">1 / 14</span>
+          <button class="photo-slider-btn" id="slider-prev" disabled>←</button>
+          <button class="photo-slider-btn" id="slider-next">→</button>
         </div>
       </div>
 
       <!-- portfolio.htmlへのカード -->
-      <div class="reveal" style="padding-top:0;">
+      <div class="reveal">
         <a href="portfolio.html" class="pf-goto-card">
           <div class="pf-goto-thumb">
             <img src="./images/pf-tr-001/IMG_5237.webp" alt="">
@@ -1222,25 +1213,60 @@
     }
 
     // ══════════════════════════════════════
-    //  フォトストリップ — マウスドラッグスクロール
+    //  フォトスライダー（←→ボタン・画面幅で枚数自動計算）
     // ══════════════════════════════════════
     (function () {
-      const strip = document.getElementById('photo-strip');
-      if (!strip) return;
-      let isDown = false, startX, scrollLeft;
-      strip.addEventListener('mousedown', e => {
-        isDown = true;
-        strip.classList.add('grabbing');
-        startX = e.pageX - strip.offsetLeft;
-        scrollLeft = strip.scrollLeft;
+      const wrap    = document.getElementById('photo-slider-wrap');
+      const strip   = document.getElementById('photo-strip');
+      const btnPrev = document.getElementById('slider-prev');
+      const btnNext = document.getElementById('slider-next');
+      const counter = document.getElementById('slider-counter');
+      if (!wrap || !strip) return;
+
+      const items = strip.querySelectorAll('.photo-strip-item');
+      const total = items.length;
+      let current = 0;   // 先頭に表示されているインデックス
+      let visCount = 4;  // 表示枚数（初期値・updateで上書き）
+
+      // 枚数と各アイテム幅を画面幅から計算
+      function updateLayout() {
+        const wrapW = wrap.clientWidth;
+        visCount = wrapW >= 900 ? 4 : wrapW >= 600 ? 3 : 2;
+        const gap = 4;
+        const itemW = Math.floor((wrapW - gap * (visCount - 1)) / visCount);
+        items.forEach(el => { el.style.width = itemW + 'px'; });
+        // currentが末尾を超えないよう補正
+        current = Math.min(current, Math.max(0, total - visCount));
+        applyTranslate();
+      }
+
+      function applyTranslate() {
+        const itemW = items[0].offsetWidth;
+        const gap   = 4;
+        const offset = current * (itemW + gap);
+        strip.style.transform = `translateX(-${offset}px)`;
+        btnPrev.disabled = current === 0;
+        btnNext.disabled = current >= total - visCount;
+        counter.textContent = `${current + 1} – ${Math.min(current + visCount, total)} / ${total}`;
+      }
+
+      btnPrev.addEventListener('click', () => {
+        if (current > 0) { current--; applyTranslate(); }
       });
-      strip.addEventListener('mouseleave', () => { isDown = false; strip.classList.remove('grabbing'); });
-      strip.addEventListener('mouseup',    () => { isDown = false; strip.classList.remove('grabbing'); });
-      strip.addEventListener('mousemove',  e => {
-        if (!isDown) return;
-        e.preventDefault();
-        strip.scrollLeft = scrollLeft - (e.pageX - strip.offsetLeft - startX) * 1.2;
+      btnNext.addEventListener('click', () => {
+        if (current < total - visCount) { current++; applyTranslate(); }
       });
+
+      // リサイズ対応
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(updateLayout, 100);
+      });
+
+      // 初期化（画像読み込み後にレイアウト確定）
+      window.addEventListener('load', updateLayout);
+      updateLayout();
     })();
 
     // ══════════════════════════════════════
