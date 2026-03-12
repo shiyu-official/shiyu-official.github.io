@@ -243,110 +243,83 @@
     ══════════════════════════════════════ */
     .pf-collage {
       position: relative;
-      height: 260px;
+      height: 240px;
       margin-bottom: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
     .pf-collage-item {
       position: absolute;
-      width: 200px;
-      height: 200px;
       border-radius: 2px;
       overflow: hidden;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.15);
       transition: transform 0.35s ease, box-shadow 0.35s ease;
       cursor: pointer;
       text-decoration: none;
       display: block;
       background: var(--surface);
     }
-    /* 写真：縁をぼかすためにsvg filterではなくradial-gradientマスク */
     .pf-collage-item.travel {
-      transform: rotate(-6deg) translate(-110px, 10px);
-      z-index: 1;
-    }
-    .pf-collage-item.taiko {
-      transform: rotate(2deg) translate(0px, -12px);
-      z-index: 3;
-    }
-    .pf-collage-item.ramen {
-      transform: rotate(7deg) translate(110px, 8px);
+      width: 200px; height: 150px;
+      transform: rotate(-4deg);
+      left: 0; top: 20px;
       z-index: 2;
     }
-    .pf-collage-item:hover {
-      z-index: 10;
-      box-shadow: 0 16px 48px rgba(0,0,0,0.28);
+    .pf-collage-item.taiko {
+      width: 100px; height: 100px;
+      transform: rotate(3deg);
+      left: 170px; top: 60px;
+      z-index: 1;
+      background: transparent;
+      box-shadow: none;
+      overflow: visible;
     }
-    .pf-collage-item.travel:hover  { transform: rotate(-6deg)  translate(-110px, 10px)  scale(1.07); }
-    .pf-collage-item.taiko:hover   { transform: rotate(2deg)   translate(0px, -12px)    scale(1.07); }
-    .pf-collage-item.ramen:hover   { transform: rotate(7deg)   translate(110px, 8px)    scale(1.07); }
+    .pf-collage-item.ramen {
+      width: 180px; height: 135px;
+      transform: rotate(-2deg);
+      left: 280px; top: 30px;
+      z-index: 2;
+    }
+    .pf-collage-item.travel:hover  { transform: rotate(-4deg) scale(1.05); z-index: 5; box-shadow: 0 12px 36px rgba(0,0,0,0.22); }
+    .pf-collage-item.taiko:hover   { transform: rotate(3deg)  scale(1.08); z-index: 5; }
+    .pf-collage-item.ramen:hover   { transform: rotate(-2deg) scale(1.05); z-index: 5; box-shadow: 0 12px 36px rgba(0,0,0,0.22); }
 
     .pf-collage-item img {
       width: 100%; height: 100%;
       object-fit: cover;
       display: block;
     }
-    /* 写真の縁ぼかし（::after で内側にgradientを重ねる） */
+    /* 写真の縁ぼかし */
     .pf-collage-item.travel::after,
     .pf-collage-item.ramen::after {
       content: '';
       position: absolute;
       inset: 0;
-      border-radius: 2px;
-      box-shadow: inset 0 0 28px 12px var(--bg);
+      box-shadow: inset 0 0 22px 8px var(--bg);
       pointer-events: none;
     }
-    /* ラベルバッジ */
-    .pf-collage-label {
-      position: absolute;
-      bottom: 10px;
-      left: 0; right: 0;
-      text-align: center;
-      font-family: 'DM Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #fff;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
-      pointer-events: none;
-    }
-    /* 太鼓はアイコン表示 */
+    /* 太鼓：YouTubeアイコンのみ・背景透過 */
     .pf-collage-taiko-inner {
       width: 100%; height: 100%;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      background: var(--surface);
     }
     .pf-collage-taiko-inner img {
-      width: 64px; height: auto;
+      width: 100%; height: auto;
       object-fit: contain;
-      opacity: 0.75;
+      opacity: 0.72;
     }
 
     @media (max-width: 900px) {
-      .pf-collage { height: 220px; }
-      .pf-collage-item { width: 160px; height: 160px; }
-      .pf-collage-item.travel  { transform: rotate(-6deg) translate(-88px, 8px); }
-      .pf-collage-item.taiko   { transform: rotate(2deg)  translate(0px, -10px); }
-      .pf-collage-item.ramen   { transform: rotate(7deg)  translate(88px, 6px); }
-      .pf-collage-item.travel:hover { transform: rotate(-6deg) translate(-88px, 8px)  scale(1.07); }
-      .pf-collage-item.taiko:hover  { transform: rotate(2deg)  translate(0px, -10px)  scale(1.07); }
-      .pf-collage-item.ramen:hover  { transform: rotate(7deg)  translate(88px, 6px)   scale(1.07); }
+      .pf-collage { height: 200px; }
+      .pf-collage-item.travel { width: 170px; height: 128px; left: 0;    top: 16px; }
+      .pf-collage-item.taiko  { width: 80px;  height: 80px;  left: 145px; top: 55px; }
+      .pf-collage-item.ramen  { width: 155px; height: 116px; left: 236px; top: 26px; }
     }
     @media (max-width: 480px) {
-      .pf-collage { height: 180px; }
-      .pf-collage-item { width: 130px; height: 130px; }
-      .pf-collage-item.travel  { transform: rotate(-6deg) translate(-72px, 6px); }
-      .pf-collage-item.taiko   { transform: rotate(2deg)  translate(0px, -8px); }
-      .pf-collage-item.ramen   { transform: rotate(7deg)  translate(72px, 5px); }
-      .pf-collage-item.travel:hover { transform: rotate(-6deg) translate(-72px, 6px) scale(1.07); }
-      .pf-collage-item.taiko:hover  { transform: rotate(2deg)  translate(0px, -8px)  scale(1.07); }
-      .pf-collage-item.ramen:hover  { transform: rotate(7deg)  translate(72px, 5px)  scale(1.07); }
+      .pf-collage { height: 170px; }
+      .pf-collage-item.travel { width: 140px; height: 105px; left: 0;    top: 14px; }
+      .pf-collage-item.taiko  { width: 64px;  height: 64px;  left: 118px; top: 46px; }
+      .pf-collage-item.ramen  { width: 126px; height: 95px;  left: 194px; top: 22px; }
     }
 
     /* ── ポートフォリオ行き カード ── */
@@ -923,25 +896,19 @@
 
       <!-- 3枚重ねコラージュ -->
       <div class="pf-collage reveal">
-        <!-- 旅：最新記事の先頭画像 -->
         <a href="portfolio.html#travel" class="pf-collage-item travel">
           <img src="./images/pf-tr-001/IMG_5237.webp" alt="旅の記録" id="collage-travel-img">
-          <span class="pf-collage-label">Travel</span>
         </a>
-        <!-- 太鼓：YouTubeアイコン -->
         <a href="portfolio.html#taiko" class="pf-collage-item taiko">
           <div class="pf-collage-taiko-inner">
             <img src="./images/youtube_icon.webp" alt="太鼓の達人">
-            <span class="pf-collage-label" style="position:static;color:var(--muted);text-shadow:none;">Taiko</span>
           </div>
         </a>
-        <!-- 拉麺：CSVの最新1件 -->
         <a href="portfolio.html#ramen" class="pf-collage-item ramen">
           <img src="" alt="拉麺" id="collage-ramen-img" style="display:none;">
-          <div id="collage-ramen-placeholder" class="pf-collage-taiko-inner">
-            <span style="font-family:'Shippori Mincho',serif;font-size:28px;color:var(--muted);">拉麺</span>
+          <div id="collage-ramen-placeholder" class="pf-collage-taiko-inner" style="background:var(--surface);">
+            <span style="font-family:'Shippori Mincho',serif;font-size:24px;color:var(--muted);">拉</span>
           </div>
-          <span class="pf-collage-label">Ramen</span>
         </a>
       </div>
 
