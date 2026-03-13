@@ -164,13 +164,13 @@
     }
     .map-col-stat {
       border-top: 1px solid var(--border);
-      padding: 20px 16px;
+      padding: 16px;
       background: var(--white);
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
-      min-height: 72px;
+      min-height: 58px;
     }
     /* 数値：水平・垂直ともに中央 */
     .map-col-stat-num {
@@ -940,19 +940,12 @@
         .addTo(map);
 
       try {
-        const [travelRes, prefsRes, mergedRes] = await Promise.all([
+        const [travelRes, mergedRes] = await Promise.all([
           fetch('./travel.geojson'),
-          fetch('./prefectures.geojson'),
           fetch('./travel_merged.geojson')
         ]);
-        if (!travelRes.ok || !prefsRes.ok) throw new Error();
-        const [travelGj, prefsGj] = await Promise.all([travelRes.json(), prefsRes.json()]);
-
-        // 都道府県輪郭（薄グレー・背景）
-        L.geoJSON(prefsGj, {
-          style: { color: '#9ba8b8', weight: 1.2, opacity: 0.5, fillColor: '#e8ecf1', fillOpacity: 0.25 },
-          interactive: false
-        }).addTo(map);
+        if (!travelRes.ok) throw new Error();
+        const travelGj = await travelRes.json();
 
         // 訪問市区町村（元データそのまま・境界あり）
         const visitedLayer = L.geoJSON(travelGj, {
@@ -986,7 +979,7 @@
         document.getElementById('travel-map').innerHTML =
           `<div style="display:flex;align-items:center;justify-content:center;height:100%;background:var(--surface);">
             <p style="font-family:'Shippori Mincho',serif;font-size:12px;letter-spacing:0.15em;color:var(--muted);text-align:center;line-height:2.2;">
-              travel.geojson / prefectures.geojson を<br>リポジトリに追加してください
+              travel.geojson を<br>リポジトリに追加してください
             </p>
           </div>`;
       }
