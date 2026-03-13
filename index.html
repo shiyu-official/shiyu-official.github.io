@@ -201,42 +201,9 @@
       #travel-map, #railway-map { height: 280px; }
     }
 
-    /* （旧タブ・削除済） .map-tabs {
-      display: flex;
-      border: 1px solid var(--border);
-      border-bottom: none;
-    }
-    .map-tab {
-      flex: 1;
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding: 11px 0;
-      cursor: pointer;
-      background: var(--surface);
-      border: none;
-      border-right: 1px solid var(--border);
-      transition: color 0.2s, background 0.2s;
-      position: relative;
-    }
-    .map-tab:last-child { border-right: none; }
-    .map-tab.active {
-      color: var(--accent);
-      background: var(--white);
-    }
-    .map-tab.active::after {
-      content: '';
-      position: absolute;
-      bottom: -1px; left: 0; right: 0;
-      height: 1px;
-      background: var(--white);
-    }
-
-    /* 地図コンテナ */
-    .map-panel { display: none; border: 1px solid var(--border); }
     /* ══════════════════════════════════════
+       PORTFOLIO PHOTO SLIDER
+    ══════════════════════════════════════ */
     .photo-slider-outer { position: relative; }
     .photo-slider-wrap {
       width: calc(100vw - 300px - 128px);
@@ -765,7 +732,7 @@
           <div class="map-col">
             <div class="map-col-header">
               <span class="map-col-title">Railway</span>
-              <a href="portfolio.html#railway" class="map-col-link">内訳を見る →</a>
+              <a href="portfolio.html#travel" class="map-col-link">内訳を見る →</a>
             </div>
             <div id="railway-map"></div>
             <div class="map-col-stat">
@@ -960,7 +927,7 @@
           }
         }).addTo(map);
 
-        map.fitBounds(visitedLayer.getBounds(), { padding: [8, 8] });
+
 
         // 踏破率：travel_merged.geojson の properties から取得
         if (mergedRes.ok) {
