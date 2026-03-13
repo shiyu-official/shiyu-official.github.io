@@ -116,8 +116,81 @@
 
     /* ── TRAVEL MAP ── */
 
-    /* タブ */
-    .map-tabs {
+    /* 2分割レイアウト */
+    .map-dual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid var(--border);
+    }
+    .map-col {
+      display: flex;
+      flex-direction: column;
+    }
+    .map-col + .map-col {
+      border-left: 1px solid var(--border);
+    }
+    .map-col-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 14px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .map-col-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .map-col-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .map-col-link:hover {
+      color: var(--accent);
+      border-color: var(--accent-light);
+    }
+    #travel-map, #railway-map {
+      width: 100%;
+      height: 380px;
+    }
+    .map-col-stat {
+      border-top: 1px solid var(--border);
+      padding: 12px 16px;
+      background: var(--white);
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .map-col-stat-num {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .map-col-stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    @media (max-width: 700px) {
+      .map-dual { grid-template-columns: 1fr; }
+      .map-col + .map-col { border-left: none; border-top: 1px solid var(--border); }
+      #travel-map, #railway-map { height: 280px; }
+    }
+
+    /* （旧タブ・削除済） .map-tabs {
       display: flex;
       border: 1px solid var(--border);
       border-bottom: none;
@@ -152,95 +225,7 @@
 
     /* 地図コンテナ */
     .map-panel { display: none; border: 1px solid var(--border); }
-    .map-panel.active { display: block; }
-
-    #travel-map, #railway-map {
-      width: 100%;
-      height: 460px;
-    }
-    .maplibregl-ctrl-group {
-      border: 1px solid var(--border) !important;
-      border-radius: 1px !important;
-      box-shadow: none !important;
-    }
-    .maplibregl-ctrl-group button {
-      border-bottom: 1px solid var(--border) !important;
-    }
-    .maplibregl-popup-content {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      color: var(--text);
-      padding: 10px 14px;
-      border-radius: 1px;
-      border: 1px solid var(--border);
-      box-shadow: 3px 3px 0 var(--border);
-    }
-
-    .map-legend-item {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .legend-line {
-      width: 22px; height: 3px; border-radius: 2px;
-    }
-    .legend-fill {
-      width: 13px; height: 13px; border-radius: 1px; opacity: 0.5;
-    }
-
-    /* 統計バー */
-    .map-stats-wrap {
-      border: 1px solid var(--border);
-      border-top: none;
-    }
-    .map-stats-header {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 7px 16px;
-      text-align: center;
-      font-family: 'DM Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-    .map-stats { display: flex; }
-    .map-stat {
-      flex: 1;
-      text-align: center;
-      padding: 14px 8px;
-      background: var(--white);
-    }
-    .map-stat + .map-stat { border-left: 1px solid var(--border); }
-    .map-stat-num {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 26px;
-      font-weight: 600;
-      color: var(--accent);
-      line-height: 1;
-    }
-    .map-stat-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 5px;
-    }
-    /* タブごとに統計バーを切り替え */
-    .stat-group { display: none; }
-    .stat-group.active { display: contents; }
-
-
     /* ══════════════════════════════════════
-       PORTFOLIO PHOTO SLIDER
-    ══════════════════════════════════════ */
     .photo-slider-outer { position: relative; }
     .photo-slider-wrap {
       width: calc(100vw - 300px - 128px);
@@ -618,8 +603,8 @@
 
       /* Travel Map */
       #travel-map, #railway-map { height: 300px; }
-      .map-stat-num { font-size: 22px; }
-      .map-stat { padding: 12px 8px; }
+      .map-col-stat-num { font-size: 22px; }
+      .map-col-stat { padding: 10px 14px; }
 
       /* Score Card — 縦積みに */
       .score-card { flex-direction: column; }
@@ -681,12 +666,12 @@
         </div>
         <div class="sidebar-stat-group-inner">
           <div class="sidebar-stat">
-            <div class="sidebar-stat-num" id="side-stat-cities">—</div>
-            <div class="sidebar-stat-label">市区町村</div>
+            <div class="sidebar-stat-num" id="side-stat-coverage">—</div>
+            <div class="sidebar-stat-label">踏破率</div>
           </div>
           <div class="sidebar-stat">
-            <div class="sidebar-stat-num" id="side-stat-lines">—</div>
-            <div class="sidebar-stat-label">路線</div>
+            <div class="sidebar-stat-num" id="side-stat-coverage-rr">—</div>
+            <div class="sidebar-stat-label">乗破率</div>
           </div>
         </div>
       </div>
@@ -752,51 +737,29 @@
       <h2 class="section-title reveal">旅の足跡</h2>
       <div class="reveal">
 
-        <!-- タブ -->
-        <div class="map-tabs">
-          <button class="map-tab active" id="tab-visited" onclick="switchMapTab('visited')">市区町村</button>
-          <button class="map-tab" id="tab-railway" onclick="switchMapTab('railway')">乗りつぶし</button>
-        </div>
-
-        <!-- 訪問地図パネル（既存Leafletそのまま） -->
-        <div class="map-panel active" id="panel-visited">
-          <div id="travel-map"></div>
-        </div>
-
-        <!-- 鉄道パネル（MapLibre GL） -->
-        <div class="map-panel" id="panel-railway">
-          <div id="railway-map"></div>
-        </div>
-
-        <!-- 統計バー（タブ連動） -->
-        <div class="map-stats-wrap">
-          <div class="map-stats-header" id="stats-header">Visited</div>
-          <div class="map-stats">
-            <!-- 訪問タブ用 -->
-            <div class="stat-group active" id="stats-visited">
-              <div class="map-stat">
-                <div class="map-stat-num" id="map-stat-prefs">—</div>
-                <div class="map-stat-label">都道府県</div>
-              </div>
-              <div class="map-stat">
-                <div class="map-stat-num" id="map-stat-cities">—</div>
-                <div class="map-stat-label">市区町村</div>
-              </div>
-              <div class="map-stat">
-                <div class="map-stat-num" id="map-stat-coverage">—</div>
-                <div class="map-stat-label">国土踏破率</div>
-              </div>
+        <div class="map-dual">
+          <!-- 左：市区町村訪問 -->
+          <div class="map-col">
+            <div class="map-col-header">
+              <span class="map-col-title">Visited</span>
+              <a href="portfolio.html#travel" class="map-col-link">内訳を見る →</a>
             </div>
-            <!-- 鉄道タブ用 -->
-            <div class="stat-group" id="stats-railway">
-              <div class="map-stat">
-                <div class="map-stat-num" id="map-stat-lines">—</div>
-                <div class="map-stat-label">乗車路線</div>
-              </div>
-              <div class="map-stat">
-                <div class="map-stat-num" id="map-stat-km">—</div>
-                <div class="map-stat-label">乗車 km</div>
-              </div>
+            <div id="travel-map"></div>
+            <div class="map-col-stat">
+              <span class="map-col-stat-num" id="map-stat-coverage">—</span>
+              <span class="map-col-stat-label">国土踏破率</span>
+            </div>
+          </div>
+          <!-- 右：乗りつぶし -->
+          <div class="map-col">
+            <div class="map-col-header">
+              <span class="map-col-title">Railway</span>
+              <a href="portfolio.html#railway" class="map-col-link">内訳を見る →</a>
+            </div>
+            <div id="railway-map"></div>
+            <div class="map-col-stat">
+              <span class="map-col-stat-num" id="map-stat-coverage-rr">—</span>
+              <span class="map-col-stat-label">路線乗破率</span>
             </div>
           </div>
         </div>
@@ -949,33 +912,7 @@
 
   <script>
     // ══════════════════════════════════════
-    //  タブ切り替え
-    // ══════════════════════════════════════
-    let railwayMapInited = false;
-
-    function switchMapTab(tab) {
-      // タブボタン
-      document.getElementById('tab-visited').classList.toggle('active', tab === 'visited');
-      document.getElementById('tab-railway').classList.toggle('active', tab === 'railway');
-      // パネル
-      document.getElementById('panel-visited').classList.toggle('active', tab === 'visited');
-      document.getElementById('panel-railway').classList.toggle('active', tab === 'railway');
-      // 統計バー
-      document.getElementById('stats-header').textContent = tab === 'visited' ? 'Visited' : 'Railway';
-      document.getElementById('stats-visited').classList.toggle('active', tab === 'visited');
-      document.getElementById('stats-railway').classList.toggle('active', tab === 'railway');
-      // 鉄道地図は初回タブ切り替え時に初期化
-      if (tab === 'railway' && !railwayMapInited) {
-        railwayMapInited = true;
-        initRailwayMap();
-      }
-      if (tab === 'railway' && window._rrMap) {
-        setTimeout(() => window._rrMap.resize(), 60);
-      }
-    }
-
-    // ══════════════════════════════════════
-    //  訪問地図（既存 Leaflet — そのまま）
+    //  訪問地図（Leaflet — 統合GeoJSON版）
     // ══════════════════════════════════════
     async function loadTravelMap() {
       const map = L.map('travel-map', {
@@ -992,81 +929,51 @@
         .addTo(map);
 
       try {
-        // 統合済みGeoJSON・元データを並行取得
-        const [travelMergedRes, prefsMergedRes, travelOrigRes] = await Promise.all([
+        const [travelMergedRes, prefsMergedRes] = await Promise.all([
           fetch('./travel_merged.geojson'),
-          fetch('./prefectures_merged.geojson'),
-          fetch('./travel.geojson')
+          fetch('./prefectures_merged.geojson')
         ]);
-        if (!travelMergedRes.ok || !prefsMergedRes.ok || !travelOrigRes.ok) throw new Error();
-
-        const [travelMerged, prefsMerged, travelOrig] = await Promise.all([
+        if (!travelMergedRes.ok || !prefsMergedRes.ok) throw new Error();
+        const [travelMerged, prefsMerged] = await Promise.all([
           travelMergedRes.json(),
-          prefsMergedRes.json(),
-          travelOrigRes.json()
+          prefsMergedRes.json()
         ]);
 
-        // 都道府県輪郭（薄いグレー）
+        // 都道府県輪郭（薄グレー・背景）
         L.geoJSON(prefsMerged, {
-          style: {
-            color: '#9ba8b8',
-            weight: 1.2,
-            opacity: 0.5,
-            fillColor: '#e8ecf1',
-            fillOpacity: 0.25
-          },
+          style: { color: '#9ba8b8', weight: 1.2, opacity: 0.5, fillColor: '#e8ecf1', fillOpacity: 0.25 },
           interactive: false
         }).addTo(map);
 
-        // 訪問済エリア（境界なし統合ポリゴン）
+        // 訪問済エリア（境界なし統合）
         const visitedLayer = L.geoJSON(travelMerged, {
-          style: {
-            color: '#1e5fa8',
-            weight: 1.5,
-            opacity: 0.7,
-            fillColor: '#1e5fa8',
-            fillOpacity: 0.38
-          },
+          style: { color: '#1e5fa8', weight: 1.5, opacity: 0.7, fillColor: '#1e5fa8', fillOpacity: 0.38 },
           interactive: false
         }).addTo(map);
 
         map.fitBounds(visitedLayer.getBounds(), { padding: [8, 8] });
 
-        // 踏破率（travel_merged.geojson の properties に格納済み）
+        // 踏破率
         const coverage = travelMerged.features?.[0]?.properties?.coverage ?? null;
-        const coverageEl = document.getElementById('map-stat-coverage');
-        if (coverageEl) coverageEl.textContent = coverage != null ? coverage + '%' : '—';
-
-        // 都道府県・市区町村数（元データから集計）
-        const cityCount = travelOrig.features ? travelOrig.features.length : 0;
-        const prefCount = travelOrig.features
-          ? new Set(travelOrig.features.map(f => f.properties.KEN).filter(Boolean)).size : 0;
-
-        ['map-stat-prefs', 'side-stat-prefs'].forEach(id => {
+        const pct = coverage != null ? coverage + '%' : '—';
+        ['map-stat-coverage', 'side-stat-coverage'].forEach(id => {
           const el = document.getElementById(id);
-          if (el) el.textContent = prefCount || '—';
+          if (el) el.textContent = pct;
         });
-        ['map-stat-cities', 'side-stat-cities'].forEach(id => {
-          const el = document.getElementById(id);
-          if (el) el.textContent = cityCount || '—';
-        });
-
       } catch {
         document.getElementById('travel-map').innerHTML =
           `<div style="display:flex;align-items:center;justify-content:center;height:100%;background:var(--surface);">
             <p style="font-family:'Shippori Mincho',serif;font-size:12px;letter-spacing:0.15em;color:var(--muted);text-align:center;line-height:2.2;">
-              travel_merged.geojson / prefectures_merged.geojson を<br>リポジトリに追加してください
+              travel_merged.geojson を<br>リポジトリに追加してください
             </p>
           </div>`;
       }
     }
 
     // ══════════════════════════════════════
-    //  鉄道地図（MapLibre GL）
+    //  鉄道地図（MapLibre GL — Race Condition修正済み）
     // ══════════════════════════════════════
     async function initRailwayMap() {
-      // GeoJSONが大きい（約8MB・13,000 feature）ため
-      // WebWorkerを増やしてタイル処理の取りこぼしを防ぐ
       maplibregl.workerCount = 4;
 
       const map = new maplibregl.Map({
@@ -1095,78 +1002,74 @@
       map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
       map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-right');
 
-      // 統計JSONとGeoJSONを並行取得（mapのloadと独立）
-      const [statsData, rrGj] = await Promise.allSettled([
-        fetch('./railway_stats.json').then(r => r.ok ? r.json() : null).catch(() => null),
-        fetch('./railway_status.geojson').then(r => r.ok ? r.json() : null).catch(() => null)
+      // map.load完了 と fetch完了 を同時に待つ（Race Condition修正）
+      const [, [statsData, rrGj]] = await Promise.all([
+        new Promise(resolve => {
+          if (map.loaded()) resolve();
+          else map.once('load', resolve);
+        }),
+        Promise.allSettled([
+          fetch('./railway_stats.json').then(r => r.ok ? r.json() : null).catch(() => null),
+          fetch('./railway_status.geojson').then(r => r.ok ? r.json() : null).catch(() => null)
+        ])
       ]);
 
-      // 統計表示
+      // 乗破率
       const stats = statsData.value;
-      if (stats) {
-        const lineEl = document.getElementById('map-stat-lines');
-        const kmEl   = document.getElementById('map-stat-km');
-        const sideEl = document.getElementById('side-stat-lines');
-        if (lineEl) lineEl.textContent = stats.ridden_lines ?? '—';
-        if (kmEl)   kmEl.textContent   = stats.total_ridden_km != null ? Math.round(stats.total_ridden_km).toLocaleString() : '—';
-        if (sideEl) sideEl.textContent = stats.ridden_lines ?? '—';
+      if (stats && stats.total_lines) {
+        const rrPct = Math.round(stats.ridden_lines / stats.total_lines * 100 * 10) / 10;
+        const pct = rrPct + '%';
+        ['map-stat-coverage-rr', 'side-stat-coverage-rr'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.textContent = pct;
+        });
       }
 
-      // 路線GeoJSON — mapのloadイベントを待って追加
       const geojson = rrGj.value;
       if (!geojson) {
-        document.getElementById('railway-map').insertAdjacentHTML('afterend',
-          `<p style="font-family:'Shippori Mincho',serif;font-size:12px;letter-spacing:.15em;color:var(--muted);padding:16px;">railway_status.geojson を配置してください</p>`);
+        document.getElementById('railway-map').innerHTML =
+          `<div style="display:flex;align-items:center;justify-content:center;height:100%;background:var(--surface);">
+            <p style="font-family:'Shippori Mincho',serif;font-size:12px;letter-spacing:.15em;color:var(--muted);text-align:center;line-height:2.2;">
+              railway_status.geojson を<br>リポジトリに追加してください
+            </p>
+          </div>`;
         return;
       }
 
-      const addLayers = () => {
-        if (map.getSource('railway')) return;
-        map.addSource('railway', {
-          type: 'geojson',
-          data: geojson,
-          generateId: true,
-          tolerance: 0,       // 座標間引き完全無効（短featureの消失防止）
-          buffer: 128,        // タイル境界での切れを防ぐ
-          lineMetrics: false,
-          maxzoom: 18         // 全zoomで間引きなし
-        });
+      // addLayersはmap.load待ち済みなので直接呼ぶ
+      if (map.getSource('railway')) return;
+      map.addSource('railway', {
+        type: 'geojson', data: geojson,
+        generateId: true, tolerance: 0, buffer: 128, lineMetrics: false, maxzoom: 18
+      });
+      map.addLayer({
+        id: 'rr-unridden', type: 'line', source: 'railway',
+        filter: ['==', ['get', 'status'], 'unridden'],
+        paint: { 'line-color': '#c4bdb5', 'line-width': 1.0, 'line-opacity': 0.6 }
+      });
+      map.addLayer({
+        id: 'rr-ridden', type: 'line', source: 'railway',
+        filter: ['==', ['get', 'status'], 'ridden'],
+        paint: { 'line-color': '#1e5fa8', 'line-width': 2.0, 'line-opacity': 0.88 }
+      });
 
-        map.addLayer({
-          id: 'rr-unridden', type: 'line', source: 'railway',
-          filter: ['==', ['get', 'status'], 'unridden'],
-          paint: { 'line-color': '#c4bdb5', 'line-width': 1.0, 'line-opacity': 0.6 }
+      const popup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 6 });
+      ['rr-ridden', 'rr-unridden'].forEach(layerId => {
+        map.on('mousemove', layerId, e => {
+          map.getCanvas().style.cursor = 'pointer';
+          const p = e.features[0].properties;
+          const badge = p.status === 'ridden'
+            ? `<span style="color:#1e5fa8;font-size:10px;font-family:'DM Mono',monospace;">● 乗車済</span>`
+            : `<span style="color:#8a8070;font-size:10px;font-family:'DM Mono',monospace;">○ 未乗</span>`;
+          popup.setLngLat(e.lngLat)
+            .setHTML(`<strong style="font-family:'Shippori Mincho',serif;letter-spacing:.08em;">${p.line}</strong><br>${badge}`)
+            .addTo(map);
         });
-        map.addLayer({
-          id: 'rr-ridden', type: 'line', source: 'railway',
-          filter: ['==', ['get', 'status'], 'ridden'],
-          paint: { 'line-color': '#1e5fa8', 'line-width': 2.0, 'line-opacity': 0.88 }
+        map.on('mouseleave', layerId, () => {
+          map.getCanvas().style.cursor = '';
+          popup.remove();
         });
-
-        const popup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 6 });
-        ['rr-ridden', 'rr-unridden'].forEach(layerId => {
-          map.on('mousemove', layerId, e => {
-            map.getCanvas().style.cursor = 'pointer';
-            const p = e.features[0].properties;
-            const badge = p.status === 'ridden'
-              ? `<span style="color:#1e5fa8;font-size:10px;font-family:'DM Mono',monospace;">● 乗車済</span>`
-              : `<span style="color:#8a8070;font-size:10px;font-family:'DM Mono',monospace;">○ 未乗</span>`;
-            popup.setLngLat(e.lngLat)
-              .setHTML(`<strong style="font-family:'Shippori Mincho',serif;letter-spacing:.08em;">${p.line}</strong><br>${badge}`)
-              .addTo(map);
-          });
-          map.on('mouseleave', layerId, () => {
-            map.getCanvas().style.cursor = '';
-            popup.remove();
-          });
-        });
-      };
-
-      if (map.loaded()) {
-        addLayers();
-      } else {
-        map.on('load', addLayers);
-      }
+      });
     }
 
     // ══════════════════════════════════════
