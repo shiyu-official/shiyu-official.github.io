@@ -1194,7 +1194,7 @@
         <button class="filter-btn active" data-filter="all">すべて</button>
         <button class="filter-btn" data-filter="general">一般</button>
         <button class="filter-btn" data-filter="iekei">家系</button>
-        <button class="filter-btn" data-filter="jiro">二郎系</button>
+        <button class="filter-btn" data-filter="jiro">二郎・インスパイア</button>
       </div>
 
       <p class="item-count reveal">全 <span id="ramen-count-num">0</span> 件</p>
@@ -1499,7 +1499,7 @@
     // date : YYYY/M/D または YYYY/M または YYYY
     // memo : 一言メモ（省略可）
     // ══════════════════════════
-    const GENRE_LABEL = { general: '一般', iekei: '家系', jiro: '二郎系' };
+    const GENRE_LABEL = { general: '一般', iekei: '家系', jiro: '二郎・インスパイア' };
 
     function buildRamenCard(image, shop, genre, date, memo) {
       const card = document.createElement('div');
