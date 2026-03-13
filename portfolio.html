@@ -1726,9 +1726,15 @@
       accordion.classList.toggle('open');
       if (accordion.classList.contains('open') && !pfRailwayMapInited) {
         pfRailwayMapInited = true;
-        loadPfRailwayMap();
+        // display:block が DOM に反映されてからサイズを確定させるため
+        // rAF を2重にして描画サイクルを1フレーム待つ
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            loadPfRailwayMap();
+          });
+        });
       } else if (accordion.classList.contains('open') && window._pfRrMap) {
-        setTimeout(() => window._pfRrMap.resize(), 60);
+        requestAnimationFrame(() => window._pfRrMap.resize());
       }
     }
 
@@ -1767,7 +1773,14 @@
       map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
       map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-right');
 
-      // 統計JSON・乗車済GeoJSON・未乗JSONを並行取得
+      // map の load イベントを先に待つ（コンテナサイズ確定後にfetchする）
+      // fetchとloadを並行させると、コンテナがdisplay:noneから切り替わる直後に
+      // MapLibreがサイズを取得できずloadイベントが発火しないケースがあるため
+      await new Promise(resolve => {
+        if (map.loaded()) { resolve(); } else { map.once('load', resolve); }
+      });
+
+      // map load 完了後に JSON を並行取得
       const [statsData, rrGj, unriddenData] = await Promise.allSettled([
         fetch('./railway_stats.json').then(r => r.ok ? r.json() : null).catch(() => null),
         fetch('./railway_status.geojson').then(r => r.ok ? r.json() : null).catch(() => null),
@@ -1798,8 +1811,8 @@
 
       pfRailwayGeojsonCache = geojson;
 
-      const addLayers = () => {
-        if (map.getSource('railway')) return;
+      // map は既に loaded 済みなのでそのままレイヤーを追加
+      if (!map.getSource('railway')) {
         map.addSource('railway', {
           type: 'geojson', data: geojson,
           generateId: true, tolerance: 0, buffer: 128, lineMetrics: false, maxzoom: 18
@@ -1831,15 +1844,7 @@
             popup.remove();
           });
         });
-      };
-
-      // map.load と addLayers を確実に同期させる
-      // fetch完了時点でmapがすでにloaded()=trueになっていても安全に動作するよう
-      // Promiseでload完了を待ち合わせる
-      await new Promise(resolve => {
-        if (map.loaded()) { resolve(); } else { map.once('load', resolve); }
-      });
-      addLayers();
+      }
 
       // 内訳データ構築
       buildRailwayBreakdown(geojson.features || [], unriddenData.value || []);
