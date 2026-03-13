@@ -782,6 +782,10 @@
                 <div class="map-stat-num" id="map-stat-cities">—</div>
                 <div class="map-stat-label">市区町村</div>
               </div>
+              <div class="map-stat">
+                <div class="map-stat-num" id="map-stat-coverage">—</div>
+                <div class="map-stat-label">国土踏破率</div>
+              </div>
             </div>
             <!-- 鉄道タブ用 -->
             <div class="stat-group" id="stats-railway">
@@ -988,44 +992,70 @@
         .addTo(map);
 
       try {
-        const res = await fetch('./travel.geojson');
-        if (!res.ok) throw new Error();
-        const geojson = await res.json();
+        // 統合済みGeoJSON・元データを並行取得
+        const [travelMergedRes, prefsMergedRes, travelOrigRes] = await Promise.all([
+          fetch('./travel_merged.geojson'),
+          fetch('./prefectures_merged.geojson'),
+          fetch('./travel.geojson')
+        ]);
+        if (!travelMergedRes.ok || !prefsMergedRes.ok || !travelOrigRes.ok) throw new Error();
 
-        const layer = L.geoJSON(geojson, {
-          style: { color: '#1e5fa8', weight: 0.8, opacity: 0.6, fillColor: '#1e5fa8', fillOpacity: 0.32 },
-          onEachFeature: (feature, layer) => {
-            const props  = feature.properties;
-            const pref   = props.KEN || '';
-            const seirei = props.SEIREI || '';
-            const city   = props.SIKUCHOSON
-              ? (seirei ? `${seirei} ${props.SIKUCHOSON}` : props.SIKUCHOSON)
-              : (seirei || '');
-            layer.bindTooltip(`<strong>${city}</strong>${pref ? `<br>${pref}` : ''}`, { sticky: true });
-            layer.on('mouseover', function() { this.setStyle({ fillOpacity: 0.6, weight: 1.5 }); });
-            layer.on('mouseout',  function() { this.setStyle({ fillOpacity: 0.32, weight: 0.8 }); });
-          }
+        const [travelMerged, prefsMerged, travelOrig] = await Promise.all([
+          travelMergedRes.json(),
+          prefsMergedRes.json(),
+          travelOrigRes.json()
+        ]);
+
+        // 都道府県輪郭（薄いグレー）
+        L.geoJSON(prefsMerged, {
+          style: {
+            color: '#9ba8b8',
+            weight: 1.2,
+            opacity: 0.5,
+            fillColor: '#e8ecf1',
+            fillOpacity: 0.25
+          },
+          interactive: false
         }).addTo(map);
 
-        map.fitBounds(layer.getBounds(), { padding: [8, 8] });
+        // 訪問済エリア（境界なし統合ポリゴン）
+        const visitedLayer = L.geoJSON(travelMerged, {
+          style: {
+            color: '#1e5fa8',
+            weight: 1.5,
+            opacity: 0.7,
+            fillColor: '#1e5fa8',
+            fillOpacity: 0.38
+          },
+          interactive: false
+        }).addTo(map);
 
-        const cityCount = geojson.features ? geojson.features.length : 0;
-        const prefCount = geojson.features
-          ? new Set(geojson.features.map(f => f.properties.KEN).filter(Boolean)).size : 0;
+        map.fitBounds(visitedLayer.getBounds(), { padding: [8, 8] });
 
-        ['map-stat-prefs','side-stat-prefs'].forEach(id => {
+        // 踏破率（travel_merged.geojson の properties に格納済み）
+        const coverage = travelMerged.features?.[0]?.properties?.coverage ?? null;
+        const coverageEl = document.getElementById('map-stat-coverage');
+        if (coverageEl) coverageEl.textContent = coverage != null ? coverage + '%' : '—';
+
+        // 都道府県・市区町村数（元データから集計）
+        const cityCount = travelOrig.features ? travelOrig.features.length : 0;
+        const prefCount = travelOrig.features
+          ? new Set(travelOrig.features.map(f => f.properties.KEN).filter(Boolean)).size : 0;
+
+        ['map-stat-prefs', 'side-stat-prefs'].forEach(id => {
           const el = document.getElementById(id);
           if (el) el.textContent = prefCount || '—';
         });
-        ['map-stat-cities','side-stat-cities'].forEach(id => {
+        ['map-stat-cities', 'side-stat-cities'].forEach(id => {
           const el = document.getElementById(id);
           if (el) el.textContent = cityCount || '—';
         });
+
       } catch {
         document.getElementById('travel-map').innerHTML =
           `<div style="display:flex;align-items:center;justify-content:center;height:100%;background:var(--surface);">
             <p style="font-family:'Shippori Mincho',serif;font-size:12px;letter-spacing:0.15em;color:var(--muted);text-align:center;line-height:2.2;">
-              travel.geojson を<br>リポジトリに追加してください
+              travel_merged.geojson / prefectures_merged.geojson を<br>リポジトリに追加してください
             </p>
           </div>`;
       }
