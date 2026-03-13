@@ -1833,7 +1833,13 @@
         });
       };
 
-      if (map.loaded()) { addLayers(); } else { map.on('load', addLayers); }
+      // map.load と addLayers を確実に同期させる
+      // fetch完了時点でmapがすでにloaded()=trueになっていても安全に動作するよう
+      // Promiseでload完了を待ち合わせる
+      await new Promise(resolve => {
+        if (map.loaded()) { resolve(); } else { map.once('load', resolve); }
+      });
+      addLayers();
 
       // 内訳データ構築
       buildRailwayBreakdown(geojson.features || [], unriddenData.value || []);
