@@ -895,7 +895,7 @@
     async function loadTravelMap() {
       const map = L.map('travel-map', {
         center: [36.5, 137.5],
-        zoom: 4,
+        zoom: 4.5,
         zoomControl: true,
         scrollWheelZoom: true,
         attributionControl: false
@@ -976,7 +976,7 @@
           layers: [{ id: 'carto', type: 'raster', source: 'carto' }]
         },
         center: [137.5, 36.5],
-        zoom: 3,
+        zoom: 3.5,
         attributionControl: false
       });
       window._rrMap = map;
