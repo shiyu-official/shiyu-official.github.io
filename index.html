@@ -11,7 +11,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@300;400&family=DM+Mono&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Turf.js/6.5.0/turf.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css"/>
@@ -165,23 +164,25 @@
     }
     .map-col-stat {
       border-top: 1px solid var(--border);
-      padding: 12px 16px;
+      padding: 20px 16px;
       background: var(--white);
       display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
+      align-items: center;
+      justify-content: center;
       position: relative;
+      min-height: 72px;
     }
-    /* 数値：中央揃え（絶対配置で完全中央） */
+    /* 数値：水平・垂直ともに中央 */
     .map-col-stat-num {
       font-family: 'Shippori Mincho', serif;
-      font-size: 28px;
+      font-size: 30px;
       font-weight: 600;
       color: var(--accent);
       line-height: 1;
       position: absolute;
+      top: 50%;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translate(-50%, -50%);
     }
     /* ラベル：右下 */
     .map-col-stat-label {
@@ -190,7 +191,9 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--muted);
-      margin-left: auto;
+      position: absolute;
+      bottom: 10px;
+      right: 14px;
     }
     @media (max-width: 700px) {
       .map-dual { grid-template-columns: 1fr; }
@@ -920,7 +923,7 @@
 
   <script>
     // ══════════════════════════════════════
-    //  訪問地図（Leaflet — 元GeoJSON + turf面積計算）
+    //  訪問地図（Leaflet — travel.geojson描画 + travel_mergedから踏破率取得）
     // ══════════════════════════════════════
     async function loadTravelMap() {
       const map = L.map('travel-map', {
@@ -937,9 +940,10 @@
         .addTo(map);
 
       try {
-        const [travelRes, prefsRes] = await Promise.all([
+        const [travelRes, prefsRes, mergedRes] = await Promise.all([
           fetch('./travel.geojson'),
-          fetch('./prefectures.geojson')
+          fetch('./prefectures.geojson'),
+          fetch('./travel_merged.geojson')
         ]);
         if (!travelRes.ok || !prefsRes.ok) throw new Error();
         const [travelGj, prefsGj] = await Promise.all([travelRes.json(), prefsRes.json()]);
@@ -965,24 +969,18 @@
 
         map.fitBounds(visitedLayer.getBounds(), { padding: [8, 8] });
 
-        // turf で面積比から踏破率を計算（Web Worker外で非同期に）
-        setTimeout(() => {
-          try {
-            const travelUnion = turf.union(turf.featureCollection(travelGj.features));
-            const prefsUnion  = turf.union(turf.featureCollection(prefsGj.features));
-            const intersection = turf.intersect(turf.featureCollection([travelUnion, prefsUnion]));
-            const coverage = intersection
-              ? Math.round(turf.area(intersection) / turf.area(prefsUnion) * 1000) / 10
-              : 0;
+        // 踏破率：travel_merged.geojson の properties から取得
+        if (mergedRes.ok) {
+          const mergedGj = await mergedRes.json();
+          const coverage = mergedGj.features?.[0]?.properties?.coverage ?? null;
+          if (coverage != null) {
             const pct = coverage + '%';
             ['map-stat-coverage', 'side-stat-coverage'].forEach(id => {
               const el = document.getElementById(id);
               if (el) el.textContent = pct;
             });
-          } catch (e) {
-            console.warn('turf coverage calc failed:', e);
           }
-        }, 0);
+        }
 
       } catch {
         document.getElementById('travel-map').innerHTML =
