@@ -1062,7 +1062,7 @@
       </div>
 
       <!-- ══ 中項目②：乗りつぶし ══ -->
-      <div class="subsection-wrap reveal">
+      <div class="subsection-wrap reveal" id="railway">
         <p class="subsection-label">01-02</p>
         <h3 class="subsection-title">乗りつぶし</h3>
 
@@ -1766,17 +1766,11 @@
       map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
       map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-right');
 
-      // マップのload完了 と 統計JSON・乗車済GeoJSON・未乗JSONの並行取得 を同時に待つ
-      const [, [statsData, rrGj, unriddenData]] = await Promise.all([
-        new Promise(resolve => {
-          if (map.loaded()) resolve();
-          else map.once('load', resolve);
-        }),
-        Promise.allSettled([
-          fetch('./railway_stats.json').then(r => r.ok ? r.json() : null).catch(() => null),
-          fetch('./railway_status.geojson').then(r => r.ok ? r.json() : null).catch(() => null),
-          fetch('./railway_unridden.json').then(r => r.ok ? r.json() : null).catch(() => null)
-        ])
+      // 統計JSON・乗車済GeoJSON・未乗JSONを並行取得
+      const [statsData, rrGj, unriddenData] = await Promise.allSettled([
+        fetch('./railway_stats.json').then(r => r.ok ? r.json() : null).catch(() => null),
+        fetch('./railway_status.geojson').then(r => r.ok ? r.json() : null).catch(() => null),
+        fetch('./railway_unridden.json').then(r => r.ok ? r.json() : null).catch(() => null)
       ]);
 
       // 統計表示
@@ -1838,8 +1832,7 @@
         });
       };
 
-      // map.loadとfetch両方の完了を待ってから呼ぶので直接実行
-      addLayers();
+      if (map.loaded()) { addLayers(); } else { map.on('load', addLayers); }
 
       // 内訳データ構築
       buildRailwayBreakdown(geojson.features || [], unriddenData.value || []);

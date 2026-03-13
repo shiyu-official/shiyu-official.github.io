@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@300;400&family=DM+Mono&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Turf.js/6.5.0/turf.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css"/>
@@ -167,22 +168,29 @@
       padding: 12px 16px;
       background: var(--white);
       display: flex;
-      align-items: baseline;
-      gap: 8px;
+      align-items: flex-end;
+      justify-content: space-between;
+      position: relative;
     }
+    /* 数値：中央揃え（絶対配置で完全中央） */
     .map-col-stat-num {
       font-family: 'Shippori Mincho', serif;
       font-size: 28px;
       font-weight: 600;
       color: var(--accent);
       line-height: 1;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
     }
+    /* ラベル：右下 */
     .map-col-stat-label {
       font-family: 'DM Mono', monospace;
-      font-size: 9px;
+      font-size: 10px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--muted);
+      margin-left: auto;
     }
     @media (max-width: 700px) {
       .map-dual { grid-template-columns: 1fr; }
@@ -671,7 +679,7 @@
           </div>
           <div class="sidebar-stat">
             <div class="sidebar-stat-num" id="side-stat-coverage-rr">—</div>
-            <div class="sidebar-stat-label">乗破率</div>
+            <div class="sidebar-stat-label">鉄道乗破率</div>
           </div>
         </div>
       </div>
@@ -759,7 +767,7 @@
             <div id="railway-map"></div>
             <div class="map-col-stat">
               <span class="map-col-stat-num" id="map-stat-coverage-rr">—</span>
-              <span class="map-col-stat-label">路線乗破率</span>
+              <span class="map-col-stat-label">鉄道乗破率</span>
             </div>
           </div>
         </div>
@@ -912,7 +920,7 @@
 
   <script>
     // ══════════════════════════════════════
-    //  訪問地図（Leaflet — 統合GeoJSON版）
+    //  訪問地図（Leaflet — 元GeoJSON + turf面積計算）
     // ══════════════════════════════════════
     async function loadTravelMap() {
       const map = L.map('travel-map', {
@@ -929,42 +937,58 @@
         .addTo(map);
 
       try {
-        const [travelMergedRes, prefsMergedRes] = await Promise.all([
-          fetch('./travel_merged.geojson'),
-          fetch('./prefectures_merged.geojson')
+        const [travelRes, prefsRes] = await Promise.all([
+          fetch('./travel.geojson'),
+          fetch('./prefectures.geojson')
         ]);
-        if (!travelMergedRes.ok || !prefsMergedRes.ok) throw new Error();
-        const [travelMerged, prefsMerged] = await Promise.all([
-          travelMergedRes.json(),
-          prefsMergedRes.json()
-        ]);
+        if (!travelRes.ok || !prefsRes.ok) throw new Error();
+        const [travelGj, prefsGj] = await Promise.all([travelRes.json(), prefsRes.json()]);
 
         // 都道府県輪郭（薄グレー・背景）
-        L.geoJSON(prefsMerged, {
+        L.geoJSON(prefsGj, {
           style: { color: '#9ba8b8', weight: 1.2, opacity: 0.5, fillColor: '#e8ecf1', fillOpacity: 0.25 },
           interactive: false
         }).addTo(map);
 
-        // 訪問済エリア（境界なし統合）
-        const visitedLayer = L.geoJSON(travelMerged, {
-          style: { color: '#1e5fa8', weight: 1.5, opacity: 0.7, fillColor: '#1e5fa8', fillOpacity: 0.38 },
-          interactive: false
+        // 訪問市区町村（元データそのまま・境界あり）
+        const visitedLayer = L.geoJSON(travelGj, {
+          style: { color: '#1e5fa8', weight: 0.5, opacity: 0.5, fillColor: '#1e5fa8', fillOpacity: 0.38 },
+          onEachFeature: (feature, layer) => {
+            const p = feature.properties;
+            const seirei = p.SEIREI || '';
+            const city = p.SIKUCHOSON ? (seirei ? `${seirei} ${p.SIKUCHOSON}` : p.SIKUCHOSON) : (seirei || '');
+            layer.bindTooltip(`<strong>${city}</strong>${p.KEN ? `<br>${p.KEN}` : ''}`, { sticky: true });
+            layer.on('mouseover', function() { this.setStyle({ fillOpacity: 0.6, weight: 1.2 }); });
+            layer.on('mouseout',  function() { this.setStyle({ fillOpacity: 0.38, weight: 0.5 }); });
+          }
         }).addTo(map);
 
         map.fitBounds(visitedLayer.getBounds(), { padding: [8, 8] });
 
-        // 踏破率
-        const coverage = travelMerged.features?.[0]?.properties?.coverage ?? null;
-        const pct = coverage != null ? coverage + '%' : '—';
-        ['map-stat-coverage', 'side-stat-coverage'].forEach(id => {
-          const el = document.getElementById(id);
-          if (el) el.textContent = pct;
-        });
+        // turf で面積比から踏破率を計算（Web Worker外で非同期に）
+        setTimeout(() => {
+          try {
+            const travelUnion = turf.union(turf.featureCollection(travelGj.features));
+            const prefsUnion  = turf.union(turf.featureCollection(prefsGj.features));
+            const intersection = turf.intersect(turf.featureCollection([travelUnion, prefsUnion]));
+            const coverage = intersection
+              ? Math.round(turf.area(intersection) / turf.area(prefsUnion) * 1000) / 10
+              : 0;
+            const pct = coverage + '%';
+            ['map-stat-coverage', 'side-stat-coverage'].forEach(id => {
+              const el = document.getElementById(id);
+              if (el) el.textContent = pct;
+            });
+          } catch (e) {
+            console.warn('turf coverage calc failed:', e);
+          }
+        }, 0);
+
       } catch {
         document.getElementById('travel-map').innerHTML =
           `<div style="display:flex;align-items:center;justify-content:center;height:100%;background:var(--surface);">
             <p style="font-family:'Shippori Mincho',serif;font-size:12px;letter-spacing:0.15em;color:var(--muted);text-align:center;line-height:2.2;">
-              travel_merged.geojson を<br>リポジトリに追加してください
+              travel.geojson / prefectures.geojson を<br>リポジトリに追加してください
             </p>
           </div>`;
       }
@@ -1014,18 +1038,26 @@
         ])
       ]);
 
-      // 乗破率
+      // 路線完乗率（完乗路線数 / 全路線数）
       const stats = statsData.value;
-      if (stats && stats.total_lines) {
-        const rrPct = Math.round(stats.ridden_lines / stats.total_lines * 100 * 10) / 10;
+      const geojson = rrGj.value;
+
+      if (stats && geojson && stats.total_lines) {
+        // GeoJSON上の路線ごとにunriddenセグメントがゼロ＝完乗
+        const lineMap = new Map();
+        for (const f of geojson.features) {
+          const { line, status } = f.properties;
+          if (!lineMap.has(line)) lineMap.set(line, { ridden: 0, unridden: 0 });
+          lineMap.get(line)[status]++;
+        }
+        const kanjoCount = [...lineMap.values()].filter(v => v.unridden === 0).length;
+        const rrPct = Math.round(kanjoCount / stats.total_lines * 1000) / 10;
         const pct = rrPct + '%';
         ['map-stat-coverage-rr', 'side-stat-coverage-rr'].forEach(id => {
           const el = document.getElementById(id);
           if (el) el.textContent = pct;
         });
       }
-
-      const geojson = rrGj.value;
       if (!geojson) {
         document.getElementById('railway-map').innerHTML =
           `<div style="display:flex;align-items:center;justify-content:center;height:100%;background:var(--surface);">
