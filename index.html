@@ -104,7 +104,7 @@
   </header>
 
   <!-- ===== ヒーロー ===== -->
-  <div class="hero" role="img" aria-label="志遊の風景スライドショー">
+  <div class="hero" id="top" role="img" aria-label="志遊の風景スライドショー">
     <div class="hero__slides">
       <div class="hero__slide is-active is-zoom">
         <picture>
@@ -130,6 +130,7 @@
       <h1 class="hero__copy">
         志遊の凪音<span class="sub">shiyu's station</span>
       </h1>
+      <div class="flap-board" id="flap-board" aria-hidden="true"></div>
     </div>
 
     <p class="hero__vstrip" aria-hidden="true">記憶と記録のすべてをここに。</p>
@@ -196,6 +197,7 @@
         <div class="band-head reveal">
           <span class="kicker">Latest Videos</span>
           <h2 class="band-title">最新動画</h2>
+          <span class="eki-bar" aria-hidden="true"></span>
           <p class="lead">2チャンネルの新着をまとめて。ぜひご覧ください。</p>
         </div>
 
@@ -238,7 +240,7 @@
           </a>
           <a class="card" href="https://youtu.be/GPFfpjzjeTA" target="_blank" rel="noopener">
             <div class="card__thumb"><span class="badge">Rail</span><span class="play"><i class="fa-brands fa-youtube"></i></span><img src="https://i.ytimg.com/vi/GPFfpjzjeTA/hqdefault.jpg" alt="" loading="lazy"></div>
-            <p class="card__title">14.初めての一人大旅行『九州周遊旅』(Vlog)</p>
+            <p class="card__title">14.初めての一人大旅行『九州周遊旅』を往く(Vlog)</p>
             <p class="card__meta">旅行|交通</p>
           </a>
         </div>
@@ -246,12 +248,21 @@
       </div>
     </section>
 
+    <div class="rail-div" aria-hidden="true">
+      <svg viewBox="0 0 1200 22" preserveAspectRatio="none">
+        <line class="rail-line" x1="0" y1="8" x2="1200" y2="8"/><line class="rail-line" x1="0" y1="14" x2="1200" y2="14"/>
+        <path class="rail-tie" d="M40 5V17 M120 5V17 M200 5V17 M280 5V17 M360 5V17 M440 5V17 M520 5V17 M600 5V17 M680 5V17 M760 5V17 M840 5V17 M920 5V17 M1000 5V17 M1080 5V17 M1160 5V17"/>
+        <path class="rail-train" d="M0 3h32a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H0z"/>
+      </svg>
+    </div>
+
     <!-- ===== カテゴリ ===== -->
     <section id="category" class="band">
       <div class="wrap catwrap">
         <div class="band-head reveal">
           <span class="kicker">Category</span>
           <h2 class="band-title">4つの入り口</h2>
+          <span class="eki-bar" aria-hidden="true"></span>
         </div>
         <div class="catband">
           <a class="slab reveal" href="#rail" aria-label="旅行|交通へ">
@@ -315,6 +326,7 @@
         <div class="band-head reveal">
           <span class="kicker">Rail &amp; Travel</span>
           <h2 class="band-title">旅行・交通</h2>
+          <span class="eki-bar eki-bar--accent" aria-hidden="true"></span>
           <p class="lead">乗車記録から企画動画まで様々。</p>
         </div>
 
@@ -353,6 +365,7 @@
         <div class="band-head reveal">
           <span class="kicker">Taiko</span>
           <h2 class="band-title">太鼓の達人</h2>
+          <span class="eki-bar eki-bar--accent" aria-hidden="true"></span>
           <p class="lead">辿った記録、新たな記録。</p>
         </div>
 
@@ -385,12 +398,21 @@
       </div>
     </section>
 
+    <div class="rail-div" aria-hidden="true">
+      <svg viewBox="0 0 1200 22" preserveAspectRatio="none">
+        <line class="rail-line" x1="0" y1="8" x2="1200" y2="8"/><line class="rail-line" x1="0" y1="14" x2="1200" y2="14"/>
+        <path class="rail-tie" d="M40 5V17 M120 5V17 M200 5V17 M280 5V17 M360 5V17 M440 5V17 M520 5V17 M600 5V17 M680 5V17 M760 5V17 M840 5V17 M920 5V17 M1000 5V17 M1080 5V17 M1160 5V17"/>
+        <path class="rail-train" d="M0 3h32a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H0z"/>
+      </svg>
+    </div>
+
     <!-- ===== チャンネル・SNS ===== -->
     <section id="links" class="band">
       <div class="wrap">
         <div class="band-head reveal">
           <span class="kicker">Channels &amp; SNS</span>
           <h2 class="band-title">フォローする</h2>
+          <span class="eki-bar" aria-hidden="true"></span>
         </div>
         <div class="cards3">
           <a class="linkcard reveal" href="https://www.youtube.com/@Re_shiyu_travel" target="_blank" rel="noopener">
@@ -412,12 +434,21 @@
       </div>
     </section>
 
+    <div class="rail-div" aria-hidden="true">
+      <svg viewBox="0 0 1200 22" preserveAspectRatio="none">
+        <line class="rail-line" x1="0" y1="8" x2="1200" y2="8"/><line class="rail-line" x1="0" y1="14" x2="1200" y2="14"/>
+        <path class="rail-tie" d="M40 5V17 M120 5V17 M200 5V17 M280 5V17 M360 5V17 M440 5V17 M520 5V17 M600 5V17 M680 5V17 M760 5V17 M840 5V17 M920 5V17 M1000 5V17 M1080 5V17 M1160 5V17"/>
+        <path class="rail-train" d="M0 3h32a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H0z"/>
+      </svg>
+    </div>
+
     <!-- ===== お知らせ ===== -->
     <section id="news" class="band band--light2 band--tight">
       <div class="wrap">
         <div class="band-head reveal">
           <span class="kicker">News</span>
           <h2 class="band-title">お知らせ</h2>
+          <span class="eki-bar" aria-hidden="true"></span>
         </div>
         <dl class="news reveal">
           <!-- AUTO:NEWS:START — 新着動画検知で自動追記（最大5件）。手動分はマーカー外に -->
@@ -496,6 +527,24 @@
 <button class="to-top" type="button" aria-label="ページ上部へ戻る"><i class="fa-solid fa-chevron-up"></i></button>
 
 <!-- スクリプト -->
+<!-- 路線図スクロールインジケーター（PCのみ表示・スクロールで現在地点灯） -->
+<nav class="routemap" aria-label="ページ内の現在地（路線図）">
+  <a class="routemap__stop" href="#top"><span class="routemap__dot"></span><span class="routemap__label">志遊</span></a>
+  <a class="routemap__stop" href="#about"><span class="routemap__dot"></span><span class="routemap__label">紹介</span></a>
+  <a class="routemap__stop" href="#latest"><span class="routemap__dot"></span><span class="routemap__label">最新</span></a>
+  <a class="routemap__stop" href="#rail"><span class="routemap__dot"></span><span class="routemap__label">旅行</span></a>
+  <a class="routemap__stop" href="#taiko"><span class="routemap__dot"></span><span class="routemap__label">太鼓</span></a>
+  <a class="routemap__stop" href="#news"><span class="routemap__dot"></span><span class="routemap__label">便り</span></a>
+  <a class="routemap__stop" href="#contact"><span class="routemap__dot"></span><span class="routemap__label">連絡</span></a>
+</nav>
+
+<!-- 改札ゲート（内部ページ遷移時に一瞬閉じてから移動） -->
+<div class="gate" id="gate" aria-hidden="true">
+  <div class="gate__leaf gate__leaf--l"></div>
+  <div class="gate__leaf gate__leaf--r"></div>
+  <div class="gate__sign"><div class="gate__mark">〔 改札 〕</div><div class="gate__to" id="gate-to">STATION</div></div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="js/reveal.js"></script>
 <script src="js/main.js"></script>
