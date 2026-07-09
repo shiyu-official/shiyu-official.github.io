@@ -1,6 +1,42 @@
 {
   "_comment": "update_videos.py が自動更新します。手動で編集しないでください。既にお知らせ済みの動画ID・ブログIDを記録し、二重通知を防ぎます。",
-  "initialized": false,
-  "videos": { "rail": [], "taiko": [] },
-  "blog": []
+  "initialized": true,
+  "videos": {
+    "rail": [
+      "U54WE6XevvE",
+      "JE8IvGAzDrw",
+      "S-G6yt2by_k",
+      "Djysd20DQp4",
+      "GPFfpjzjeTA",
+      "KPGtaYdR5mM",
+      "CCLNgN8DZBo",
+      "64AZBJMM5gU",
+      "iwJVemxJrDY",
+      "wv2IaFcDxLE",
+      "FmHLh05Z05U",
+      "aDjC0D9wY7g",
+      "LXnmjseUXOw",
+      "mKq5WXcK1Xc",
+      "hD7NTxmS5KI"
+    ],
+    "taiko": [
+      "TAQ9qV7Ugtc",
+      "c2Qt4i-jUfU",
+      "ytodCJcZklM",
+      "Rfz7GcOEqMg",
+      "84HowH5kyzE",
+      "WAChYA3fB00",
+      "nc5xRLbCAlg",
+      "6PMP_dcX79Q",
+      "c8q4j6a3uzg",
+      "fpL72y4s2vs",
+      "jmZp26fsbQY",
+      "c1bzvITiqhI",
+      "2m1YGdrIZt8",
+      "64FZU1V1H3Y",
+      "PLuT75jZdj0"
+    ]
+  },
+  "blog": [],
+  "news": []
 }
