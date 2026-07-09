@@ -1,18 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Issue から名所制覇の手動補正を読み取り、data/spot_overrides.json を更新する。
+"""Issue『名所制覇の修正』を解析し、data/spot_overrides.json を更新する。
 
-対応する入力は2通り:
-  (A) 本文に JSON ブロック（管理ページ spots-admin.html の「Issueで反映」/「コピー」が生成）
-      ```json
-      { "unvisited": ["sanmeisen_gero"], "visited": [] }
-      ```
-  (B) Issueフォーム（.github/ISSUE_TEMPLATE/spot-override.yml）のプルダウン選択
-      ### 訪問扱いを外す（未訪問にする）
-      下呂温泉（岐阜県）／日本三名泉, 有馬温泉（兵庫県）／日本三古湯
-      ### 訪問済みにする（任意）
-      _No response_
+フォームは現在状態つきのチェックボックス2群（build_spot_form.py が生成）:
+  ### 現在【訪問済み ✓】…
+  - [x] 下呂温泉（岐阜県）／日本三名泉
+  ### 現在【未訪問 ・】…
+  - [ ] 道後温泉（愛媛県）／日本三古湯
+
+解析方針: 「チェックされた項目＝その状態を反転」。項目が今どちらかは
+data から計算するので、どちらの群にあったかを気にせず反転できる。
+互換: 本文に JSON ブロックがあればそれを優先（旧・管理ページ経由）。
 
 出力は build_dormy_visit.py と同じ規約（STATUS=... / MESSAGE=...）。
 """
@@ -20,49 +18,12 @@ import os
 import re
 import sys
 import json
-
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA = os.path.join(ROOT, "data")
-VISITS = os.path.join(DATA, "spot_visits.json")
-OVERRIDES = os.path.join(DATA, "spot_overrides.json")
-
-# フォームの見出し（テンプレートの label と一致させること）
-H_UNVISIT = "訪問扱いを外す（未訪問にする）"
-H_VISIT = "訪問済みにする（任意）"
-
-DEFAULT_NOTE = ("名所制覇の自動判定(proximity)を手動で補正するファイル。"
-                "spot_visits.json をGPS履歴から再生成しても、このファイルは上書きされないため補正が残ります。")
-DEFAULT_HOWTO = ("近くを通っただけ等で誤って訪問扱いになったスポットの id を unvisited に追加。"
-                 "逆に自動検出されなかったが訪問済みにしたい場合は visited に追加。id は data/spot_visits.json の spots[].id。")
+import spot_common as sc
 
 
 def out(status, message):
     print("STATUS=" + status)
     print("MESSAGE=" + message)
-
-
-def load_json(path, default):
-    try:
-        with open(path, encoding="utf-8") as f:
-            return json.load(f)
-    except Exception:
-        return default
-
-
-def build_maps():
-    """label -> id と 有効id集合を作る。label は 'name（pref）／category'。"""
-    d = load_json(VISITS, {})
-    label2id, ids = {}, set()
-    for c in d.get("categories", []):
-        cname = c.get("name", "")
-        for s in c.get("spots", []):
-            sid = s.get("id")
-            if not sid:
-                continue
-            ids.add(sid)
-            label = "%s（%s）／%s" % (s.get("name", ""), s.get("pref", ""), cname)
-            label2id[label] = sid
-    return label2id, ids
 
 
 def extract_json(body):
@@ -80,94 +41,59 @@ def extract_json(body):
         return None
 
 
-def section(body, heading):
-    """Issueフォーム本文から '### heading' 直後のブロックを取り出す。"""
-    if not body:
-        return ""
-    # 見出しから次の見出し(### )または末尾まで
-    pat = re.compile(r"^###\s*" + re.escape(heading) + r"\s*$(.*?)(?=^###\s|\Z)", re.S | re.M)
-    m = pat.search(body)
-    if not m:
-        return ""
-    return m.group(1).strip()
-
-
-def parse_selection(block, label2id):
-    if not block or block.strip() in ("_No response_", "_なし_", "なし"):
-        return [], []
-    # カンマ・読点・改行で分割
-    parts = re.split(r"[,\n、]+", block)
-    ids, unknown = [], []
-    seen = set()
-    for p in parts:
-        p = p.strip().strip("-").strip()
-        if not p:
-            continue
-        sid = label2id.get(p)
-        if sid:
-            if sid not in seen:
-                seen.add(sid)
-                ids.append(sid)
-        else:
-            unknown.append(p)
-    return ids, unknown
-
-
-def as_id_list(v, ids):
-    if not isinstance(v, list):
-        return [], []
-    keep, unknown, seen = [], [], set()
-    for x in v:
-        if isinstance(x, str):
-            x = x.strip()
-            if not x:
-                continue
-            if x in ids:
-                if x not in seen:
-                    seen.add(x)
-                    keep.append(x)
-            else:
-                unknown.append(x)
-    return keep, unknown
+def checked_labels(body):
+    """本文中の `- [x] ラベル` を全部拾う（大文字X/前後空白許容）。"""
+    res = []
+    for m in re.finditer(r"^[ \t>*-]*\[[xX]\]\s+(.+?)\s*$", body or "", re.M):
+        res.append(m.group(1).strip())
+    return res
 
 
 def main():
     body = os.environ.get("ISSUE_BODY", "")
-    label2id, ids = build_maps()
+    st = sc.load_state()
+    auto, cur = st["auto"], st["cur"]
+    label2id, ids = st["label2id"], set(st["auto"].keys())
 
-    unvisited, visited, unknown = [], [], []
+    unknown = []
 
     payload = extract_json(body)
     if payload is not None and ("unvisited" in payload or "visited" in payload):
-        # (A) 管理ページのJSON
-        uv, u1 = as_id_list(payload.get("unvisited"), ids)
-        vi, u2 = as_id_list(payload.get("visited"), ids)
-        unvisited, visited, unknown = uv, vi, (u1 + u2)
+        # 互換：JSONが来たら絶対値としてそのまま採用
+        def clean(v):
+            keep = []
+            for x in (v or []):
+                if isinstance(x, str) and x.strip() in ids:
+                    keep.append(x.strip())
+                elif isinstance(x, str) and x.strip():
+                    unknown.append(x.strip())
+            return keep
+        unvisited = clean(payload.get("unvisited"))
+        visited = clean(payload.get("visited"))
+        # 両方に入ったら unvisited 優先
+        visited = [i for i in visited if i not in set(unvisited)]
+        doc = sc.write_override(unvisited, visited)
     else:
-        # (B) フォームのプルダウン
-        uv, u1 = parse_selection(section(body, H_UNVISIT), label2id)
-        vi, u2 = parse_selection(section(body, H_VISIT), label2id)
-        unvisited, visited, unknown = uv, vi, (u1 + u2)
-        if not uv and not vi and not (u1 or u2):
-            out("error", "補正内容を読み取れませんでした。管理ページのボタンか、フォームのプルダウンで選択してください。")
+        # チェックボックス：チェックされたものを反転
+        labels = checked_labels(body)
+        flip_ids = []
+        for lb in labels:
+            sid = label2id.get(lb)
+            if sid:
+                flip_ids.append(sid)
+            else:
+                unknown.append(lb)
+        if not flip_ids and not unknown:
+            out("ok", "変更はありませんでした（チェックなし）。")
             return 0
 
-    # unvisited 優先（両方に入ったIDは未訪問化）
-    uvset = set(unvisited)
-    visited = [i for i in visited if i not in uvset]
+        eff = dict(cur)
+        for sid in flip_ids:
+            eff[sid] = not cur[sid]
+        unvisited, visited = sc.override_from_effective(auto, eff)
+        doc = sc.write_override(unvisited, visited)
 
-    prev = load_json(OVERRIDES, {})
-    doc = {
-        "_note": prev.get("_note") or DEFAULT_NOTE,
-        "_howto": prev.get("_howto") or DEFAULT_HOWTO,
-        "unvisited": sorted(set(unvisited)),
-        "visited": sorted(set(visited)),
-    }
-    with open(OVERRIDES, "w", encoding="utf-8") as f:
-        json.dump(doc, f, ensure_ascii=False, indent=2)
-        f.write("\n")
-
-    msg = "手動補正を保存しました（未訪問化 %d件 / 訪問化 %d件）。" % (len(doc["unvisited"]), len(doc["visited"]))
+    msg = "修正を保存しました（未訪問化 %d件 / 訪問化 %d件）。" % (len(doc["unvisited"]), len(doc["visited"]))
     if unknown:
         msg += " 対応づけできず無視：%s" % "、".join(unknown[:6])
     out("ok", msg)
