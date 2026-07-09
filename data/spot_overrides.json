@@ -1,0 +1,6 @@
+{
+  "_note": "名所制覇の自動判定(proximity)を手動で補正するファイル。spot_visits.json はGPS履歴から再生成されても、このファイルは上書きされないため補正が残ります。",
+  "_howto": "近くを通っただけ等で誤って訪問扱いになったスポットの id を unvisited に追加する。逆に自動検出されなかったが訪問済みにしたい場合は visited に追加。id は data/spot_visits.json の各 spots[].id。",
+  "unvisited": [],
+  "visited": []
+}

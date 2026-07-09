@@ -484,12 +484,31 @@
     show("muni-body"); hide("muni-empty");
   }).catch(function(){});
 
-  /* ---- 名所制覇（spot_visits.json）---- */
-  getJSON("data/spot_visits.json").then(function(d){
-    var cats = d && d.categories, meta = d && d.meta;
+  /* ---- 名所制覇（spot_visits.json ＋ 手動補正 spot_overrides.json）---- */
+  Promise.all([
+    getJSON("data/spot_visits.json"),
+    getJSON("data/spot_overrides.json").catch(function(){ return {}; })   // 無くてもOK
+  ]).then(function(res){
+    var d = res[0], ov = res[1] || {};
+    var cats = d && d.categories;
     if (!cats || !cats.length) return;
-    var totalSpots = (meta && meta.totalSpots) || 0, visitedSpots = (meta && meta.visitedSpots) || 0;
-    if (!totalSpots) { cats.forEach(function(c){ totalSpots += c.spots.length; c.spots.forEach(function(s){ if(s.firstVisit) visitedSpots++; }); }); }
+
+    // 手動補正：近くを通っただけ等で誤検出された訪問を打ち消す / 逆に訪問済みへ強制する
+    var forceOff = {}, forceOn = {};
+    (ov.unvisited || []).forEach(function(id){ forceOff[id] = true; });
+    (ov.visited   || []).forEach(function(id){ forceOn[id]  = true; });
+    function isVisited(s){
+      if (forceOff[s.id]) return false;
+      if (forceOn[s.id])  return true;
+      return !!s.firstVisit;
+    }
+
+    // 補正を反映するため、件数はメタ値ではなくデータから毎回集計する
+    var totalSpots = 0, visitedSpots = 0;
+    cats.forEach(function(c){
+      totalSpots += c.spots.length;
+      c.spots.forEach(function(s){ if (isVisited(s)) visitedSpots++; });
+    });
     var pct = totalSpots ? Math.round(visitedSpots / totalSpots * 100) : 0;
     document.getElementById("spots-headline").innerHTML =
       '<div class="pct">' + visitedSpots + '<span class="unit">/ ' + totalSpots + '</span></div>' +
@@ -497,10 +516,10 @@
       '<div class="subs">日本三名泉・三景・三名園ほか ' + cats.length + ' 種</div>';
 
     document.getElementById("spots-cats").innerHTML = cats.map(function(c){
-      var v = c.spots.filter(function(s){ return s.firstVisit; }).length;
+      var v = c.spots.filter(isVisited).length;
       var complete = (v === c.spots.length);
       var chips = c.spots.map(function(s){
-        var vis = !!s.firstVisit;
+        var vis = isVisited(s);
         return '<span class="spot-chip' + (vis ? " is-visited" : "") + '">' + esc(s.name) +
                (s.pref ? ' <span class="pref">' + esc(s.pref) + '</span>' : "") + '</span>';
       }).join("");
