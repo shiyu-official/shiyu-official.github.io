@@ -148,7 +148,7 @@ def rep_card_html(item, title):
     thumb = "https://i.ytimg.com/vi/%s/hqdefault.jpg" % vid
     label = title if title else "▶ YouTube で見る"
     return (
-        '          <a class="card inview" href="%s" target="_blank" rel="noopener">\n'
+        '          <a class="card reveal" href="%s" target="_blank" rel="noopener">\n'
         '            <div class="card__thumb"><span class="play"><i class="fa-brands fa-youtube"></i></span>'
         '<img src="%s" alt="" loading="lazy"></div>\n'
         '            <p class="card__title" data-vid="%s">%s</p>\n'
@@ -231,7 +231,7 @@ def main():
         top = all_latest[: cfg.get("latest_count", 8)]
         inner = "".join(latest_card_html(v) for v in top)
         page = replace_region(page, "LATEST",
-                              '        <div class="list1 list-auto">\n' + inner + '        </div>\n')
+                              '        <div class="cards reel">\n' + inner + '        </div>\n')
 
     # --- 代表動画タイトルを oEmbed で更新 ---
     for key, region in (("rail", "RAIL"), ("taiko", "TAIKO")):
@@ -242,7 +242,7 @@ def main():
         for item in reps:
             title = fetch_oembed_title(item["url"])
             cards += rep_card_html(item, title)
-        page = replace_region(page, region, '        <div class="list1">\n' + cards + '        </div>\n')
+        page = replace_region(page, region, '        <div class="cards">\n' + cards + '        </div>\n')
 
     # --- ブログ新着検知 ---
     known_blog = set(state.get("blog", []))
