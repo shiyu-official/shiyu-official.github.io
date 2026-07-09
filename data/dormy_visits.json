@@ -1,4 +1,98 @@
 {
- "meta": { "note": "Issueフォーム投稿→dormy-visit-action が追記" },
- "visits": []
+ "meta": {
+  "note": "Issueフォーム投稿→dormy-visit-action が追記"
+ },
+ "visits": [
+  {
+   "id": "dce02e77b",
+   "name": "ドーミーイン盛岡",
+   "firstVisit": "2025-07-06",
+   "nights": 1,
+   "photo": "images/dormy/dce02e77b.webp"
+  },
+  {
+   "id": "d64b1e0a2",
+   "name": "ドーミーイン本八戸",
+   "firstVisit": "2025-07-21",
+   "nights": 1,
+   "photo": "images/dormy/d64b1e0a2.webp"
+  },
+  {
+   "id": "d0dec7890",
+   "name": "ドーミーイン津",
+   "firstVisit": "2025-08-11",
+   "nights": 1,
+   "photo": "images/dormy/d0dec7890.webp"
+  },
+  {
+   "id": "db36edafc",
+   "name": "ドーミーイン東京八丁堀",
+   "firstVisit": "2025-09-24",
+   "nights": 1,
+   "photo": "images/dormy/db36edafc.webp"
+  },
+  {
+   "id": "d32aad758",
+   "name": "ラビスタ富良野ヒルズ",
+   "firstVisit": "2025-11-09",
+   "nights": 1,
+   "photo": "images/dormy/d32aad758.webp"
+  },
+  {
+   "id": "d65f5b9c9",
+   "name": "ドーミーインPREMIUM和歌山",
+   "firstVisit": "2025-11-24",
+   "nights": 1,
+   "photo": "images/dormy/d65f5b9c9.webp"
+  },
+  {
+   "id": "dfdb280be",
+   "name": "深山桜庵 別館 湯めぐりの宿 平湯館",
+   "firstVisit": "2025-12-07",
+   "nights": 1,
+   "photo": "images/dormy/dfdb280be.webp"
+  },
+  {
+   "id": "d62871625",
+   "name": "ドーミーイン稚内",
+   "firstVisit": "2026-01-02",
+   "nights": 1,
+   "photo": "images/dormy/d62871625.webp"
+  },
+  {
+   "id": "d0f8832d2",
+   "name": "御宿 野乃奈良",
+   "firstVisit": "2026-01-18",
+   "nights": 1,
+   "photo": "images/dormy/d0f8832d2.webp"
+  },
+  {
+   "id": "dc00c866c",
+   "name": "ドーミーインPREMIUM大阪北浜",
+   "firstVisit": "2026-02-08",
+   "nights": 1,
+   "photo": "images/dormy/dc00c866c.webp"
+  },
+  {
+   "id": "dd541b87f",
+   "name": "ドーミーインEXPRESS三河安城",
+   "firstVisit": "2026-02-15",
+   "nights": 1,
+   "photo": "images/dormy/dd541b87f.webp"
+  },
+  {
+   "id": "dc9ed1be8",
+   "name": "飛騨花里の湯 高山桜庵",
+   "firstVisit": "2026-03-08",
+   "nights": 1,
+   "photo": "images/dormy/dc9ed1be8.webp"
+  },
+  {
+   "id": "d73eb01bd",
+   "name": "ドーミーイン旭川",
+   "firstVisit": "2026-03-08",
+   "nights": 1,
+   "photo": "images/dormy/d73eb01bd.webp"
+  }
+ ]
 }
