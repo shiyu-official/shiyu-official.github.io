@@ -296,12 +296,12 @@ body.menu-open #nav-scrim { opacity: 1; visibility: visible; }
 .about-lead .profile { margin: 1rem 0 0; color: #33414d; }
 
 /* 3種別：1行ずつ（アイコン＋見出し＋説明を横並びの行に）縦に積む */
-.about-cols { display: flex; flex-direction: column; gap: clamp(1.4rem, 3vw, 2.4rem); margin-top: clamp(1.6rem, 3.2vw, 2.4rem); }
-.about-col { display: flex; align-items: center; gap: clamp(.9rem, 2vw, 1.4rem); text-align: left; }
-.about-col img { flex: none; width: clamp(46px, 4vw, 60px); margin: 0; }
+.about-cols { display: flex; flex-direction: column; gap: clamp(1.5rem, 3.1vw, 2.5rem); margin-top: clamp(1.6rem, 3.2vw, 2.4rem); }
+.about-col { display: flex; align-items: center; gap: clamp(1rem, 2.1vw, 1.5rem); text-align: left; }
+.about-col img { flex: none; width: clamp(52px, 4.4vw, 66px); margin: 0; }
 .about-col__body { flex: 1 1 auto; min-width: 0; }
-.about-col h3 { margin: 0; font-size: 1.02rem; font-weight: 600; letter-spacing: .04em; }
-.about-col p { margin: .25rem 0 0; font-size: .86rem; color: var(--muted-color); line-height: 1.7; }
+.about-col h3 { margin: 0; font-size: 1.1rem; font-weight: 600; letter-spacing: .04em; }
+.about-col p { margin: .28rem 0 0; font-size: .92rem; color: var(--muted-color); line-height: 1.7; }
 
 /* 写真：切り抜き2形（有機ブロブ／斜め窓）。回転は img に乗せ reveal と衝突させない */
 .about-photo { margin: 0; }
@@ -324,7 +324,7 @@ body.menu-open #nav-scrim { opacity: 1; visibility: visible; }
   .about-text { grid-column: 1; }
   .about-photos {
     grid-column: 2; position: relative;
-    width: min(100%, 400px);            /* クラスタ幅の上限（少し拡大）*/
+    width: min(100%, 432px);            /* クラスタ幅の上限（左テキスト拡大に合わせて少し拡大／底は end 揃えで固定）*/
     aspect-ratio: 5 / 5.8;              /* 箱の縦横比 */
     margin-left: auto; margin-right: clamp(0px, 2vw, 28px);
     margin-bottom: clamp(6px, 1.2vw, 18px);   /* 底に少し余白（旅の記録の底辺付近）*/
