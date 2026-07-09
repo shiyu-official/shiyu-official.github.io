@@ -381,6 +381,110 @@
   }
 
   /* ---------------------------------------------------------
+     7. 路線図スクロールインジケーター（現在地の点灯のみ。
+        クリック移動は既存の bindSmoothScroll に委譲）
+  --------------------------------------------------------- */
+  function initRouteMap() {
+    var stops = Array.prototype.slice.call(document.querySelectorAll(".routemap__stop"));
+    if (!stops.length || !("IntersectionObserver" in window)) return;
+    var secs = stops.map(function (a) {
+      return document.getElementById((a.getAttribute("href") || "").slice(1));
+    });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var i = secs.indexOf(en.target);
+        if (i < 0) return;
+        stops.forEach(function (st, j) {
+          st.classList.toggle("is-active", j === i);
+          st.classList.toggle("is-passed", j < i);
+        });
+      });
+    }, { rootMargin: "-45% 0px -45% 0px" });
+    secs.forEach(function (s) { if (s) io.observe(s); });
+  }
+
+  /* ---------------------------------------------------------
+     8. 線路の区切り線（ビューに入ったら敷設）
+  --------------------------------------------------------- */
+  function initRailDividers() {
+    var divs = Array.prototype.slice.call(document.querySelectorAll(".rail-div"));
+    if (!divs.length) return;
+    if (!("IntersectionObserver" in window)) {
+      divs.forEach(function (d) { d.classList.add("is-in"); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("is-in"); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.4 });
+    divs.forEach(function (d) { io.observe(d); });
+  }
+
+  /* ---------------------------------------------------------
+     9. 方向幕（split-flap）行先表示：SHIYU / TRAVEL / RAILWAY / TAIKO
+  --------------------------------------------------------- */
+  function initFlap() {
+    var board = document.getElementById("flap-board");
+    if (!board) return;
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+    var CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ";
+    var WORDS = ["SHIYU", "TRAVEL", "RAILWAY", "TAIKO"];
+    var CELLS = 7, cells = [], i;
+    for (i = 0; i < CELLS; i++) {
+      var c = document.createElement("span");
+      c.className = "flap-cell";
+      c.textContent = " ";
+      board.appendChild(c);
+      cells.push(c);
+    }
+    function setBoard(word) {
+      word = (word + "       ").slice(0, CELLS);
+      cells.forEach(function (cell, idx) {
+        var target = word.charAt(idx);
+        if (reduce) { cell.textContent = target; return; }
+        var steps = 6 + idx * 2, n = 0;
+        var iv = setInterval(function () {
+          cell.textContent = CHARS.charAt(Math.floor(Math.random() * CHARS.length));
+          cell.classList.add("is-flip");
+          setTimeout(function () { cell.classList.remove("is-flip"); }, 90);
+          if (++n >= steps) { clearInterval(iv); cell.textContent = target; }
+        }, 55);
+      });
+    }
+    var di = 0;
+    setBoard(WORDS[0]);
+    if (!reduce) setInterval(function () { di = (di + 1) % WORDS.length; setBoard(WORDS[di]); }, 3200);
+  }
+
+  /* ---------------------------------------------------------
+     10. 改札ゲート遷移（内部ページへの遷移を一瞬の暗転で演出）
+  --------------------------------------------------------- */
+  function initGate() {
+    var gate = document.getElementById("gate");
+    if (!gate) return;
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+    if (reduce) return;
+    var toEl = document.getElementById("gate-to");
+    var LABEL = { "index.html": "HOME", "kiroku.html": "KIROKU", "blog.html": "BLOG", "contact.html": "CONTACT", "privacy.html": "PRIVACY" };
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest ? e.target.closest("a") : null;
+      if (!a) return;
+      if (a.target === "_blank" || a.hasAttribute("download")) return;
+      if (a.origin && a.origin !== location.origin) return;   // 外部リンク
+      if (a.pathname === location.pathname) return;            // 同一ページ内リンク
+      var href = a.getAttribute("href") || "";
+      var file = href.split("#")[0].split("/").pop();
+      if (!/\.html$/.test(file)) return;                       // .html 遷移のみ対象
+      e.preventDefault();
+      if (toEl && LABEL[file]) toEl.textContent = LABEL[file];
+      gate.classList.add("is-on");
+      setTimeout(function () { window.location.href = href; }, 360);
+    });
+  }
+
+  /* ---------------------------------------------------------
      初期化
   --------------------------------------------------------- */
   $(function () {
@@ -390,6 +494,10 @@
     bindPagetop();
     startHero();
     initReels();
+    initRouteMap();
+    initRailDividers();
+    initFlap();
+    initGate();
 
     // リサイズで screen クラス再判定（debounce 200ms）
     var t;
