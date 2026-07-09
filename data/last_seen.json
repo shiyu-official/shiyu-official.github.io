@@ -1,0 +1,6 @@
+{
+  "_comment": "update_videos.py が自動更新します。手動で編集しないでください。既にお知らせ済みの動画ID・ブログIDを記録し、二重通知を防ぎます。",
+  "initialized": false,
+  "videos": { "rail": [], "taiko": [] },
+  "blog": []
+}

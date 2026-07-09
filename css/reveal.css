@@ -1,0 +1,76 @@
+/* =============================================================
+   reveal.css — スクロール登場モーション（独自設計）
+   .reveal を付けた要素が画面内に入ると reveal.js が .is-revealed を付与。
+   種類は data-reveal（無ければ既定 "rise"）。
+     rise … 下から微かな拡大を伴って持ち上がる（既定）
+     drop … 上から下りてくる
+     wipe … 左辺から clip-path で開く
+     tilt … 手前下を軸に起き上がる
+     pop  … 一度控えめに縮んでから等倍へ落ち着く
+     soft … 淡いぼかしと僅かな拡大から鮮明化
+   モーション曲線・距離・時間はすべて自前値（expo系イージング）。
+   ============================================================= */
+
+:root { --reveal-ease: cubic-bezier(.16, 1, .3, 1); }
+
+.reveal {
+  opacity: 0;
+  transition:
+    opacity .8s var(--reveal-ease),
+    transform .8s var(--reveal-ease),
+    clip-path .8s var(--reveal-ease),
+    filter .8s var(--reveal-ease);
+  transition-delay: .1s;
+  will-change: opacity, transform, filter;
+}
+
+/* ---- 開始状態（種類別・値はテンプレと非共通）---- */
+.reveal[data-reveal="rise"] { transform: translateY(24px) scale(.985); }
+.reveal[data-reveal="drop"] { transform: translateY(-24px) scale(.985); }
+
+.reveal[data-reveal="wipe"] {
+  clip-path: inset(0 100% 0 0);   /* 左辺から開く（scaleXではなくマスク）*/
+}
+
+.reveal[data-reveal="tilt"] {
+  transform: perspective(1000px) rotateX(26deg);
+  transform-origin: bottom center;
+}
+
+.reveal[data-reveal="pop"] { transform: scale(.7); }
+
+.reveal[data-reveal="soft"] {
+  filter: blur(16px);
+  transform: scale(1.03);
+}
+
+/* ---- 到達状態（全種類共通・上の定義より後）---- */
+.reveal.is-revealed {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  clip-path: inset(0 0 0 0);
+}
+
+/* pop はバウンス曲線を自前カーブで（テンプレの 0→1.10→0.99→1 とは別）*/
+.reveal[data-reveal="pop"].is-revealed {
+  animation: reveal-pop .9s var(--reveal-ease) .1s both;
+}
+@keyframes reveal-pop {
+  0%   { opacity: 0; transform: scale(.7);  }
+  55%  { opacity: 1; transform: scale(1.05); }
+  78%  {             transform: scale(.99); }
+  100% { opacity: 1; transform: scale(1);   }
+}
+
+/* モーション低減設定：演出を切って即表示 */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    clip-path: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}

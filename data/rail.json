@@ -1,0 +1,5613 @@
+{
+  "meta": {
+    "generated": "2026-07-04 22:18:30+0900"
+  },
+  "jr": {
+    "total": {
+      "name": "JR全線",
+      "eigyo": 19363.4,
+      "jousha": 17675.9,
+      "mijou": 1687.5,
+      "rate": 91.285
+    },
+    "companies": [
+      {
+        "name": "JR北海道",
+        "eigyo": 2152.7,
+        "jousha": 2152.7,
+        "mijou": 0.0,
+        "rate": 100.0,
+        "lines": [
+          {
+            "name": "函館本線",
+            "eigyo": 423.1,
+            "jousha": 423.1,
+            "rate": 100.0
+          },
+          {
+            "name": "函館本線(砂原回り)",
+            "eigyo": 35.3,
+            "jousha": 35.3,
+            "rate": 100.0
+          },
+          {
+            "name": "北海道新幹線",
+            "eigyo": 148.8,
+            "jousha": 148.8,
+            "rate": 100.0
+          },
+          {
+            "name": "札沼線",
+            "eigyo": 28.9,
+            "jousha": 28.9,
+            "rate": 100.0
+          },
+          {
+            "name": "千歳線",
+            "eigyo": 56.6,
+            "jousha": 56.6,
+            "rate": 100.0
+          },
+          {
+            "name": "千歳線(空港支線)",
+            "eigyo": 2.6,
+            "jousha": 2.6,
+            "rate": 100.0
+          },
+          {
+            "name": "石勝線",
+            "eigyo": 132.4,
+            "jousha": 132.4,
+            "rate": 100.0
+          },
+          {
+            "name": "室蘭本線",
+            "eigyo": 211.0,
+            "jousha": 211.0,
+            "rate": 100.0
+          },
+          {
+            "name": "室蘭本線(室蘭支線)",
+            "eigyo": 7.0,
+            "jousha": 7.0,
+            "rate": 100.0
+          },
+          {
+            "name": "日高本線",
+            "eigyo": 30.5,
+            "jousha": 30.5,
+            "rate": 100.0
+          },
+          {
+            "name": "根室本線(滝川～富良野)",
+            "eigyo": 54.6,
+            "jousha": 54.6,
+            "rate": 100.0
+          },
+          {
+            "name": "根室本線(新得～根室)",
+            "eigyo": 307.5,
+            "jousha": 307.5,
+            "rate": 100.0
+          },
+          {
+            "name": "富良野線",
+            "eigyo": 54.8,
+            "jousha": 54.8,
+            "rate": 100.0
+          },
+          {
+            "name": "宗谷本線",
+            "eigyo": 259.4,
+            "jousha": 259.4,
+            "rate": 100.0
+          },
+          {
+            "name": "石北本線",
+            "eigyo": 234.0,
+            "jousha": 234.0,
+            "rate": 100.0
+          },
+          {
+            "name": "釧網本線",
+            "eigyo": 166.2,
+            "jousha": 166.2,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "JR東日本",
+        "eigyo": 7191.1,
+        "jousha": 6791.2,
+        "mijou": 399.9,
+        "rate": 94.439,
+        "lines": [
+          {
+            "name": "東海道本線",
+            "eigyo": 104.6,
+            "jousha": 104.6,
+            "rate": 100.0
+          },
+          {
+            "name": "東海道本線(品鶴線)",
+            "eigyo": 17.8,
+            "jousha": 17.8,
+            "rate": 100.0
+          },
+          {
+            "name": "東海道本線(相鉄直通線)",
+            "eigyo": 8.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "山手線",
+            "eigyo": 20.6,
+            "jousha": 20.6,
+            "rate": 100.0
+          },
+          {
+            "name": "赤羽線",
+            "eigyo": 5.5,
+            "jousha": 5.5,
+            "rate": 100.0
+          },
+          {
+            "name": "南武線",
+            "eigyo": 35.5,
+            "jousha": 35.5,
+            "rate": 100.0
+          },
+          {
+            "name": "南武線(南武支線)",
+            "eigyo": 4.1,
+            "jousha": 4.1,
+            "rate": 100.0
+          },
+          {
+            "name": "鶴見線",
+            "eigyo": 7.0,
+            "jousha": 7.0,
+            "rate": 100.0
+          },
+          {
+            "name": "鶴見線(大川支線)",
+            "eigyo": 1.0,
+            "jousha": 1.0,
+            "rate": 100.0
+          },
+          {
+            "name": "鶴見線(海芝浦支線)",
+            "eigyo": 1.7,
+            "jousha": 1.7,
+            "rate": 100.0
+          },
+          {
+            "name": "武蔵野線",
+            "eigyo": 71.8,
+            "jousha": 71.8,
+            "rate": 100.0
+          },
+          {
+            "name": "横浜線",
+            "eigyo": 42.6,
+            "jousha": 42.6,
+            "rate": 100.0
+          },
+          {
+            "name": "根岸線",
+            "eigyo": 22.1,
+            "jousha": 22.1,
+            "rate": 100.0
+          },
+          {
+            "name": "横須賀線",
+            "eigyo": 23.9,
+            "jousha": 23.9,
+            "rate": 100.0
+          },
+          {
+            "name": "相模線",
+            "eigyo": 33.3,
+            "jousha": 33.3,
+            "rate": 100.0
+          },
+          {
+            "name": "伊東線",
+            "eigyo": 16.9,
+            "jousha": 16.9,
+            "rate": 100.0
+          },
+          {
+            "name": "中央本線",
+            "eigyo": 211.8,
+            "jousha": 211.8,
+            "rate": 100.0
+          },
+          {
+            "name": "中央本線(神田-代々木)",
+            "eigyo": 8.3,
+            "jousha": 8.3,
+            "rate": 100.0
+          },
+          {
+            "name": "中央本線(辰野経由)",
+            "eigyo": 27.7,
+            "jousha": 9.5,
+            "rate": 34.3
+          },
+          {
+            "name": "青梅線",
+            "eigyo": 37.2,
+            "jousha": 37.2,
+            "rate": 100.0
+          },
+          {
+            "name": "五日市線",
+            "eigyo": 11.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "八高線",
+            "eigyo": 92.0,
+            "jousha": 92.0,
+            "rate": 100.0
+          },
+          {
+            "name": "小海線",
+            "eigyo": 78.9,
+            "jousha": 78.9,
+            "rate": 100.0
+          },
+          {
+            "name": "篠ノ井線",
+            "eigyo": 66.7,
+            "jousha": 66.7,
+            "rate": 100.0
+          },
+          {
+            "name": "大糸線",
+            "eigyo": 70.1,
+            "jousha": 70.1,
+            "rate": 100.0
+          },
+          {
+            "name": "東北本線",
+            "eigyo": 535.3,
+            "jousha": 535.3,
+            "rate": 100.0
+          },
+          {
+            "name": "東北本線(尾久経由)",
+            "eigyo": 7.6,
+            "jousha": 7.6,
+            "rate": 100.0
+          },
+          {
+            "name": "東北本線(埼京線)",
+            "eigyo": 18.0,
+            "jousha": 18.0,
+            "rate": 100.0
+          },
+          {
+            "name": "東北本線(利府支線)",
+            "eigyo": 4.2,
+            "jousha": 4.2,
+            "rate": 100.0
+          },
+          {
+            "name": "東北本線(仙石東北ライン)",
+            "eigyo": 0.3,
+            "jousha": 0.3,
+            "rate": 100.0
+          },
+          {
+            "name": "東北新幹線",
+            "eigyo": 713.7,
+            "jousha": 713.7,
+            "rate": 100.0
+          },
+          {
+            "name": "常磐線",
+            "eigyo": 343.7,
+            "jousha": 343.7,
+            "rate": 100.0
+          },
+          {
+            "name": "水郡線",
+            "eigyo": 137.5,
+            "jousha": 137.5,
+            "rate": 100.0
+          },
+          {
+            "name": "水郡線(常陸太田支線)",
+            "eigyo": 9.5,
+            "jousha": 9.5,
+            "rate": 100.0
+          },
+          {
+            "name": "川越線",
+            "eigyo": 30.6,
+            "jousha": 30.6,
+            "rate": 100.0
+          },
+          {
+            "name": "高崎線",
+            "eigyo": 74.7,
+            "jousha": 74.7,
+            "rate": 100.0
+          },
+          {
+            "name": "上越線",
+            "eigyo": 162.6,
+            "jousha": 162.6,
+            "rate": 100.0
+          },
+          {
+            "name": "上越線(ガーラ湯沢)",
+            "eigyo": 1.8,
+            "jousha": 1.8,
+            "rate": 100.0
+          },
+          {
+            "name": "上越新幹線",
+            "eigyo": 303.6,
+            "jousha": 303.6,
+            "rate": 100.0
+          },
+          {
+            "name": "吾妻線",
+            "eigyo": 55.3,
+            "jousha": 55.3,
+            "rate": 100.0
+          },
+          {
+            "name": "両毛線",
+            "eigyo": 84.4,
+            "jousha": 84.4,
+            "rate": 100.0
+          },
+          {
+            "name": "水戸線",
+            "eigyo": 50.2,
+            "jousha": 50.2,
+            "rate": 100.0
+          },
+          {
+            "name": "日光線",
+            "eigyo": 40.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "烏山線",
+            "eigyo": 20.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "仙山線",
+            "eigyo": 58.0,
+            "jousha": 58.0,
+            "rate": 100.0
+          },
+          {
+            "name": "仙石線",
+            "eigyo": 49.0,
+            "jousha": 49.0,
+            "rate": 100.0
+          },
+          {
+            "name": "石巻線",
+            "eigyo": 44.7,
+            "jousha": 44.7,
+            "rate": 100.0
+          },
+          {
+            "name": "気仙沼線",
+            "eigyo": 17.5,
+            "jousha": 17.5,
+            "rate": 100.0
+          },
+          {
+            "name": "大船渡線",
+            "eigyo": 62.0,
+            "jousha": 62.0,
+            "rate": 100.0
+          },
+          {
+            "name": "北上線",
+            "eigyo": 61.1,
+            "jousha": 61.1,
+            "rate": 100.0
+          },
+          {
+            "name": "釜石線",
+            "eigyo": 90.2,
+            "jousha": 90.2,
+            "rate": 100.0
+          },
+          {
+            "name": "田沢湖線",
+            "eigyo": 75.6,
+            "jousha": 75.6,
+            "rate": 100.0
+          },
+          {
+            "name": "山田線",
+            "eigyo": 102.1,
+            "jousha": 102.1,
+            "rate": 100.0
+          },
+          {
+            "name": "花輪線",
+            "eigyo": 106.9,
+            "jousha": 106.9,
+            "rate": 100.0
+          },
+          {
+            "name": "八戸線",
+            "eigyo": 64.9,
+            "jousha": 64.9,
+            "rate": 100.0
+          },
+          {
+            "name": "大湊線",
+            "eigyo": 58.4,
+            "jousha": 58.4,
+            "rate": 100.0
+          },
+          {
+            "name": "磐越東線",
+            "eigyo": 85.6,
+            "jousha": 85.6,
+            "rate": 100.0
+          },
+          {
+            "name": "磐越西線",
+            "eigyo": 175.6,
+            "jousha": 175.6,
+            "rate": 100.0
+          },
+          {
+            "name": "只見線",
+            "eigyo": 135.2,
+            "jousha": 135.2,
+            "rate": 100.0
+          },
+          {
+            "name": "奥羽本線",
+            "eigyo": 484.5,
+            "jousha": 484.5,
+            "rate": 100.0
+          },
+          {
+            "name": "米坂線",
+            "eigyo": 90.7,
+            "jousha": 23.0,
+            "rate": 25.4
+          },
+          {
+            "name": "左沢線",
+            "eigyo": 24.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "男鹿線",
+            "eigyo": 26.4,
+            "jousha": 26.4,
+            "rate": 100.0
+          },
+          {
+            "name": "五能線",
+            "eigyo": 147.2,
+            "jousha": 147.2,
+            "rate": 100.0
+          },
+          {
+            "name": "津軽線",
+            "eigyo": 55.8,
+            "jousha": 27.0,
+            "rate": 48.4
+          },
+          {
+            "name": "羽越本線",
+            "eigyo": 271.7,
+            "jousha": 271.7,
+            "rate": 100.0
+          },
+          {
+            "name": "白新線",
+            "eigyo": 27.3,
+            "jousha": 27.3,
+            "rate": 100.0
+          },
+          {
+            "name": "陸羽東線",
+            "eigyo": 94.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "陸羽西線",
+            "eigyo": 43.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "信越本線(高崎-横川)",
+            "eigyo": 29.7,
+            "jousha": 29.7,
+            "rate": 100.0
+          },
+          {
+            "name": "信越本線(篠ノ井-長野)",
+            "eigyo": 9.3,
+            "jousha": 9.3,
+            "rate": 100.0
+          },
+          {
+            "name": "信越本線(直江津-新潟)",
+            "eigyo": 136.3,
+            "jousha": 136.3,
+            "rate": 100.0
+          },
+          {
+            "name": "北陸新幹線",
+            "eigyo": 176.9,
+            "jousha": 176.9,
+            "rate": 100.0
+          },
+          {
+            "name": "飯山線",
+            "eigyo": 96.7,
+            "jousha": 96.7,
+            "rate": 100.0
+          },
+          {
+            "name": "越後線",
+            "eigyo": 83.8,
+            "jousha": 83.8,
+            "rate": 100.0
+          },
+          {
+            "name": "弥彦線",
+            "eigyo": 17.4,
+            "jousha": 17.4,
+            "rate": 100.0
+          },
+          {
+            "name": "総武本線",
+            "eigyo": 120.5,
+            "jousha": 120.5,
+            "rate": 100.0
+          },
+          {
+            "name": "総武本線(御茶ノ水)",
+            "eigyo": 4.3,
+            "jousha": 4.3,
+            "rate": 100.0
+          },
+          {
+            "name": "京葉線",
+            "eigyo": 43.0,
+            "jousha": 43.0,
+            "rate": 100.0
+          },
+          {
+            "name": "京葉線(市川塩浜-西船橋)",
+            "eigyo": 5.9,
+            "jousha": 5.9,
+            "rate": 100.0
+          },
+          {
+            "name": "京葉線(西船橋-南船橋)",
+            "eigyo": 5.4,
+            "jousha": 5.4,
+            "rate": 100.0
+          },
+          {
+            "name": "外房線",
+            "eigyo": 93.3,
+            "jousha": 93.3,
+            "rate": 100.0
+          },
+          {
+            "name": "内房線",
+            "eigyo": 119.4,
+            "jousha": 119.4,
+            "rate": 100.0
+          },
+          {
+            "name": "成田線",
+            "eigyo": 75.4,
+            "jousha": 75.4,
+            "rate": 100.0
+          },
+          {
+            "name": "成田線(我孫子支線)",
+            "eigyo": 32.9,
+            "jousha": 32.9,
+            "rate": 100.0
+          },
+          {
+            "name": "成田線(空港支線)",
+            "eigyo": 10.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "鹿島線",
+            "eigyo": 17.4,
+            "jousha": 17.4,
+            "rate": 100.0
+          },
+          {
+            "name": "久留里線",
+            "eigyo": 32.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "東金線",
+            "eigyo": 13.8,
+            "jousha": 13.8,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "JR東海",
+        "eigyo": 1970.8,
+        "jousha": 1970.8,
+        "mijou": 0.0,
+        "rate": 100.0,
+        "lines": [
+          {
+            "name": "東海道本線",
+            "eigyo": 341.3,
+            "jousha": 341.3,
+            "rate": 100.0
+          },
+          {
+            "name": "東海道本線(美濃赤坂線)",
+            "eigyo": 5.0,
+            "jousha": 5.0,
+            "rate": 100.0
+          },
+          {
+            "name": "東海道本線(新垂井経由)",
+            "eigyo": 13.8,
+            "jousha": 13.8,
+            "rate": 100.0
+          },
+          {
+            "name": "東海道新幹線",
+            "eigyo": 552.6,
+            "jousha": 552.6,
+            "rate": 100.0
+          },
+          {
+            "name": "御殿場線",
+            "eigyo": 60.2,
+            "jousha": 60.2,
+            "rate": 100.0
+          },
+          {
+            "name": "身延線",
+            "eigyo": 88.4,
+            "jousha": 88.4,
+            "rate": 100.0
+          },
+          {
+            "name": "飯田線",
+            "eigyo": 195.7,
+            "jousha": 195.7,
+            "rate": 100.0
+          },
+          {
+            "name": "武豊線",
+            "eigyo": 19.3,
+            "jousha": 19.3,
+            "rate": 100.0
+          },
+          {
+            "name": "高山本線",
+            "eigyo": 189.2,
+            "jousha": 189.2,
+            "rate": 100.0
+          },
+          {
+            "name": "中央本線",
+            "eigyo": 174.8,
+            "jousha": 174.8,
+            "rate": 100.0
+          },
+          {
+            "name": "太多線",
+            "eigyo": 17.8,
+            "jousha": 17.8,
+            "rate": 100.0
+          },
+          {
+            "name": "関西本線",
+            "eigyo": 59.9,
+            "jousha": 59.9,
+            "rate": 100.0
+          },
+          {
+            "name": "紀勢本線",
+            "eigyo": 180.2,
+            "jousha": 180.2,
+            "rate": 100.0
+          },
+          {
+            "name": "名松線",
+            "eigyo": 43.5,
+            "jousha": 43.5,
+            "rate": 100.0
+          },
+          {
+            "name": "参宮線",
+            "eigyo": 29.1,
+            "jousha": 29.1,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "JR西日本",
+        "eigyo": 4881.7,
+        "jousha": 4602.2,
+        "mijou": 279.5,
+        "rate": 94.275,
+        "lines": [
+          {
+            "name": "東海道本線",
+            "eigyo": 143.6,
+            "jousha": 143.6,
+            "rate": 100.0
+          },
+          {
+            "name": "湖西線",
+            "eigyo": 74.1,
+            "jousha": 74.1,
+            "rate": 100.0
+          },
+          {
+            "name": "大阪環状線",
+            "eigyo": 20.7,
+            "jousha": 20.7,
+            "rate": 100.0
+          },
+          {
+            "name": "桜島線",
+            "eigyo": 4.1,
+            "jousha": 4.1,
+            "rate": 100.0
+          },
+          {
+            "name": "JR東西線",
+            "eigyo": 12.5,
+            "jousha": 12.5,
+            "rate": 100.0
+          },
+          {
+            "name": "福知山線",
+            "eigyo": 106.5,
+            "jousha": 106.5,
+            "rate": 100.0
+          },
+          {
+            "name": "北陸本線",
+            "eigyo": 45.9,
+            "jousha": 45.9,
+            "rate": 100.0
+          },
+          {
+            "name": "小浜線",
+            "eigyo": 84.3,
+            "jousha": 84.3,
+            "rate": 100.0
+          },
+          {
+            "name": "越美北線",
+            "eigyo": 52.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "七尾線",
+            "eigyo": 59.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "城端線",
+            "eigyo": 29.9,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "氷見線",
+            "eigyo": 16.5,
+            "jousha": 16.5,
+            "rate": 100.0
+          },
+          {
+            "name": "高山本線",
+            "eigyo": 36.6,
+            "jousha": 36.6,
+            "rate": 100.0
+          },
+          {
+            "name": "大糸線",
+            "eigyo": 35.3,
+            "jousha": 35.3,
+            "rate": 100.0
+          },
+          {
+            "name": "山陽本線",
+            "eigyo": 528.1,
+            "jousha": 528.1,
+            "rate": 100.0
+          },
+          {
+            "name": "山陽本線(和田岬線)",
+            "eigyo": 2.7,
+            "jousha": 2.7,
+            "rate": 100.0
+          },
+          {
+            "name": "山陽新幹線",
+            "eigyo": 644.0,
+            "jousha": 644.0,
+            "rate": 100.0
+          },
+          {
+            "name": "加古川線",
+            "eigyo": 48.5,
+            "jousha": 48.5,
+            "rate": 100.0
+          },
+          {
+            "name": "播但線",
+            "eigyo": 65.7,
+            "jousha": 65.7,
+            "rate": 100.0
+          },
+          {
+            "name": "姫新線",
+            "eigyo": 158.1,
+            "jousha": 158.1,
+            "rate": 100.0
+          },
+          {
+            "name": "赤穂線",
+            "eigyo": 57.4,
+            "jousha": 57.4,
+            "rate": 100.0
+          },
+          {
+            "name": "津山線",
+            "eigyo": 58.7,
+            "jousha": 58.7,
+            "rate": 100.0
+          },
+          {
+            "name": "吉備線",
+            "eigyo": 20.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "宇野線",
+            "eigyo": 32.8,
+            "jousha": 32.8,
+            "rate": 100.0
+          },
+          {
+            "name": "本四備讃線",
+            "eigyo": 12.9,
+            "jousha": 12.9,
+            "rate": 100.0
+          },
+          {
+            "name": "伯備線",
+            "eigyo": 138.4,
+            "jousha": 138.4,
+            "rate": 100.0
+          },
+          {
+            "name": "芸備線",
+            "eigyo": 159.1,
+            "jousha": 159.1,
+            "rate": 100.0
+          },
+          {
+            "name": "福塩線",
+            "eigyo": 78.0,
+            "jousha": 78.0,
+            "rate": 100.0
+          },
+          {
+            "name": "呉線",
+            "eigyo": 87.0,
+            "jousha": 87.0,
+            "rate": 100.0
+          },
+          {
+            "name": "可部線",
+            "eigyo": 15.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "岩徳線",
+            "eigyo": 43.7,
+            "jousha": 43.7,
+            "rate": 100.0
+          },
+          {
+            "name": "山口線",
+            "eigyo": 93.9,
+            "jousha": 93.9,
+            "rate": 100.0
+          },
+          {
+            "name": "宇部線",
+            "eigyo": 33.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "小野田線",
+            "eigyo": 11.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "小野田線(本山支線)",
+            "eigyo": 2.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "美祢線",
+            "eigyo": 46.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "山陰本線",
+            "eigyo": 673.8,
+            "jousha": 673.8,
+            "rate": 100.0
+          },
+          {
+            "name": "山陰本線(仙崎支線)",
+            "eigyo": 2.2,
+            "jousha": 2.2,
+            "rate": 100.0
+          },
+          {
+            "name": "舞鶴線",
+            "eigyo": 26.4,
+            "jousha": 26.4,
+            "rate": 100.0
+          },
+          {
+            "name": "因美線",
+            "eigyo": 70.8,
+            "jousha": 70.8,
+            "rate": 100.0
+          },
+          {
+            "name": "境線",
+            "eigyo": 17.9,
+            "jousha": 17.9,
+            "rate": 100.0
+          },
+          {
+            "name": "木次線",
+            "eigyo": 81.9,
+            "jousha": 81.9,
+            "rate": 100.0
+          },
+          {
+            "name": "関西本線",
+            "eigyo": 115.0,
+            "jousha": 115.0,
+            "rate": 100.0
+          },
+          {
+            "name": "草津線",
+            "eigyo": 36.7,
+            "jousha": 36.7,
+            "rate": 100.0
+          },
+          {
+            "name": "奈良線",
+            "eigyo": 34.7,
+            "jousha": 34.7,
+            "rate": 100.0
+          },
+          {
+            "name": "桜井線",
+            "eigyo": 29.4,
+            "jousha": 29.4,
+            "rate": 100.0
+          },
+          {
+            "name": "片町線",
+            "eigyo": 44.8,
+            "jousha": 44.8,
+            "rate": 100.0
+          },
+          {
+            "name": "おおさか東線",
+            "eigyo": 20.2,
+            "jousha": 20.2,
+            "rate": 100.0
+          },
+          {
+            "name": "和歌山線",
+            "eigyo": 87.5,
+            "jousha": 87.5,
+            "rate": 100.0
+          },
+          {
+            "name": "阪和線",
+            "eigyo": 61.3,
+            "jousha": 61.3,
+            "rate": 100.0
+          },
+          {
+            "name": "阪和線(東羽衣支線)",
+            "eigyo": 1.7,
+            "jousha": 1.7,
+            "rate": 100.0
+          },
+          {
+            "name": "関西空港線",
+            "eigyo": 11.1,
+            "jousha": 11.1,
+            "rate": 100.0
+          },
+          {
+            "name": "紀勢本線",
+            "eigyo": 204.0,
+            "jousha": 204.0,
+            "rate": 100.0
+          },
+          {
+            "name": "北陸新幹線",
+            "eigyo": 293.7,
+            "jousha": 293.7,
+            "rate": 100.0
+          },
+          {
+            "name": "博多南線",
+            "eigyo": 8.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "JR四国",
+        "eigyo": 853.7,
+        "jousha": 391.5,
+        "mijou": 462.2,
+        "rate": 45.859,
+        "lines": [
+          {
+            "name": "予讃線",
+            "eigyo": 297.6,
+            "jousha": 32.7,
+            "rate": 11.0
+          },
+          {
+            "name": "予讃線(向井原-内子)",
+            "eigyo": 23.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "予讃線(新谷-伊予大洲)",
+            "eigyo": 5.9,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "本四備讃線",
+            "eigyo": 18.1,
+            "jousha": 18.1,
+            "rate": 100.0
+          },
+          {
+            "name": "内子線",
+            "eigyo": 5.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "予土線",
+            "eigyo": 76.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "高徳線",
+            "eigyo": 74.5,
+            "jousha": 74.5,
+            "rate": 100.0
+          },
+          {
+            "name": "鳴門線",
+            "eigyo": 8.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "徳島線",
+            "eigyo": 67.5,
+            "jousha": 67.5,
+            "rate": 100.0
+          },
+          {
+            "name": "牟岐線",
+            "eigyo": 77.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "土讃線",
+            "eigyo": 198.7,
+            "jousha": 198.7,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "JR九州",
+        "eigyo": 2313.4,
+        "jousha": 1767.5,
+        "mijou": 545.9,
+        "rate": 76.403,
+        "lines": [
+          {
+            "name": "山陽本線",
+            "eigyo": 6.3,
+            "jousha": 6.3,
+            "rate": 100.0
+          },
+          {
+            "name": "鹿児島本線",
+            "eigyo": 232.3,
+            "jousha": 226.8,
+            "rate": 97.6
+          },
+          {
+            "name": "鹿児島本線(川内以南)",
+            "eigyo": 49.3,
+            "jousha": 49.3,
+            "rate": 100.0
+          },
+          {
+            "name": "九州新幹線",
+            "eigyo": 288.9,
+            "jousha": 288.9,
+            "rate": 100.0
+          },
+          {
+            "name": "香椎線",
+            "eigyo": 25.4,
+            "jousha": 12.9,
+            "rate": 50.8
+          },
+          {
+            "name": "篠栗線",
+            "eigyo": 25.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "三角線",
+            "eigyo": 25.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "肥薩線",
+            "eigyo": 124.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "指宿枕崎線",
+            "eigyo": 87.8,
+            "jousha": 87.8,
+            "rate": 100.0
+          },
+          {
+            "name": "長崎本線",
+            "eigyo": 125.3,
+            "jousha": 39.6,
+            "rate": 31.6
+          },
+          {
+            "name": "長崎本線(長与回り)",
+            "eigyo": 23.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "西九州新幹線",
+            "eigyo": 69.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "唐津線",
+            "eigyo": 42.5,
+            "jousha": 42.5,
+            "rate": 100.0
+          },
+          {
+            "name": "筑肥線(東部)",
+            "eigyo": 42.6,
+            "jousha": 42.6,
+            "rate": 100.0
+          },
+          {
+            "name": "筑肥線(西部)",
+            "eigyo": 25.7,
+            "jousha": 25.7,
+            "rate": 100.0
+          },
+          {
+            "name": "佐世保線",
+            "eigyo": 48.8,
+            "jousha": 48.8,
+            "rate": 100.0
+          },
+          {
+            "name": "大村線",
+            "eigyo": 47.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "久大本線",
+            "eigyo": 141.5,
+            "jousha": 141.5,
+            "rate": 100.0
+          },
+          {
+            "name": "豊肥本線",
+            "eigyo": 148.0,
+            "jousha": 148.0,
+            "rate": 100.0
+          },
+          {
+            "name": "日豊本線",
+            "eigyo": 462.6,
+            "jousha": 462.6,
+            "rate": 100.0
+          },
+          {
+            "name": "日田彦山線",
+            "eigyo": 39.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "日南線",
+            "eigyo": 88.9,
+            "jousha": 88.9,
+            "rate": 100.0
+          },
+          {
+            "name": "宮崎空港線",
+            "eigyo": 1.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "吉都線",
+            "eigyo": 61.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "筑豊本線",
+            "eigyo": 66.1,
+            "jousha": 55.3,
+            "rate": 83.7
+          },
+          {
+            "name": "後藤寺線",
+            "eigyo": 13.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      }
+    ]
+  },
+  "private": {
+    "total": {
+      "name": "私鉄全線",
+      "eigyo": 7988.9,
+      "jousha": 3138.7,
+      "mijou": 4850.2,
+      "rate": 39.288
+    },
+    "divisions": [
+      {
+        "name": "大手私鉄",
+        "eigyo": 2954.6,
+        "jousha": 1389.4,
+        "mijou": 1565.2,
+        "rate": 47.025
+      },
+      {
+        "name": "準大手私鉄",
+        "eigyo": 71.6,
+        "jousha": 0.0,
+        "mijou": 71.6,
+        "rate": 0.0
+      },
+      {
+        "name": "公営企業",
+        "eigyo": 491.1,
+        "jousha": 49.1,
+        "mijou": 442.0,
+        "rate": 9.998
+      },
+      {
+        "name": "私鉄一般",
+        "eigyo": 4250.9,
+        "jousha": 1660.1,
+        "mijou": 2590.8,
+        "rate": 39.053
+      },
+      {
+        "name": "モノレール",
+        "eigyo": 114.4,
+        "jousha": 31.0,
+        "mijou": 83.4,
+        "rate": 27.098
+      },
+      {
+        "name": "新交通システム",
+        "eigyo": 82.5,
+        "jousha": 7.0,
+        "mijou": 75.5,
+        "rate": 8.485
+      },
+      {
+        "name": "ケーブルカー等専業",
+        "eigyo": 14.9,
+        "jousha": 2.1,
+        "mijou": 12.8,
+        "rate": 14.094
+      },
+      {
+        "name": "浮上式",
+        "eigyo": 8.9,
+        "jousha": 0.0,
+        "mijou": 8.9,
+        "rate": 0.0
+      }
+    ],
+    "companies": [
+      {
+        "name": "東武鉄道",
+        "division": "大手私鉄",
+        "eigyo": 463.3,
+        "jousha": 265.9,
+        "mijou": 197.4,
+        "rate": 57.393,
+        "lines": [
+          {
+            "name": "伊勢崎線",
+            "eigyo": 114.5,
+            "jousha": 114.5,
+            "rate": 100.0
+          },
+          {
+            "name": "亀戸線",
+            "eigyo": 3.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "大師線",
+            "eigyo": 1.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "桐生線",
+            "eigyo": 20.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "小泉線(館林-西小泉)",
+            "eigyo": 12.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "小泉線(太田-東小泉)",
+            "eigyo": 6.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "佐野線",
+            "eigyo": 22.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "日光線",
+            "eigyo": 94.5,
+            "jousha": 94.5,
+            "rate": 100.0
+          },
+          {
+            "name": "鬼怒川線",
+            "eigyo": 16.2,
+            "jousha": 16.2,
+            "rate": 100.0
+          },
+          {
+            "name": "宇都宮線",
+            "eigyo": 24.3,
+            "jousha": 24.3,
+            "rate": 100.0
+          },
+          {
+            "name": "野田線",
+            "eigyo": 62.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "東上本線",
+            "eigyo": 75.0,
+            "jousha": 16.4,
+            "rate": 21.9
+          },
+          {
+            "name": "越生線",
+            "eigyo": 10.9,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "西武鉄道",
+        "division": "大手私鉄",
+        "eigyo": 176.6,
+        "jousha": 0.0,
+        "mijou": 176.6,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "池袋線",
+            "eigyo": 57.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "西武秩父線",
+            "eigyo": 19.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "新宿線",
+            "eigyo": 47.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "西武園線",
+            "eigyo": 2.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "国分寺線",
+            "eigyo": 7.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "多摩湖線",
+            "eigyo": 9.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "西武有楽町線",
+            "eigyo": 2.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "豊島線",
+            "eigyo": 1.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "狭山線",
+            "eigyo": 4.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "拝島線",
+            "eigyo": 14.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "多摩川線",
+            "eigyo": 8.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "山口線",
+            "eigyo": 2.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "京成電鉄",
+        "division": "大手私鉄",
+        "eigyo": 180.3,
+        "jousha": 118.6,
+        "mijou": 61.7,
+        "rate": 65.779,
+        "lines": [
+          {
+            "name": "本線",
+            "eigyo": 69.3,
+            "jousha": 67.2,
+            "rate": 97.0
+          },
+          {
+            "name": "東成田線",
+            "eigyo": 1.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "押上線",
+            "eigyo": 5.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "千葉線",
+            "eigyo": 12.9,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "千原線",
+            "eigyo": 10.9,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "金町線",
+            "eigyo": 2.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "成田空港線(成田スカイアクセス)",
+            "eigyo": 51.4,
+            "jousha": 51.4,
+            "rate": 100.0
+          },
+          {
+            "name": "松戸線",
+            "eigyo": 26.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "京王電鉄",
+        "division": "大手私鉄",
+        "eigyo": 84.7,
+        "jousha": 0.0,
+        "mijou": 84.7,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "京王線",
+            "eigyo": 37.9,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "相模原線",
+            "eigyo": 22.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "高尾線",
+            "eigyo": 8.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "競馬場線",
+            "eigyo": 0.9,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "動物園線",
+            "eigyo": 2.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "井の頭線",
+            "eigyo": 12.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "小田急電鉄",
+        "division": "大手私鉄",
+        "eigyo": 120.5,
+        "jousha": 82.5,
+        "mijou": 38.0,
+        "rate": 68.465,
+        "lines": [
+          {
+            "name": "小田原線",
+            "eigyo": 82.5,
+            "jousha": 82.5,
+            "rate": 100.0
+          },
+          {
+            "name": "江ノ島線",
+            "eigyo": 27.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "多摩線",
+            "eigyo": 10.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "東急電鉄",
+        "division": "大手私鉄",
+        "eigyo": 103.3,
+        "jousha": 42.8,
+        "mijou": 60.5,
+        "rate": 41.433,
+        "lines": [
+          {
+            "name": "東横線",
+            "eigyo": 24.2,
+            "jousha": 24.2,
+            "rate": 100.0
+          },
+          {
+            "name": "目黒線",
+            "eigyo": 6.5,
+            "jousha": 6.5,
+            "rate": 100.0
+          },
+          {
+            "name": "東急新横浜線",
+            "eigyo": 5.8,
+            "jousha": 5.8,
+            "rate": 100.0
+          },
+          {
+            "name": "東急多摩川線",
+            "eigyo": 5.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "大井町線",
+            "eigyo": 10.4,
+            "jousha": 6.3,
+            "rate": 60.6
+          },
+          {
+            "name": "池上線",
+            "eigyo": 10.9,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "田園都市線",
+            "eigyo": 31.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "こどもの国線",
+            "eigyo": 3.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "世田谷線",
+            "eigyo": 5.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "京浜急行電鉄",
+        "division": "大手私鉄",
+        "eigyo": 87.0,
+        "jousha": 25.8,
+        "mijou": 61.2,
+        "rate": 29.655,
+        "lines": [
+          {
+            "name": "本線",
+            "eigyo": 56.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "空港線",
+            "eigyo": 6.5,
+            "jousha": 6.5,
+            "rate": 100.0
+          },
+          {
+            "name": "大師線",
+            "eigyo": 4.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "逗子線",
+            "eigyo": 5.9,
+            "jousha": 5.9,
+            "rate": 100.0
+          },
+          {
+            "name": "久里浜線",
+            "eigyo": 13.4,
+            "jousha": 13.4,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "相模鉄道",
+        "division": "大手私鉄",
+        "eigyo": 42.2,
+        "jousha": 0.0,
+        "mijou": 42.2,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "本線",
+            "eigyo": 24.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "いずみ野線",
+            "eigyo": 11.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "相鉄新横浜線",
+            "eigyo": 6.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "東京地下鉄",
+        "division": "大手私鉄",
+        "eigyo": 195.0,
+        "jousha": 72.6,
+        "mijou": 122.4,
+        "rate": 37.231,
+        "lines": [
+          {
+            "name": "銀座線(3号線)",
+            "eigyo": 14.2,
+            "jousha": 8.8,
+            "rate": 62.0
+          },
+          {
+            "name": "丸ノ内線(4号線)",
+            "eigyo": 24.2,
+            "jousha": 5.8,
+            "rate": 24.0
+          },
+          {
+            "name": "丸ノ内線方南町支線(4号線)",
+            "eigyo": 3.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "日比谷線(2号線)",
+            "eigyo": 20.3,
+            "jousha": 8.2,
+            "rate": 40.4
+          },
+          {
+            "name": "東西線(5号線)",
+            "eigyo": 30.8,
+            "jousha": 26.8,
+            "rate": 87.0
+          },
+          {
+            "name": "千代田線(9号線)",
+            "eigyo": 24.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "有楽町線(8号線)",
+            "eigyo": 20.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "半蔵門線(11号線)",
+            "eigyo": 16.8,
+            "jousha": 4.4,
+            "rate": 26.2
+          },
+          {
+            "name": "南北線(7号線)",
+            "eigyo": 21.3,
+            "jousha": 9.7,
+            "rate": 45.5
+          },
+          {
+            "name": "副都心線(13号線)",
+            "eigyo": 20.2,
+            "jousha": 8.9,
+            "rate": 44.1
+          }
+        ]
+      },
+      {
+        "name": "名古屋鉄道",
+        "division": "大手私鉄",
+        "eigyo": 444.2,
+        "jousha": 162.5,
+        "mijou": 281.7,
+        "rate": 36.583,
+        "lines": [
+          {
+            "name": "名古屋本線",
+            "eigyo": 99.8,
+            "jousha": 68.0,
+            "rate": 68.1
+          },
+          {
+            "name": "西尾線",
+            "eigyo": 24.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "三河線",
+            "eigyo": 39.8,
+            "jousha": 14.6,
+            "rate": 36.7
+          },
+          {
+            "name": "豊田線",
+            "eigyo": 15.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "蒲郡線",
+            "eigyo": 17.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "常滑線",
+            "eigyo": 29.3,
+            "jousha": 17.0,
+            "rate": 58.0
+          },
+          {
+            "name": "築港線",
+            "eigyo": 1.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "河和線",
+            "eigyo": 28.8,
+            "jousha": 22.3,
+            "rate": 77.4
+          },
+          {
+            "name": "知多新線",
+            "eigyo": 13.9,
+            "jousha": 13.9,
+            "rate": 100.0
+          },
+          {
+            "name": "瀬戸線",
+            "eigyo": 20.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "小牧線",
+            "eigyo": 20.6,
+            "jousha": 20.6,
+            "rate": 100.0
+          },
+          {
+            "name": "各務原線",
+            "eigyo": 17.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "犬山線",
+            "eigyo": 26.8,
+            "jousha": 1.9,
+            "rate": 7.1
+          },
+          {
+            "name": "広見線",
+            "eigyo": 22.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "津島線",
+            "eigyo": 11.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "尾西線",
+            "eigyo": 30.9,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "竹鼻線",
+            "eigyo": 10.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "羽島線",
+            "eigyo": 1.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "豊川線",
+            "eigyo": 7.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "空港線",
+            "eigyo": 4.2,
+            "jousha": 4.2,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "近畿日本鉄道",
+        "division": "大手私鉄",
+        "eigyo": 501.1,
+        "jousha": 429.5,
+        "mijou": 71.6,
+        "rate": 85.711,
+        "lines": [
+          {
+            "name": "大阪線",
+            "eigyo": 108.9,
+            "jousha": 108.9,
+            "rate": 100.0
+          },
+          {
+            "name": "難波線",
+            "eigyo": 2.0,
+            "jousha": 2.0,
+            "rate": 100.0
+          },
+          {
+            "name": "山田線",
+            "eigyo": 28.3,
+            "jousha": 28.3,
+            "rate": 100.0
+          },
+          {
+            "name": "奈良線",
+            "eigyo": 26.7,
+            "jousha": 26.7,
+            "rate": 100.0
+          },
+          {
+            "name": "けいはんな線",
+            "eigyo": 18.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "橿原線",
+            "eigyo": 23.8,
+            "jousha": 23.8,
+            "rate": 100.0
+          },
+          {
+            "name": "天理線",
+            "eigyo": 4.5,
+            "jousha": 4.5,
+            "rate": 100.0
+          },
+          {
+            "name": "信貴線",
+            "eigyo": 2.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "南大阪線",
+            "eigyo": 39.7,
+            "jousha": 39.7,
+            "rate": 100.0
+          },
+          {
+            "name": "吉野線",
+            "eigyo": 25.2,
+            "jousha": 9.5,
+            "rate": 37.7
+          },
+          {
+            "name": "長野線",
+            "eigyo": 12.5,
+            "jousha": 12.5,
+            "rate": 100.0
+          },
+          {
+            "name": "京都線",
+            "eigyo": 34.6,
+            "jousha": 34.6,
+            "rate": 100.0
+          },
+          {
+            "name": "生駒線",
+            "eigyo": 12.4,
+            "jousha": 12.4,
+            "rate": 100.0
+          },
+          {
+            "name": "田原本線",
+            "eigyo": 10.1,
+            "jousha": 10.1,
+            "rate": 100.0
+          },
+          {
+            "name": "道明寺線",
+            "eigyo": 2.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "御所線",
+            "eigyo": 5.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "名古屋線",
+            "eigyo": 78.8,
+            "jousha": 78.8,
+            "rate": 100.0
+          },
+          {
+            "name": "鈴鹿線",
+            "eigyo": 8.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "湯の山線",
+            "eigyo": 15.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "志摩線",
+            "eigyo": 24.5,
+            "jousha": 24.5,
+            "rate": 100.0
+          },
+          {
+            "name": "鳥羽線",
+            "eigyo": 13.2,
+            "jousha": 13.2,
+            "rate": 100.0
+          },
+          {
+            "name": "生駒鋼索線",
+            "eigyo": 2.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "西信貴鋼索線",
+            "eigyo": 1.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "南海電気鉄道",
+        "division": "大手私鉄",
+        "eigyo": 169.1,
+        "jousha": 111.5,
+        "mijou": 57.6,
+        "rate": 65.937,
+        "lines": [
+          {
+            "name": "南海本線",
+            "eigyo": 64.2,
+            "jousha": 64.2,
+            "rate": 100.0
+          },
+          {
+            "name": "高師浜線",
+            "eigyo": 1.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "空港線",
+            "eigyo": 8.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "多奈川線",
+            "eigyo": 2.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "加太線",
+            "eigyo": 9.6,
+            "jousha": 9.6,
+            "rate": 100.0
+          },
+          {
+            "name": "和歌山港線",
+            "eigyo": 2.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "高野線",
+            "eigyo": 64.5,
+            "jousha": 23.4,
+            "rate": 36.3
+          },
+          {
+            "name": "鋼索線",
+            "eigyo": 0.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "泉北線",
+            "eigyo": 14.3,
+            "jousha": 14.3,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "京阪電気鉄道",
+        "division": "大手私鉄",
+        "eigyo": 91.1,
+        "jousha": 41.3,
+        "mijou": 49.8,
+        "rate": 45.335,
+        "lines": [
+          {
+            "name": "交野線",
+            "eigyo": 6.9,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "京阪本線",
+            "eigyo": 49.3,
+            "jousha": 41.3,
+            "rate": 83.8
+          },
+          {
+            "name": "中之島線",
+            "eigyo": 3.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "宇治線",
+            "eigyo": 7.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "鴨東線",
+            "eigyo": 2.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "鋼索線(石清水八幡宮参道ケーブル)",
+            "eigyo": 0.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "京津線",
+            "eigyo": 7.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "石山坂本線",
+            "eigyo": 14.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "阪急電鉄",
+        "division": "大手私鉄",
+        "eigyo": 141.2,
+        "jousha": 17.2,
+        "mijou": 124.0,
+        "rate": 12.181,
+        "lines": [
+          {
+            "name": "京都本線",
+            "eigyo": 45.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "千里線",
+            "eigyo": 13.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "嵐山線",
+            "eigyo": 4.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "神戸本線",
+            "eigyo": 32.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "今津線",
+            "eigyo": 9.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "伊丹線",
+            "eigyo": 3.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "甲陽線",
+            "eigyo": 2.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "宝塚本線",
+            "eigyo": 24.5,
+            "jousha": 17.2,
+            "rate": 70.2
+          },
+          {
+            "name": "箕面線",
+            "eigyo": 4.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "神戸高速線",
+            "eigyo": 2.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "阪神電気鉄道",
+        "division": "大手私鉄",
+        "eigyo": 48.9,
+        "jousha": 0.0,
+        "mijou": 48.9,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "本線",
+            "eigyo": 32.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "阪神なんば線",
+            "eigyo": 10.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "武庫川線",
+            "eigyo": 1.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "神戸高速線",
+            "eigyo": 5.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "西日本鉄道",
+        "division": "大手私鉄",
+        "eigyo": 106.1,
+        "jousha": 19.2,
+        "mijou": 86.9,
+        "rate": 18.096,
+        "lines": [
+          {
+            "name": "天神大牟田線",
+            "eigyo": 74.8,
+            "jousha": 16.8,
+            "rate": 22.5
+          },
+          {
+            "name": "太宰府線",
+            "eigyo": 2.4,
+            "jousha": 2.4,
+            "rate": 100.0
+          },
+          {
+            "name": "貝塚線",
+            "eigyo": 11.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "甘木線",
+            "eigyo": 17.9,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "北大阪急行電鉄",
+        "division": "準大手私鉄",
+        "eigyo": 8.4,
+        "jousha": 0.0,
+        "mijou": 8.4,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "南北線",
+            "eigyo": 8.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "山陽電気鉄道",
+        "division": "準大手私鉄",
+        "eigyo": 63.2,
+        "jousha": 0.0,
+        "mijou": 63.2,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "本線",
+            "eigyo": 54.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "網干線",
+            "eigyo": 8.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "札幌市交通局",
+        "division": "公営企業",
+        "eigyo": 48.0,
+        "jousha": 0.0,
+        "mijou": 48.0,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "南北線",
+            "eigyo": 14.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "東西線",
+            "eigyo": 20.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "東豊線",
+            "eigyo": 13.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "函館市企業局交通部",
+        "division": "公営企業",
+        "eigyo": 10.9,
+        "jousha": 0.0,
+        "mijou": 10.9,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "本線",
+            "eigyo": 2.9,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "宝来・谷地頭線",
+            "eigyo": 1.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "大森線",
+            "eigyo": 0.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "湯の川線",
+            "eigyo": 6.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "仙台市交通局",
+        "division": "公営企業",
+        "eigyo": 28.7,
+        "jousha": 0.0,
+        "mijou": 28.7,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "南北線",
+            "eigyo": 14.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "東西線",
+            "eigyo": 13.9,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "東京都交通局",
+        "division": "公営企業",
+        "eigyo": 130.9,
+        "jousha": 32.4,
+        "mijou": 98.5,
+        "rate": 24.752,
+        "lines": [
+          {
+            "name": "浅草線(1号線)",
+            "eigyo": 18.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "三田線(6号線)",
+            "eigyo": 26.5,
+            "jousha": 22.0,
+            "rate": 83.0
+          },
+          {
+            "name": "新宿線(10号線)",
+            "eigyo": 23.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "大江戸線(12号線)",
+            "eigyo": 40.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "荒川線",
+            "eigyo": 12.2,
+            "jousha": 10.4,
+            "rate": 85.2
+          },
+          {
+            "name": "日暮里・舎人ライナー",
+            "eigyo": 9.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "横浜市交通局",
+        "division": "公営企業",
+        "eigyo": 53.4,
+        "jousha": 0.0,
+        "mijou": 53.4,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "1号線",
+            "eigyo": 19.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "3号線",
+            "eigyo": 20.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "4号線(グリーンライン)",
+            "eigyo": 13.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "名古屋市交通局",
+        "division": "公営企業",
+        "eigyo": 93.3,
+        "jousha": 0.8,
+        "mijou": 92.5,
+        "rate": 0.857,
+        "lines": [
+          {
+            "name": "東山線(1号線)",
+            "eigyo": 20.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "名城線・名港線(2号線)",
+            "eigyo": 14.9,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "名城線(4号線)",
+            "eigyo": 17.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "鶴舞線(3号線)",
+            "eigyo": 20.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "桜通線(6号線)",
+            "eigyo": 19.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "上飯田線",
+            "eigyo": 0.8,
+            "jousha": 0.8,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "京都市交通局",
+        "division": "公営企業",
+        "eigyo": 31.2,
+        "jousha": 0.0,
+        "mijou": 31.2,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "烏丸線",
+            "eigyo": 13.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "東西線",
+            "eigyo": 17.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "神戸市交通局",
+        "division": "公営企業",
+        "eigyo": 38.1,
+        "jousha": 0.0,
+        "mijou": 38.1,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "西神延伸線",
+            "eigyo": 9.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "西神線",
+            "eigyo": 5.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "山手線",
+            "eigyo": 7.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "海岸線",
+            "eigyo": 7.9,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "北神線",
+            "eigyo": 7.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "福岡市交通局",
+        "division": "公営企業",
+        "eigyo": 31.4,
+        "jousha": 15.9,
+        "mijou": 15.5,
+        "rate": 50.637,
+        "lines": [
+          {
+            "name": "空港線(1号線)",
+            "eigyo": 13.1,
+            "jousha": 13.1,
+            "rate": 100.0
+          },
+          {
+            "name": "箱崎線(2号線)",
+            "eigyo": 4.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "七隈線(3号線)",
+            "eigyo": 13.6,
+            "jousha": 2.8,
+            "rate": 20.6
+          }
+        ]
+      },
+      {
+        "name": "熊本市交通局",
+        "division": "公営企業",
+        "eigyo": 12.1,
+        "jousha": 0.0,
+        "mijou": 12.1,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "幹線",
+            "eigyo": 3.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "水前寺線",
+            "eigyo": 2.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "健軍線",
+            "eigyo": 3.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "上熊本線",
+            "eigyo": 2.9,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "田崎線",
+            "eigyo": 0.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "鹿児島市交通局",
+        "division": "公営企業",
+        "eigyo": 13.1,
+        "jousha": 0.0,
+        "mijou": 13.1,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "第一期線",
+            "eigyo": 3.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "第二期線",
+            "eigyo": 0.9,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "谷山線",
+            "eigyo": 6.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "唐湊線",
+            "eigyo": 2.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "札幌市交通事業振興公社",
+        "division": "私鉄一般",
+        "eigyo": 8.9,
+        "jousha": 0.0,
+        "mijou": 8.9,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "1条線・山鼻線・山鼻西線・都心線",
+            "eigyo": 8.9,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "道南いさりび鉄道",
+        "division": "私鉄一般",
+        "eigyo": 37.8,
+        "jousha": 37.8,
+        "mijou": 0.0,
+        "rate": 100.0,
+        "lines": [
+          {
+            "name": "道南いさりび鉄道線",
+            "eigyo": 37.8,
+            "jousha": 37.8,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "津軽鉄道",
+        "division": "私鉄一般",
+        "eigyo": 20.7,
+        "jousha": 12.8,
+        "mijou": 7.9,
+        "rate": 61.836,
+        "lines": [
+          {
+            "name": "津軽鉄道線",
+            "eigyo": 20.7,
+            "jousha": 12.8,
+            "rate": 61.8
+          }
+        ]
+      },
+      {
+        "name": "弘南鉄道",
+        "division": "私鉄一般",
+        "eigyo": 30.7,
+        "jousha": 13.9,
+        "mijou": 16.8,
+        "rate": 45.277,
+        "lines": [
+          {
+            "name": "弘南線",
+            "eigyo": 16.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "大鰐線",
+            "eigyo": 13.9,
+            "jousha": 13.9,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "青い森鉄道",
+        "division": "私鉄一般",
+        "eigyo": 121.9,
+        "jousha": 96.0,
+        "mijou": 25.9,
+        "rate": 78.753,
+        "lines": [
+          {
+            "name": "青い森鉄道線",
+            "eigyo": 121.9,
+            "jousha": 96.0,
+            "rate": 78.8
+          }
+        ]
+      },
+      {
+        "name": "IGRいわて銀河鉄道",
+        "division": "私鉄一般",
+        "eigyo": 82.0,
+        "jousha": 21.3,
+        "mijou": 60.7,
+        "rate": 25.976,
+        "lines": [
+          {
+            "name": "いわて銀河鉄道線",
+            "eigyo": 82.0,
+            "jousha": 21.3,
+            "rate": 26.0
+          }
+        ]
+      },
+      {
+        "name": "三陸鉄道",
+        "division": "私鉄一般",
+        "eigyo": 163.0,
+        "jousha": 163.0,
+        "mijou": 0.0,
+        "rate": 100.0,
+        "lines": [
+          {
+            "name": "リアス線",
+            "eigyo": 163.0,
+            "jousha": 163.0,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "仙台空港鉄道",
+        "division": "私鉄一般",
+        "eigyo": 7.1,
+        "jousha": 7.1,
+        "mijou": 0.0,
+        "rate": 100.0,
+        "lines": [
+          {
+            "name": "仙台空港線",
+            "eigyo": 7.1,
+            "jousha": 7.1,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "由利高原鉄道",
+        "division": "私鉄一般",
+        "eigyo": 23.0,
+        "jousha": 0.0,
+        "mijou": 23.0,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "鳥海山ろく線",
+            "eigyo": 23.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "秋田内陸縦貫鉄道",
+        "division": "私鉄一般",
+        "eigyo": 94.2,
+        "jousha": 0.0,
+        "mijou": 94.2,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "秋田内陸線",
+            "eigyo": 94.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "山形鉄道",
+        "division": "私鉄一般",
+        "eigyo": 30.5,
+        "jousha": 0.0,
+        "mijou": 30.5,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "フラワー長井線",
+            "eigyo": 30.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "阿武隈急行",
+        "division": "私鉄一般",
+        "eigyo": 54.9,
+        "jousha": 0.0,
+        "mijou": 54.9,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "阿武隈急行線",
+            "eigyo": 54.9,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "福島交通",
+        "division": "私鉄一般",
+        "eigyo": 9.2,
+        "jousha": 0.0,
+        "mijou": 9.2,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "飯坂線",
+            "eigyo": 9.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "会津鉄道",
+        "division": "私鉄一般",
+        "eigyo": 57.4,
+        "jousha": 0.0,
+        "mijou": 57.4,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "会津線",
+            "eigyo": 57.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "北越急行",
+        "division": "私鉄一般",
+        "eigyo": 59.5,
+        "jousha": 59.5,
+        "mijou": 0.0,
+        "rate": 100.0,
+        "lines": [
+          {
+            "name": "ほくほく線",
+            "eigyo": 59.5,
+            "jousha": 59.5,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "えちごトキめき鉄道",
+        "division": "私鉄一般",
+        "eigyo": 97.0,
+        "jousha": 97.0,
+        "mijou": 0.0,
+        "rate": 100.0,
+        "lines": [
+          {
+            "name": "日本海ひすいライン",
+            "eigyo": 59.3,
+            "jousha": 59.3,
+            "rate": 100.0
+          },
+          {
+            "name": "妙高はねうまライン",
+            "eigyo": 37.7,
+            "jousha": 37.7,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "長野電鉄",
+        "division": "私鉄一般",
+        "eigyo": 33.2,
+        "jousha": 1.6,
+        "mijou": 31.6,
+        "rate": 4.819,
+        "lines": [
+          {
+            "name": "長野線",
+            "eigyo": 33.2,
+            "jousha": 1.6,
+            "rate": 4.8
+          }
+        ]
+      },
+      {
+        "name": "しなの鉄道",
+        "division": "私鉄一般",
+        "eigyo": 102.4,
+        "jousha": 102.4,
+        "mijou": 0.0,
+        "rate": 100.0,
+        "lines": [
+          {
+            "name": "しなの鉄道線",
+            "eigyo": 65.1,
+            "jousha": 65.1,
+            "rate": 100.0
+          },
+          {
+            "name": "北しなの線",
+            "eigyo": 37.3,
+            "jousha": 37.3,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "上田電鉄",
+        "division": "私鉄一般",
+        "eigyo": 11.6,
+        "jousha": 0.0,
+        "mijou": 11.6,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "別所線",
+            "eigyo": 11.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "アルピコ交通",
+        "division": "私鉄一般",
+        "eigyo": 14.4,
+        "jousha": 0.0,
+        "mijou": 14.4,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "上高地線",
+            "eigyo": 14.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "万葉線",
+        "division": "私鉄一般",
+        "eigyo": 12.9,
+        "jousha": 0.0,
+        "mijou": 12.9,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "新湊港線",
+            "eigyo": 4.9,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "高岡軌道線",
+            "eigyo": 8.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "富山地方鉄道",
+        "division": "私鉄一般",
+        "eigyo": 108.4,
+        "jousha": 77.5,
+        "mijou": 30.9,
+        "rate": 71.494,
+        "lines": [
+          {
+            "name": "本線",
+            "eigyo": 53.3,
+            "jousha": 53.3,
+            "rate": 100.0
+          },
+          {
+            "name": "立山線",
+            "eigyo": 24.2,
+            "jousha": 24.2,
+            "rate": 100.0
+          },
+          {
+            "name": "不二越線",
+            "eigyo": 3.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "上滝線",
+            "eigyo": 12.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "軌道線本線",
+            "eigyo": 3.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "軌道線支線",
+            "eigyo": 1.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "軌道線安野屋線",
+            "eigyo": 0.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "軌道線呉羽線",
+            "eigyo": 1.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "軌道線富山都心線",
+            "eigyo": 0.9,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "軌道線富山駅南北接続線",
+            "eigyo": 0.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "富山港線",
+            "eigyo": 7.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "黒部峡谷鉄道",
+        "division": "私鉄一般",
+        "eigyo": 20.1,
+        "jousha": 0.0,
+        "mijou": 20.1,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "本線",
+            "eigyo": 20.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "あいの風とやま鉄道",
+        "division": "私鉄一般",
+        "eigyo": 100.1,
+        "jousha": 100.1,
+        "mijou": 0.0,
+        "rate": 100.0,
+        "lines": [
+          {
+            "name": "あいの風とやま鉄道線",
+            "eigyo": 100.1,
+            "jousha": 100.1,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "のと鉄道",
+        "division": "私鉄一般",
+        "eigyo": 33.1,
+        "jousha": 0.0,
+        "mijou": 33.1,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "七尾線",
+            "eigyo": 33.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "北陸鉄道",
+        "division": "私鉄一般",
+        "eigyo": 20.6,
+        "jousha": 0.0,
+        "mijou": 20.6,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "浅野川線",
+            "eigyo": 6.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "石川線",
+            "eigyo": 13.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "IRいしかわ鉄道",
+        "division": "私鉄一般",
+        "eigyo": 64.2,
+        "jousha": 64.2,
+        "mijou": 0.0,
+        "rate": 100.0,
+        "lines": [
+          {
+            "name": "IRいしかわ鉄道線",
+            "eigyo": 64.2,
+            "jousha": 64.2,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "関東鉄道",
+        "division": "私鉄一般",
+        "eigyo": 55.6,
+        "jousha": 0.0,
+        "mijou": 55.6,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "常総線",
+            "eigyo": 51.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "竜ヶ崎線",
+            "eigyo": 4.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "鹿島臨海鉄道",
+        "division": "私鉄一般",
+        "eigyo": 53.0,
+        "jousha": 53.0,
+        "mijou": 0.0,
+        "rate": 100.0,
+        "lines": [
+          {
+            "name": "大洗鹿島線",
+            "eigyo": 53.0,
+            "jousha": 53.0,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "ひたちなか海浜鉄道",
+        "division": "私鉄一般",
+        "eigyo": 14.3,
+        "jousha": 0.0,
+        "mijou": 14.3,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "湊線",
+            "eigyo": 14.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "真岡鐵道",
+        "division": "私鉄一般",
+        "eigyo": 41.9,
+        "jousha": 0.0,
+        "mijou": 41.9,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "真岡線",
+            "eigyo": 41.9,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "野岩鉄道",
+        "division": "私鉄一般",
+        "eigyo": 30.7,
+        "jousha": 30.7,
+        "mijou": 0.0,
+        "rate": 100.0,
+        "lines": [
+          {
+            "name": "会津鬼怒川線",
+            "eigyo": 30.7,
+            "jousha": 30.7,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "宇都宮ライトレール",
+        "division": "私鉄一般",
+        "eigyo": 14.5,
+        "jousha": 0.0,
+        "mijou": 14.5,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "宇都宮芳賀ライトレール線",
+            "eigyo": 14.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "上毛電気鉄道",
+        "division": "私鉄一般",
+        "eigyo": 25.4,
+        "jousha": 0.0,
+        "mijou": 25.4,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "上毛線",
+            "eigyo": 25.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "上信電鉄",
+        "division": "私鉄一般",
+        "eigyo": 33.7,
+        "jousha": 0.0,
+        "mijou": 33.7,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "上信線",
+            "eigyo": 33.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "わたらせ渓谷鐵道",
+        "division": "私鉄一般",
+        "eigyo": 44.1,
+        "jousha": 0.0,
+        "mijou": 44.1,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "わたらせ渓谷線",
+            "eigyo": 44.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "秩父鉄道",
+        "division": "私鉄一般",
+        "eigyo": 71.7,
+        "jousha": 0.0,
+        "mijou": 71.7,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "秩父本線",
+            "eigyo": 71.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "埼玉高速鉄道",
+        "division": "私鉄一般",
+        "eigyo": 14.6,
+        "jousha": 0.0,
+        "mijou": 14.6,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "埼玉高速鉄道線",
+            "eigyo": 14.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "銚子電気鉄道",
+        "division": "私鉄一般",
+        "eigyo": 6.4,
+        "jousha": 0.0,
+        "mijou": 6.4,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "銚子電気鉄道線",
+            "eigyo": 6.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "小湊鉄道",
+        "division": "私鉄一般",
+        "eigyo": 39.1,
+        "jousha": 0.0,
+        "mijou": 39.1,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "小湊鉄道線",
+            "eigyo": 39.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "いすみ鉄道",
+        "division": "私鉄一般",
+        "eigyo": 26.8,
+        "jousha": 0.0,
+        "mijou": 26.8,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "いすみ線",
+            "eigyo": 26.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "流鉄",
+        "division": "私鉄一般",
+        "eigyo": 5.7,
+        "jousha": 0.0,
+        "mijou": 5.7,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "流山線",
+            "eigyo": 5.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "北総鉄道",
+        "division": "私鉄一般",
+        "eigyo": 32.3,
+        "jousha": 0.0,
+        "mijou": 32.3,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "北総線",
+            "eigyo": 32.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "東葉高速鉄道",
+        "division": "私鉄一般",
+        "eigyo": 16.2,
+        "jousha": 0.0,
+        "mijou": 16.2,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "東葉高速線",
+            "eigyo": 16.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "芝山鉄道",
+        "division": "私鉄一般",
+        "eigyo": 2.2,
+        "jousha": 0.0,
+        "mijou": 2.2,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "芝山鉄道線",
+            "eigyo": 2.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "首都圏新都市鉄道",
+        "division": "私鉄一般",
+        "eigyo": 58.3,
+        "jousha": 0.0,
+        "mijou": 58.3,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "つくばエクスプレス線",
+            "eigyo": 58.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "東京臨海高速鉄道",
+        "division": "私鉄一般",
+        "eigyo": 12.2,
+        "jousha": 0.0,
+        "mijou": 12.2,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "りんかい線",
+            "eigyo": 12.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "江ノ島電鉄",
+        "division": "私鉄一般",
+        "eigyo": 10.0,
+        "jousha": 10.0,
+        "mijou": 0.0,
+        "rate": 100.0,
+        "lines": [
+          {
+            "name": "江ノ島電鉄線",
+            "eigyo": 10.0,
+            "jousha": 10.0,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "小田急箱根",
+        "division": "私鉄一般",
+        "eigyo": 16.2,
+        "jousha": 0.0,
+        "mijou": 16.2,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "鉄道線",
+            "eigyo": 15.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "鋼索線",
+            "eigyo": 1.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "伊豆箱根鉄道",
+        "division": "私鉄一般",
+        "eigyo": 29.4,
+        "jousha": 0.0,
+        "mijou": 29.4,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "大雄山線",
+            "eigyo": 9.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "駿豆線",
+            "eigyo": 19.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "横浜高速鉄道",
+        "division": "私鉄一般",
+        "eigyo": 4.1,
+        "jousha": 4.1,
+        "mijou": 0.0,
+        "rate": 100.0,
+        "lines": [
+          {
+            "name": "みなとみらい21線(みなとみらい線)",
+            "eigyo": 4.1,
+            "jousha": 4.1,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "富士山麓電気鉄道",
+        "division": "私鉄一般",
+        "eigyo": 26.6,
+        "jousha": 0.0,
+        "mijou": 26.6,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "大月線",
+            "eigyo": 23.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "河口湖線",
+            "eigyo": 3.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "伊豆急行",
+        "division": "私鉄一般",
+        "eigyo": 45.7,
+        "jousha": 45.7,
+        "mijou": 0.0,
+        "rate": 100.0,
+        "lines": [
+          {
+            "name": "伊豆急行線",
+            "eigyo": 45.7,
+            "jousha": 45.7,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "岳南電車",
+        "division": "私鉄一般",
+        "eigyo": 9.2,
+        "jousha": 0.0,
+        "mijou": 9.2,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "岳南鉄道線",
+            "eigyo": 9.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "静岡鉄道",
+        "division": "私鉄一般",
+        "eigyo": 11.0,
+        "jousha": 0.0,
+        "mijou": 11.0,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "静岡清水線",
+            "eigyo": 11.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "大井川鐵道",
+        "division": "私鉄一般",
+        "eigyo": 65.0,
+        "jousha": 0.0,
+        "mijou": 65.0,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "大井川本線",
+            "eigyo": 39.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "井川線",
+            "eigyo": 25.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "遠州鉄道",
+        "division": "私鉄一般",
+        "eigyo": 17.8,
+        "jousha": 0.0,
+        "mijou": 17.8,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "鉄道線",
+            "eigyo": 17.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "天竜浜名湖鉄道",
+        "division": "私鉄一般",
+        "eigyo": 67.7,
+        "jousha": 0.0,
+        "mijou": 67.7,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "天竜浜名湖線",
+            "eigyo": 67.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "豊橋鉄道",
+        "division": "私鉄一般",
+        "eigyo": 23.4,
+        "jousha": 18.0,
+        "mijou": 5.4,
+        "rate": 76.923,
+        "lines": [
+          {
+            "name": "渥美線",
+            "eigyo": 18.0,
+            "jousha": 18.0,
+            "rate": 100.0
+          },
+          {
+            "name": "東田本線",
+            "eigyo": 4.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "東田本線(支線)",
+            "eigyo": 0.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "名古屋臨海高速鉄道",
+        "division": "私鉄一般",
+        "eigyo": 15.2,
+        "jousha": 0.0,
+        "mijou": 15.2,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "西名古屋港線(あおなみ線)",
+            "eigyo": 15.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "愛知環状鉄道",
+        "division": "私鉄一般",
+        "eigyo": 45.3,
+        "jousha": 0.0,
+        "mijou": 45.3,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "愛知環状鉄道線",
+            "eigyo": 45.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "JR東海交通事業",
+        "division": "私鉄一般",
+        "eigyo": 11.2,
+        "jousha": 0.0,
+        "mijou": 11.2,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "城北線",
+            "eigyo": 11.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "三岐鉄道",
+        "division": "私鉄一般",
+        "eigyo": 47.0,
+        "jousha": 0.0,
+        "mijou": 47.0,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "三岐線",
+            "eigyo": 25.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "近鉄連絡線",
+            "eigyo": 1.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "北勢線",
+            "eigyo": 20.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "伊勢鉄道",
+        "division": "私鉄一般",
+        "eigyo": 22.3,
+        "jousha": 22.3,
+        "mijou": 0.0,
+        "rate": 100.0,
+        "lines": [
+          {
+            "name": "伊勢線",
+            "eigyo": 22.3,
+            "jousha": 22.3,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "伊賀鉄道",
+        "division": "私鉄一般",
+        "eigyo": 16.6,
+        "jousha": 0.0,
+        "mijou": 16.6,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "伊賀線",
+            "eigyo": 16.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "四日市あすなろう鉄道",
+        "division": "私鉄一般",
+        "eigyo": 7.0,
+        "jousha": 0.0,
+        "mijou": 7.0,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "内部線",
+            "eigyo": 5.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "八王子線",
+            "eigyo": 1.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "樽見鉄道",
+        "division": "私鉄一般",
+        "eigyo": 34.5,
+        "jousha": 0.0,
+        "mijou": 34.5,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "樽見線",
+            "eigyo": 34.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "養老鉄道",
+        "division": "私鉄一般",
+        "eigyo": 57.5,
+        "jousha": 43.0,
+        "mijou": 14.5,
+        "rate": 74.783,
+        "lines": [
+          {
+            "name": "養老線",
+            "eigyo": 57.5,
+            "jousha": 43.0,
+            "rate": 74.8
+          }
+        ]
+      },
+      {
+        "name": "明知鉄道",
+        "division": "私鉄一般",
+        "eigyo": 25.1,
+        "jousha": 0.0,
+        "mijou": 25.1,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "明知線",
+            "eigyo": 25.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "長良川鉄道",
+        "division": "私鉄一般",
+        "eigyo": 72.1,
+        "jousha": 0.0,
+        "mijou": 72.1,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "越美南線",
+            "eigyo": 72.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "福井鉄道",
+        "division": "私鉄一般",
+        "eigyo": 21.5,
+        "jousha": 0.0,
+        "mijou": 21.5,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "福武線",
+            "eigyo": 20.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "福武線(田原町方面)",
+            "eigyo": 1.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "えちぜん鉄道",
+        "division": "私鉄一般",
+        "eigyo": 53.0,
+        "jousha": 0.0,
+        "mijou": 53.0,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "勝山永平寺線",
+            "eigyo": 27.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "三国芦原線",
+            "eigyo": 25.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "ハピラインふくい",
+        "division": "私鉄一般",
+        "eigyo": 84.3,
+        "jousha": 84.3,
+        "mijou": 0.0,
+        "rate": 100.0,
+        "lines": [
+          {
+            "name": "ハピラインふくい線",
+            "eigyo": 84.3,
+            "jousha": 84.3,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "近江鉄道",
+        "division": "私鉄一般",
+        "eigyo": 59.5,
+        "jousha": 0.0,
+        "mijou": 59.5,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "本線",
+            "eigyo": 47.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "多賀線",
+            "eigyo": 2.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "八日市線",
+            "eigyo": 9.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "信楽高原鐵道",
+        "division": "私鉄一般",
+        "eigyo": 14.7,
+        "jousha": 0.0,
+        "mijou": 14.7,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "信楽線",
+            "eigyo": 14.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "京都丹後鉄道（WILLER TRAINS）",
+        "division": "私鉄一般",
+        "eigyo": 114.0,
+        "jousha": 91.5,
+        "mijou": 22.5,
+        "rate": 80.263,
+        "lines": [
+          {
+            "name": "宮福線",
+            "eigyo": 30.4,
+            "jousha": 30.4,
+            "rate": 100.0
+          },
+          {
+            "name": "宮津線(宮舞線・宮豊線)",
+            "eigyo": 83.6,
+            "jousha": 61.1,
+            "rate": 73.1
+          }
+        ]
+      },
+      {
+        "name": "嵯峨野観光鉄道",
+        "division": "私鉄一般",
+        "eigyo": 7.3,
+        "jousha": 0.0,
+        "mijou": 7.3,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "嵯峨野観光線",
+            "eigyo": 7.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "叡山電鉄",
+        "division": "私鉄一般",
+        "eigyo": 14.4,
+        "jousha": 0.0,
+        "mijou": 14.4,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "叡山本線",
+            "eigyo": 5.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "鞍馬線",
+            "eigyo": 8.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "京福電気鉄道",
+        "division": "私鉄一般",
+        "eigyo": 12.3,
+        "jousha": 0.0,
+        "mijou": 12.3,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "嵐山本線",
+            "eigyo": 7.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "北野線",
+            "eigyo": 3.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "鋼索線(叡山ケーブル)",
+            "eigyo": 1.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "大阪市高速電気軌道",
+        "division": "私鉄一般",
+        "eigyo": 141.0,
+        "jousha": 7.6,
+        "mijou": 133.4,
+        "rate": 5.39,
+        "lines": [
+          {
+            "name": "御堂筋線(1号線)",
+            "eigyo": 24.5,
+            "jousha": 7.6,
+            "rate": 31.0
+          },
+          {
+            "name": "谷町線(2号線)",
+            "eigyo": 28.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "四つ橋線(3号線)",
+            "eigyo": 11.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "中央線(4号線)",
+            "eigyo": 21.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "千日前線(5号線)",
+            "eigyo": 12.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "堺筋線(6号線)",
+            "eigyo": 8.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "長堀鶴見緑地線(7号線)",
+            "eigyo": 15.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "今里筋線(8号線)",
+            "eigyo": 11.9,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "南港ポートタウン線(ニュートラム)",
+            "eigyo": 7.9,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "水間鉄道",
+        "division": "私鉄一般",
+        "eigyo": 5.5,
+        "jousha": 0.0,
+        "mijou": 5.5,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "水間線",
+            "eigyo": 5.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "阪堺電気軌道",
+        "division": "私鉄一般",
+        "eigyo": 18.3,
+        "jousha": 0.0,
+        "mijou": 18.3,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "阪堺線",
+            "eigyo": 14.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "上町線",
+            "eigyo": 4.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "紀州鉄道",
+        "division": "私鉄一般",
+        "eigyo": 2.7,
+        "jousha": 0.0,
+        "mijou": 2.7,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "紀州鉄道線",
+            "eigyo": 2.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "和歌山電鐵",
+        "division": "私鉄一般",
+        "eigyo": 14.3,
+        "jousha": 0.0,
+        "mijou": 14.3,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "貴志川線",
+            "eigyo": 14.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "神戸電鉄",
+        "division": "私鉄一般",
+        "eigyo": 69.6,
+        "jousha": 0.0,
+        "mijou": 69.6,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "有馬線",
+            "eigyo": 22.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "三田線",
+            "eigyo": 12.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "公園都市線",
+            "eigyo": 5.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "粟生線",
+            "eigyo": 29.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "神戸高速線",
+            "eigyo": 0.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "能勢電鉄",
+        "division": "私鉄一般",
+        "eigyo": 14.8,
+        "jousha": 10.8,
+        "mijou": 4.0,
+        "rate": 72.973,
+        "lines": [
+          {
+            "name": "妙見線",
+            "eigyo": 12.2,
+            "jousha": 8.2,
+            "rate": 67.2
+          },
+          {
+            "name": "日生線",
+            "eigyo": 2.6,
+            "jousha": 2.6,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "北条鉄道",
+        "division": "私鉄一般",
+        "eigyo": 13.6,
+        "jousha": 0.0,
+        "mijou": 13.6,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "北条線",
+            "eigyo": 13.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "水島臨海鉄道",
+        "division": "私鉄一般",
+        "eigyo": 10.4,
+        "jousha": 0.0,
+        "mijou": 10.4,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "水島本線",
+            "eigyo": 10.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "岡山電気軌道",
+        "division": "私鉄一般",
+        "eigyo": 4.7,
+        "jousha": 0.0,
+        "mijou": 4.7,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "東山本線",
+            "eigyo": 3.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "清輝橋線",
+            "eigyo": 1.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "井原鉄道",
+        "division": "私鉄一般",
+        "eigyo": 41.7,
+        "jousha": 0.0,
+        "mijou": 41.7,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "井原線",
+            "eigyo": 41.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "広島電鉄",
+        "division": "私鉄一般",
+        "eigyo": 35.8,
+        "jousha": 0.0,
+        "mijou": 35.8,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "本線",
+            "eigyo": 5.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "宇品線",
+            "eigyo": 5.9,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "江波線",
+            "eigyo": 2.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "横川線",
+            "eigyo": 1.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "皆実線",
+            "eigyo": 2.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "白島線",
+            "eigyo": 1.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "循環線",
+            "eigyo": 1.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "宮島線",
+            "eigyo": 16.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "錦川鉄道",
+        "division": "私鉄一般",
+        "eigyo": 32.7,
+        "jousha": 0.0,
+        "mijou": 32.7,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "錦川清流線",
+            "eigyo": 32.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "智頭急行",
+        "division": "私鉄一般",
+        "eigyo": 56.1,
+        "jousha": 56.1,
+        "mijou": 0.0,
+        "rate": 100.0,
+        "lines": [
+          {
+            "name": "智頭急行線",
+            "eigyo": 56.1,
+            "jousha": 56.1,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "若桜鉄道",
+        "division": "私鉄一般",
+        "eigyo": 19.2,
+        "jousha": 0.0,
+        "mijou": 19.2,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "若桜線",
+            "eigyo": 19.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "一畑電車",
+        "division": "私鉄一般",
+        "eigyo": 42.2,
+        "jousha": 42.2,
+        "mijou": 0.0,
+        "rate": 100.0,
+        "lines": [
+          {
+            "name": "北松江線",
+            "eigyo": 33.9,
+            "jousha": 33.9,
+            "rate": 100.0
+          },
+          {
+            "name": "大社線",
+            "eigyo": 8.3,
+            "jousha": 8.3,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "高松琴平電気鉄道",
+        "division": "私鉄一般",
+        "eigyo": 60.0,
+        "jousha": 32.9,
+        "mijou": 27.1,
+        "rate": 54.833,
+        "lines": [
+          {
+            "name": "琴平線",
+            "eigyo": 32.9,
+            "jousha": 32.9,
+            "rate": 100.0
+          },
+          {
+            "name": "長尾線",
+            "eigyo": 14.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "志度線",
+            "eigyo": 12.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "伊予鉄道",
+        "division": "私鉄一般",
+        "eigyo": 43.5,
+        "jousha": 0.0,
+        "mijou": 43.5,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "高浜線",
+            "eigyo": 9.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "横河原線",
+            "eigyo": 13.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "郡中線",
+            "eigyo": 11.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "城北線",
+            "eigyo": 2.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "城南線",
+            "eigyo": 3.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "城南線(大手町線側)",
+            "eigyo": 0.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "本町線",
+            "eigyo": 1.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "大手町線",
+            "eigyo": 1.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "花園線",
+            "eigyo": 0.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "とさでん交通",
+        "division": "私鉄一般",
+        "eigyo": 25.3,
+        "jousha": 0.0,
+        "mijou": 25.3,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "伊野線",
+            "eigyo": 11.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "後免線",
+            "eigyo": 10.9,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "桟橋線",
+            "eigyo": 3.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "土佐くろしお鉄道",
+        "division": "私鉄一般",
+        "eigyo": 109.3,
+        "jousha": 43.0,
+        "mijou": 66.3,
+        "rate": 39.341,
+        "lines": [
+          {
+            "name": "中村線",
+            "eigyo": 43.0,
+            "jousha": 43.0,
+            "rate": 100.0
+          },
+          {
+            "name": "宿毛線",
+            "eigyo": 23.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "阿佐線(ごめん・なはり線)",
+            "eigyo": 42.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "阿佐海岸鉄道",
+        "division": "私鉄一般",
+        "eigyo": 10.0,
+        "jousha": 0.0,
+        "mijou": 10.0,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "阿佐東線",
+            "eigyo": 10.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "筑豊電気鉄道",
+        "division": "私鉄一般",
+        "eigyo": 16.0,
+        "jousha": 0.0,
+        "mijou": 16.0,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "筑豊電気鉄道",
+            "eigyo": 16.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "甘木鉄道",
+        "division": "私鉄一般",
+        "eigyo": 13.7,
+        "jousha": 0.0,
+        "mijou": 13.7,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "甘木線",
+            "eigyo": 13.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "平成筑豊鉄道",
+        "division": "私鉄一般",
+        "eigyo": 51.3,
+        "jousha": 0.0,
+        "mijou": 51.3,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "伊田線",
+            "eigyo": 16.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "糸田線",
+            "eigyo": 6.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "田川線",
+            "eigyo": 26.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "門司港レトロ観光線",
+            "eigyo": 2.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "長崎電気軌道",
+        "division": "私鉄一般",
+        "eigyo": 11.5,
+        "jousha": 0.0,
+        "mijou": 11.5,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "赤迫支線",
+            "eigyo": 0.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "本線",
+            "eigyo": 7.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "桜町支線",
+            "eigyo": 0.9,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "大浦支線",
+            "eigyo": 1.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "蛍茶屋支線",
+            "eigyo": 2.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "松浦鉄道",
+        "division": "私鉄一般",
+        "eigyo": 93.8,
+        "jousha": 93.8,
+        "mijou": 0.0,
+        "rate": 100.0,
+        "lines": [
+          {
+            "name": "西九州線",
+            "eigyo": 93.8,
+            "jousha": 93.8,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "島原鉄道",
+        "division": "私鉄一般",
+        "eigyo": 43.2,
+        "jousha": 0.0,
+        "mijou": 43.2,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "島原鉄道線",
+            "eigyo": 43.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "熊本電気鉄道",
+        "division": "私鉄一般",
+        "eigyo": 12.9,
+        "jousha": 0.0,
+        "mijou": 12.9,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "菊池線",
+            "eigyo": 10.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "藤崎線",
+            "eigyo": 2.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "肥薩おれんじ鉄道",
+        "division": "私鉄一般",
+        "eigyo": 116.9,
+        "jousha": 116.9,
+        "mijou": 0.0,
+        "rate": 100.0,
+        "lines": [
+          {
+            "name": "肥薩おれんじ鉄道線",
+            "eigyo": 116.9,
+            "jousha": 116.9,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "南阿蘇鉄道",
+        "division": "私鉄一般",
+        "eigyo": 17.7,
+        "jousha": 0.0,
+        "mijou": 17.7,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "高森線",
+            "eigyo": 17.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "くま川鉄道",
+        "division": "私鉄一般",
+        "eigyo": 24.8,
+        "jousha": 0.0,
+        "mijou": 24.8,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "湯前線",
+            "eigyo": 24.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "千葉都市モノレール",
+        "division": "モノレール",
+        "eigyo": 15.2,
+        "jousha": 6.6,
+        "mijou": 8.6,
+        "rate": 43.421,
+        "lines": [
+          {
+            "name": "1号線",
+            "eigyo": 3.2,
+            "jousha": 3.2,
+            "rate": 100.0
+          },
+          {
+            "name": "2号線",
+            "eigyo": 12.0,
+            "jousha": 3.4,
+            "rate": 28.3
+          }
+        ]
+      },
+      {
+        "name": "舞浜リゾートライン",
+        "division": "モノレール",
+        "eigyo": 5.0,
+        "jousha": 0.0,
+        "mijou": 5.0,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "ディズニーリゾートライン",
+            "eigyo": 5.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "東京モノレール",
+        "division": "モノレール",
+        "eigyo": 17.8,
+        "jousha": 17.8,
+        "mijou": 0.0,
+        "rate": 100.0,
+        "lines": [
+          {
+            "name": "東京モノレール羽田空港線",
+            "eigyo": 17.8,
+            "jousha": 17.8,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "多摩都市モノレール",
+        "division": "モノレール",
+        "eigyo": 16.0,
+        "jousha": 0.0,
+        "mijou": 16.0,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "多摩都市モノレール線",
+            "eigyo": 16.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "湘南モノレール",
+        "division": "モノレール",
+        "eigyo": 6.6,
+        "jousha": 6.6,
+        "mijou": 0.0,
+        "rate": 100.0,
+        "lines": [
+          {
+            "name": "江の島線",
+            "eigyo": 6.6,
+            "jousha": 6.6,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "大阪モノレール",
+        "division": "モノレール",
+        "eigyo": 28.0,
+        "jousha": 0.0,
+        "mijou": 28.0,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "大阪モノレール線",
+            "eigyo": 21.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "国際文化公園都市線(彩都線)",
+            "eigyo": 6.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "北九州高速鉄道",
+        "division": "モノレール",
+        "eigyo": 8.8,
+        "jousha": 0.0,
+        "mijou": 8.8,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "小倉線",
+            "eigyo": 8.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "沖縄都市モノレール",
+        "division": "モノレール",
+        "eigyo": 17.0,
+        "jousha": 0.0,
+        "mijou": 17.0,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "沖縄都市モノレール線(ゆいレール)",
+            "eigyo": 17.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "埼玉新都市交通",
+        "division": "新交通システム",
+        "eigyo": 12.7,
+        "jousha": 0.0,
+        "mijou": 12.7,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "伊奈線",
+            "eigyo": 12.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "山万",
+        "division": "新交通システム",
+        "eigyo": 4.1,
+        "jousha": 0.0,
+        "mijou": 4.1,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "ユーカリが丘線",
+            "eigyo": 4.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "ゆりかもめ",
+        "division": "新交通システム",
+        "eigyo": 14.7,
+        "jousha": 7.0,
+        "mijou": 7.7,
+        "rate": 47.619,
+        "lines": [
+          {
+            "name": "東京臨海新交通臨海線",
+            "eigyo": 14.7,
+            "jousha": 7.0,
+            "rate": 47.6
+          }
+        ]
+      },
+      {
+        "name": "横浜シーサイドライン",
+        "division": "新交通システム",
+        "eigyo": 10.8,
+        "jousha": 0.0,
+        "mijou": 10.8,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "金沢シーサイド線",
+            "eigyo": 10.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "名古屋ガイドウェイバス",
+        "division": "新交通システム",
+        "eigyo": 6.5,
+        "jousha": 0.0,
+        "mijou": 6.5,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "ガイドウェイバス志段味線",
+            "eigyo": 6.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "神戸新交通",
+        "division": "新交通システム",
+        "eigyo": 15.3,
+        "jousha": 0.0,
+        "mijou": 15.3,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "ポートアイランド線",
+            "eigyo": 6.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "ポートアイランド線(空港方面)",
+            "eigyo": 4.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          },
+          {
+            "name": "六甲アイランド線",
+            "eigyo": 4.5,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "広島高速交通",
+        "division": "新交通システム",
+        "eigyo": 18.4,
+        "jousha": 0.0,
+        "mijou": 18.4,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "広島新交通1号線(アストラムライン)",
+            "eigyo": 18.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "青函トンネル記念館",
+        "division": "ケーブルカー等専業",
+        "eigyo": 0.8,
+        "jousha": 0.0,
+        "mijou": 0.8,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "青函トンネル竜飛斜坑線",
+            "eigyo": 0.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "立山黒部貫光",
+        "division": "ケーブルカー等専業",
+        "eigyo": 2.1,
+        "jousha": 2.1,
+        "mijou": 0.0,
+        "rate": 100.0,
+        "lines": [
+          {
+            "name": "鋼索線(黒部ケーブルカー)",
+            "eigyo": 0.8,
+            "jousha": 0.8,
+            "rate": 100.0
+          },
+          {
+            "name": "鋼索線(立山ケーブルカー)",
+            "eigyo": 1.3,
+            "jousha": 1.3,
+            "rate": 100.0
+          }
+        ]
+      },
+      {
+        "name": "筑波観光鉄道",
+        "division": "ケーブルカー等専業",
+        "eigyo": 1.6,
+        "jousha": 0.0,
+        "mijou": 1.6,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "筑波山鋼索鉄道線",
+            "eigyo": 1.6,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "高尾登山電鉄",
+        "division": "ケーブルカー等専業",
+        "eigyo": 1.0,
+        "jousha": 0.0,
+        "mijou": 1.0,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "ケーブルカー",
+            "eigyo": 1.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "御岳登山鉄道",
+        "division": "ケーブルカー等専業",
+        "eigyo": 1.0,
+        "jousha": 0.0,
+        "mijou": 1.0,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "ケーブルカー",
+            "eigyo": 1.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "大山観光電鉄",
+        "division": "ケーブルカー等専業",
+        "eigyo": 0.8,
+        "jousha": 0.0,
+        "mijou": 0.8,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "大山鋼索線",
+            "eigyo": 0.8,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "十国峠",
+        "division": "ケーブルカー等専業",
+        "eigyo": 0.3,
+        "jousha": 0.0,
+        "mijou": 0.3,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "十国鋼索線",
+            "eigyo": 0.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "比叡山鉄道",
+        "division": "ケーブルカー等専業",
+        "eigyo": 2.0,
+        "jousha": 0.0,
+        "mijou": 2.0,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "比叡山鉄道線(坂本ケーブル)",
+            "eigyo": 2.0,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "鞍馬寺",
+        "division": "ケーブルカー等専業",
+        "eigyo": 0.2,
+        "jousha": 0.0,
+        "mijou": 0.2,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "鞍馬山鋼索鉄道線",
+            "eigyo": 0.2,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "丹後海陸交通",
+        "division": "ケーブルカー等専業",
+        "eigyo": 0.4,
+        "jousha": 0.0,
+        "mijou": 0.4,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "天橋立鋼索鉄道",
+            "eigyo": 0.4,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "神戸六甲鉄道",
+        "division": "ケーブルカー等専業",
+        "eigyo": 1.7,
+        "jousha": 0.0,
+        "mijou": 1.7,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "六甲ケーブル線",
+            "eigyo": 1.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "こうべ未来都市機構",
+        "division": "ケーブルカー等専業",
+        "eigyo": 0.9,
+        "jousha": 0.0,
+        "mijou": 0.9,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "摩耶ケーブル線",
+            "eigyo": 0.9,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "四国ケーブル",
+        "division": "ケーブルカー等専業",
+        "eigyo": 0.7,
+        "jousha": 0.0,
+        "mijou": 0.7,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "八栗ケーブル",
+            "eigyo": 0.7,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "皿倉登山鉄道",
+        "division": "ケーブルカー等専業",
+        "eigyo": 1.1,
+        "jousha": 0.0,
+        "mijou": 1.1,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "皿倉山ケーブルカー",
+            "eigyo": 1.1,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "ラクテンチ",
+        "division": "ケーブルカー等専業",
+        "eigyo": 0.3,
+        "jousha": 0.0,
+        "mijou": 0.3,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "別府ラクテンチケーブル線",
+            "eigyo": 0.3,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      },
+      {
+        "name": "愛知高速交通",
+        "division": "浮上式",
+        "eigyo": 8.9,
+        "jousha": 0.0,
+        "mijou": 8.9,
+        "rate": 0.0,
+        "lines": [
+          {
+            "name": "東部丘陵線",
+            "eigyo": 8.9,
+            "jousha": 0.0,
+            "rate": 0.0
+          }
+        ]
+      }
+    ]
+  }
+}

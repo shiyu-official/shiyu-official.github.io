@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CRY661TJ9H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-CRY661TJ9H');
+</script>
+<title>旅の記録｜-志遊- shiyu's station</title>
+<meta name="description" content="鉄道各社の乗りつぶし、市区町村踏破、名所制覇、ドーミーイン踏破の記録。">
+<link rel="canonical" href="https://shiyu-official.github.io/kiroku.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="-志遊-｜shiyu's station">
+<meta property="og:title" content="旅の記録｜-志遊- shiyu's station">
+<meta property="og:description" content="乗りつぶし・市区町村踏破・名所制覇・ドーミーイン踏破の記録。">
+<meta property="og:url" content="https://shiyu-official.github.io/kiroku.html">
+<meta property="og:image" content="https://shiyu-official.github.io/images/ogp.png">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://shiyu-official.github.io/images/ogp.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/reveal.css">
+<style>
+  .placeholder { text-align:center; padding: clamp(1.5rem,4vw,3rem) 1rem; }
+  .placeholder .badge-soon { display:inline-block; font-family:var(--accent-font); letter-spacing:.2em; text-transform:uppercase;
+    color:var(--primary-color); border:1px solid var(--primary-color); border-radius:999px; padding:.3em 1.2em; margin-bottom:.8rem; }
+  .placeholder p { color:var(--muted-color); }
+
+  /* ---- 共通ヘッドライン（大きな達成数字）---- */
+  .k-headline { text-align:center; margin: 0 auto clamp(1.4rem,3vw,2.2rem); }
+  .k-headline .pct { font-family:var(--accent-font); font-weight:600; color:var(--primary-dark-color);
+    font-size:clamp(2.8rem,9vw,4.8rem); line-height:1; letter-spacing:.02em; }
+  .k-headline .pct .unit { font-size:.42em; color:var(--muted-color); margin-left:.15em; }
+  .k-headline .frac { margin-top:.5rem; font-weight:500; letter-spacing:.04em; }
+  .k-headline .frac .accent { color:var(--accent-color); }
+  .k-headline .subs { margin-top:.35rem; color:var(--muted-color); font-size:.85rem; letter-spacing:.03em; }
+
+  /* ---- 乗りつぶし（JR / 私鉄ブロック）---- */
+  .rail-block { margin:0 auto clamp(1.8rem,4vw,2.8rem); }
+  .rail-block:last-child { margin-bottom:0; }
+  .rail-sub { text-align:center; font-family:var(--accent-font); letter-spacing:.22em; text-transform:uppercase;
+    color:var(--primary-dark-color); font-size:1.05rem; margin:0 0 .6rem; }
+  .rail-block .k-headline .pct { font-size:clamp(2.2rem,7vw,3.4rem); }
+  .krow { display:grid; grid-template-columns:1fr; gap:.1rem 2.4rem; align-items:start; }
+  @media (min-width:820px){ .krow { grid-template-columns:1fr 1fr; } }
+
+  /* ---- 乗りつぶし率バー（既存踏襲）---- */
+  .kcell { border-bottom:1px dashed var(--bg-border-color); }
+  .kline { display:grid; grid-template-columns: 1fr auto; gap:.3rem 1rem; align-items:baseline;
+    width:100%; text-align:left; background:none; border:0; font:inherit; color:inherit; padding:.9rem .3rem; border-radius:6px; }
+  button.kline { cursor:pointer; transition:background .15s; }
+  button.kline:hover { background:var(--light-color); }
+  .kline .kname { font-weight:500; letter-spacing:.04em; }
+  .kline .chev { display:inline-block; margin-left:.4em; font-size:.62em; color:var(--muted-color); transition:transform .2s; vertical-align:.1em; }
+  .kline[aria-expanded="true"] .chev { transform:rotate(180deg); }
+  .kline .kval { color:var(--muted-color); font-size:.9rem; white-space:nowrap; }
+  .kbar { grid-column:1 / -1; height:8px; border-radius:999px; background:var(--light-color); overflow:hidden; }
+  .kbar span { display:block; height:100%; border-radius:999px; background:linear-gradient(90deg,var(--primary-color),var(--primary-dark-color)); }
+  .kline .knote { grid-column:1 / -1; color:var(--muted-color); font-size:.82rem; }
+  .kline.is-full .kbar span { background:linear-gradient(90deg,var(--accent-color),#e0561f); }
+  .kline.is-full .kname::after { content:"完乗"; margin-left:.5em; font-size:.62em; letter-spacing:.12em;
+    color:var(--accent-color); border:1px solid var(--accent-color); border-radius:999px; padding:.15em .7em; vertical-align:.12em; }
+  .kdetail { padding:.1rem .3rem .8rem; }
+  .kdetail .lrow { display:grid; grid-template-columns:1fr auto; gap:.1rem .8rem; align-items:baseline; padding:.35rem 0; border-bottom:1px dotted var(--bg-border-color); }
+  .kdetail .lrow:last-child { border-bottom:0; }
+  .kdetail .lname { font-size:.86rem; }
+  .kdetail .lval { font-size:.78rem; color:var(--muted-color); white-space:nowrap; }
+  .kdetail .lbar { grid-column:1 / -1; height:4px; border-radius:999px; background:var(--light-color); overflow:hidden; margin-top:.1rem; }
+  .kdetail .lbar span { display:block; height:100%; background:linear-gradient(90deg,var(--primary-color),var(--primary-dark-color)); }
+  .kdetail .lrow.lfull .lbar span { background:linear-gradient(90deg,var(--accent-color),#e0561f); }
+
+  /* ---- 都道府県ランキング（市区町村踏破）---- */
+  .pref-note { text-align:center; color:var(--muted-color); font-size:.85rem; margin:-.4rem auto 1.4rem; }
+  .pref-note .full-list { color:var(--accent-color); }
+  .pref-grid { margin: 0 auto; display:grid; grid-template-columns:1fr; gap:.1rem 2.2rem; align-items:start; }
+  .pref-cell { border-bottom:1px dashed var(--bg-border-color); }
+  .pref-row { display:grid; grid-template-columns: 2.2em 1fr auto; gap:.25rem .7rem; align-items:baseline;
+    width:100%; text-align:left; background:none; border:0; cursor:pointer; font:inherit; color:inherit;
+    padding:.7rem .3rem; border-radius:6px; transition:background .15s; }
+  .pref-row:hover { background:var(--light-color); }
+  .pref-row .rank { font-family:var(--accent-font); color:var(--muted-color); font-size:.9rem; text-align:right; }
+  .pref-row .pname { font-weight:500; letter-spacing:.03em; }
+  .pref-row .chev { display:inline-block; margin-left:.4em; font-size:.62em; color:var(--muted-color); transition:transform .2s; vertical-align:.1em; }
+  .pref-row[aria-expanded="true"] .chev { transform:rotate(180deg); }
+  .pref-row .pval { color:var(--muted-color); font-size:.85rem; white-space:nowrap; }
+  .pref-row .pbar { grid-column:1 / -1; height:6px; border-radius:999px; background:var(--light-color); overflow:hidden; margin-top:.15rem; }
+  .pref-row .pbar span { display:block; height:100%; border-radius:999px; background:linear-gradient(90deg,var(--primary-color),var(--primary-dark-color)); }
+  .pref-row.is-full .pname::after { content:"踏破"; margin-left:.5em; font-size:.62em; letter-spacing:.12em;
+    color:var(--accent-color); border:1px solid var(--accent-color); border-radius:999px; padding:.15em .7em; vertical-align:.15em; }
+  .pref-row.is-full .pbar span { background:linear-gradient(90deg,var(--accent-color),#e0561f); }
+  .pref-detail { padding:.2rem .3rem .9rem; }
+  .pref-detail .cities { display:flex; flex-wrap:wrap; gap:.35rem; }
+  .pref-detail .city { font-size:.8rem; letter-spacing:.01em; color:var(--primary-dark-color);
+    background:var(--light-color); border-radius:999px; padding:.2em .8em; }
+  .pref-detail .none { color:var(--muted-color); font-size:.82rem; }
+  @media (min-width:640px){ .pref-grid { grid-template-columns:1fr 1fr; } }
+  @media (min-width:980px){ .pref-grid { grid-template-columns:1fr 1fr 1fr; } }
+  @media (min-width:1400px){ .pref-grid { grid-template-columns:1fr 1fr 1fr 1fr; } }
+
+  /* ---- 名所制覇 ---- */
+  .spot-cats { display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%,320px),1fr)); gap:1rem; }
+  .spot-cat { border:1px solid var(--bg-border-color); border-radius:var(--radius); background:var(--bg-color);
+    padding:1.1rem 1.2rem; box-shadow:var(--shadow-1); }
+  .spot-cat__head { display:flex; align-items:center; gap:.6rem; margin-bottom:.2rem; }
+  .spot-cat__icon { font-size:1.3rem; line-height:1; }
+  .spot-cat__name { font-weight:600; letter-spacing:.03em; }
+  .spot-cat__count { margin-left:auto; font-family:var(--accent-font); font-size:1.05rem; color:var(--primary-dark-color); white-space:nowrap; }
+  .spot-cat__count.is-complete { color:var(--accent-color); }
+  .spot-cat__desc { color:var(--muted-color); font-size:.8rem; line-height:1.6; margin:.1rem 0 .8rem; }
+  .spot-chips { display:flex; flex-wrap:wrap; gap:.4rem; }
+  .spot-chip { display:inline-flex; align-items:center; gap:.35em; font-size:.82rem; letter-spacing:.02em;
+    border-radius:999px; padding:.25em .9em; border:1px solid var(--bg-border-color); color:var(--muted-color); }
+  .spot-chip.is-visited { background:var(--light-color); border-color:var(--primary-color); color:var(--primary-dark-color); font-weight:500; }
+  .spot-chip.is-visited::before { content:"\f00c"; font-family:"Font Awesome 6 Free"; font-weight:900; font-size:.7em; color:var(--primary-color); }
+  .spot-chip .pref { font-size:.85em; opacity:.7; }
+
+  /* ---- ドーミーイン踏破（ブランド別アコーディオン）---- */
+  .dbrand { margin:0 auto; border-bottom:1px dashed var(--bg-border-color); }
+  .dbrand__head { display:grid; grid-template-columns:1fr auto; align-items:baseline; gap:1rem;
+    width:100%; text-align:left; background:none; border:0; font:inherit; color:inherit; cursor:pointer;
+    padding:1.1rem .3rem; border-radius:6px; transition:background .15s; }
+  .dbrand__head:hover { background:var(--light-color); }
+  .dbrand__name { font-weight:600; letter-spacing:.04em; font-size:1.05rem; }
+  .dbrand__name .chev { display:inline-block; margin-left:.5em; font-size:.6em; color:var(--muted-color); transition:transform .2s; vertical-align:.15em; }
+  .dbrand__head[aria-expanded="true"] .chev { transform:rotate(180deg); }
+  .dbrand__count { font-family:var(--accent-font); color:var(--primary-dark-color); font-size:1.05rem; white-space:nowrap; }
+  .dbrand__count .cv { color:var(--accent-color); }
+  .dbrand__body { padding:.2rem .3rem 1.4rem; }
+  .dregion { margin:1rem 0 .3rem; font-size:.8rem; letter-spacing:.14em; color:var(--muted-color); }
+  .dregion:first-child { margin-top:.3rem; }
+
+  .dcards { display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%,240px),1fr)); gap:1rem; margin-bottom:.6rem; }
+  .dcard { border:1px solid var(--bg-border-color); border-radius:var(--radius); overflow:hidden; background:var(--bg-color); box-shadow:var(--shadow-1); }
+  .dcard__thumb { position:relative; aspect-ratio:4/3; background:var(--light-color); }
+  .dcard__thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+  .dcard__tag { position:absolute; top:.5rem; left:.5rem; font-size:.66rem; letter-spacing:.1em;
+    background:rgba(31,58,90,.86); color:#fff; border-radius:999px; padding:.2em .8em; }
+  .dcard__tag.is-nono { background:rgba(176,63,32,.9); }
+  .dcard__tag.is-resort { background:rgba(58,110,74,.9); }
+  .dcard__body { padding:.7rem .85rem .85rem; }
+  .dcard__name { font-weight:600; letter-spacing:.02em; line-height:1.4; }
+  .dcard__onsen { color:var(--muted-color); font-size:.78rem; margin-top:.15rem; }
+  .dcard__meta { margin-top:.5rem; font-size:.76rem; color:var(--muted-color); display:flex; justify-content:space-between; gap:.5rem; }
+  .dcard__meta .nights { color:var(--primary-dark-color); }
+
+  .dun { display:flex; flex-wrap:wrap; gap:.3rem .5rem; }
+  .dun__item { font-size:.8rem; color:var(--muted-color); background:var(--light-color); border-radius:6px; padding:.3em .7em; }
+  .dun__item .loc { opacity:.7; font-size:.9em; margin-left:.2em; }
+  .dun-head { font-size:.8rem; color:var(--muted-color); margin:1rem 0 .4rem; letter-spacing:.06em; }
+</style>
+<meta name="theme-color" content="#5c89af">
+</head>
+<body>
+<div id="site">
+  <a class="skip" href="#content">本文へスキップ</a>
+  <header>
+    <a class="logo" href="index.html" aria-label="志遊 トップへ"><img src="images/logo.png" alt="-志遊- shiyu's station"></a>
+    <nav class="nav-menu" id="site-nav" aria-label="メインメニュー">
+      <ul>
+        <li><a href="index.html">ホーム</a></li>
+        <li class="has-drawer"><a href="index.html#latest">動画 <i class="fa-solid fa-chevron-down" aria-hidden="true" style="font-size:.7em;"></i></a>
+          <div class="sub"><a href="index.html#latest">最新動画</a><a href="index.html#rail">旅行・交通</a><a href="index.html#taiko">太鼓の達人</a></div></li>
+        <li><a href="index.html#category">カテゴリ</a></li>
+        <li><a href="blog.html">ブログ</a></li>
+        <li><a href="kiroku.html" aria-current="page">旅の記録</a></li>
+        <li><a href="index.html#links">チャンネル</a></li>
+        <li><a href="contact.html">お問い合わせ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div id="stage">
+  <main id="content">
+    <section class="band">
+      <div class="wrap">
+        <div class="band-head reveal" style="text-align:center;">
+          <span class="kicker">Records</span>
+          <h1 class="band-title">旅の記録</h1>
+          <p class="lead" style="margin-inline:auto;">乗りつぶし・踏破・宿泊の記録を、少しずつ積み上げていきます。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="noritsubushi" class="band band--light band--tight">
+      <div class="wrap">
+        <div class="band-head reveal"><span class="kicker">Lines</span><h2 class="band-title">鉄道 乗りつぶし</h2></div>
+        <div class="placeholder reveal" id="rail-empty"><span class="badge-soon">準備中</span><p>各社ごとの達成率を順次掲載します。</p></div>
+        <div class="reveal" id="rail-body" hidden>
+          <div class="rail-block">
+            <h3 class="rail-sub">JR</h3>
+            <div class="k-headline" id="jr-headline"></div>
+            <div class="krow" id="jr-list"></div>
+          </div>
+          <div class="rail-block">
+            <h3 class="rail-sub">私鉄・公営・その他</h3>
+            <div class="k-headline" id="pr-headline"></div>
+            <div class="krow" id="pr-list"></div>
+            <p class="pref-note" id="pr-note">区分別の達成率です。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="touha" class="band band--tight">
+      <div class="wrap">
+        <div class="band-head reveal"><span class="kicker">Municipalities</span><h2 class="band-title">市区町村 踏破</h2></div>
+        <div class="placeholder reveal" id="muni-empty"><span class="badge-soon">準備中</span><p>訪れた市区町村を記録します。</p></div>
+        <div class="reveal" id="muni-body" hidden>
+          <div class="k-headline" id="muni-headline"></div>
+          <p class="pref-note" id="muni-prefnote"></p>
+          <div class="pref-grid" id="muni-pref"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="spots" class="band band--light band--tight">
+      <div class="wrap">
+        <div class="band-head reveal"><span class="kicker">Spots</span><h2 class="band-title">名所制覇</h2></div>
+        <div class="placeholder reveal" id="spots-empty"><span class="badge-soon">準備中</span><p>三名泉・三景など、日本各地の名所巡りの記録です。</p></div>
+        <div class="reveal" id="spots-body" hidden>
+          <div class="k-headline" id="spots-headline"></div>
+          <div class="spot-cats" id="spots-cats"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="dormy" class="band band--tight">
+      <div class="wrap">
+        <div class="band-head reveal"><span class="kicker">Dormy Inn</span><h2 class="band-title">ドーミーイン踏破</h2></div>
+        <div class="placeholder reveal" id="dormy-empty"><span class="badge-soon">準備中</span><p>宿泊したドーミーインの記録を掲載予定です。</p></div>
+        <div class="reveal" id="dormy-body" hidden>
+          <div class="k-headline" id="dormy-headline"></div>
+          <div id="dormy-brands"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer__inner">
+      <div class="footer__brand"><img loading="lazy" src="images/logo.png" alt="-志遊- shiyu's station"><p>旅と鉄道、太鼓の達人。<br>記憶と記録のすべてを、今ここで。</p></div>
+      <nav class="footer__map" aria-label="サイトマップ"><ul>
+        <li><a href="index.html">ホーム</a></li><li><a href="index.html#rail">旅行・交通</a></li>
+        <li><a href="index.html#taiko">太鼓の達人</a></li><li><a href="kiroku.html">旅の記録</a></li>
+        <li><a href="blog.html">ブログ</a></li><li><a href="contact.html">お問い合わせ</a></li>
+        <li><a href="privacy.html">プライバシーポリシー</a></li>
+      </ul></nav>
+      <div class="footer__sns">
+        <a href="https://www.youtube.com/@Re_shiyu_travel" target="_blank" rel="noopener" aria-label="Re:しゆ YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.youtube.com/@Re_shiyu_taiko" target="_blank" rel="noopener" aria-label="太鼓の達人 YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://x.com/shiyu_official_" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+    </div>
+    <p class="copyright">© 2026 しゆ（shiyu）｜shiyu's station</p>
+  </footer>
+  </div>
+  <div id="nav-scrim"></div>
+</div>
+<button class="burger" id="nav-toggle" type="button" aria-label="メニューを開閉" aria-expanded="false" aria-controls="site-nav"><span class="burger__lines" aria-hidden="true"><span></span><span></span><span></span></span></button>
+<button class="to-top" type="button" aria-label="ページ上部へ戻る"><i class="fa-solid fa-chevron-up"></i></button>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="js/reveal.js"></script>
+<script src="js/main.js"></script>
+<script>
+/* =========================================================
+   旅の記録レンダラ
+   ・鉄道 乗りつぶし         … data/rail.json（build_rail.py が生成）
+   ・ドーミーイン踏破       … data/dormy_master.json × data/dormy_visits.json
+   ・市区町村踏破           … data/visited_cities.json
+   ・名所制覇               … data/spot_visits.json
+   いずれも取得失敗・データ無しの場合は「準備中」表示のまま。
+   ========================================================= */
+(function () {
+  "use strict";
+  function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+  function show(id){var e=document.getElementById(id); if(e){e.hidden=false;}}
+  function hide(id){var e=document.getElementById(id); if(e){e.style.display="none";}}
+  function num(n){return Number(n).toLocaleString("ja-JP");}
+  function km(n){return Number(n).toLocaleString("ja-JP",{minimumFractionDigits:1,maximumFractionDigits:1});}
+  function getJSON(path){ return fetch(path,{cache:"no-store"}).then(function(r){ if(!r.ok) throw 0; return r.json(); }); }
+  if (typeof fetch === "undefined") return;
+
+  /* ---- 鉄道 乗りつぶし（rail.json）---- */
+  function railLineRows(lines){
+    return lines.slice().sort(function(a,b){ return b.rate - a.rate || b.jousha - a.jousha; }).map(function(l){
+      var w = Math.max(0, Math.min(100, l.rate));
+      return '<div class="lrow' + (l.rate >= 100 ? " lfull" : "") + '">' +
+               '<span class="lname">' + esc(l.name) + '</span>' +
+               '<span class="lval">' + l.rate.toFixed(1) + '%（' + km(l.jousha) + '/' + km(l.eigyo) + 'km）</span>' +
+               '<div class="lbar"><span style="width:' + w + '%"></span></div>' +
+             '</div>';
+    }).join("");
+  }
+  function renderRailBlock(headlineId, listId, total, rows){
+    if (!total || !rows || !rows.length) return false;
+    rows = rows.slice().sort(function(a,b){ return b.rate - a.rate || b.jousha - a.jousha; });
+    document.getElementById(headlineId).innerHTML =
+      '<div class="pct">' + total.rate.toFixed(1) + '<span class="unit">%</span></div>' +
+      '<div class="frac"><span class="accent">' + km(total.jousha) + '</span> / ' + km(total.eigyo) + ' km</div>';
+    document.getElementById(listId).innerHTML = rows.map(function(r, i){
+      var w = Math.max(0, Math.min(100, r.rate));
+      var full = r.rate >= 100;
+      var hasLines = r.lines && r.lines.length;
+      var tag = hasLines ? "button" : "div";
+      var head = '<' + tag + ' class="kline' + (full ? " is-full" : "") + '"' +
+                 (hasLines ? ' type="button" aria-expanded="false" data-target="' + listId + '-d' + i + '"' : "") + '>' +
+                 '<span class="kname">' + esc(r.name) + (hasLines ? '<span class="chev" aria-hidden="true">▼</span>' : "") + '</span>' +
+                 '<span class="kval">' + r.rate.toFixed(1) + '%（' + km(r.jousha) + '/' + km(r.eigyo) + 'km）</span>' +
+                 '<div class="kbar"><span style="width:' + w + '%"></span></div>' +
+                 '</' + tag + '>';
+      var detail = hasLines ? '<div class="kdetail" id="' + listId + '-d' + i + '" hidden>' + railLineRows(r.lines) + '</div>' : "";
+      return '<div class="kcell">' + head + detail + '</div>';
+    }).join("");
+    return true;
+  }
+  getJSON("data/rail.json").then(function(d){
+    var okJr = false, okPr = false;
+    if (d && d.jr) okJr = renderRailBlock("jr-headline", "jr-list", d.jr.total, d.jr.companies);
+    if (d && d.private) {
+      // 私鉄は「乗車のある事業者」を会社バーで。無ければ区分バーにフォールバック。
+      var ridden = (d.private.companies || []).filter(function(c){ return c.jousha > 0; });
+      var noteEl = document.getElementById("pr-note");
+      if (ridden.length) {
+        okPr = renderRailBlock("pr-headline", "pr-list", d.private.total, ridden);
+        if (noteEl) noteEl.textContent = "乗車のある事業者のみ表示（会社をクリックで路線内訳）";
+      } else {
+        okPr = renderRailBlock("pr-headline", "pr-list", d.private.total, d.private.divisions);
+        if (noteEl) noteEl.textContent = "区分別の達成率です。";
+      }
+    }
+    if (okJr || okPr) { show("rail-body"); hide("rail-empty"); }
+  }).catch(function(){});
+
+  /* ---- ドーミーイン踏破（dormy_master.json × dormy_visits.json）---- */
+  var DORMY_GROUPS = [
+    { key:"dormyinn", label:"ドーミーイン",   brands:["dormy","premium","express"] },
+    { key:"nono",     label:"御宿 野乃",      brands:["nono"] },
+    { key:"resort",   label:"共立リゾート",   brands:["resort"] }
+  ];
+  var DORMY_TAG = { premium:"PREMIUM", express:"EXPRESS", nono:"野乃", resort:"共立リゾート", dormy:"" };
+  var REGION_ORDER = ["北海道","東北","関東","甲信越","北陸","東海","近畿","中国","四国","九州"];
+  function regionIdx(r){ var i = REGION_ORDER.indexOf(r); return i < 0 ? 99 : i; }
+
+  Promise.all([
+    getJSON("data/dormy_master.json").catch(function(){ return null; }),
+    getJSON("data/dormy_visits.json").catch(function(){ return { visits: [] }; })
+  ]).then(function(res){
+    var master = res[0], visitsDoc = res[1] || {};
+    if (!master || !master.hotels || !master.hotels.length) return;
+    var hotels = master.hotels;
+    var visitsById = {}, visitsByName = {};
+    (visitsDoc.visits || []).forEach(function(v){
+      if (v.id) visitsById[v.id] = v;
+      if (v.name) visitsByName[v.name] = v;
+    });
+    function visitOf(h){ return visitsById[h.id] || visitsByName[h.name] || null; }
+
+    var totalPin = master.meta && master.meta.totalPin;
+    var total = (typeof totalPin === "number" && totalPin > 0) ? totalPin : hotels.length;
+    var visitedCount = hotels.filter(visitOf).length;
+    var rate = total ? (visitedCount / total * 100) : 0;
+    var asOf = (master.meta && master.meta.asOf) ? master.meta.asOf.replace("-", ".") : "";
+    document.getElementById("dormy-headline").innerHTML =
+      '<div class="pct">' + rate.toFixed(1) + '<span class="unit">%</span></div>' +
+      '<div class="frac"><span class="accent">' + visitedCount + '</span> / ' + total + ' 施設</div>' +
+      '<div class="subs">共立メンテナンス系ホテル' + (asOf ? '　・　' + esc(asOf) + '時点' : "") + '</div>';
+
+    function tagHTML(brand){
+      var t = DORMY_TAG[brand]; if (!t) return "";
+      var cls = brand === "nono" ? " is-nono" : (brand === "resort" ? " is-resort" : "");
+      return '<span class="dcard__tag' + cls + '">' + esc(t) + '</span>';
+    }
+    function cardHTML(h, v){
+      var thumb = v && v.photo
+        ? '<img src="' + esc(v.photo) + '" alt="" loading="lazy">'
+        : '';
+      var date = v && v.firstVisit ? esc(v.firstVisit.replace(/-/g, ".")) : "";
+      var nights = v && v.nights ? '<span class="nights">' + esc(v.nights) + '泊</span>' : "";
+      return '<div class="dcard">' +
+               '<div class="dcard__thumb">' + tagHTML(h.brand) + thumb + '</div>' +
+               '<div class="dcard__body">' +
+                 '<div class="dcard__name">' + esc(h.name) + '</div>' +
+                 (h.onsen ? '<div class="dcard__onsen">' + esc(h.onsen) + '</div>' : "") +
+                 '<div class="dcard__meta"><span>' + date + '</span>' + nights + '</div>' +
+               '</div>' +
+             '</div>';
+    }
+
+    var html = DORMY_GROUPS.map(function(g, gi){
+      var list = hotels.filter(function(h){ return g.brands.indexOf(h.brand) >= 0; });
+      if (!list.length) return "";
+      var visited = list.filter(visitOf);
+      var unvisited = list.filter(function(h){ return !visitOf(h); });
+      var byRegion = function(a, b){ return regionIdx(a.region) - regionIdx(b.region) || a.name.localeCompare(b.name); };
+      visited.sort(byRegion); unvisited.sort(byRegion);
+
+      var body = "";
+      if (visited.length) {
+        body += '<div class="dcards">' + visited.map(function(h){ return cardHTML(h, visitOf(h)); }).join("") + '</div>';
+      }
+      if (unvisited.length) {
+        body += '<div class="dun-head">未訪問（' + unvisited.length + '）</div>' +
+                '<div class="dun">' + unvisited.map(function(h){
+                  return '<span class="dun__item">' + esc(h.name) + '<span class="loc">' + esc(h.pref || h.region || "") + '</span></span>';
+                }).join("") + '</div>';
+      }
+      return '<div class="dbrand">' +
+               '<button type="button" class="dbrand__head" aria-expanded="false" data-target="dbrand-' + gi + '">' +
+                 '<span class="dbrand__name">' + esc(g.label) + '<span class="chev" aria-hidden="true">▼</span></span>' +
+                 '<span class="dbrand__count"><span class="cv">' + visited.length + '</span> / ' + list.length + '</span>' +
+               '</button>' +
+               '<div class="dbrand__body" id="dbrand-' + gi + '" hidden>' + body + '</div>' +
+             '</div>';
+    }).join("");
+    document.getElementById("dormy-brands").innerHTML = html;
+    show("dormy-body"); hide("dormy-empty");
+  }).catch(function(){});
+
+  /* ---- 市区町村踏破（visited_cities.json）---- */
+  getJSON("data/visited_cities.json").then(function(d){
+    var meta = d && d.meta, prefs = d && d.prefectures;
+    if (!meta || !prefs || !(meta.visitedCount > 0)) return;
+    var rate = (meta.coverageRate != null) ? meta.coverageRate : (meta.visitedCount / meta.totalMunicipalities * 100);
+    var rangeTxt = "";
+    if (meta.dateRange && meta.dateRange.length === 2) {
+      rangeTxt = esc(meta.dateRange[0].replace(/-/g,".")) + " 〜 " + esc(meta.dateRange[1].replace(/-/g,"."));
+    }
+    document.getElementById("muni-headline").innerHTML =
+      '<div class="pct">' + rate.toFixed(1) + '<span class="unit">%</span></div>' +
+      '<div class="frac"><span class="accent">' + num(meta.visitedCount) + '</span> / ' + num(meta.totalMunicipalities) + ' 市区町村</div>' +
+      '<div class="subs">全国47都道府県' + (rangeTxt ? '　・　' + rangeTxt : "") + '</div>';
+
+    // 都道府県コード別に、訪問した市区町村名（政令市は市+区名）を集める
+    var byPref = {};
+    var cities = d.cities || {};
+    Object.keys(cities).forEach(function(code){
+      var c = cities[code]; var pc = c.prefCode || code.slice(0,2);
+      (byPref[pc] = byPref[pc] || []).push({ code: code, name: c.name });
+    });
+    Object.keys(byPref).forEach(function(pc){ byPref[pc].sort(function(a,b){ return a.code.localeCompare(b.code); }); });
+
+    // 都道府県を達成率降順で
+    var arr = Object.keys(prefs).map(function(k){ var p=prefs[k]; return {code:k,name:p.name,total:p.total,visited:p.visited,rate:(p.rate!=null?p.rate:(p.total?p.visited/p.total*100:0))}; });
+    arr.sort(function(a,b){ return b.rate - a.rate || b.visited - a.visited || a.code.localeCompare(b.code); });
+
+    var fulls = arr.filter(function(p){ return p.rate >= 100 || p.visited >= p.total; });
+    var noteEl = document.getElementById("muni-prefnote");
+    if (fulls.length) {
+      noteEl.innerHTML = '完全踏破：<span class="full-list">' + fulls.map(function(p){ return esc(p.name); }).join("・") + '</span>（' + fulls.length + '県）';
+    } else { noteEl.style.display = "none"; }
+
+    document.getElementById("muni-pref").innerHTML = arr.map(function(p,i){
+      var full = (p.rate >= 100 || p.visited >= p.total);
+      var w = Math.min(100, Math.round(p.rate));
+      var list = byPref[p.code] || [];
+      var detailId = "muni-d" + p.code;
+      var cityHTML = list.length
+        ? '<div class="cities">' + list.map(function(c){ return '<span class="city">' + esc(c.name) + '</span>'; }).join("") + '</div>'
+        : '<p class="none">記録なし</p>';
+      return '<div class="pref-cell">' +
+               '<button type="button" class="pref-row' + (full ? " is-full" : "") + '" aria-expanded="false" data-target="' + detailId + '">' +
+                 '<span class="rank">' + (i+1) + '</span>' +
+                 '<span class="pname">' + esc(p.name) + '<span class="chev" aria-hidden="true">▼</span></span>' +
+                 '<span class="pval">' + p.rate.toFixed(1) + '%（' + p.visited + '/' + p.total + '）</span>' +
+                 '<span class="pbar"><span style="width:' + w + '%"></span></span>' +
+               '</button>' +
+               '<div class="pref-detail" id="' + detailId + '" hidden>' + cityHTML + '</div>' +
+             '</div>';
+    }).join("");
+    show("muni-body"); hide("muni-empty");
+  }).catch(function(){});
+
+  /* ---- 名所制覇（spot_visits.json）---- */
+  getJSON("data/spot_visits.json").then(function(d){
+    var cats = d && d.categories, meta = d && d.meta;
+    if (!cats || !cats.length) return;
+    var totalSpots = (meta && meta.totalSpots) || 0, visitedSpots = (meta && meta.visitedSpots) || 0;
+    if (!totalSpots) { cats.forEach(function(c){ totalSpots += c.spots.length; c.spots.forEach(function(s){ if(s.firstVisit) visitedSpots++; }); }); }
+    var pct = totalSpots ? Math.round(visitedSpots / totalSpots * 100) : 0;
+    document.getElementById("spots-headline").innerHTML =
+      '<div class="pct">' + visitedSpots + '<span class="unit">/ ' + totalSpots + '</span></div>' +
+      '<div class="frac">名所を制覇（' + pct + '%）</div>' +
+      '<div class="subs">日本三名泉・三景・三名園ほか ' + cats.length + ' 種</div>';
+
+    document.getElementById("spots-cats").innerHTML = cats.map(function(c){
+      var v = c.spots.filter(function(s){ return s.firstVisit; }).length;
+      var complete = (v === c.spots.length);
+      var chips = c.spots.map(function(s){
+        var vis = !!s.firstVisit;
+        return '<span class="spot-chip' + (vis ? " is-visited" : "") + '">' + esc(s.name) +
+               (s.pref ? ' <span class="pref">' + esc(s.pref) + '</span>' : "") + '</span>';
+      }).join("");
+      return '<div class="spot-cat">' +
+               '<div class="spot-cat__head">' +
+                 '<span class="spot-cat__icon" aria-hidden="true">' + esc(c.icon || "") + '</span>' +
+                 '<span class="spot-cat__name">' + esc(c.name) + '</span>' +
+                 '<span class="spot-cat__count' + (complete ? " is-complete" : "") + '">' + v + '/' + c.spots.length + '</span>' +
+               '</div>' +
+               (c.description ? '<p class="spot-cat__desc">' + esc(c.description) + '</p>' : "") +
+               '<div class="spot-chips">' + chips + '</div>' +
+             '</div>';
+    }).join("");
+    show("spots-body"); hide("spots-empty");
+  }).catch(function(){});
+
+  /* ---- 開閉トグル（都道府県→市区町村 / 会社→路線内訳）---- */
+  document.addEventListener("click", function(ev){
+    var btn = ev.target.closest ? ev.target.closest("[data-target]") : null;
+    if (!btn) return;
+    var panel = document.getElementById(btn.getAttribute("data-target"));
+    if (!panel) return;
+    var open = btn.getAttribute("aria-expanded") === "true";
+    btn.setAttribute("aria-expanded", open ? "false" : "true");
+    panel.hidden = open;
+  });
+})();
+</script>
+</body>
+</html>

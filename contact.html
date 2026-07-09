@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CRY661TJ9H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-CRY661TJ9H');
+</script>
+<title>お問い合わせ｜-志遊- shiyu's station</title>
+<meta name="description" content="-志遊-（shiyu's station）へのお問い合わせフォーム。動画・コラボ・記録に関するご連絡はこちらから。">
+<link rel="canonical" href="https://shiyu-official.github.io/contact.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="-志遊-｜shiyu's station">
+<meta property="og:title" content="お問い合わせ｜-志遊- shiyu's station">
+<meta property="og:description" content="動画・コラボ・記録に関するご連絡はこちらから。">
+<meta property="og:url" content="https://shiyu-official.github.io/contact.html">
+<meta property="og:image" content="https://shiyu-official.github.io/images/ogp.png">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://shiyu-official.github.io/images/ogp.png">
+
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/reveal.css">
+<link rel="stylesheet" href="css/contact.css">
+<meta name="theme-color" content="#5c89af">
+</head>
+
+<body>
+<div id="site">
+  <a class="skip" href="#content">本文へスキップ</a>
+
+  <header>
+    <a class="logo" href="index.html" aria-label="志遊 トップへ"><img src="images/logo.png" alt="-志遊- shiyu's station"></a>
+    <nav class="nav-menu" id="site-nav" aria-label="メインメニュー">
+      <ul>
+        <li><a href="index.html">ホーム</a></li>
+        <li class="has-drawer">
+          <a href="index.html#latest">動画 <i class="fa-solid fa-chevron-down" aria-hidden="true" style="font-size:.7em;"></i></a>
+          <div class="sub">
+            <a href="index.html#latest">最新動画</a>
+            <a href="index.html#rail">旅行・交通</a>
+            <a href="index.html#taiko">太鼓の達人</a>
+          </div>
+        </li>
+        <li><a href="index.html#category">カテゴリ</a></li>
+        <li><a href="blog.html">ブログ</a></li>
+        <li><a href="kiroku.html">旅の記録</a></li>
+        <li><a href="index.html#links">チャンネル</a></li>
+        <li><a href="contact.html" aria-current="page">お問い合わせ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div id="stage">
+  <main id="content">
+    <section class="band">
+      <div class="wrap">
+        <div class="band-head reveal" style="text-align:center;">
+          <span class="kicker">Contact</span>
+          <h1 class="band-title">お問い合わせ</h1>
+          <p class="lead" style="margin-inline:auto;">動画・コラボ・旅の記録に関するご連絡はこちらから。<br>いただいた内容には順次お返事します。</p>
+        </div>
+
+        <div class="contact-wrap reveal">
+          <div class="contact-card">
+            <!-- ===========================================================
+                 Googleフォーム連携：隠しiframeへPOSTしページ遷移なしで送信
+                 ▼要確認：entry番号とフォーム項目の対応（プレフィルURL順で仮設定）
+                   entry.1383982872 → お名前
+                   entry.94781560   → メールアドレス
+                   entry.1334466102 → お問い合わせ内容
+                 対応が違う場合は各 name 属性を修正してください。
+                 =========================================================== -->
+            <form id="contact-form"
+                  action="https://docs.google.com/forms/d/e/1FAIpQLSf2WUCnC78Yg_lB3PzJOvyR2MnZUN7NWhRhI8iKRL0FNN0olw/formResponse"
+                  method="POST" target="hidden-iframe" novalidate>
+              <div class="form-grid">
+                <div class="field field--full">
+                  <label for="name">お名前<span class="req">必須</span></label>
+                  <input type="text" id="name" name="entry.1383982872" autocomplete="name"
+                         aria-required="true" aria-describedby="err-name">
+                  <span class="field-error" id="err-name" role="alert"></span>
+                </div>
+                <div class="field field--full">
+                  <label for="email">メールアドレス<span class="req">必須</span></label>
+                  <input type="email" id="email" name="entry.94781560" autocomplete="email" inputmode="email"
+                         aria-required="true" aria-describedby="err-email">
+                  <span class="field-error" id="err-email" role="alert"></span>
+                </div>
+                <div class="field field--full">
+                  <label for="message">お問い合わせ内容<span class="req">必須</span></label>
+                  <textarea id="message" name="entry.1334466102" aria-required="true" aria-describedby="err-message"></textarea>
+                  <span class="field-error" id="err-message" role="alert"></span>
+                </div>
+              </div>
+
+              <!-- ハニーポット（人間には見えない。bot入力があれば送信中止） -->
+              <div class="form-hp" aria-hidden="true">
+                <label>この欄は入力しないでください
+                  <input type="text" id="form-hp" name="form-hp" tabindex="-1" autocomplete="off">
+                </label>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn-submit" id="submit-btn">
+                  <i class="fa-regular fa-paper-plane"></i> 送信する
+                </button>
+              </div>
+              <p class="form-note">
+                送信いただいた内容はGoogleフォーム経由で受け付けます。<br>
+                詳しくは<a href="privacy.html">プライバシーポリシー</a>をご確認ください。
+              </p>
+            </form>
+
+            <!-- 送信完了メッセージ -->
+            <div class="thanks" id="thanks" tabindex="-1">
+              <div class="icon"><i class="fa-solid fa-check"></i></div>
+              <h2>送信ありがとうございました</h2>
+              <p>内容を確認のうえ、順次お返事いたします。<br><a href="index.html">トップページへ戻る</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <img src="images/logo.png" alt="-志遊- shiyu's station">
+        <p>旅と鉄道、太鼓の達人。<br>記憶と記録のすべてを、今ここで。</p>
+      </div>
+      <nav class="footer__map" aria-label="サイトマップ">
+        <ul>
+          <li><a href="index.html">ホーム</a></li>
+          <li><a href="index.html#rail">旅行・交通</a></li>
+          <li><a href="index.html#taiko">太鼓の達人</a></li>
+          <li><a href="kiroku.html">旅の記録</a></li>
+          <li><a href="blog.html">ブログ</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
+          <li><a href="privacy.html">プライバシーポリシー</a></li>
+        </ul>
+      </nav>
+      <div class="footer__sns">
+        <a href="https://www.youtube.com/@Re_shiyu_travel" target="_blank" rel="noopener" aria-label="Re:しゆ YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.youtube.com/@Re_shiyu_taiko" target="_blank" rel="noopener" aria-label="太鼓の達人 YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://x.com/shiyu_official_" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+    </div>
+    <p class="copyright">© 2026 しゆ（shiyu）｜shiyu's station</p>
+  </footer>
+
+  </div><!-- /#stage -->
+  <div id="nav-scrim"></div>
+</div><!-- /#site -->
+
+<button class="burger" id="nav-toggle" type="button" aria-label="メニューを開閉" aria-expanded="false" aria-controls="site-nav">
+  <span class="burger__lines" aria-hidden="true"><span></span><span></span><span></span></span>
+</button>
+<button class="to-top" type="button" aria-label="ページ上部へ戻る"><i class="fa-solid fa-chevron-up"></i></button>
+
+<!-- 送信先の隠しiframe（ページ遷移なし送信） -->
+<iframe name="hidden-iframe" id="hidden-iframe" style="display:none" title="送信処理"></iframe>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="js/reveal.js"></script>
+<script src="js/main.js"></script>
+<script>
+/* お問い合わせフォーム：バリデーション＋擬似非同期送信 */
+(function () {
+  "use strict";
+  var form = document.getElementById("contact-form");
+  if (!form) return;
+
+  var iframe = document.getElementById("hidden-iframe");
+  var btn = document.getElementById("submit-btn");
+  var thanks = document.getElementById("thanks");
+  var hp = document.getElementById("form-hp");
+  var submitted = false, fallbackTimer = null;
+
+  var fields = {
+    name:    { el: form.querySelector("#name"),    err: "#err-name",    msg: "お名前を入力してください。" },
+    email:   { el: form.querySelector("#email"),   err: "#err-email",   msg: "メールアドレスを入力してください。" },
+    message: { el: form.querySelector("#message"), err: "#err-message", msg: "お問い合わせ内容を入力してください。" }
+  };
+  var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function setError(key, message) {
+    var f = fields[key];
+    var box = f.el.closest(".field");
+    var errEl = form.querySelector(f.err);
+    if (message) { box.classList.add("has-error"); errEl.textContent = message; }
+    else { box.classList.remove("has-error"); errEl.textContent = ""; }
+  }
+
+  function validate() {
+    var ok = true;
+    if (!fields.name.el.value.trim())    { setError("name", fields.name.msg); ok = false; }    else setError("name", "");
+    var ev = fields.email.el.value.trim();
+    if (!ev)                              { setError("email", fields.email.msg); ok = false; }
+    else if (!emailRe.test(ev))           { setError("email", "メールアドレスの形式が正しくありません。"); ok = false; }
+    else                                  setError("email", "");
+    if (!fields.message.el.value.trim()) { setError("message", fields.message.msg); ok = false; } else setError("message", "");
+    return ok;
+  }
+
+  function showThanks() {
+    if (submitted) return;
+    submitted = true;
+    clearTimeout(fallbackTimer);
+    form.style.display = "none";
+    thanks.classList.add("is-show");
+    if (thanks.scrollIntoView) thanks.scrollIntoView({ behavior: "smooth", block: "center" });
+    thanks.focus();
+  }
+
+  form.addEventListener("submit", function (e) {
+    // ハニーポットに入力があれば送信中止（bot対策）
+    if (hp && hp.value) { e.preventDefault(); return; }
+    if (!validate()) { e.preventDefault(); return; }
+    // ここまで来たら hidden-iframe へ実POST（既定動作を止めない）
+    btn.setAttribute("aria-busy", "true");
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 送信中…';
+    // iframe の load を送信完了とみなす
+    iframe.addEventListener("load", showThanks);
+    // iframeイベントが発火しない環境向けフォールバック（1.8秒）
+    fallbackTimer = setTimeout(showThanks, 1800);
+  });
+})();
+</script>
+</body>
+</html>

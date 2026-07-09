@@ -1,0 +1,82 @@
+/* =============================================================
+   contact.css — お問い合わせフォーム専用（テンプレ標準とは別トーン）
+   丸みの強いカード型入力欄＋グラデーション送信ボタン
+   ============================================================= */
+
+.contact-wrap { max-width: 720px; margin-inline: auto; }
+
+.contact-card {
+  background: #fff;
+  border: 1px solid var(--bg-border-color);
+  border-radius: 22px;
+  box-shadow: var(--shadow-1);
+  padding: clamp(1.5rem, 4vw, 3rem);
+}
+
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem 1.4rem; }
+.field { display: flex; flex-direction: column; gap: .5rem; }
+.field--full { grid-column: 1 / -1; }
+.field label { font-weight: 500; letter-spacing: .04em; }
+.field .req { color: var(--accent-color); font-size: .85em; margin-left: .3em; }
+
+.field input,
+.field textarea {
+  font-family: inherit; font-size: 1rem; color: var(--bg-inverse-color);
+  padding: .9rem 1.1rem;
+  border: 1.5px solid #dfe5ec;
+  border-radius: 14px;
+  background: #fbfcfe;
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+.field textarea { min-height: 170px; resize: vertical; line-height: 1.9; }
+.field input:focus,
+.field textarea:focus {
+  outline: none; background: #fff;
+  border-color: #5d7bff;
+  box-shadow: 0 0 0 4px rgba(93, 123, 255, .15);
+}
+.field.has-error input,
+.field.has-error textarea { border-color: var(--accent-color); box-shadow: 0 0 0 4px rgba(201, 57, 17, .12); }
+
+.field-error { color: var(--accent-color); font-size: .85rem; min-height: 1.2em; }
+
+/* ハニーポット（画面外へ） */
+.form-hp {
+  position: absolute !important; left: -9999px !important; top: auto !important;
+  width: 1px; height: 1px; overflow: hidden;
+}
+
+.form-actions { margin-top: 1.6rem; text-align: center; }
+.btn-submit {
+  display: inline-flex; align-items: center; justify-content: center; gap: .6em;
+  min-width: 220px; padding: 1rem 2.4rem;
+  border: none; border-radius: 999px; color: #fff; font-size: 1.05rem; font-weight: 600; letter-spacing: .08em;
+  background: linear-gradient(135deg, #2f55d4, #5d7bff);
+  box-shadow: 0 10px 24px rgba(47, 85, 212, .28);
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), opacity var(--dur) var(--ease);
+}
+.btn-submit:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(47, 85, 212, .34); }
+.btn-submit:focus-visible { outline: 3px solid #5d7bff; outline-offset: 3px; }
+.btn-submit[aria-busy="true"] { opacity: .7; pointer-events: none; }
+
+.form-note { color: var(--muted-color); font-size: .85rem; margin-top: 1rem; text-align: center; }
+.form-note a { text-decoration: underline; }
+
+/* サンクスメッセージ */
+.thanks {
+  display: none; text-align: center; padding: clamp(2rem, 5vw, 3.5rem) 1rem;
+}
+.thanks.is-show { display: block; }
+.thanks .icon {
+  width: 72px; height: 72px; margin: 0 auto 1.2rem; border-radius: 50%;
+  display: grid; place-items: center; font-size: 2rem; color: #fff;
+  background: linear-gradient(135deg, #2f55d4, #5d7bff);
+}
+.thanks h2 { font-size: 1.5rem; font-weight: 600; margin-bottom: .6rem; }
+.thanks p { color: var(--muted-color); }
+
+/* 767px以下：入力欄1カラム・送信ボタン全幅 */
+@media (max-width: 767px) {
+  .form-grid { grid-template-columns: 1fr; }
+  .btn-submit { width: 100%; }
+}

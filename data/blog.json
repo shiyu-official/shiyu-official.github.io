@@ -1,0 +1,13 @@
+{
+  "_comment": "ブログ記事の一覧データ。記事を公開したら posts の先頭（新しい順）に1件追記してください。id は data-post-id と一致させ、url はルート絶対パス（/blog/スラッグ.html）で。update_videos.py が新規idを検知して『お知らせ』にも自動追記します。",
+  "_example": {
+    "id": "hello-shiyu",
+    "title": "はじめまして、志遊です",
+    "url": "/blog/hello-shiyu.html",
+    "date": "2026-07-05",
+    "thumb": "/images/blog/hello-shiyu.jpg",
+    "excerpt": "このサイトを始めた理由と、これから残していきたい記録について。"
+  },
+  "posts": [
+  ]
+}

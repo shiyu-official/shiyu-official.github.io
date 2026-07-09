@@ -1,0 +1,11 @@
+{
+  "_comment": "旅の記録データ。値を入れると kiroku.html に自動反映されます（空欄は『準備中』表示）。",
+  "_shape": {
+    "lines": "鉄道各社の乗りつぶし: [{ name, done(達成km/駅), total(全体), note }]",
+    "municipalities": "市区町村踏破: { visited, total, note }",
+    "dormy": "ドーミーイン踏破: [{ name, date(YYYY-MM-DD), note }]"
+  },
+  "lines": [],
+  "municipalities": { "visited": 0, "total": 0, "note": "" },
+  "dormy": []
+}

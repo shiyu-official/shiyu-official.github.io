@@ -1,0 +1,1147 @@
+{
+ "meta": {
+  "source": "Wikipedia（ドーミーイン=貼付け・共立リゾート=貼付け）",
+  "asOf": "2026-07",
+  "scope": "ドーミーイン・御宿野乃＋共立リゾート系",
+  "note": "build_dormy_master.py が生成。totalPin に数値を入れると踏破率の分母を固定できる。",
+  "totalPin": null
+ },
+ "hotels": [
+  {
+   "name": "ドーミーイン千歳",
+   "onsen": "天然温泉 鶴舞の湯",
+   "pref": "北海道",
+   "region": "北海道",
+   "brand": "dormy",
+   "id": "db847acbf"
+  },
+  {
+   "name": "ドーミーイン札幌ANNEX",
+   "onsen": "狸の湯",
+   "pref": "北海道",
+   "region": "北海道",
+   "brand": "dormy",
+   "id": "d8f67c099"
+  },
+  {
+   "name": "ドーミーイン稚内",
+   "onsen": "天然温泉 天北の湯",
+   "pref": "北海道",
+   "region": "北海道",
+   "brand": "dormy",
+   "id": "d62871625"
+  },
+  {
+   "name": "ドーミーイン網走",
+   "onsen": "天然温泉 天都の湯",
+   "pref": "北海道",
+   "region": "北海道",
+   "brand": "dormy",
+   "id": "d2824c35d"
+  },
+  {
+   "name": "ドーミーイン北見",
+   "onsen": "天然温泉 常呂川の湯",
+   "pref": "北海道",
+   "region": "北海道",
+   "brand": "dormy",
+   "id": "d9c7cf60e"
+  },
+  {
+   "name": "ドーミーイン旭川",
+   "onsen": "天然温泉 神威の湯",
+   "pref": "北海道",
+   "region": "北海道",
+   "brand": "dormy",
+   "id": "d73eb01bd"
+  },
+  {
+   "name": "ドーミーイン苫小牧",
+   "onsen": "天然温泉 樽前の湯",
+   "pref": "北海道",
+   "region": "北海道",
+   "brand": "dormy",
+   "id": "dafc59f08"
+  },
+  {
+   "name": "ドーミーイン帯広",
+   "onsen": "天然温泉 白樺の湯",
+   "pref": "北海道",
+   "region": "北海道",
+   "brand": "dormy",
+   "id": "d4063e96f"
+  },
+  {
+   "name": "ドーミーイン東室蘭",
+   "onsen": "天然温泉 幸鐘の湯",
+   "pref": "北海道",
+   "region": "北海道",
+   "brand": "dormy",
+   "id": "dce8a065f"
+  },
+  {
+   "name": "ドーミーイン弘前",
+   "onsen": "天然温泉 岩木桜の湯",
+   "pref": "青森県",
+   "region": "東北",
+   "brand": "dormy",
+   "id": "d152c9ca6"
+  },
+  {
+   "name": "ドーミーイン青森",
+   "onsen": "天然温泉 淡雪の湯",
+   "pref": "青森県",
+   "region": "東北",
+   "brand": "dormy",
+   "id": "dabf00569"
+  },
+  {
+   "name": "ドーミーイン本八戸",
+   "onsen": "天然温泉 南部の湯",
+   "pref": "青森県",
+   "region": "東北",
+   "brand": "dormy",
+   "id": "d64b1e0a2"
+  },
+  {
+   "name": "ドーミーイン盛岡",
+   "onsen": "天然温泉 さんさの湯",
+   "pref": "岩手県",
+   "region": "東北",
+   "brand": "dormy",
+   "id": "dce02e77b"
+  },
+  {
+   "name": "ドーミーイン秋田",
+   "onsen": "中通温泉 こまちの湯",
+   "pref": "秋田県",
+   "region": "東北",
+   "brand": "dormy",
+   "id": "dcbefd3db"
+  },
+  {
+   "name": "ドーミーイン仙台ANNEX",
+   "onsen": "天然温泉 青葉の湯",
+   "pref": "宮城県",
+   "region": "東北",
+   "brand": "dormy",
+   "id": "d904629c5"
+  },
+  {
+   "name": "ドーミーイン仙台駅前",
+   "onsen": "天然温泉 萩の湯",
+   "pref": "宮城県",
+   "region": "東北",
+   "brand": "dormy",
+   "id": "d6f42bd60"
+  },
+  {
+   "name": "ドーミーイン東京八丁堀",
+   "onsen": "亀島川温泉 新川の湯",
+   "pref": "東京都",
+   "region": "関東",
+   "brand": "dormy",
+   "id": "db36edafc"
+  },
+  {
+   "name": "ドーミーイン上野・御徒町",
+   "onsen": "徒士の湯",
+   "pref": "東京都",
+   "region": "関東",
+   "brand": "dormy",
+   "id": "d62cb73bf"
+  },
+  {
+   "name": "ドーミーイン秋葉原",
+   "onsen": "すえひろの湯",
+   "pref": "東京都",
+   "region": "関東",
+   "brand": "dormy",
+   "id": "dec1d9471"
+  },
+  {
+   "name": "ドーミーイン後楽園",
+   "onsen": "春日の湯",
+   "pref": "東京都",
+   "region": "関東",
+   "brand": "dormy",
+   "id": "d923e809a"
+  },
+  {
+   "name": "ドーミーイン池袋",
+   "onsen": "天然温泉 豊穣の湯",
+   "pref": "東京都",
+   "region": "関東",
+   "brand": "dormy",
+   "id": "dfc17323d"
+  },
+  {
+   "name": "ドーミーイン水戸",
+   "onsen": "天然温泉 香梅の湯",
+   "pref": "茨城県",
+   "region": "関東",
+   "brand": "dormy",
+   "id": "d1bd20b48"
+  },
+  {
+   "name": "ドーミーイン高崎",
+   "onsen": "榛名の湯",
+   "pref": "群馬県",
+   "region": "関東",
+   "brand": "dormy",
+   "id": "d62b31ef0"
+  },
+  {
+   "name": "ドーミーイン前橋",
+   "onsen": "天然温泉 妙義の湯",
+   "pref": "群馬県",
+   "region": "関東",
+   "brand": "dormy",
+   "id": "d94fa212a"
+  },
+  {
+   "name": "ドーミーイン千葉City Soga",
+   "onsen": "天然温泉 そが浜の湯",
+   "pref": "千葉県",
+   "region": "関東",
+   "brand": "dormy",
+   "id": "d2e4bda85"
+  },
+  {
+   "name": "ドーミーイン川崎",
+   "onsen": "天然温泉 扇浜の湯",
+   "pref": "神奈川県",
+   "region": "関東",
+   "brand": "dormy",
+   "id": "d42abb7a7"
+  },
+  {
+   "name": "ドーミーイン新潟",
+   "onsen": "天然温泉 多宝の湯",
+   "pref": "新潟県",
+   "region": "甲信越",
+   "brand": "dormy",
+   "id": "d1643524e"
+  },
+  {
+   "name": "ドーミーイン長野",
+   "onsen": "天然温泉 善光の湯",
+   "pref": "長野県",
+   "region": "甲信越",
+   "brand": "dormy",
+   "id": "d7822cd86"
+  },
+  {
+   "name": "ドーミーイン松本",
+   "onsen": "天然温泉 梓の湯",
+   "pref": "長野県",
+   "region": "甲信越",
+   "brand": "dormy",
+   "id": "dacfdfb6c"
+  },
+  {
+   "name": "ドーミーイン甲府",
+   "onsen": "天然温泉 甲斐路の湯",
+   "pref": "山梨県",
+   "region": "甲信越",
+   "brand": "dormy",
+   "id": "d89dfdf67"
+  },
+  {
+   "name": "ドーミーイン甲府丸の内",
+   "onsen": "天然温泉 勝運の湯",
+   "pref": "山梨県",
+   "region": "甲信越",
+   "brand": "dormy",
+   "id": "dc25fe690"
+  },
+  {
+   "name": "ドーミーイン三島",
+   "onsen": "天然温泉 富嶽の湯",
+   "pref": "静岡県",
+   "region": "東海",
+   "brand": "dormy",
+   "id": "daee1b5f3"
+  },
+  {
+   "name": "ドーミーイン岐阜駅前",
+   "onsen": "天然温泉 金華の湯",
+   "pref": "岐阜県",
+   "region": "東海",
+   "brand": "dormy",
+   "id": "d7b6d9fa7"
+  },
+  {
+   "name": "ドーミーイン津",
+   "onsen": "天然温泉 けやきの湯",
+   "pref": "三重県",
+   "region": "東海",
+   "brand": "dormy",
+   "id": "d0dec7890"
+  },
+  {
+   "name": "ドーミーイン四日市",
+   "onsen": "天然温泉 緋衣の湯",
+   "pref": "三重県",
+   "region": "東海",
+   "brand": "dormy",
+   "id": "dd4a55378"
+  },
+  {
+   "name": "ドーミーイン富山",
+   "onsen": "天然温泉 剣の湯",
+   "pref": "富山県",
+   "region": "北陸",
+   "brand": "dormy",
+   "id": "d8bbfac67"
+  },
+  {
+   "name": "ドーミーイン金沢",
+   "onsen": "天然温泉 加賀の湧湯",
+   "pref": "石川県",
+   "region": "北陸",
+   "brand": "dormy",
+   "id": "da7658e65"
+  },
+  {
+   "name": "ドーミーイン小松",
+   "onsen": "天然温泉 碧宝の湯",
+   "pref": "石川県",
+   "region": "北陸",
+   "brand": "dormy",
+   "id": "dd506d8dc"
+  },
+  {
+   "name": "ドーミーイン敦賀",
+   "onsen": "天然温泉 若狭の湯",
+   "pref": "福井県",
+   "region": "北陸",
+   "brand": "dormy",
+   "id": "d337e3fc3"
+  },
+  {
+   "name": "ドーミーイン大阪谷町",
+   "onsen": "天然温泉 浪華の湯",
+   "pref": "大阪府",
+   "region": "近畿",
+   "brand": "dormy",
+   "id": "df8840f7c"
+  },
+  {
+   "name": "ドーミーイン姫路",
+   "onsen": "天然温泉 白鷺の湯",
+   "pref": "兵庫県",
+   "region": "近畿",
+   "brand": "dormy",
+   "id": "d1b6ceb42"
+  },
+  {
+   "name": "ドーミーイン神戸元町",
+   "onsen": "天然温泉 浪漫湯",
+   "pref": "兵庫県",
+   "region": "近畿",
+   "brand": "dormy",
+   "id": "d62ef5c09"
+  },
+  {
+   "name": "ドーミーイン岡山",
+   "onsen": "天然温泉 吉備の湯",
+   "pref": "岡山県",
+   "region": "中国",
+   "brand": "dormy",
+   "id": "d7993e350"
+  },
+  {
+   "name": "ドーミーイン倉敷",
+   "onsen": "天然温泉 阿智の湯",
+   "pref": "岡山県",
+   "region": "中国",
+   "brand": "dormy",
+   "id": "d19f4c282"
+  },
+  {
+   "name": "ドーミーイン広島",
+   "onsen": "安芸の湯",
+   "pref": "広島県",
+   "region": "中国",
+   "brand": "dormy",
+   "id": "dab7da3e4"
+  },
+  {
+   "name": "ドーミーイン広島ANNEX",
+   "onsen": "天然温泉 芸州の湯",
+   "pref": "広島県",
+   "region": "中国",
+   "brand": "dormy",
+   "id": "da93ab9b9"
+  },
+  {
+   "name": "ドーミーイン出雲",
+   "onsen": "天然温泉 八雲の湯",
+   "pref": "島根県",
+   "region": "中国",
+   "brand": "dormy",
+   "id": "d561883f3"
+  },
+  {
+   "name": "ドーミーイン高松",
+   "onsen": "さぬきの湯",
+   "pref": "香川県",
+   "region": "四国",
+   "brand": "dormy",
+   "id": "dd9deba30"
+  },
+  {
+   "name": "ドーミーイン高松中央公園前",
+   "onsen": "天然温泉 玉藻の湯",
+   "pref": "香川県",
+   "region": "四国",
+   "brand": "dormy",
+   "id": "dda82868f"
+  },
+  {
+   "name": "ドーミーイン松山",
+   "onsen": "天然温泉 石手の湯",
+   "pref": "愛媛県",
+   "region": "四国",
+   "brand": "dormy",
+   "id": "da6e5777a"
+  },
+  {
+   "name": "ドーミーイン高知",
+   "onsen": "天然温泉 紺碧の湯",
+   "pref": "高知県",
+   "region": "四国",
+   "brand": "dormy",
+   "id": "d683e3a60"
+  },
+  {
+   "name": "ドーミーイン博多祇園",
+   "onsen": "天然温泉 御笠の湯",
+   "pref": "福岡県",
+   "region": "九州",
+   "brand": "dormy",
+   "id": "d2dd6ec67"
+  },
+  {
+   "name": "ドーミーイン大分",
+   "onsen": "天然温泉 白糸の湯",
+   "pref": "大分県",
+   "region": "九州",
+   "brand": "dormy",
+   "id": "de9233649"
+  },
+  {
+   "name": "ドーミーイン長崎新地中華街",
+   "onsen": "出島の湯",
+   "pref": "長崎県",
+   "region": "九州",
+   "brand": "dormy",
+   "id": "d13a7e0bb"
+  },
+  {
+   "name": "ドーミーイン熊本",
+   "onsen": "天然温泉 六花の湯",
+   "pref": "熊本県",
+   "region": "九州",
+   "brand": "dormy",
+   "id": "de5eacc4a"
+  },
+  {
+   "name": "ドーミーイン宮崎",
+   "onsen": "天然温泉 日向の湯",
+   "pref": "宮崎県",
+   "region": "九州",
+   "brand": "dormy",
+   "id": "d4107962d"
+  },
+  {
+   "name": "ドーミーイン鹿児島",
+   "onsen": "天然温泉 霧桜の湯",
+   "pref": "鹿児島県",
+   "region": "九州",
+   "brand": "dormy",
+   "id": "d8b96e9b4"
+  },
+  {
+   "name": "ドーミーインPREMIUM札幌",
+   "onsen": "石狩の湯",
+   "pref": "北海道",
+   "region": "北海道",
+   "brand": "premium",
+   "id": "d1a6a8ca8"
+  },
+  {
+   "name": "ドーミーインPREMIUM小樽",
+   "onsen": "天然温泉 灯の湯",
+   "pref": "北海道",
+   "region": "北海道",
+   "brand": "premium",
+   "id": "d35c17232"
+  },
+  {
+   "name": "ドーミーインPREMIUM釧路",
+   "onsen": "天然温泉 幣舞の湯",
+   "pref": "北海道",
+   "region": "北海道",
+   "brand": "premium",
+   "id": "dcad3469e"
+  },
+  {
+   "name": "ラビスタ富良野ヒルズ",
+   "onsen": "天然温泉 紫雲の湯",
+   "pref": "北海道",
+   "region": "北海道",
+   "brand": "premium",
+   "id": "d32aad758"
+  },
+  {
+   "name": "ドーミーインPREMIUM東京小伝馬町",
+   "onsen": "伝馬の湯",
+   "pref": "東京都",
+   "region": "関東",
+   "brand": "premium",
+   "id": "da48a4d44"
+  },
+  {
+   "name": "ドーミーインPREMIUM神田",
+   "onsen": "明神の湯",
+   "pref": "東京都",
+   "region": "関東",
+   "brand": "premium",
+   "id": "d848801fb"
+  },
+  {
+   "name": "ドーミーインPREMIUM渋谷神宮前",
+   "onsen": "",
+   "pref": "東京都",
+   "region": "関東",
+   "brand": "premium",
+   "id": "d50ec9652"
+  },
+  {
+   "name": "ドーミーインPREMIUM銀座",
+   "onsen": "天然温泉 七宝の湯",
+   "pref": "東京都",
+   "region": "関東",
+   "brand": "premium",
+   "id": "da342dd06"
+  },
+  {
+   "name": "ドーミーインPREMIUM名古屋栄",
+   "onsen": "天然温泉 錦鯱の湯",
+   "pref": "愛知県",
+   "region": "東海",
+   "brand": "premium",
+   "id": "d0415643a"
+  },
+  {
+   "name": "ドーミーインPREMIUM福井",
+   "onsen": "天然温泉 羽二重の湯",
+   "pref": "福井県",
+   "region": "北陸",
+   "brand": "premium",
+   "id": "d27388494"
+  },
+  {
+   "name": "ドーミーインPREMIUMなんば",
+   "onsen": "天然温泉 夕霧の湯",
+   "pref": "大阪府",
+   "region": "近畿",
+   "brand": "premium",
+   "id": "d640517f7"
+  },
+  {
+   "name": "ドーミーインPREMIUMなんばANNEX",
+   "onsen": "天然温泉 朝霧の湯",
+   "pref": "大阪府",
+   "region": "近畿",
+   "brand": "premium",
+   "id": "d886a4a5b"
+  },
+  {
+   "name": "ドーミーインPREMIUM大阪北浜",
+   "onsen": "天然温泉 水都の湯",
+   "pref": "大阪府",
+   "region": "近畿",
+   "brand": "premium",
+   "id": "dc00c866c"
+  },
+  {
+   "name": "ドーミーインPREMIUM京都駅前",
+   "onsen": "天然温泉 花蛍の湯",
+   "pref": "京都府",
+   "region": "近畿",
+   "brand": "premium",
+   "id": "d9cf924f4"
+  },
+  {
+   "name": "ドーミーインPREMIUM和歌山",
+   "onsen": "天然温泉 紀州の湯",
+   "pref": "和歌山県",
+   "region": "近畿",
+   "brand": "premium",
+   "id": "d65f5b9c9"
+  },
+  {
+   "name": "ドーミーインPREMIUM下関",
+   "onsen": "天然温泉 関門の湯",
+   "pref": "山口県",
+   "region": "中国",
+   "brand": "premium",
+   "id": "d1308fd37"
+  },
+  {
+   "name": "ドーミーインPREMIUM博多・キャナルシティ前",
+   "onsen": "天然温泉 袖湊の湯",
+   "pref": "福岡県",
+   "region": "九州",
+   "brand": "premium",
+   "id": "da402af83"
+  },
+  {
+   "name": "ドーミーインPREMIUM長崎駅前",
+   "onsen": "天然温泉 鶴港の湯",
+   "pref": "長崎県",
+   "region": "九州",
+   "brand": "premium",
+   "id": "d4d9e0116"
+  },
+  {
+   "name": "御宿 野乃仙台",
+   "onsen": "天然温泉 杜都の湯",
+   "pref": "宮城県",
+   "region": "東北",
+   "brand": "nono",
+   "id": "dcdc1cca8"
+  },
+  {
+   "name": "御宿 野乃浅草",
+   "onsen": "天然温泉 凌雲の湯",
+   "pref": "東京都",
+   "region": "関東",
+   "brand": "nono",
+   "id": "dfc7e5ad4"
+  },
+  {
+   "name": "御宿 野乃浅草別邸",
+   "onsen": "天然温泉 凌天の湯",
+   "pref": "東京都",
+   "region": "関東",
+   "brand": "nono",
+   "id": "d528b3270"
+  },
+  {
+   "name": "御宿 野乃松本",
+   "onsen": "天然温泉 あづみの湯",
+   "pref": "長野県",
+   "region": "甲信越",
+   "brand": "nono",
+   "id": "d3308ef9e"
+  },
+  {
+   "name": "御宿 野乃富山",
+   "onsen": "天然温泉 剱の湯",
+   "pref": "富山県",
+   "region": "北陸",
+   "brand": "nono",
+   "id": "dccb716ae"
+  },
+  {
+   "name": "御宿 野乃金沢",
+   "onsen": "天然温泉 加賀の宝泉",
+   "pref": "石川県",
+   "region": "北陸",
+   "brand": "nono",
+   "id": "d2938c5bb"
+  },
+  {
+   "name": "御宿 野乃福井",
+   "onsen": "天然温泉 越前の湯",
+   "pref": "福井県",
+   "region": "北陸",
+   "brand": "nono",
+   "id": "d0e332db7"
+  },
+  {
+   "name": "御宿 野乃なんば",
+   "onsen": "天然温泉 花風の湯",
+   "pref": "大阪府",
+   "region": "近畿",
+   "brand": "nono",
+   "id": "d2a90c24a"
+  },
+  {
+   "name": "御宿 野乃大阪淀屋橋",
+   "onsen": "天然温泉 花波の湯",
+   "pref": "大阪府",
+   "region": "近畿",
+   "brand": "nono",
+   "id": "dd6afa471"
+  },
+  {
+   "name": "御宿 野乃京都七条",
+   "onsen": "天然温泉 蓮花の湯",
+   "pref": "京都府",
+   "region": "近畿",
+   "brand": "nono",
+   "id": "dd79dd85c"
+  },
+  {
+   "name": "御宿 野乃奈良",
+   "onsen": "天然温泉 吉野桜の湯",
+   "pref": "奈良県",
+   "region": "近畿",
+   "brand": "nono",
+   "id": "d0f8832d2"
+  },
+  {
+   "name": "御宿 野乃松江",
+   "onsen": "天然温泉 だんだんの湯",
+   "pref": "島根県",
+   "region": "中国",
+   "brand": "nono",
+   "id": "d4b443c99"
+  },
+  {
+   "name": "御宿 野乃境港",
+   "onsen": "天然温泉 夕凪の湯",
+   "pref": "鳥取県",
+   "region": "中国",
+   "brand": "nono",
+   "id": "dd5ffc685"
+  },
+  {
+   "name": "御宿 野乃別府",
+   "onsen": "別府八湯",
+   "pref": "大分県",
+   "region": "九州",
+   "brand": "nono",
+   "id": "dd8fc97c2"
+  },
+  {
+   "name": "御宿 野乃熊本",
+   "onsen": "天然温泉 肥後の湯",
+   "pref": "熊本県",
+   "region": "九州",
+   "brand": "nono",
+   "id": "d3e14f307"
+  },
+  {
+   "name": "ドーミーインEXPRESS仙台広瀬通",
+   "onsen": "杜の湯",
+   "pref": "宮城県",
+   "region": "東北",
+   "brand": "express",
+   "id": "db39b28ad"
+  },
+  {
+   "name": "ドーミーインEXPRESS仙台シーサイド",
+   "onsen": "天然温泉 海神の湯",
+   "pref": "宮城県",
+   "region": "東北",
+   "brand": "express",
+   "id": "dc6e9fe20"
+  },
+  {
+   "name": "ドーミーインEXPRESS郡山",
+   "onsen": "磐梯の湯",
+   "pref": "福島県",
+   "region": "東北",
+   "brand": "express",
+   "id": "dc356e049"
+  },
+  {
+   "name": "ドーミーインEXPRESS浅草",
+   "onsen": "展望大浴場 あさひ湯",
+   "pref": "東京都",
+   "region": "関東",
+   "brand": "express",
+   "id": "de67b1483"
+  },
+  {
+   "name": "ドーミーインEXPRESS目黒青葉台",
+   "onsen": "",
+   "pref": "東京都",
+   "region": "関東",
+   "brand": "express",
+   "id": "d4b44e790"
+  },
+  {
+   "name": "ドーミーインEXPRESS掛川",
+   "onsen": "天然温泉 茶月の湯",
+   "pref": "静岡県",
+   "region": "東海",
+   "brand": "express",
+   "id": "d039a08ed"
+  },
+  {
+   "name": "ドーミーインEXPRESS三河安城",
+   "onsen": "天然温泉 三州の湯",
+   "pref": "愛知県",
+   "region": "東海",
+   "brand": "express",
+   "id": "dd541b87f"
+  },
+  {
+   "name": "ドーミーインEXPRESS豊橋",
+   "onsen": "天然温泉 つつじの湯",
+   "pref": "愛知県",
+   "region": "東海",
+   "brand": "express",
+   "id": "de083c85a"
+  },
+  {
+   "name": "ドーミーインEXPRESS富士山御殿場",
+   "onsen": "天然温泉 富士桜の湯",
+   "pref": "静岡県",
+   "region": "東海",
+   "brand": "express",
+   "id": "da3abb631"
+  },
+  {
+   "name": "ドーミーインEXPRESS松江",
+   "onsen": "",
+   "pref": "島根県",
+   "region": "中国",
+   "brand": "express",
+   "id": "da2b52ec3"
+  },
+  {
+   "name": "ドーミーインEXPRESS出雲の國 雲南",
+   "onsen": "天然温泉 三刀屋の湯",
+   "pref": "島根県",
+   "region": "中国",
+   "brand": "express",
+   "id": "d1743f8eb"
+  },
+  {
+   "name": "定山渓 ゆらく草庵",
+   "onsen": "",
+   "pref": "北海道",
+   "region": "北海道",
+   "brand": "resort",
+   "id": "dcfa49eb8"
+  },
+  {
+   "name": "湯けむりの宿 稲住温泉",
+   "onsen": "",
+   "pref": "秋田県",
+   "region": "東北",
+   "brand": "resort",
+   "id": "da1d2c275"
+  },
+  {
+   "name": "鳴子温泉 湯元 吉祥",
+   "onsen": "",
+   "pref": "宮城県",
+   "region": "東北",
+   "brand": "resort",
+   "id": "d8ae218bb"
+  },
+  {
+   "name": "湯宿 季の庭",
+   "onsen": "",
+   "pref": "群馬県",
+   "region": "関東",
+   "brand": "resort",
+   "id": "dfdee7a5f"
+  },
+  {
+   "name": "お宿 木の葉",
+   "onsen": "",
+   "pref": "群馬県",
+   "region": "関東",
+   "brand": "resort",
+   "id": "d621a3177"
+  },
+  {
+   "name": "湯けむりの宿 雪の花",
+   "onsen": "",
+   "pref": "新潟県",
+   "region": "甲信越",
+   "brand": "resort",
+   "id": "d1ebde036"
+  },
+  {
+   "name": "ウェルネスの森 那須",
+   "onsen": "",
+   "pref": "栃木県",
+   "region": "関東",
+   "brand": "resort",
+   "id": "dd33e8ffd"
+  },
+  {
+   "name": "塩の湯温泉 蓮月",
+   "onsen": "",
+   "pref": "栃木県",
+   "region": "関東",
+   "brand": "resort",
+   "id": "d61e60d0f"
+  },
+  {
+   "name": "ルシアン旧軽井沢",
+   "onsen": "",
+   "pref": "長野県",
+   "region": "甲信越",
+   "brand": "resort",
+   "id": "d8f4c70d9"
+  },
+  {
+   "name": "月の宿 紗ら",
+   "onsen": "",
+   "pref": "神奈川県",
+   "region": "関東",
+   "brand": "resort",
+   "id": "d5d3dce19"
+  },
+  {
+   "name": "箱根小涌谷温泉 水の音",
+   "onsen": "",
+   "pref": "神奈川県",
+   "region": "関東",
+   "brand": "resort",
+   "id": "da0c13844"
+  },
+  {
+   "name": "季の湯 雪月花",
+   "onsen": "",
+   "pref": "神奈川県",
+   "region": "関東",
+   "brand": "resort",
+   "id": "d7c4ec1f1"
+  },
+  {
+   "name": "強羅温泉 雪月花別邸 翠雲",
+   "onsen": "",
+   "pref": "神奈川県",
+   "region": "関東",
+   "brand": "resort",
+   "id": "d8bb9e4be"
+  },
+  {
+   "name": "ウェルネスの森 伊東",
+   "onsen": "",
+   "pref": "静岡県",
+   "region": "東海",
+   "brand": "resort",
+   "id": "d77954e9c"
+  },
+  {
+   "name": "淘心庵 米屋",
+   "onsen": "",
+   "pref": "静岡県",
+   "region": "東海",
+   "brand": "resort",
+   "id": "dc570507d"
+  },
+  {
+   "name": "湯回廊 菊屋",
+   "onsen": "",
+   "pref": "静岡県",
+   "region": "東海",
+   "brand": "resort",
+   "id": "df4a3cb66"
+  },
+  {
+   "name": "湯めぐりの宿 桂川",
+   "onsen": "",
+   "pref": "静岡県",
+   "region": "東海",
+   "brand": "resort",
+   "id": "d04237af4"
+  },
+  {
+   "name": "杜の湯 きらの里",
+   "onsen": "",
+   "pref": "静岡県",
+   "region": "東海",
+   "brand": "resort",
+   "id": "db6b68151"
+  },
+  {
+   "name": "いにしえの宿 伊久",
+   "onsen": "",
+   "pref": "三重県",
+   "region": "東海",
+   "brand": "resort",
+   "id": "ddc2186fb"
+  },
+  {
+   "name": "飛騨花里の湯 高山桜庵",
+   "onsen": "",
+   "pref": "岐阜県",
+   "region": "東海",
+   "brand": "resort",
+   "id": "dc9ed1be8"
+  },
+  {
+   "name": "匠の宿 深山桜庵",
+   "onsen": "",
+   "pref": "岐阜県",
+   "region": "東海",
+   "brand": "resort",
+   "id": "dcf9d4d5c"
+  },
+  {
+   "name": "深山桜庵 別館 湯めぐりの宿 平湯館",
+   "onsen": "",
+   "pref": "岐阜県",
+   "region": "東海",
+   "brand": "resort",
+   "id": "dfdb280be"
+  },
+  {
+   "name": "御宿 結の庄",
+   "onsen": "",
+   "pref": "岐阜県",
+   "region": "東海",
+   "brand": "resort",
+   "id": "d60d313bc"
+  },
+  {
+   "name": "白鷺の湯 能登 海舟",
+   "onsen": "",
+   "pref": "石川県",
+   "region": "北陸",
+   "brand": "resort",
+   "id": "dcb3dc9a4"
+  },
+  {
+   "name": "京都 嵐山温泉 花伝抄",
+   "onsen": "",
+   "pref": "京都府",
+   "region": "近畿",
+   "brand": "resort",
+   "id": "d6d186417"
+  },
+  {
+   "name": "京都 梅小路 花伝抄",
+   "onsen": "",
+   "pref": "京都府",
+   "region": "近畿",
+   "brand": "resort",
+   "id": "d406ea51a"
+  },
+  {
+   "name": "浜千鳥の湯 海舟",
+   "onsen": "",
+   "pref": "和歌山県",
+   "region": "近畿",
+   "brand": "resort",
+   "id": "d3610249d"
+  },
+  {
+   "name": "城崎 円山川温泉 銀花",
+   "onsen": "",
+   "pref": "兵庫県",
+   "region": "近畿",
+   "brand": "resort",
+   "id": "d801f26d1"
+  },
+  {
+   "name": "いにしえの宿 佳雲",
+   "onsen": "",
+   "pref": "島根県",
+   "region": "中国",
+   "brand": "resort",
+   "id": "d89e77514"
+  },
+  {
+   "name": "お宿 月夜のうさぎ",
+   "onsen": "",
+   "pref": "島根県",
+   "region": "中国",
+   "brand": "resort",
+   "id": "d10ab6bb8"
+  },
+  {
+   "name": "御宿 敷島館",
+   "onsen": "",
+   "pref": "香川県",
+   "region": "四国",
+   "brand": "resort",
+   "id": "d45cbdb5d"
+  },
+  {
+   "name": "ラビスタ阿寒川",
+   "onsen": "",
+   "pref": "北海道",
+   "region": "北海道",
+   "brand": "resort",
+   "id": "db24388fd"
+  },
+  {
+   "name": "ラビスタ大雪山",
+   "onsen": "",
+   "pref": "北海道",
+   "region": "北海道",
+   "brand": "resort",
+   "id": "d2a919240"
+  },
+  {
+   "name": "ラビスタ函館ベイ",
+   "onsen": "",
+   "pref": "北海道",
+   "region": "北海道",
+   "brand": "resort",
+   "id": "d1125533b"
+  },
+  {
+   "name": "ラビスタ函館ベイ ANNEX",
+   "onsen": "",
+   "pref": "北海道",
+   "region": "北海道",
+   "brand": "resort",
+   "id": "d0972e010"
+  },
+  {
+   "name": "ラビスタ草津ヒルズ",
+   "onsen": "",
+   "pref": "群馬県",
+   "region": "関東",
+   "brand": "resort",
+   "id": "dd0688616"
+  },
+  {
+   "name": "ラビスタ東京ベイ",
+   "onsen": "",
+   "pref": "東京都",
+   "region": "関東",
+   "brand": "resort",
+   "id": "d7759dc7a"
+  },
+  {
+   "name": "ラビスタ横須賀観音崎テラス",
+   "onsen": "",
+   "pref": "神奈川県",
+   "region": "関東",
+   "brand": "resort",
+   "id": "d5143be21"
+  },
+  {
+   "name": "ラビスタ富士河口湖",
+   "onsen": "",
+   "pref": "山梨県",
+   "region": "甲信越",
+   "brand": "resort",
+   "id": "dceec8c84"
+  },
+  {
+   "name": "ラビスタ霧島ヒルズ",
+   "onsen": "",
+   "pref": "鹿児島県",
+   "region": "九州",
+   "brand": "resort",
+   "id": "d22075839"
+  },
+  {
+   "name": "ザ・ビーチタワー沖縄",
+   "onsen": "",
+   "pref": "沖縄県",
+   "region": "九州",
+   "brand": "resort",
+   "id": "dd6bf67a4"
+  }
+ ]
+}

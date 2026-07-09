@@ -1,0 +1,28 @@
+{
+  "site_base": "https://shiyu-official.github.io",
+  "index_file": "index.html",
+  "latest_count": 8,
+  "news_max": 5,
+  "channels": {
+    "rail":  { "handle": "@Re_shiyu_travel", "name": "Re:しゆ",            "badge": "Rail",  "category": "旅行|交通",   "channel_id": "" },
+    "taiko": { "handle": "@Re_shiyu_taiko",  "name": "太鼓の達人チャンネル", "badge": "Taiko", "category": "太鼓の達人", "channel_id": "" }
+  },
+  "representative": {
+    "rail": [
+      { "url": "https://youtu.be/S-G6yt2by_k", "thumb": "images/video-rail-1.jpg" },
+      { "url": "https://youtu.be/CCLNgN8DZBo", "thumb": "images/video-rail-2.jpg" },
+      { "url": "https://youtu.be/aDjC0D9wY7g", "thumb": "images/video-rail-3.jpg" },
+      { "url": "https://youtu.be/OcRuTaagVp4", "thumb": "images/video-rail-4.jpg" }
+    ],
+    "taiko": [
+      { "url": "https://youtu.be/Rfz7GcOEqMg", "thumb": "images/video-taiko-1.jpg" },
+      { "url": "https://youtu.be/odBJofnCiE4", "thumb": "images/video-taiko-2.jpg" },
+      { "url": "https://youtu.be/XS4FjI2lwkw", "thumb": "images/video-taiko-3.jpg" },
+      { "url": "https://youtu.be/hHwiDI4ynxg", "thumb": "images/video-taiko-4.jpg" }
+    ]
+  },
+  "news_templates": {
+    "video": "{channel} に新しい動画「{title}」を公開しました。",
+    "blog": "ブログを更新しました：「{title}」"
+  }
+}

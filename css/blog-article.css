@@ -1,0 +1,121 @@
+/* =============================================================
+   blog-article.css — ブログ記事ページ専用
+   本文タイポグラフィ／自動目次（サイドバー）／シェア／前後ナビ
+   ============================================================= */
+
+/* 記事ヘッダー（タイトル帯） */
+.post-head { text-align: center; margin-bottom: clamp(1.5rem, 3vw, 2.4rem); }
+.post-head .kicker { color: var(--primary-color); }
+.post-head .post-title {
+  font-size: clamp(1.5rem, 3.4vw, 2.4rem); font-weight: 600; letter-spacing: .04em;
+  line-height: 1.5; color: var(--primary-dark-color); margin: .3rem 0 .6rem;
+}
+.post-meta { color: var(--muted-color); font-size: .88rem; letter-spacing: .06em; }
+.post-meta .cat { color: var(--primary-color); }
+.post-hero { margin: clamp(1.2rem, 2.5vw, 2rem) 0 0; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-1); }
+.post-hero img { width: 100%; height: auto; display: block; }
+
+/* レイアウト：PCは 目次サイドバー＋本文、モバイルは縦積み */
+.post-layout {
+  display: grid; grid-template-columns: 1fr; gap: clamp(1.4rem, 3vw, 2.6rem);
+  max-width: 1100px; margin-inline: auto;
+}
+@media (min-width: 900px) {
+  .post-layout { grid-template-columns: 250px minmax(0, 1fr); align-items: start; }
+  .post-toc-wrap { position: sticky; top: 120px; }
+}
+
+/* 目次 */
+.post-toc-wrap { }
+.post-toc-title {
+  font-family: var(--accent-font); letter-spacing: .16em; text-transform: uppercase;
+  font-size: .85rem; color: var(--primary-color); margin-bottom: .6rem;
+}
+.post-toc { border-left: 2px solid var(--bg-border-color); }
+.post-toc ul { list-style: none; margin: 0; padding: 0; }
+.post-toc li { margin: 0; }
+.post-toc a {
+  display: block; padding: .35rem .9rem; color: var(--muted-color);
+  font-size: .9rem; line-height: 1.5; border-left: 2px solid transparent; margin-left: -2px;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.post-toc a:hover, .post-toc a.is-current { color: var(--primary-color); border-left-color: var(--primary-color); filter: none; }
+.post-toc .toc-sub a { padding-left: 1.8rem; font-size: .84rem; }
+
+/* 本文タイポグラフィ */
+.post { max-width: 760px; }
+.post h2 {
+  font-size: clamp(1.3rem, 2.2vw, 1.7rem); font-weight: 600; letter-spacing: .03em;
+  color: var(--primary-dark-color);
+  margin: 2.4em 0 .8em; padding-bottom: .35em; border-bottom: 1px solid var(--bg-border-color);
+  scroll-margin-top: 110px;
+}
+.post h3 {
+  font-size: clamp(1.1rem, 1.8vw, 1.35rem); font-weight: 600; letter-spacing: .03em;
+  color: var(--bg-inverse-color); margin: 1.8em 0 .6em;
+  padding-left: .6em; border-left: 4px solid var(--primary-color);
+  scroll-margin-top: 110px;
+}
+.post p { margin: 0 0 1.4em; line-height: 2; }
+.post a { color: var(--primary-color); text-decoration: underline; }
+.post ul, .post ol { margin: 0 0 1.4em; padding-left: 1.5em; line-height: 2; }
+.post ul { list-style: disc; }
+.post ol { list-style: decimal; }
+.post li { margin: .2em 0; }
+.post img { max-width: 100%; height: auto; border-radius: var(--radius); display: block; }
+.post figure { margin: 1.6em 0; }
+.post figure img { margin-inline: auto; box-shadow: var(--shadow-1); }
+.post figcaption { text-align: center; color: var(--muted-color); font-size: .84rem; margin-top: .6em; }
+.post blockquote {
+  margin: 1.6em 0; padding: .8em 1.2em; color: #3a4753;
+  background: var(--light-color); border-left: 4px solid var(--primary-color); border-radius: 0 8px 8px 0;
+}
+.post blockquote p:last-child { margin-bottom: 0; }
+.post hr { border: none; border-top: 1px dashed var(--bg-border-color); margin: 2.4em 0; }
+.post code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: var(--light-color); padding: .15em .45em; border-radius: 6px; font-size: .92em;
+}
+.post .lead-text { font-size: 1.05em; color: #33414d; }
+
+/* 2枚並べたい時のユーティリティ（任意） */
+.post .img-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.6em 0; }
+@media (max-width: 560px) { .post .img-row { grid-template-columns: 1fr; } }
+
+/* シェアボタン */
+.post-share { display: flex; align-items: center; gap: .6rem; margin: 2.4rem 0 0; flex-wrap: wrap; }
+.post-share .label { color: var(--muted-color); font-size: .85rem; letter-spacing: .06em; margin-right: .2rem; }
+.post-share a, .post-share button {
+  width: 42px; height: 42px; display: grid; place-items: center; border-radius: 50%;
+  border: 1px solid var(--bg-border-color); background: #fff; color: var(--bg-inverse-color);
+  font-size: 1rem; cursor: pointer;
+  transition: transform var(--dur) var(--ease), background var(--dur) var(--ease), color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.post-share a:hover, .post-share button:hover { transform: translateY(-2px); border-color: transparent; filter: none; }
+.post-share [data-share="x"]:hover { background: #000; color: #fff; }
+.post-share [data-share="line"]:hover { background: #06c755; color: #fff; }
+.post-share [data-share="facebook"]:hover { background: #1877f2; color: #fff; }
+.post-share [data-share="copy"] { position: relative; }
+.post-share [data-share="copy"].copied::after {
+  content: "コピーしました"; position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%);
+  white-space: nowrap; background: var(--primary-dark-color); color: #fff; font-size: .72rem;
+  padding: .3em .7em; border-radius: 6px;
+}
+
+/* 前後の記事ナビ */
+.post-nav { display: none; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: clamp(2rem, 4vw, 3rem); }
+.post-nav__link {
+  display: flex; flex-direction: column; gap: .3rem; padding: 1rem 1.2rem;
+  border: 1px solid var(--bg-border-color); border-radius: var(--radius); color: inherit;
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  font-size: .95rem; line-height: 1.5;
+}
+.post-nav__link:hover { transform: translateY(-3px); box-shadow: var(--shadow-1); border-color: transparent; filter: none; }
+.post-nav__link span { color: var(--muted-color); font-size: .78rem; letter-spacing: .06em; }
+.post-nav__next { text-align: right; }
+.post-nav__prev span::before { content: "← "; }
+.post-nav__next span::after { content: " →"; }
+@media (max-width: 560px) { .post-nav { grid-template-columns: 1fr; } .post-nav__next { text-align: left; } }
+
+/* 記事下部の一覧へ戻る */
+.post-back { text-align: center; margin-top: clamp(2rem, 4vw, 3rem); }
