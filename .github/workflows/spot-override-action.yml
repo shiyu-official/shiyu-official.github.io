@@ -1,0 +1,68 @@
+name: Spot override (issue)
+
+# Issue（label: spot-override / タイトル "[spots] ..."）が立つと、本文のJSONを解析して
+# data/spot_overrides.json を更新し、完了コメントを付けてIssueをクローズする。
+# ※安全弁：リポジトリ所有者本人が立てたIssueのみ実行する。
+on:
+  issues:
+    types: [opened, edited, reopened, labeled]
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: spot-override
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    if: >-
+      github.event.issue.user.login == github.repository_owner &&
+      ( contains(join(github.event.issue.labels.*.name, ','), 'spot-override') ||
+        startsWith(github.event.issue.title, '[spots]') )
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Parse issue and update overrides
+        id: run
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: |
+          python scripts/apply_spot_override.py | tee /tmp/out.txt
+          echo "status=$(grep -oP '(?<=^STATUS=).*' /tmp/out.txt | head -1)" >> "$GITHUB_OUTPUT"
+          echo "message=$(grep -oP '(?<=^MESSAGE=).*' /tmp/out.txt | head -1)" >> "$GITHUB_OUTPUT"
+
+      - name: Commit changes
+        if: steps.run.outputs.status == 'ok'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/spot_overrides.json || true
+          if [ -n "$(git status --porcelain data/spot_overrides.json)" ]; then
+            git commit -m "chore: update spot overrides [skip build]"
+            git push
+          fi
+
+      - name: Comment result
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const status = "${{ steps.run.outputs.status }}";
+            const message = `${{ steps.run.outputs.message }}`;
+            await github.rest.issues.createComment({
+              owner: context.repo.owner, repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: (status === 'ok' ? '✅ ' : '⚠️ ') + message
+            });
+            if (status === 'ok') {
+              await github.rest.issues.update({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: context.issue.number, state: 'closed'
+              });
+            }
