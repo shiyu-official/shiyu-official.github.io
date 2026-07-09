@@ -1,0 +1,45 @@
+name: Build rail records
+
+# data/rail_jr_raw.txt / rail_pr_raw.txt（乗りつぶしオンラインの画面コピー）を
+# 更新してコミットすると、サマリー表を解析して data/rail.json を再生成する。
+on:
+  push:
+    paths:
+      - "data/rail_jr_raw.txt"
+      - "data/rail_pr_raw.txt"
+      - "scripts/build_rail.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-rail
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build rail.json
+        run: python scripts/build_rail.py
+
+      - name: Commit rail.json if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain data/rail.json)" ]; then
+            git add data/rail.json
+            git commit -m "chore: rebuild rail.json [skip build]"
+            git push
+          else
+            echo "No changes to rail.json."
+          fi

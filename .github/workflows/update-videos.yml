@@ -1,0 +1,41 @@
+name: Update videos & news
+
+# 6時間ごとの定期実行 ＋ 手動実行（Actionsタブの "Run workflow"）
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write   # index.html / data の自動コミットに必要
+
+concurrency:
+  group: update-videos
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run updater
+        run: python scripts/update_videos.py
+
+      - name: Commit changes if any
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain)" ]; then
+            git add index.html data/last_seen.json
+            git commit -m "chore: auto-update videos & news [skip ci]"
+            git push
+          else
+            echo "No changes to commit."
+          fi

@@ -1,0 +1,20 @@
+name: ドーミーイン宿泊を削除
+description: 間違えて登録した宿泊記録を削除します
+title: "[dormy] 削除"
+labels: ["dormy-visit"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        削除したい宿を **1行1件**で入力してください（店舗名のみ）。多少の表記ゆれは自動で吸収します。
+        写真も一緒に削除されます。見つからない行は結果コメントで知らせます。
+  - type: textarea
+    id: delete
+    attributes:
+      label: 削除する店舗
+      description: "1行1件（店舗名のみ）"
+      placeholder: |
+        ドーミーイン札幌ANNEX
+        御宿 野乃 浅草
+    validations:
+      required: true

@@ -1,0 +1,41 @@
+name: Build dormy master
+
+# ドーミーイン系ホテルのマスター(dormy_master.json)を Wikipedia から再生成する。
+# 月1の定期実行＋手動＋スクリプト/貼付け更新時。
+on:
+  schedule:
+    - cron: "0 20 1 * *"   # 毎月1日 05:00 JST
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/build_dormy_master.py"
+      - "data/dormy_wiki_raw.txt"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-dormy-master
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build dormy_master.json
+        run: python scripts/build_dormy_master.py
+      - name: Commit if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain data/dormy_master.json)" ]; then
+            git add data/dormy_master.json
+            git commit -m "chore: refresh dormy_master.json [skip build]"
+            git push
+          else
+            echo "No changes."
+          fi
