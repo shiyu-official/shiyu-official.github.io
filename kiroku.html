@@ -115,7 +115,8 @@
   .spot-cat { border:1px solid var(--bg-border-color); border-radius:var(--radius); background:var(--bg-color);
     padding:1.1rem 1.2rem; box-shadow:var(--shadow-1); }
   .spot-cat__head { display:flex; align-items:center; gap:.6rem; margin-bottom:.2rem; }
-  .spot-cat__icon { font-size:1.3rem; line-height:1; }
+  .spot-cat__icon { font-size:1.3rem; line-height:1; display:inline-flex; }
+  .spot-cat__icon img { display:block; width:38px; height:38px; object-fit:contain; }
   .spot-cat__name { font-weight:600; letter-spacing:.03em; }
   .spot-cat__count { margin-left:auto; font-family:var(--accent-font); font-size:1.05rem; color:var(--primary-dark-color); white-space:nowrap; }
   .spot-cat__count.is-complete { color:var(--accent-color); }
@@ -505,7 +506,7 @@
       }).join("");
       return '<div class="spot-cat">' +
                '<div class="spot-cat__head">' +
-                 '<span class="spot-cat__icon" aria-hidden="true">' + esc(c.icon || "") + '</span>' +
+                 '<span class="spot-cat__icon" aria-hidden="true">' + (c.iconImg ? '<img src="' + esc(c.iconImg) + '" alt="" loading="lazy">' : esc(c.icon || "")) + '</span>' +
                  '<span class="spot-cat__name">' + esc(c.name) + '</span>' +
                  '<span class="spot-cat__count' + (complete ? " is-complete" : "") + '">' + v + '/' + c.spots.length + '</span>' +
                '</div>' +

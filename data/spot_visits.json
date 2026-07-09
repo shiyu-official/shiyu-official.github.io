@@ -11,6 +11,7 @@
       "name": "日本三名泉",
       "description": "林羅山が選んだ日本を代表する三つの名湯",
       "icon": "♨️",
+      "iconImg": "images/spots/spot-01.png",
       "spots": [
         {
           "id": "sanmeisen_kusatsu",
@@ -59,6 +60,7 @@
       "name": "日本三名泉（枕草子説）",
       "description": "枕草子に記された三つの名湯",
       "icon": "📜",
+      "iconImg": "images/spots/spot-02.png",
       "spots": [
         {
           "id": "makura_arima",
@@ -106,6 +108,7 @@
       "name": "日本三古湯",
       "description": "日本書紀・風土記に登場する日本最古の温泉",
       "icon": "🏛️",
+      "iconImg": "images/spots/spot-03.png",
       "spots": [
         {
           "id": "sankotou_dogo",
@@ -153,6 +156,7 @@
       "name": "日本三大美人の湯",
       "description": "肌に良い泉質で知られる美人の湯",
       "icon": "💎",
+      "iconImg": "images/spots/spot-04.png",
       "spots": [
         {
           "id": "bijin_kawanaka",
@@ -199,6 +203,7 @@
       "name": "日本三大美肌の湯",
       "description": "美肌効果で知られる三つの温泉",
       "icon": "✨",
+      "iconImg": "images/spots/spot-05.png",
       "spots": [
         {
           "id": "bihada_ureshino",
@@ -245,6 +250,7 @@
       "name": "日本三大薬泉",
       "description": "療養効果が高い温泉として知られる三湯",
       "icon": "💊",
+      "iconImg": "images/spots/spot-06.png",
       "spots": [
         {
           "id": "yakusen_kusatsu",
@@ -293,6 +299,7 @@
       "name": "日本三御湯",
       "description": "皇室が選んだ日本の御湯",
       "icon": "👑",
+      "iconImg": "images/spots/spot-07.png",
       "spots": [
         {
           "id": "miyu_akiu",
@@ -339,6 +346,7 @@
       "name": "日本三大秘湯",
       "description": "秘境に湧く日本三大秘湯",
       "icon": "🏔️",
+      "iconImg": "images/spots/spot-08.png",
       "spots": [
         {
           "id": "hitou_niseko",
@@ -385,6 +393,7 @@
       "name": "胃腸病に効く三大温泉",
       "description": "胃腸病に効能がある三つの温泉",
       "icon": "🏥",
+      "iconImg": "images/spots/spot-09.png",
       "spots": [
         {
           "id": "ichou_shima",
@@ -431,6 +440,7 @@
       "name": "日本三景",
       "description": "林春斎が選んだ日本を代表する三つの景観",
       "icon": "🌊",
+      "iconImg": "images/spots/spot-10.png",
       "spots": [
         {
           "id": "sankei_matsushima",
@@ -477,6 +487,7 @@
       "name": "日本三名園",
       "description": "日本を代表する三つの庭園",
       "icon": "🌿",
+      "iconImg": "images/spots/spot-11.png",
       "spots": [
         {
           "id": "sanmeien_kenroku",
@@ -523,6 +534,7 @@
       "name": "日本三大夜景",
       "description": "日本を代表する三大夜景スポット",
       "icon": "🌃",
+      "iconImg": "images/spots/spot-12.png",
       "spots": [
         {
           "id": "yakei_hakodate",
@@ -569,6 +581,7 @@
       "name": "日本三大カルスト地形",
       "description": "日本を代表する三つのカルスト台地",
       "icon": "🪨",
+      "iconImg": "images/spots/spot-13.png",
       "spots": [
         {
           "id": "karst_akiyoshi",
@@ -616,6 +629,7 @@
       "name": "日本三大鍾乳洞",
       "description": "日本を代表する三つの鍾乳洞",
       "icon": "🕳️",
+      "iconImg": "images/spots/spot-14.png",
       "spots": [
         {
           "id": "shonyu_ryusen",
@@ -663,6 +677,7 @@
       "name": "日本三名瀑",
       "description": "日本を代表する三つの名瀑",
       "icon": "💧",
+      "iconImg": "images/spots/spot-15.png",
       "spots": [
         {
           "id": "meibaku_nachi",
@@ -711,6 +726,7 @@
       "name": "日本三大神滝",
       "description": "神聖な三つの滝",
       "icon": "⛩️",
+      "iconImg": "images/spots/spot-16.png",
       "spots": [
         {
           "id": "shintaki_nachi",
@@ -759,6 +775,7 @@
       "name": "日本三大渓",
       "description": "日本を代表する三つの渓谷",
       "icon": "🏞️",
+      "iconImg": "images/spots/spot-17.png",
       "spots": [
         {
           "id": "keikoku_geibikei",
