@@ -1,0 +1,42 @@
+name: Build spot form
+
+# 名所制覇のIssueフォーム（.github/ISSUE_TEMPLATE/spot-override.yml）を
+# 現在の訪問状態から再生成する。GPS履歴などで spot_visits.json を更新して
+# push したときに、フォームの一覧を最新状態に保つ。手動実行も可。
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "data/spot_visits.json"
+      - "scripts/build_spot_form.py"
+      - "scripts/spot_common.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-spot-form
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Regenerate issue form
+        run: python scripts/build_spot_form.py
+
+      - name: Commit changes
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .github/ISSUE_TEMPLATE/spot-override.yml || true
+          if [ -n "$(git status --porcelain .github/ISSUE_TEMPLATE/spot-override.yml)" ]; then
+            git commit -m "chore: refresh spot issue form [skip build]"
+            git push
+          fi

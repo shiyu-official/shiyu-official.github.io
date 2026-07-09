@@ -38,14 +38,18 @@ jobs:
           echo "status=$(grep -oP '(?<=^STATUS=).*' /tmp/out.txt | head -1)" >> "$GITHUB_OUTPUT"
           echo "message=$(grep -oP '(?<=^MESSAGE=).*' /tmp/out.txt | head -1)" >> "$GITHUB_OUTPUT"
 
+      - name: Regenerate issue form (reflect new state)
+        if: steps.run.outputs.status == 'ok'
+        run: python scripts/build_spot_form.py
+
       - name: Commit changes
         if: steps.run.outputs.status == 'ok'
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/spot_overrides.json || true
-          if [ -n "$(git status --porcelain data/spot_overrides.json)" ]; then
-            git commit -m "chore: update spot overrides [skip build]"
+          git add data/spot_overrides.json .github/ISSUE_TEMPLATE/spot-override.yml || true
+          if [ -n "$(git status --porcelain data/spot_overrides.json .github/ISSUE_TEMPLATE/spot-override.yml)" ]; then
+            git commit -m "chore: update spot overrides + form [skip build]"
             git push
           fi
 
