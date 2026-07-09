@@ -1,16 +1,20 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Issueフォーム/本文の JSON を読み取り、data/spot_overrides.json を更新する。
+Issue から名所制覇の手動補正を読み取り、data/spot_overrides.json を更新する。
 
-本文には次のような JSON ブロックが含まれる想定（spots-admin.html が生成）:
-
-    ```json
-    { "unvisited": ["sanmeisen_gero"], "visited": [] }
-    ```
+対応する入力は2通り:
+  (A) 本文に JSON ブロック（管理ページ spots-admin.html の「Issueで反映」/「コピー」が生成）
+      ```json
+      { "unvisited": ["sanmeisen_gero"], "visited": [] }
+      ```
+  (B) Issueフォーム（.github/ISSUE_TEMPLATE/spot-override.yml）のプルダウン選択
+      ### 訪問扱いを外す（未訪問にする）
+      下呂温泉（岐阜県）／日本三名泉, 有馬温泉（兵庫県）／日本三古湯
+      ### 訪問済みにする（任意）
+      _No response_
 
 出力は build_dormy_visit.py と同じ規約（STATUS=... / MESSAGE=...）。
-ワークフローがこれを拾ってIssueにコメントしクローズするのはDormyと同様。
 """
 import os
 import re
@@ -21,6 +25,10 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data")
 VISITS = os.path.join(DATA, "spot_visits.json")
 OVERRIDES = os.path.join(DATA, "spot_overrides.json")
+
+# フォームの見出し（テンプレートの label と一致させること）
+H_UNVISIT = "訪問扱いを外す（未訪問にする）"
+H_VISIT = "訪問済みにする（任意）"
 
 DEFAULT_NOTE = ("名所制覇の自動判定(proximity)を手動で補正するファイル。"
                 "spot_visits.json をGPS履歴から再生成しても、このファイルは上書きされないため補正が残ります。")
@@ -41,82 +49,127 @@ def load_json(path, default):
         return default
 
 
-def valid_ids():
+def build_maps():
+    """label -> id と 有効id集合を作る。label は 'name（pref）／category'。"""
     d = load_json(VISITS, {})
-    ids = set()
+    label2id, ids = {}, set()
     for c in d.get("categories", []):
+        cname = c.get("name", "")
         for s in c.get("spots", []):
-            if s.get("id"):
-                ids.add(s["id"])
-    return ids
+            sid = s.get("id")
+            if not sid:
+                continue
+            ids.add(sid)
+            label = "%s（%s）／%s" % (s.get("name", ""), s.get("pref", ""), cname)
+            label2id[label] = sid
+    return label2id, ids
 
 
 def extract_json(body):
-    """本文から JSON オブジェクトを取り出す。優先: ```json ... ``` フェンス、次に最初の {...}。"""
-    if not body:
+    m = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", body or "", re.S | re.I)
+    chunk = m.group(1) if m else None
+    if chunk is None:
+        m = re.search(r"(\{[^{}]*\"(?:unvisited|visited)\"[^{}]*\})", body or "", re.S)
+        chunk = m.group(1) if m else None
+    if chunk is None:
         return None
-    m = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", body, re.S | re.I)
-    if m:
-        chunk = m.group(1)
-    else:
-        m = re.search(r"(\{.*\})", body, re.S)
-        if not m:
-            return None
-        chunk = m.group(1)
     try:
-        return json.loads(chunk)
+        obj = json.loads(chunk)
+        return obj if isinstance(obj, dict) else None
     except Exception:
         return None
 
 
-def as_id_list(v):
+def section(body, heading):
+    """Issueフォーム本文から '### heading' 直後のブロックを取り出す。"""
+    if not body:
+        return ""
+    # 見出しから次の見出し(### )または末尾まで
+    pat = re.compile(r"^###\s*" + re.escape(heading) + r"\s*$(.*?)(?=^###\s|\Z)", re.S | re.M)
+    m = pat.search(body)
+    if not m:
+        return ""
+    return m.group(1).strip()
+
+
+def parse_selection(block, label2id):
+    if not block or block.strip() in ("_No response_", "_なし_", "なし"):
+        return [], []
+    # カンマ・読点・改行で分割
+    parts = re.split(r"[,\n、]+", block)
+    ids, unknown = [], []
+    seen = set()
+    for p in parts:
+        p = p.strip().strip("-").strip()
+        if not p:
+            continue
+        sid = label2id.get(p)
+        if sid:
+            if sid not in seen:
+                seen.add(sid)
+                ids.append(sid)
+        else:
+            unknown.append(p)
+    return ids, unknown
+
+
+def as_id_list(v, ids):
     if not isinstance(v, list):
-        return []
-    seen, res = set(), []
+        return [], []
+    keep, unknown, seen = [], [], set()
     for x in v:
         if isinstance(x, str):
             x = x.strip()
-            if x and x not in seen:
-                seen.add(x)
-                res.append(x)
-    return res
+            if not x:
+                continue
+            if x in ids:
+                if x not in seen:
+                    seen.add(x)
+                    keep.append(x)
+            else:
+                unknown.append(x)
+    return keep, unknown
 
 
 def main():
     body = os.environ.get("ISSUE_BODY", "")
+    label2id, ids = build_maps()
+
+    unvisited, visited, unknown = [], [], []
+
     payload = extract_json(body)
-    if payload is None:
-        out("error", "本文からJSONを読み取れませんでした。管理ページの『Issueで反映』から作成してください。")
-        return 0
+    if payload is not None and ("unvisited" in payload or "visited" in payload):
+        # (A) 管理ページのJSON
+        uv, u1 = as_id_list(payload.get("unvisited"), ids)
+        vi, u2 = as_id_list(payload.get("visited"), ids)
+        unvisited, visited, unknown = uv, vi, (u1 + u2)
+    else:
+        # (B) フォームのプルダウン
+        uv, u1 = parse_selection(section(body, H_UNVISIT), label2id)
+        vi, u2 = parse_selection(section(body, H_VISIT), label2id)
+        unvisited, visited, unknown = uv, vi, (u1 + u2)
+        if not uv and not vi and not (u1 or u2):
+            out("error", "補正内容を読み取れませんでした。管理ページのボタンか、フォームのプルダウンで選択してください。")
+            return 0
 
-    unvisited = as_id_list(payload.get("unvisited"))
-    visited = as_id_list(payload.get("visited"))
-
-    ids = valid_ids()
-    unknown = [i for i in (unvisited + visited) if i not in ids]
-    unvisited = [i for i in unvisited if i in ids]
-    visited = [i for i in visited if i in ids]
-
-    # 同一IDが両方に入っていたら unvisited を優先（＝未訪問化）
-    vset = set(visited)
-    both = [i for i in unvisited if i in vset]
-    if both:
-        visited = [i for i in visited if i not in set(unvisited)]
+    # unvisited 優先（両方に入ったIDは未訪問化）
+    uvset = set(unvisited)
+    visited = [i for i in visited if i not in uvset]
 
     prev = load_json(OVERRIDES, {})
     doc = {
         "_note": prev.get("_note") or DEFAULT_NOTE,
         "_howto": prev.get("_howto") or DEFAULT_HOWTO,
-        "unvisited": sorted(unvisited),
-        "visited": sorted(visited),
+        "unvisited": sorted(set(unvisited)),
+        "visited": sorted(set(visited)),
     }
     with open(OVERRIDES, "w", encoding="utf-8") as f:
         json.dump(doc, f, ensure_ascii=False, indent=2)
         f.write("\n")
 
-    msg = "手動補正を保存しました（未訪問化 %d件 / 訪問化 %d件）。" % (len(unvisited), len(visited))
+    msg = "手動補正を保存しました（未訪問化 %d件 / 訪問化 %d件）。" % (len(doc["unvisited"]), len(doc["visited"]))
     if unknown:
-        msg += " 未知のIDは無視：%s" % "、".join(unknown[:8])
+        msg += " 対応づけできず無視：%s" % "、".join(unknown[:6])
     out("ok", msg)
     return 0
 
