@@ -405,24 +405,6 @@
   }
 
   /* ---------------------------------------------------------
-     8. 線路の区切り線（ビューに入ったら敷設）
-  --------------------------------------------------------- */
-  function initRailDividers() {
-    var divs = Array.prototype.slice.call(document.querySelectorAll(".rail-div"));
-    if (!divs.length) return;
-    if (!("IntersectionObserver" in window)) {
-      divs.forEach(function (d) { d.classList.add("is-in"); });
-      return;
-    }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) { en.target.classList.add("is-in"); io.unobserve(en.target); }
-      });
-    }, { threshold: 0.4 });
-    divs.forEach(function (d) { io.observe(d); });
-  }
-
-  /* ---------------------------------------------------------
      9. 方向幕（split-flap）行先表示：SHIYU / TRAVEL / RAILWAY / TAIKO
   --------------------------------------------------------- */
   function initFlap() {
@@ -468,21 +450,34 @@
     if (reduce) return;
     var toEl = document.getElementById("gate-to");
     var THIS = (location.pathname.split("/").pop() || "index.html");
-    var LABEL = { "index.html": "HOME", "": "HOME", "kiroku.html": "KIROKU", "blog.html": "BLOG", "contact.html": "CONTACT", "privacy.html": "PRIVACY" };
+    // ページ種別 → ラベル
+    var PAGE = { "index.html": "HOME", "": "HOME", "kiroku.html": "KIROKU", "blog.html": "BLOG", "contact.html": "CONTACT", "privacy.html": "PRIVACY" };
+    // ページ内セクション（＝クリックした項目）→ ラベル。ハッシュがあれば優先
+    var SECTION = { "top": "HOME", "about": "ABOUT", "latest": "LATEST", "category": "CATEGORY", "rail": "RAIL", "taiko": "TAIKO", "links": "CHANNELS", "news": "NEWS", "contact": "CONTACT" };
+
+    // 行先ラベル：クリック先にハッシュ（具体的な項目）があればそれを、
+    // 無ければ遷移先ページ種別を表示する。
+    function labelFor(hash, file) {
+      var id = (hash || "").replace(/^#/, "");
+      if (id && SECTION[id]) return SECTION[id];
+      return PAGE[file] || "STATION";
+    }
 
     function reset() { gate.classList.remove("is-visible", "is-closing", "is-opening"); }
 
-    // 到着（＝ホーム等にアクセス）時：改札が開く演出
+    // 到着時：改札が開く演出（URL にハッシュがあればその項目名を表示）
     function playOpen() {
-      if (toEl) toEl.textContent = LABEL[THIS] || "STATION";
+      if (toEl) toEl.textContent = labelFor(location.hash, THIS);
       reset();
       gate.classList.add("is-visible", "is-opening");
       window.setTimeout(reset, 1250);  // 開き終わったら隠す（アニメ 1.15s + 余白）
     }
 
-    // 出発（＝内部ページへ遷移）時：改札が閉じてから移動
-    function playCloseThen(href, file) {
-      if (toEl) toEl.textContent = LABEL[file] || "STATION";
+    // 出発時：改札が閉じてから移動（クリックした項目名を表示）
+    function playCloseThen(href) {
+      var hash = href.indexOf("#") >= 0 ? href.slice(href.indexOf("#")) : "";
+      var file = href.split("#")[0].split("/").pop();
+      if (toEl) toEl.textContent = labelFor(hash, file);
       reset();
       gate.classList.add("is-visible", "is-closing");
       window.setTimeout(function () { window.location.href = href; }, 360);
@@ -498,7 +493,7 @@
       var file = href.split("#")[0].split("/").pop();
       if (!/\.html$/.test(file)) return;                       // .html 遷移のみ対象
       e.preventDefault();
-      playCloseThen(href, file);
+      playCloseThen(href);
     });
 
     // 初回表示で開く演出。ブラウザバック（bfcache 復帰）時は閉じたまま
@@ -518,7 +513,6 @@
     startHero();
     initReels();
     initRouteMap();
-    initRailDividers();
     initFlap();
     initGate();
 
