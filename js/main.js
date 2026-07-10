@@ -467,7 +467,27 @@
     var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion:reduce)").matches;
     if (reduce) return;
     var toEl = document.getElementById("gate-to");
-    var LABEL = { "index.html": "HOME", "kiroku.html": "KIROKU", "blog.html": "BLOG", "contact.html": "CONTACT", "privacy.html": "PRIVACY" };
+    var THIS = (location.pathname.split("/").pop() || "index.html");
+    var LABEL = { "index.html": "HOME", "": "HOME", "kiroku.html": "KIROKU", "blog.html": "BLOG", "contact.html": "CONTACT", "privacy.html": "PRIVACY" };
+
+    function reset() { gate.classList.remove("is-visible", "is-closing", "is-opening"); }
+
+    // 到着（＝ホーム等にアクセス）時：改札が開く演出
+    function playOpen() {
+      if (toEl) toEl.textContent = LABEL[THIS] || "STATION";
+      reset();
+      gate.classList.add("is-visible", "is-opening");
+      window.setTimeout(reset, 620);   // 開き終わったら隠す（アニメ .52s + 余白）
+    }
+
+    // 出発（＝内部ページへ遷移）時：改札が閉じてから移動
+    function playCloseThen(href, file) {
+      if (toEl) toEl.textContent = LABEL[file] || "STATION";
+      reset();
+      gate.classList.add("is-visible", "is-closing");
+      window.setTimeout(function () { window.location.href = href; }, 360);
+    }
+
     document.addEventListener("click", function (e) {
       var a = e.target.closest ? e.target.closest("a") : null;
       if (!a) return;
@@ -478,10 +498,13 @@
       var file = href.split("#")[0].split("/").pop();
       if (!/\.html$/.test(file)) return;                       // .html 遷移のみ対象
       e.preventDefault();
-      if (toEl && LABEL[file]) toEl.textContent = LABEL[file];
-      gate.classList.add("is-on");
-      setTimeout(function () { window.location.href = href; }, 360);
+      playCloseThen(href, file);
     });
+
+    // 初回表示で開く演出。ブラウザバック（bfcache 復帰）時は閉じたまま
+    // 固まらないよう、必ずリセットしてから開き直す。
+    window.addEventListener("pageshow", function (e) { if (e.persisted) playOpen(); });
+    playOpen();
   }
 
   /* ---------------------------------------------------------
