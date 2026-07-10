@@ -272,6 +272,13 @@
 </div>
 <button class="burger" id="nav-toggle" type="button" aria-label="メニューを開閉" aria-expanded="false" aria-controls="site-nav"><span class="burger__lines" aria-hidden="true"><span></span><span></span><span></span></span></button>
 <button class="to-top" type="button" aria-label="ページ上部へ戻る"><i class="fa-solid fa-chevron-up"></i></button>
+<!-- 改札ゲート（到着=閉じた状態を見せてから開く／内部ページ遷移=閉じてから移動） -->
+<div class="gate" id="gate" aria-hidden="true">
+  <div class="gate__leaf gate__leaf--l"></div>
+  <div class="gate__leaf gate__leaf--r"></div>
+  <div class="gate__sign"><div class="gate__mark">〔 改札 〕</div><div class="gate__to" id="gate-to">STATION</div></div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="js/reveal.js"></script>
 <script src="js/main.js"></script>

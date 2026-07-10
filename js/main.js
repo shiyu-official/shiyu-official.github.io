@@ -477,7 +477,7 @@
       if (toEl) toEl.textContent = LABEL[THIS] || "STATION";
       reset();
       gate.classList.add("is-visible", "is-opening");
-      window.setTimeout(reset, 620);   // 開き終わったら隠す（アニメ .52s + 余白）
+      window.setTimeout(reset, 1250);  // 開き終わったら隠す（アニメ 1.15s + 余白）
     }
 
     // 出発（＝内部ページへ遷移）時：改札が閉じてから移動

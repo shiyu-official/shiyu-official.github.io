@@ -177,6 +177,13 @@
 <!-- 送信先の隠しiframe（ページ遷移なし送信） -->
 <iframe name="hidden-iframe" id="hidden-iframe" style="display:none" title="送信処理"></iframe>
 
+<!-- 改札ゲート（到着=閉じた状態を見せてから開く／内部ページ遷移=閉じてから移動） -->
+<div class="gate" id="gate" aria-hidden="true">
+  <div class="gate__leaf gate__leaf--l"></div>
+  <div class="gate__leaf gate__leaf--r"></div>
+  <div class="gate__sign"><div class="gate__mark">〔 改札 〕</div><div class="gate__to" id="gate-to">STATION</div></div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="js/reveal.js"></script>
 <script src="js/main.js"></script>
