@@ -719,19 +719,19 @@ footer {
 /* --- ① 駅名標スタイルの見出しバー（band-title の直下に敷く） --- */
 .eki-bar {
   display: block; position: relative;
-  height: 7px; width: clamp(74px, 9vw, 118px);
+  height: 9px; width: clamp(74px, 9vw, 118px);
   margin-top: .8rem; border-radius: 99px;
   background: linear-gradient(90deg, var(--primary-color), var(--primary-dark-color));
 }
-.eki-bar::before, .eki-bar::after {
-  content: ""; position: absolute; top: 50%;
-  width: 11px; height: 11px; border: 2px solid var(--primary-color);
-  border-radius: 50%; background: #fff; transform: translateY(-50%);
+.eki-bar::before, .eki-bar::after {   /* 端の丸：要素内に収めて見切れを防ぐ */
+  content: ""; position: absolute; top: 50%; transform: translateY(-50%);
+  width: 9px; height: 9px; border-radius: 50%;
+  background: #fff; box-shadow: inset 0 0 0 2px var(--primary-color);
 }
-.eki-bar::before { left: -3px; }
-.eki-bar::after  { right: -3px; }
+.eki-bar::before { left: 0; }
+.eki-bar::after  { right: 0; }
 .eki-bar--accent { background: linear-gradient(90deg, var(--accent-color), #a72d0c); }
-.eki-bar--accent::before, .eki-bar--accent::after { border-color: var(--accent-color); }
+.eki-bar--accent::before, .eki-bar--accent::after { box-shadow: inset 0 0 0 2px var(--accent-color); }
 
 /* --- ② 路線図スクロールインジケーター（右・縦長／ラベルは縦書き） --- */
 .routemap {
@@ -801,30 +801,6 @@ footer {
   100% { transform: rotateX(0); }
 }
 
-/* --- ④ 線路の区切り線（背景色の境目に“乗せる”／スクロールで敷設） --- */
-.rail-div {                  /* 高さ0でセクション境界に密着。線は境界に重ねて描く */
-  width: min(94%, var(--content-max)); margin: 0 auto;
-  height: 0; position: relative; z-index: 2;
-}
-.rail-div svg {
-  position: absolute; left: 0; right: 0; top: -11px;
-  width: 100%; height: 22px; display: block; overflow: visible;
-}
-.rail-div .rail-line {
-  stroke: var(--primary-color); stroke-width: 2.2; fill: none;
-  stroke-dasharray: 2000; stroke-dashoffset: 2000;
-  transition: stroke-dashoffset 1.4s var(--ease);
-}
-.rail-div .rail-tie {
-  stroke: var(--muted-color); stroke-width: 3; opacity: .5;
-  stroke-dasharray: 2000; stroke-dashoffset: 2000;
-  transition: stroke-dashoffset 1.2s var(--ease) .1s;
-}
-.rail-div .rail-train { fill: var(--accent-color); opacity: 0; transition: opacity .4s ease .9s; }
-.rail-div.is-in .rail-line, .rail-div.is-in .rail-tie { stroke-dashoffset: 0; }
-.rail-div.is-in .rail-train { opacity: 1; animation: trainrun 1.6s var(--ease) .3s both; }
-@keyframes trainrun { from { transform: translateX(-6%); } to { transform: translateX(94%); } }
-
 /* --- ⑤ 改札を抜けるページ遷移（到着=開く／出発=閉じる） --- */
 .gate {
   position: fixed; inset: 0; z-index: 200; pointer-events: none;
@@ -853,13 +829,10 @@ footer {
   46%  { opacity: 1; }   /* 閉じている間は表示を保持 */
   100% { opacity: 0; }
 }
-.gate__mark { font-size: 1.05rem; letter-spacing: .5em; color: var(--accent-color); }
 .gate__to { font-family: var(--accent-font); letter-spacing: .3em; margin-top: .4em; font-size: 1.35rem; }
 
 /* 動きを控える設定では、演出を止めて即時表示 */
 @media (prefers-reduced-motion: reduce) {
   .flap-cell.is-flip { animation: none; }
-  .rail-div .rail-line, .rail-div .rail-tie { stroke-dashoffset: 0; transition: none; }
-  .rail-div .rail-train { opacity: 1; animation: none; }
   .gate { display: none; }
 }
