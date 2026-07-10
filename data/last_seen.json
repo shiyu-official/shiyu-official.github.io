@@ -3,6 +3,7 @@
   "initialized": true,
   "videos": {
     "rail": [
+      "rmhH9ev2zPE",
       "U54WE6XevvE",
       "JE8IvGAzDrw",
       "S-G6yt2by_k",
@@ -16,10 +17,10 @@
       "FmHLh05Z05U",
       "aDjC0D9wY7g",
       "LXnmjseUXOw",
-      "mKq5WXcK1Xc",
-      "hD7NTxmS5KI"
+      "mKq5WXcK1Xc"
     ],
     "taiko": [
+      "Btt4Jp2xsv4",
       "TAQ9qV7Ugtc",
       "c2Qt4i-jUfU",
       "ytodCJcZklM",
@@ -33,10 +34,22 @@
       "jmZp26fsbQY",
       "c1bzvITiqhI",
       "2m1YGdrIZt8",
-      "64FZU1V1H3Y",
-      "PLuT75jZdj0"
+      "64FZU1V1H3Y"
     ]
   },
   "blog": [],
-  "news": []
+  "news": [
+    {
+      "date": "2026.07.10",
+      "tag": "新着動画",
+      "new": true,
+      "text": "Re:しゆ に新しい動画「16.新幹線乗り放題だったので始発から終電まで乗りました（WESTERポイント全線フリーきっぷ）」を公開しました。"
+    },
+    {
+      "date": "2026.07.10",
+      "tag": "新着動画",
+      "new": true,
+      "text": "太鼓の達人チャンネル に新しい動画「383.ダン・ダンドゥビ・ズバー!【太鼓の達人】」を公開しました。"
+    }
+  ]
 }
