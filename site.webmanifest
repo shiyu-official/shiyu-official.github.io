@@ -1,0 +1,16 @@
+{
+  "name": "-志遊- shiyu's station",
+  "short_name": "志遊",
+  "description": "しゆ（shiyu）の創作ハブ。旅行・鉄道と太鼓の達人の動画、旅の記録、ブログ。",
+  "lang": "ja",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#5c89af",
+  "icons": [
+    { "src": "/images/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/images/favicon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/images/favicon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
