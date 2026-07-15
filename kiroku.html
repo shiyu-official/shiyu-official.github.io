@@ -510,6 +510,28 @@
       return !!s.firstVisit;
     }
 
+    // カテゴリ別ロゴ画像（spot_visits.json は自動再生成されるため、id→画像の対応はここで固定）
+    // 画像を追加/変更したい場合はこのマップだけ編集する。該当が無ければ絵文字 icon にフォールバック。
+    var SPOT_ICONS = {
+      sanmeisen:        "images/spots/spot-01.png",
+      sanmeisen_makura: "images/spots/spot-02.png",
+      sankotou:         "images/spots/spot-03.png",
+      sandai_bijinnoyu: "images/spots/spot-04.png",
+      sandai_bihadanoyu:"images/spots/spot-05.png",
+      sandai_yakusen:   "images/spots/spot-06.png",
+      sandai_miyu:      "images/spots/spot-07.png",
+      sandai_hitou:     "images/spots/spot-08.png",
+      sandai_ichou:     "images/spots/spot-09.png",
+      sankei:           "images/spots/spot-10.png",
+      sanmeien:         "images/spots/spot-11.png",
+      sandai_yakei:     "images/spots/spot-12.png",
+      sandai_karst:     "images/spots/spot-13.png",
+      sandai_shonyudo:  "images/spots/spot-14.png",
+      sandai_meibaku:   "images/spots/spot-15.png",
+      sandai_shintaki:  "images/spots/spot-16.png",
+      sandai_keikoku:   "images/spots/spot-17.png"
+    };
+
     // 補正を反映するため、件数はメタ値ではなくデータから毎回集計する
     var totalSpots = 0, visitedSpots = 0;
     cats.forEach(function(c){
@@ -532,7 +554,7 @@
       }).join("");
       return '<div class="spot-cat">' +
                '<div class="spot-cat__head">' +
-                 '<span class="spot-cat__icon" aria-hidden="true">' + (c.iconImg ? '<img src="' + esc(c.iconImg) + '" alt="" loading="lazy">' : esc(c.icon || "")) + '</span>' +
+                 '<span class="spot-cat__icon" aria-hidden="true">' + (function(){ var img = SPOT_ICONS[c.id] || c.iconImg; return img ? '<img src="' + esc(img) + '" alt="" loading="lazy">' : esc(c.icon || ""); })() + '</span>' +
                  '<span class="spot-cat__name">' + esc(c.name) + '</span>' +
                  '<span class="spot-cat__count' + (complete ? " is-complete" : "") + '">' + v + '/' + c.spots.length + '</span>' +
                '</div>' +
