@@ -3,6 +3,7 @@
   "initialized": true,
   "videos": {
     "rail": [
+      "OZboV3UECZk",
       "rmhH9ev2zPE",
       "U54WE6XevvE",
       "JE8IvGAzDrw",
@@ -16,8 +17,7 @@
       "wv2IaFcDxLE",
       "FmHLh05Z05U",
       "aDjC0D9wY7g",
-      "LXnmjseUXOw",
-      "mKq5WXcK1Xc"
+      "LXnmjseUXOw"
     ],
     "taiko": [
       "ap-gmhN_Xe8",
@@ -39,6 +39,12 @@
   },
   "blog": [],
   "news": [
+    {
+      "date": "2026.07.17",
+      "tag": "新着動画",
+      "new": true,
+      "text": "Re:しゆ に新しい動画「S-06.The ”旅情”（サンライズ瀬戸・出雲）」を公開しました。"
+    },
     {
       "date": "2026.07.16",
       "tag": "新着動画",
@@ -62,12 +68,6 @@
       "tag": "新着動画",
       "new": true,
       "text": "Re:しゆ に新しい動画「16.新幹線乗り放題だったので始発から終電まで乗りました（WESTERポイント全線フリーきっぷ）」を公開しました。"
-    },
-    {
-      "date": "2026.07.10",
-      "tag": "新着動画",
-      "new": true,
-      "text": "太鼓の達人チャンネル に新しい動画「383.ダン・ダンドゥビ・ズバー!【太鼓の達人】」を公開しました。"
     }
   ]
 }
