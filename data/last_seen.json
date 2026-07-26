@@ -20,6 +20,7 @@
       "aDjC0D9wY7g"
     ],
     "taiko": [
+      "d-_yn7fAIA0",
       "Ehm9mJvGweA",
       "rJUj9vlVclw",
       "XngfjmPy7Yo",
@@ -33,12 +34,17 @@
       "ytodCJcZklM",
       "Rfz7GcOEqMg",
       "84HowH5kyzE",
-      "WAChYA3fB00",
-      "nc5xRLbCAlg"
+      "WAChYA3fB00"
     ]
   },
   "blog": [],
   "news": [
+    {
+      "date": "2026.07.26",
+      "tag": "新着動画",
+      "new": true,
+      "text": "太鼓の達人チャンネル に新しい動画「391.TOKIMEKIエスカレート(裏)【太鼓の達人】」を公開しました。"
+    },
     {
       "date": "2026.07.24",
       "tag": "新着動画",
@@ -62,12 +68,6 @@
       "tag": "新着動画",
       "new": true,
       "text": "太鼓の達人チャンネル に新しい動画「388.PON PON PON【太鼓の達人】」を公開しました。"
-    },
-    {
-      "date": "2026.07.18",
-      "tag": "新着動画",
-      "new": true,
-      "text": "太鼓の達人チャンネル に新しい動画「387.フライングゲット【太鼓の達人】」を公開しました。"
     }
   ]
 }
