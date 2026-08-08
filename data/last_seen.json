@@ -3,6 +3,7 @@
   "initialized": true,
   "videos": {
     "rail": [
+      "sBNRv1gjULA",
       "LQIcCgxGwNQ",
       "OZboV3UECZk",
       "rmhH9ev2zPE",
@@ -16,10 +17,10 @@
       "64AZBJMM5gU",
       "iwJVemxJrDY",
       "wv2IaFcDxLE",
-      "FmHLh05Z05U",
-      "aDjC0D9wY7g"
+      "FmHLh05Z05U"
     ],
     "taiko": [
+      "GeJSldRPAUw",
       "pCyfLeylWys",
       "OytSQ5p3zQU",
       "90m9ezbR_pI",
@@ -33,12 +34,23 @@
       "ap-gmhN_Xe8",
       "jmvs1rumpyA",
       "uqtkIlqMFX4",
-      "Btt4Jp2xsv4",
-      "TAQ9qV7Ugtc"
+      "Btt4Jp2xsv4"
     ]
   },
   "blog": [],
   "news": [
+    {
+      "date": "2026.08.08",
+      "tag": "新着動画",
+      "new": true,
+      "text": "Re:しゆ に新しい動画「Wv-03.特急『やくも17号 岡山→出雲市（約6分遅れ）』【車窓】」を公開しました。"
+    },
+    {
+      "date": "2026.08.08",
+      "tag": "新着動画",
+      "new": true,
+      "text": "太鼓の達人チャンネル に新しい動画「397.白猫きゃらめる夢幻のわたあめ【太鼓の達人】」を公開しました。"
+    },
     {
       "date": "2026.08.06",
       "tag": "新着動画",
@@ -56,18 +68,6 @@
       "tag": "新着動画",
       "new": true,
       "text": "太鼓の達人チャンネル に新しい動画「394.零の夜想曲(裏)【太鼓の達人】」を公開しました。"
-    },
-    {
-      "date": "2026.07.30",
-      "tag": "新着動画",
-      "new": true,
-      "text": "太鼓の達人チャンネル に新しい動画「393.URBAN FRAGMENTS【太鼓の達人】」を公開しました。"
-    },
-    {
-      "date": "2026.07.28",
-      "tag": "新着動画",
-      "new": true,
-      "text": "太鼓の達人チャンネル に新しい動画「392.バーニングフォースメドレー【太鼓の達人】」を公開しました。"
     }
   ]
 }
