@@ -20,6 +20,7 @@
       "FmHLh05Z05U"
     ],
     "taiko": [
+      "PKeHeAERV70",
       "ZCRJitmgB_g",
       "GeJSldRPAUw",
       "pCyfLeylWys",
@@ -33,12 +34,17 @@
       "XngfjmPy7Yo",
       "kSvX_0L36yo",
       "ap-gmhN_Xe8",
-      "jmvs1rumpyA",
-      "uqtkIlqMFX4"
+      "jmvs1rumpyA"
     ]
   },
   "blog": [],
   "news": [
+    {
+      "date": "2026.08.12",
+      "tag": "新着動画",
+      "new": true,
+      "text": "太鼓の達人チャンネル に新しい動画「399.ヤマタイ★ナイトパーティー【太鼓の達人】」を公開しました。"
+    },
     {
       "date": "2026.08.10",
       "tag": "新着動画",
@@ -62,12 +68,6 @@
       "tag": "新着動画",
       "new": true,
       "text": "太鼓の達人チャンネル に新しい動画「396.ヘイ,ミスタープロフェッサー【太鼓の達人】」を公開しました。"
-    },
-    {
-      "date": "2026.08.04",
-      "tag": "新着動画",
-      "new": true,
-      "text": "太鼓の達人チャンネル に新しい動画「395.アレキサンダーのテーマ【太鼓の達人】」を公開しました。"
     }
   ]
 }
