@@ -3,6 +3,7 @@
   "initialized": true,
   "videos": {
     "rail": [
+      "OZ9EhhQQ7I0",
       "sBNRv1gjULA",
       "LQIcCgxGwNQ",
       "OZboV3UECZk",
@@ -16,8 +17,7 @@
       "CCLNgN8DZBo",
       "64AZBJMM5gU",
       "iwJVemxJrDY",
-      "wv2IaFcDxLE",
-      "FmHLh05Z05U"
+      "wv2IaFcDxLE"
     ],
     "taiko": [
       "Rv_1b8eD9q0",
@@ -39,6 +39,12 @@
   },
   "blog": [],
   "news": [
+    {
+      "date": "2026.08.15",
+      "tag": "新着動画",
+      "new": true,
+      "text": "Re:しゆ に新しい動画「17.見て、聴いて、味わえる駅『我孫子駅』」を公開しました。"
+    },
     {
       "date": "2026.08.14",
       "tag": "新着動画",
@@ -62,12 +68,6 @@
       "tag": "新着動画",
       "new": true,
       "text": "Re:しゆ に新しい動画「Wv-03.特急『やくも17号 岡山→出雲市（約6分遅れ）』【車窓】」を公開しました。"
-    },
-    {
-      "date": "2026.08.08",
-      "tag": "新着動画",
-      "new": true,
-      "text": "太鼓の達人チャンネル に新しい動画「397.白猫きゃらめる夢幻のわたあめ【太鼓の達人】」を公開しました。"
     }
   ]
 }
