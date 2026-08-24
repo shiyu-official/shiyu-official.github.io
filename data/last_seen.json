@@ -20,6 +20,7 @@
       "iwJVemxJrDY"
     ],
     "taiko": [
+      "tpsWyIIKqe8",
       "oa_bjJ6EINs",
       "Z3gDsQeO70A",
       "5m0_tCy2YdA",
@@ -33,12 +34,17 @@
       "90m9ezbR_pI",
       "V4VUqcppVa4",
       "AI_7fpqbjpM",
-      "d-_yn7fAIA0",
-      "Ehm9mJvGweA"
+      "d-_yn7fAIA0"
     ]
   },
   "blog": [],
   "news": [
+    {
+      "date": "2026.08.24",
+      "tag": "新着動画",
+      "new": true,
+      "text": "太鼓の達人チャンネル に新しい動画「405.Abyss of hell(裏)【太鼓の達人】」を公開しました。"
+    },
     {
       "date": "2026.08.22",
       "tag": "新着動画",
@@ -62,12 +68,6 @@
       "tag": "新着動画",
       "new": true,
       "text": "太鼓の達人チャンネル に新しい動画「402.ナマハゲノウタ【太鼓の達人】」を公開しました。"
-    },
-    {
-      "date": "2026.08.16",
-      "tag": "新着動画",
-      "new": true,
-      "text": "太鼓の達人チャンネル に新しい動画「401.らいとにんぐ ぱっしょん(裏)【太鼓の達人】」を公開しました。"
     }
   ]
 }
