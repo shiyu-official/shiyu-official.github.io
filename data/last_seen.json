@@ -20,6 +20,7 @@
       "iwJVemxJrDY"
     ],
     "taiko": [
+      "xcxdgrFkbp4",
       "Ut4voty3dpU",
       "tpsWyIIKqe8",
       "oa_bjJ6EINs",
@@ -33,12 +34,17 @@
       "pCyfLeylWys",
       "OytSQ5p3zQU",
       "90m9ezbR_pI",
-      "V4VUqcppVa4",
-      "AI_7fpqbjpM"
+      "V4VUqcppVa4"
     ]
   },
   "blog": [],
   "news": [
+    {
+      "date": "2026.08.28",
+      "tag": "新着動画",
+      "new": true,
+      "text": "太鼓の達人チャンネル に新しい動画「407.森羅万象(達人-達人)【太鼓の達人】」を公開しました。"
+    },
     {
       "date": "2026.08.26",
       "tag": "新着動画",
@@ -62,12 +68,6 @@
       "tag": "新着動画",
       "new": true,
       "text": "太鼓の達人チャンネル に新しい動画「404.My Muscle Heart【太鼓の達人】」を公開しました。"
-    },
-    {
-      "date": "2026.08.20",
-      "tag": "新着動画",
-      "new": true,
-      "text": "太鼓の達人チャンネル に新しい動画「403.音虫をつかまえろ!【太鼓の達人】」を公開しました。"
     }
   ]
 }
