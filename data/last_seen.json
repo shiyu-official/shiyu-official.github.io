@@ -3,6 +3,7 @@
   "initialized": true,
   "videos": {
     "rail": [
+      "imGPy-S3JlU",
       "FDwJKtqnT0w",
       "OZ9EhhQQ7I0",
       "sBNRv1gjULA",
@@ -16,8 +17,7 @@
       "GPFfpjzjeTA",
       "KPGtaYdR5mM",
       "CCLNgN8DZBo",
-      "64AZBJMM5gU",
-      "iwJVemxJrDY"
+      "64AZBJMM5gU"
     ],
     "taiko": [
       "xcxdgrFkbp4",
@@ -39,6 +39,12 @@
   },
   "blog": [],
   "news": [
+    {
+      "date": "2026.08.29",
+      "tag": "新着動画",
+      "new": true,
+      "text": "Re:しゆ に新しい動画「Wv-04.寝台特急『サンライズ出雲 出雲市→東京』【車窓】」を公開しました。"
+    },
     {
       "date": "2026.08.28",
       "tag": "新着動画",
@@ -62,12 +68,6 @@
       "tag": "新着動画",
       "new": true,
       "text": "Re:しゆ に新しい動画「18.普通に洞爺湖を旅行したらあまりに最高だった件」を公開しました。"
-    },
-    {
-      "date": "2026.08.22",
-      "tag": "新着動画",
-      "new": true,
-      "text": "太鼓の達人チャンネル に新しい動画「404.My Muscle Heart【太鼓の達人】」を公開しました。"
     }
   ]
 }
