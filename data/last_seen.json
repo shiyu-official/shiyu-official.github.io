@@ -20,6 +20,7 @@
       "64AZBJMM5gU"
     ],
     "taiko": [
+      "KCJAEp_65FE",
       "xcxdgrFkbp4",
       "Ut4voty3dpU",
       "tpsWyIIKqe8",
@@ -33,12 +34,17 @@
       "GeJSldRPAUw",
       "pCyfLeylWys",
       "OytSQ5p3zQU",
-      "90m9ezbR_pI",
-      "V4VUqcppVa4"
+      "90m9ezbR_pI"
     ]
   },
   "blog": [],
   "news": [
+    {
+      "date": "2026.08.30",
+      "tag": "新着動画",
+      "new": true,
+      "text": "太鼓の達人チャンネル に新しい動画「408.森羅万象(玄人-達人)【太鼓の達人】」を公開しました。"
+    },
     {
       "date": "2026.08.29",
       "tag": "新着動画",
@@ -62,12 +68,6 @@
       "tag": "新着動画",
       "new": true,
       "text": "太鼓の達人チャンネル に新しい動画「405.Abyss of hell(裏)【太鼓の達人】」を公開しました。"
-    },
-    {
-      "date": "2026.08.22",
-      "tag": "新着動画",
-      "new": true,
-      "text": "Re:しゆ に新しい動画「18.普通に洞爺湖を旅行したらあまりに最高だった件」を公開しました。"
     }
   ]
 }
