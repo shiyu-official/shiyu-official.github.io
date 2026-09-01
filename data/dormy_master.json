@@ -1,7 +1,7 @@
 {
  "meta": {
   "source": "Wikipedia（ドーミーイン=貼付け・共立リゾート=貼付け）",
-  "asOf": "2026-08",
+  "asOf": "2026-09",
   "scope": "ドーミーイン・御宿野乃＋共立リゾート系",
   "note": "build_dormy_master.py が生成。totalPin に数値を入れると踏破率の分母を固定できる。",
   "totalPin": null
