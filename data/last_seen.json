@@ -20,6 +20,7 @@
       "64AZBJMM5gU"
     ],
     "taiko": [
+      "uIpq_eKM7hM",
       "KCJAEp_65FE",
       "xcxdgrFkbp4",
       "Ut4voty3dpU",
@@ -33,12 +34,17 @@
       "ZCRJitmgB_g",
       "GeJSldRPAUw",
       "pCyfLeylWys",
-      "OytSQ5p3zQU",
-      "90m9ezbR_pI"
+      "OytSQ5p3zQU"
     ]
   },
   "blog": [],
   "news": [
+    {
+      "date": "2026.09.01",
+      "tag": "新着動画",
+      "new": true,
+      "text": "太鼓の達人チャンネル に新しい動画「409.森羅万象(普通-達人)【太鼓の達人】」を公開しました。"
+    },
     {
       "date": "2026.08.30",
       "tag": "新着動画",
@@ -62,12 +68,6 @@
       "tag": "新着動画",
       "new": true,
       "text": "太鼓の達人チャンネル に新しい動画「406.秘ナルメジェドノ悲ナル憂鬱【太鼓の達人】」を公開しました。"
-    },
-    {
-      "date": "2026.08.24",
-      "tag": "新着動画",
-      "new": true,
-      "text": "太鼓の達人チャンネル に新しい動画「405.Abyss of hell(裏)【太鼓の達人】」を公開しました。"
     }
   ]
 }
