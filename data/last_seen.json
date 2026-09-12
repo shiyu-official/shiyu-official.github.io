@@ -3,6 +3,7 @@
   "initialized": true,
   "videos": {
     "rail": [
+      "Ra4tKuTLLE4",
       "imGPy-S3JlU",
       "FDwJKtqnT0w",
       "OZ9EhhQQ7I0",
@@ -16,8 +17,7 @@
       "Djysd20DQp4",
       "GPFfpjzjeTA",
       "KPGtaYdR5mM",
-      "CCLNgN8DZBo",
-      "64AZBJMM5gU"
+      "CCLNgN8DZBo"
     ],
     "taiko": [
       "9oRK8WnzSEw",
@@ -39,6 +39,12 @@
   },
   "blog": [],
   "news": [
+    {
+      "date": "2026.09.12",
+      "tag": "新着動画",
+      "new": true,
+      "text": "Re:しゆ に新しい動画「19.東京から大阪までの移動手段で最も快適かつ便利な方法（夜行バス『ドリームルリエ』）」を公開しました。"
+    },
     {
       "date": "2026.05.23",
       "tag": "新着動画",
@@ -62,12 +68,6 @@
       "tag": "新着動画",
       "new": true,
       "text": "太鼓の達人チャンネル に新しい動画「409.森羅万象(普通-達人)【太鼓の達人】」を公開しました。"
-    },
-    {
-      "date": "2026.08.30",
-      "tag": "新着動画",
-      "new": true,
-      "text": "太鼓の達人チャンネル に新しい動画「408.森羅万象(玄人-達人)【太鼓の達人】」を公開しました。"
     }
   ]
 }
