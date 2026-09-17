@@ -3,7 +3,6 @@
   "initialized": true,
   "videos": {
     "rail": [
-      "AYkfnRhG-8M",
       "Ra4tKuTLLE4",
       "imGPy-S3JlU",
       "FDwJKtqnT0w",
@@ -17,7 +16,8 @@
       "S-G6yt2by_k",
       "Djysd20DQp4",
       "GPFfpjzjeTA",
-      "KPGtaYdR5mM"
+      "KPGtaYdR5mM",
+      "CCLNgN8DZBo"
     ],
     "taiko": [
       "9oRK8WnzSEw",
@@ -39,6 +39,12 @@
   },
   "blog": [],
   "news": [
+    {
+      "date": "2026.05.30",
+      "tag": "新着動画",
+      "new": true,
+      "text": "Re:しゆ に新しい動画「12.世界最遅で紹介する、Youtuberの別荘こと『寝台特急 サンライズ瀬戸・出雲』」を公開しました。"
+    },
     {
       "date": "2026.09.16",
       "tag": "新着動画",
@@ -62,12 +68,6 @@
       "tag": "新着動画",
       "new": true,
       "text": "Re:しゆ に新しい動画「Wv-05.『特急ニセコ号 函館→札幌』【車窓】」を公開しました。"
-    },
-    {
-      "date": "2026.09.03",
-      "tag": "新着動画",
-      "new": true,
-      "text": "太鼓の達人チャンネル に新しい動画「410.森羅万象(達人-玄人)【太鼓の達人】」を公開しました。"
     }
   ]
 }
