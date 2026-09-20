@@ -3,6 +3,7 @@
   "initialized": true,
   "videos": {
     "rail": [
+      "Q0ntDu91rjk",
       "Ra4tKuTLLE4",
       "imGPy-S3JlU",
       "FDwJKtqnT0w",
@@ -16,8 +17,7 @@
       "S-G6yt2by_k",
       "Djysd20DQp4",
       "GPFfpjzjeTA",
-      "KPGtaYdR5mM",
-      "CCLNgN8DZBo"
+      "KPGtaYdR5mM"
     ],
     "taiko": [
       "9oRK8WnzSEw",
@@ -39,6 +39,12 @@
   },
   "blog": [],
   "news": [
+    {
+      "date": "2026.09.19",
+      "tag": "新着動画",
+      "new": true,
+      "text": "Re:しゆ に新しい動画「Wv-05.『特急ニセコ号 函館→札幌』【車窓】」を公開しました。"
+    },
     {
       "date": "2026.05.30",
       "tag": "新着動画",
@@ -62,12 +68,6 @@
       "tag": "新着動画",
       "new": true,
       "text": "Re:しゆ に新しい動画「11.懐かしき思い出『カシオペア紀行』」を公開しました。"
-    },
-    {
-      "date": "2026.09.11",
-      "tag": "新着動画",
-      "new": true,
-      "text": "Re:しゆ に新しい動画「Wv-05.『特急ニセコ号 函館→札幌』【車窓】」を公開しました。"
     }
   ]
 }
