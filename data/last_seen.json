@@ -20,6 +20,7 @@
       "S-G6yt2by_k"
     ],
     "taiko": [
+      "usg-SyecqBY",
       "_CUqbWjiDKI",
       "KHdDiiDKYe8",
       "PqHT1-tqx0s",
@@ -33,12 +34,17 @@
       "HlXjLy40sCw",
       "9oRK8WnzSEw",
       "uIpq_eKM7hM",
-      "KCJAEp_65FE",
-      "xcxdgrFkbp4"
+      "KCJAEp_65FE"
     ]
   },
   "blog": [],
   "news": [
+    {
+      "date": "2026.10.13",
+      "tag": "新着動画",
+      "new": true,
+      "text": "太鼓の達人チャンネル に新しい動画「421.アバみ【太鼓の達人】」を公開しました。"
+    },
     {
       "date": "2026.10.11",
       "tag": "新着動画",
@@ -62,12 +68,6 @@
       "tag": "新着動画",
       "new": true,
       "text": "太鼓の達人チャンネル に新しい動画「419.青と夏【太鼓の達人】」を公開しました。"
-    },
-    {
-      "date": "2026.10.07",
-      "tag": "新着動画",
-      "new": true,
-      "text": "Re:しゆ に新しい動画「Wv-06.特急『みどり 博多→佐世保』【車窓】」を公開しました。"
     }
   ]
 }
