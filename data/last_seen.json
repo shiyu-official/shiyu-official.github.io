@@ -3,6 +3,7 @@
   "initialized": true,
   "videos": {
     "rail": [
+      "5ZQvi6q-CS0",
       "BD1HhglcI6c",
       "d0OISU6J110",
       "Cin8OH28Gx4",
@@ -16,8 +17,7 @@
       "LQIcCgxGwNQ",
       "OZboV3UECZk",
       "rmhH9ev2zPE",
-      "U54WE6XevvE",
-      "JE8IvGAzDrw"
+      "U54WE6XevvE"
     ],
     "taiko": [
       "4E1IO5Wfxgw",
@@ -39,6 +39,12 @@
   },
   "blog": [],
   "news": [
+    {
+      "date": "2026.10.18",
+      "tag": "新着動画",
+      "new": true,
+      "text": "Re:しゆ に新しい動画「S-08.車内チャイムで一番好きな曲『美しき青きドナウ(リゾートビューふるさと)』」を公開しました。"
+    },
     {
       "date": "2026.10.17",
       "tag": "新着動画",
@@ -62,12 +68,6 @@
       "tag": "新着動画",
       "new": true,
       "text": "太鼓の達人チャンネル に新しい動画「421.アバみ【太鼓の達人】」を公開しました。"
-    },
-    {
-      "date": "2026.10.11",
-      "tag": "新着動画",
-      "new": true,
-      "text": "太鼓の達人チャンネル に新しい動画「422.8月の坂【太鼓の達人】」を公開しました。"
     }
   ]
 }
