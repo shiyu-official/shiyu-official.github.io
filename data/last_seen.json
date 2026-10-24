@@ -3,6 +3,7 @@
   "initialized": true,
   "videos": {
     "rail": [
+      "JM3sAnLhwL4",
       "stTijKZZjCI",
       "5ZQvi6q-CS0",
       "BD1HhglcI6c",
@@ -16,8 +17,7 @@
       "OZ9EhhQQ7I0",
       "sBNRv1gjULA",
       "LQIcCgxGwNQ",
-      "OZboV3UECZk",
-      "rmhH9ev2zPE"
+      "OZboV3UECZk"
     ],
     "taiko": [
       "mvqNNRNnwNs",
@@ -39,6 +39,12 @@
   },
   "blog": [],
   "news": [
+    {
+      "date": "2026.10.24",
+      "tag": "新着動画",
+      "new": true,
+      "text": "Re:しゆ に新しい動画「22.特急ニセコ号に乗るためだけに北海道日帰り旅行する馬鹿」を公開しました。"
+    },
     {
       "date": "2026.10.23",
       "tag": "新着動画",
@@ -62,12 +68,6 @@
       "tag": "新着動画",
       "new": true,
       "text": "太鼓の達人チャンネル に新しい動画「425.IRIS OUT【太鼓の達人】」を公開しました。"
-    },
-    {
-      "date": "2026.10.18",
-      "tag": "新着動画",
-      "new": true,
-      "text": "Re:しゆ に新しい動画「S-08.車内チャイムで一番好きな曲『美しき青きドナウ(リゾートビューふるさと)』」を公開しました。"
     }
   ]
 }
