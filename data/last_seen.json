@@ -20,6 +20,7 @@
       "OZboV3UECZk"
     ],
     "taiko": [
+      "zALz5fN-d1U",
       "mvqNNRNnwNs",
       "EItU9v14198",
       "F0NVnFpthLQ",
@@ -33,12 +34,17 @@
       "i1fz15s9Qvk",
       "_B7ebQN3cY0",
       "SAH8lsvh3D4",
-      "r_CUbCEeaew",
-      "DpWWZ9fy3Dc"
+      "r_CUbCEeaew"
     ]
   },
   "blog": [],
   "news": [
+    {
+      "date": "2026.10.25",
+      "tag": "新着動画",
+      "new": true,
+      "text": "太鼓の達人チャンネル に新しい動画「428.となりのトトロ【太鼓の達人】」を公開しました。"
+    },
     {
       "date": "2026.10.24",
       "tag": "新着動画",
@@ -62,12 +68,6 @@
       "tag": "新着動画",
       "new": true,
       "text": "Re:しゆ に新しい動画「Wv-08.快速『リゾートしらかみ5号 秋田→青森』【車窓】」を公開しました。"
-    },
-    {
-      "date": "2026.10.19",
-      "tag": "新着動画",
-      "new": true,
-      "text": "太鼓の達人チャンネル に新しい動画「425.IRIS OUT【太鼓の達人】」を公開しました。"
     }
   ]
 }
