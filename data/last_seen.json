@@ -3,6 +3,7 @@
   "initialized": true,
   "videos": {
     "rail": [
+      "jygGyURLdso",
       "gjKHRwhzWnw",
       "JM3sAnLhwL4",
       "stTijKZZjCI",
@@ -16,10 +17,10 @@
       "imGPy-S3JlU",
       "FDwJKtqnT0w",
       "OZ9EhhQQ7I0",
-      "sBNRv1gjULA",
-      "LQIcCgxGwNQ"
+      "sBNRv1gjULA"
     ],
     "taiko": [
+      "Kpzj4EPcwTU",
       "VU19hveG2PY",
       "wr5dvpcwB38",
       "eCnzGQtTzUU",
@@ -33,12 +34,23 @@
       "usg-SyecqBY",
       "_CUqbWjiDKI",
       "KHdDiiDKYe8",
-      "PqHT1-tqx0s",
-      "CI0_FXrcl0E"
+      "PqHT1-tqx0s"
     ]
   },
   "blog": [],
   "news": [
+    {
+      "date": "2026.11.04",
+      "tag": "新着動画",
+      "new": true,
+      "text": "太鼓の達人チャンネル に新しい動画「433.ワールドイズマイン CPK! Remix (かぐや&月見ヤチヨ ver.)(表)【太鼓の達人】」を公開しました。"
+    },
+    {
+      "date": "2026.11.04",
+      "tag": "新着動画",
+      "new": true,
+      "text": "Re:しゆ に新しい動画「Wv-10.特急『宇和海3号 松山→宇和島』【車窓】」を公開しました。"
+    },
     {
       "date": "2026.11.02",
       "tag": "新着動画",
@@ -56,18 +68,6 @@
       "tag": "新着動画",
       "new": true,
       "text": "太鼓の達人チャンネル に新しい動画「430.残酷な天使のテーゼ(裏)【太鼓の達人】」を公開しました。"
-    },
-    {
-      "date": "2026.10.28",
-      "tag": "新着動画",
-      "new": true,
-      "text": "Re:しゆ に新しい動画「Wv-09.特急『しおかぜ5号 岡山→松山』【車窓】」を公開しました。"
-    },
-    {
-      "date": "2026.10.27",
-      "tag": "新着動画",
-      "new": true,
-      "text": "太鼓の達人チャンネル に新しい動画「429.残酷な天使のテーゼ(表)【太鼓の達人】」を公開しました。"
     }
   ]
 }
