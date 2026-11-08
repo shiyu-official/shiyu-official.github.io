@@ -20,6 +20,7 @@
       "OZ9EhhQQ7I0"
     ],
     "taiko": [
+      "pqWP3120aDc",
       "SCfWasyYtD0",
       "Kpzj4EPcwTU",
       "VU19hveG2PY",
@@ -33,12 +34,17 @@
       "4E1IO5Wfxgw",
       "7XEeM3Rz_2Y",
       "usg-SyecqBY",
-      "_CUqbWjiDKI",
-      "KHdDiiDKYe8"
+      "_CUqbWjiDKI"
     ]
   },
   "blog": [],
   "news": [
+    {
+      "date": "2026.11.08",
+      "tag": "新着動画",
+      "new": true,
+      "text": "太鼓の達人チャンネル に新しい動画「435.自分REST@RT(裏)【太鼓の達人】」を公開しました。"
+    },
     {
       "date": "2026.11.06",
       "tag": "新着動画",
@@ -62,12 +68,6 @@
       "tag": "新着動画",
       "new": true,
       "text": "Re:しゆ に新しい動画「Wv-10.特急『宇和海3号 松山→宇和島』【車窓】」を公開しました。"
-    },
-    {
-      "date": "2026.11.02",
-      "tag": "新着動画",
-      "new": true,
-      "text": "太鼓の達人チャンネル に新しい動画「432.ワールドイズマイン CPK! Remix (かぐや&月見ヤチヨ ver.)(裏)【太鼓の達人】」を公開しました。"
     }
   ]
 }
