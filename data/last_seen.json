@@ -3,6 +3,7 @@
   "initialized": true,
   "videos": {
     "rail": [
+      "pdpVhBNY8aM",
       "hR641qjXwNM",
       "lbCT6dl-X2w",
       "PWbWG2zAtqQ",
@@ -16,8 +17,7 @@
       "d0OISU6J110",
       "Cin8OH28Gx4",
       "9BeApZWmmsU",
-      "Q0ntDu91rjk",
-      "Ra4tKuTLLE4"
+      "Q0ntDu91rjk"
     ],
     "taiko": [
       "0W3ulWCcMwM",
@@ -39,6 +39,12 @@
   },
   "blog": [],
   "news": [
+    {
+      "date": "2026.11.22",
+      "tag": "新着動画",
+      "new": true,
+      "text": "Re:しゆ に新しい動画「S-09.美しい駅メロを鳴らせる駅『館山駅』(Forever Love)」を公開しました。"
+    },
     {
       "date": "2026.11.20",
       "tag": "新着動画",
@@ -62,12 +68,6 @@
       "tag": "新着動画",
       "new": true,
       "text": "Re:しゆ に新しい動画「Wv-12.特急『あしずり7号 高知→宿毛』【車窓】」を公開しました。"
-    },
-    {
-      "date": "2026.11.16",
-      "tag": "新着動画",
-      "new": true,
-      "text": "太鼓の達人チャンネル に新しい動画「439.memoria ficta【太鼓の達人】」を公開しました。"
     }
   ]
 }
