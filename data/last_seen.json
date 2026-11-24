@@ -20,6 +20,7 @@
       "Q0ntDu91rjk"
     ],
     "taiko": [
+      "eK6i0s7mvcM",
       "au7ON70-WXM",
       "0W3ulWCcMwM",
       "W449k5Pc66w",
@@ -33,12 +34,17 @@
       "VU19hveG2PY",
       "wr5dvpcwB38",
       "eCnzGQtTzUU",
-      "EGgP0PE9vDk",
-      "zALz5fN-d1U"
+      "EGgP0PE9vDk"
     ]
   },
   "blog": [],
   "news": [
+    {
+      "date": "2026.11.24",
+      "tag": "新着動画",
+      "new": true,
+      "text": "太鼓の達人チャンネル に新しい動画「442.よくでる2000【太鼓の達人】」を公開しました。"
+    },
     {
       "date": "2026.11.22",
       "tag": "新着動画",
@@ -62,12 +68,6 @@
       "tag": "新着動画",
       "new": true,
       "text": "Re:しゆ に新しい動画「24.京都-大阪の有料座席サービス乗り比べと京都小旅行を楽しむ」を公開しました。"
-    },
-    {
-      "date": "2026.11.18",
-      "tag": "新着動画",
-      "new": true,
-      "text": "太鼓の達人チャンネル に新しい動画「440.電車でOPA!OPA!OPA!-GMT mushup-【太鼓の達人】」を公開しました。"
     }
   ]
 }
