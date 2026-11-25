@@ -3,6 +3,7 @@
   "initialized": true,
   "videos": {
     "rail": [
+      "y1APO1P1Rvo",
       "pdpVhBNY8aM",
       "hR641qjXwNM",
       "lbCT6dl-X2w",
@@ -16,8 +17,7 @@
       "BD1HhglcI6c",
       "d0OISU6J110",
       "Cin8OH28Gx4",
-      "9BeApZWmmsU",
-      "Q0ntDu91rjk"
+      "9BeApZWmmsU"
     ],
     "taiko": [
       "eK6i0s7mvcM",
@@ -39,6 +39,12 @@
   },
   "blog": [],
   "news": [
+    {
+      "date": "2026.11.25",
+      "tag": "新着動画",
+      "new": true,
+      "text": "Re:しゆ に新しい動画「Wv-13.特急『剣山6号 阿波池田→徳島』【車窓】」を公開しました。"
+    },
     {
       "date": "2026.11.24",
       "tag": "新着動画",
@@ -62,12 +68,6 @@
       "tag": "新着動画",
       "new": true,
       "text": "太鼓の達人チャンネル に新しい動画「441.カノン(シンクロニカ Remix)【太鼓の達人】」を公開しました。"
-    },
-    {
-      "date": "2026.11.20",
-      "tag": "新着動画",
-      "new": true,
-      "text": "Re:しゆ に新しい動画「24.京都-大阪の有料座席サービス乗り比べと京都小旅行を楽しむ」を公開しました。"
     }
   ]
 }
