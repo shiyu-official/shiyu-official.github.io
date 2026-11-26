@@ -20,6 +20,7 @@
       "9BeApZWmmsU"
     ],
     "taiko": [
+      "eVjMfjD3ax4",
       "eK6i0s7mvcM",
       "au7ON70-WXM",
       "0W3ulWCcMwM",
@@ -33,12 +34,17 @@
       "Kpzj4EPcwTU",
       "VU19hveG2PY",
       "wr5dvpcwB38",
-      "eCnzGQtTzUU",
-      "EGgP0PE9vDk"
+      "eCnzGQtTzUU"
     ]
   },
   "blog": [],
   "news": [
+    {
+      "date": "2026.11.26",
+      "tag": "新着動画",
+      "new": true,
+      "text": "太鼓の達人チャンネル に新しい動画「443.エール・エクス・マキナ！【太鼓の達人】」を公開しました。"
+    },
     {
       "date": "2026.11.25",
       "tag": "新着動画",
@@ -62,12 +68,6 @@
       "tag": "新着動画",
       "new": true,
       "text": "Re:しゆ に新しい動画「S-09.美しい駅メロを鳴らせる駅『館山駅』(Forever Love)」を公開しました。"
-    },
-    {
-      "date": "2026.11.20",
-      "tag": "新着動画",
-      "new": true,
-      "text": "太鼓の達人チャンネル に新しい動画「441.カノン(シンクロニカ Remix)【太鼓の達人】」を公開しました。"
     }
   ]
 }
