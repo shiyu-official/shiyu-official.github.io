@@ -3,6 +3,7 @@
   "initialized": true,
   "videos": {
     "rail": [
+      "tEvN6Z7rIb0",
       "y1APO1P1Rvo",
       "pdpVhBNY8aM",
       "hR641qjXwNM",
@@ -16,8 +17,7 @@
       "5ZQvi6q-CS0",
       "BD1HhglcI6c",
       "d0OISU6J110",
-      "Cin8OH28Gx4",
-      "9BeApZWmmsU"
+      "Cin8OH28Gx4"
     ],
     "taiko": [
       "eVjMfjD3ax4",
@@ -39,6 +39,12 @@
   },
   "blog": [],
   "news": [
+    {
+      "date": "2026.11.27",
+      "tag": "新着動画",
+      "new": true,
+      "text": "Re:しゆ に新しい動画「25.日本最東端の根室に閉じ込められた人の波乱万丈脱出劇」を公開しました。"
+    },
     {
       "date": "2026.11.26",
       "tag": "新着動画",
@@ -62,12 +68,6 @@
       "tag": "新着動画",
       "new": true,
       "text": "太鼓の達人チャンネル に新しい動画「442.おしえて くまとも【太鼓の達人】」を公開しました。"
-    },
-    {
-      "date": "2026.11.22",
-      "tag": "新着動画",
-      "new": true,
-      "text": "Re:しゆ に新しい動画「S-09.美しい駅メロを鳴らせる駅『館山駅』(Forever Love)」を公開しました。"
     }
   ]
 }
